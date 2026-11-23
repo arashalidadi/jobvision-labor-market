@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بازار کار ایران در آینه ۳۶۰ هزار آگهی استخدامی | تحلیل داده جاب‌ویژن</title>
+<meta name="description" content="تحلیل ۳۶۰٬۰۸۳ آگهی استخدامی جاب‌ویژن در ۲۳ ماه: بسته جبران خدمات، فصل استخدام، شکاف جنسیتی و استانی، بازده مدرک و سابقه، مدل‌سازی حقوق و شبکه مهارت‌ها.">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/">
+<link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:site_name" content="JobVision Labor Market">
+<meta property="og:title" content="بازار کار ایران در آینه ۳۶۰ هزار آگهی استخدامی">
+<meta property="og:description" content="حقوق، مهارت، جغرافیا و رقابت در آگهی‌های جاب‌ویژن — فروردین ۱۴۰۱ تا بهمن ۱۴۰۲">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="بازار کار ایران در آینه ۳۶۰ هزار آگهی استخدامی">
+<meta name="twitter:description" content="حقوق، مهارت، جغرافیا و رقابت در آگهی‌های جاب‌ویژن — ۱۴۰۱ تا ۱۴۰۲">
+<meta name="twitter:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+
+<link rel="sitemap" type="application/xml" href="/jobvision-labor-market/sitemap.xml">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "JobVision Labor Market Analysis — Iran Job Postings 2022–2024",
+  "alternateName": "تحلیل بازار کار ایران بر پایه آگهی‌های استخدامی جاب‌ویژن",
+  "description": "Analysis of 360,083 job postings published on JobVision between Farvardin 1401 and Bahman 1402 (April 2022 – February 2024): salary, skills, geography, competition, and a decision package for hiring managers.",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/",
+  "inLanguage": ["fa", "en"],
+  "creator": { "@type": "Person", "name": "Arash Alidadi", "url": "https://github.com/arashalidadi" },
+  "isBasedOn": "https://huggingface.co/datasets/JobVision/JobVision_Jobposts_Dataset",
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "temporalCoverage": "2022-04/2024-02",
+  "spatialCoverage": "IR",
+  "keywords": ["Iran labor market", "job postings", "salary analytics", "HR analytics", "JobVision"]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="JobVision Labor Market — home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg>
+      </span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#problem">مسئله</a>
+      <a href="#findings">یافته‌ها</a>
+      <a href="#visuals">نمودارها</a>
+      <a href="#playbook">بسته اجرایی</a>
+      <a href="#method">روش</a>
+      <a href="#run">اجرا</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <span class="on" aria-current="true">FA</span>
+        <a href="en/" hreflang="en" lang="en">EN</a>
+      </div>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub repository" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="منو" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================================================ HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="hero-kicker"><span class="dot" aria-hidden="true"></span> گزارش مدیریتی · پروژه تحلیل داده</span>
+          <h1>بازار کار ایران در آینه <em>۳۶۰ هزار</em> آگهی استخدامی</h1>
+          <p class="lead">حقوق، مهارت، جغرافیا و رقابت در آگهی‌های پلتفرم جاب‌ویژن؛ از ۳۶۴٬۸۳۸ آگهی خام تا یک بسته تصمیم برای مدیر استخدام.</p>
+          <ul class="hero-meta">
+            <li>تحلیلگر: آرش علی‌دادی</li>
+            <li>فروردین ۱۴۰۱ تا بهمن ۱۴۰۲</li>
+            <li>۲۳ ماه کامل · ۴۳ ستون</li>
+            <li>مجوز داده: CC BY-NC 4.0</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#findings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/></svg>
+              دیدن یافته‌های کلیدی
+            </a>
+            <a class="btn btn-ghost" href="https://colab.research.google.com/github/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.5 14.2c-.3.5-.9.9-1.6 1.1-.7.2-1.5.2-2.2-.1-.7-.2-1.3-.6-1.8-1.2l1.6-1.2c.2.3.4.5.7.6.3.1.6.2.9.1.3 0 .5-.1.7-.3.1-.2.2-.4.1-.6 0-.2-.2-.4-.5-.6l-1-.5c-.9-.5-1.5-1-1.7-1.6-.2-.6-.2-1.2.1-1.8.3-.6.8-1 1.5-1.3.5-.2 1-.3 1.6-.3.6 0 1.1.2 1.6.4.5.2.9.6 1.2 1l-1.5 1.2c-.3-.4-.6-.6-.9-.7-.4-.1-.8-.1-1.1.1-.2.1-.3.2-.4.4 0 .1 0 .3.1.4.1.2.4.3.8.5l1 .5c1 .5 1.6 1 1.8 1.7.3.6.3 1.3 0 2zM7.6 10H6.2v4.2c0 .3-.1.5-.2.6-.2.1-.4.2-.7.2-.3 0-.6-.1-.8-.3l.6-1.3c0 .1.1.1.2.1V10H4V8.7h3.6V10z"/></svg>
+              اجرا در Google Colab
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/arashalidadi/jobvision-labor-market" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              کد و گزارش در GitHub
+            </a>
+          </div>
+        </div>
+
+        <figure class="chart-card" style="margin:0">
+          <header>
+            <h3>آگهی منتشرشده در ماه</h3>
+            <span class="badge">رشد ۸۸٪ · ۱۹ ماه</span>
+          </header>
+          <svg viewBox="0 0 960 380" role="img" aria-labelledby="hero-chart-title hero-chart-desc">
+            <title id="hero-chart-title">روند ماهانه تعداد آگهی‌های جاب‌ویژن، فروردین ۱۴۰۱ تا بهمن ۱۴۰۲</title>
+            <desc id="hero-chart-desc">از ۱۲٬۷۸۲ آگهی در فروردین ۱۴۰۱ به اوج ۲۴٬۰۱۷ در مهر ۱۴۰۲؛ کف دوره اسفند ۱۴۰۱ با ۵٬۵۳۱ آگهی.</desc>
+            <defs>
+              <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2f9c92" stop-opacity=".32"/>
+                <stop offset="100%" stop-color="#2f9c92" stop-opacity=".03"/>
+              </linearGradient>
+            </defs>
+            <g fill="none" stroke="#e9efee" stroke-width="1.4">
+              <line x1="40" x2="920" y1="306" y2="306"/>
+              <line x1="40" x2="920" y1="212.9" y2="212.9" stroke-dasharray="4 6"/>
+              <line x1="40" x2="920" y1="119.8" y2="119.8" stroke-dasharray="4 6"/>
+            </g>
+            <g class="ylab" font-family="Vazirmatn, sans-serif" font-size="22" fill="#93a8a4">
+              <text x="920" y="313" text-anchor="start">۰</text>
+              <text x="920" y="220" text-anchor="start">۱۰٬۰۰۰</text>
+              <text x="920" y="127" text-anchor="start">۲۰٬۰۰۰</text>
+            </g>
+            <g stroke="#eef3f2" stroke-width="1.2">
+              <line x1="805" x2="805" y1="64" y2="306"/><line x1="690" x2="690" y1="64" y2="306"/>
+              <line x1="575" x2="575" y1="64" y2="306"/><line x1="461" x2="461" y1="64" y2="306"/>
+              <line x1="346" x2="346" y1="64" y2="306"/><line x1="232" x2="232" y1="64" y2="306"/>
+              <line x1="117" x2="117" y1="64" y2="306"/>
+            </g>
+            <path d="M900.0 306 L900.0 187.0 L861.8 203.4 L823.6 200.4 L785.5 195.6 L747.3 180.0 L709.1 210.5 L670.9 185.5 L632.7 182.0 L594.5 193.3 L556.4 154.1 L518.2 223.0 L480.0 254.5 L441.8 136.4 L403.6 135.0 L365.5 155.0 L327.3 117.4 L289.1 118.3 L250.9 136.8 L212.7 82.5 L174.5 93.7 L136.4 101.8 L98.2 88.0 L60.0 152.2 L60.0 306 Z" fill="url(#heroFill)"/>
+            <path d="M900.0 187.0 L861.8 203.4 L823.6 200.4 L785.5 195.6 L747.3 180.0 L709.1 210.5 L670.9 185.5 L632.7 182.0 L594.5 193.3 L556.4 154.1 L518.2 223.0 L480.0 254.5 L441.8 136.4 L403.6 135.0 L365.5 155.0 L327.3 117.4 L289.1 118.3 L250.9 136.8 L212.7 82.5 L174.5 93.7 L136.4 101.8 L98.2 88.0 L60.0 152.2" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="212.7" cy="82.5" r="6.5" fill="#b8862f" stroke="#fff" stroke-width="3"/>
+            <g font-family="Vazirmatn, sans-serif" font-size="22" font-weight="700" fill="#2c4541">
+              <text x="212.7" y="52" text-anchor="middle">مهر ۱۴۰۲ · ۲۴٬۰۱۷</text>
+              <text x="480" y="288" text-anchor="middle" fill="#8a5a54">اسفند ۱۴۰۱ · ۵٬۵۳۱</text>
+            </g>
+            <g font-family="Vazirmatn, sans-serif" font-size="20" fill="#7d918e">
+              <text x="862" y="344" text-anchor="middle">بهار ۱۴۰۱</text>
+              <text x="633" y="344" text-anchor="middle">پاییز ۱۴۰۱</text>
+              <text x="404" y="344" text-anchor="middle">بهار ۱۴۰۲</text>
+              <text x="175" y="344" text-anchor="middle">پاییز ۱۴۰۲</text>
+            </g>
+          </svg>
+          <figcaption class="foot">
+            <span>۲۳ ماه کامل · ۳۶۰٬۰۸۳ آگهی</span>
+            <span><bdi dir="ltr">JobVision</bdi> · <bdi dir="ltr">CC BY-NC 4.0</bdi></span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="kpi-strip" aria-label="شاخص‌های کلیدی">
+        <div class="kpi"><span class="v" data-count="360083">۳۶۰٬۰۸۳</span><span class="l">آگهی در ۲۳ ماه کامل تحلیل</span></div>
+        <div class="kpi"><span class="v">۳۳٫۱<small>٪</small></span><span class="l">آگهی‌هایی که حقوق را اعلام کرده‌اند</span></div>
+        <div class="kpi"><span class="v">۱۱٫۰</span><span class="l">میانه حقوق ماهانه، میلیون تومان</span></div>
+        <div class="kpi"><span class="v">۶۴٫۶<small>٪</small></span><span class="l">سهم تهران از کل آگهی‌ها</span></div>
+        <div class="kpi"><span class="v">۰٫۴۴</span><span class="l">R² اعتبارسنجی مدل حقوق</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== PROBLEM / 4 Qs -->
+  <section class="section" id="problem">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">از آگهی خام تا تصمیم</span>
+        <h2>یک داده خام، یک مدیر، و چهار تصمیمی که باید همین امسال گرفته شود</h2>
+        <p class="lead">آگهی استخدامی هم‌زمان سه کار می‌کند: تقاضای کارفرما را اعلام می‌کند، سطح انتظار از مهارت را نشان می‌دهد و در صورت اعلام حقوق، قیمت پیشنهادی نیروی کار را آشکار می‌کند. جمع این آگهی‌ها در ۲۳ ماه، تصویری کمّی از «چه کسی، با چه مهارتی، در کجا و با چه قیمتی» می‌سازد.</p>
+      </div>
+
+      <div class="grid g4">
+        <article class="card hover reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3v18M16.5 7.2c-.8-1-2.4-1.7-4.5-1.7-2.6 0-4.5 1.2-4.5 3.2 0 2.2 2 3 4.5 3.6 2.7.6 4.6 1.4 4.6 3.6 0 2-2 3.3-4.6 3.3-2.2 0-3.9-.7-4.8-1.9"/></svg></div>
+          <span class="tag">پرسش ۱</span>
+          <h3>بسته درست جبران خدمات چیست؟</h3>
+          <p>برای هر رده شغلی و هر استان، چه دامنه‌ای از حقوق و دستمزد ساعتی رقابتی و هم‌زمان قابل دفاع است؟</p>
+        </article>
+        <article class="card hover reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+          <span class="tag">پرسش ۲</span>
+          <h3>چه زمانی و با چه مهارتی استخدام کنیم؟</h3>
+          <p>تقاضا در کدام ماه‌ها و فصل‌ها اوج می‌گیرد و کدام مهارت‌ها بیشترین ارزش افزوده مالی را می‌سازند؟</p>
+        </article>
+        <article class="card hover reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c.6-3.1 2.8-4.8 5.5-4.8s4.9 1.7 5.5 4.8"/><path d="M16 5.4a3 3 0 0 1 0 5.9M17.2 19.5c-.2-1.6-.7-2.9-1.6-3.9 2.6-.2 4.4 1.4 4.9 3.9"/></svg></div>
+          <span class="tag">پرسش ۳</span>
+          <h3>چگونه آگهی متمایز می‌شود؟</h3>
+          <p>ساختار رقابت میان کارفرمایان چگونه است و افشای حقوق، مزایا و زمان‌بندی چه اثری دارد؟</p>
+        </article>
+        <article class="card hover reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3l2.5 5.2 5.5.8-4 3.9 1 5.6-5-2.7-5 2.7 1-5.6-4-3.9 5.5-.8z"/></svg></div>
+          <span class="tag">پرسش ۴</span>
+          <h3>داده چه ارزشی خلق می‌کند؟</h3>
+          <p>پنج ظرفیت عملی: قیمت‌گذاری نیروی کار، تقویم استخدام، نقشه مهارت، پایش شکاف و بنچمارک کارفرما.</p>
+        </article>
+      </div>
+
+      <div class="grid g2" style="margin-top:clamp(20px,2.6vw,34px)">
+        <div class="callout reveal">
+          <p><b>اصل حاکم بر گزارش:</b> هر عدد با مخرج، نمونه و محدودیت خود گزارش می‌شود. «میانه حقوق» فقط روی آگهی‌های با حقوق اعلام‌شده محاسبه می‌شود، در حالی که «نرخ افشا» روی کل آگهی‌ها؛ این دو را نمی‌توان به‌جای هم خواند.</p>
+        </div>
+        <div class="callout gold reveal">
+          <p><b>چرا ۳۶۰٬۰۸۳ و نه ۳۶۴٬۸۳۸؟</b> دو ماه ابتدا و انتهای داده (مارس ۲۰۲۲ و مارس ۲۰۲۴) به‌صورت برشی ثبت شده‌اند؛ پس از حذف آن‌ها، ۲۳ ماه کامل با پوشش ۹۸٫۷٪ باقی می‌ماند.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= FINDINGS -->
+  <section class="section tint" id="findings">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">ده یافته کلیدی</span>
+        <h2>آنچه ۳۶۰ هزار آگهی درباره بازار کار ایران می‌گوید</h2>
+        <p class="lead">هر یافته با یک عدد، یک مخرج روشن و ارجاع به بخش تحلیل در نوت‌بوک گزارش شده است. فهرست کامل جدول‌ها و نمودارها در انتهای صفحه آمده است.</p>
+      </div>
+
+      <div class="grid g2">
+        <article class="finding reveal"><div class="n">۰۱</div><div>
+          <h3>بازاری که پیوسته بزرگ شد</h3>
+          <p>حجم ماهانه از ۱۲٬۷۸۲ آگهی در فروردین ۱۴۰۱ به ۲۴٬۰۱۷ در مهر ۱۴۰۲ رسید؛ رشد ۸۸٪ در ۱۹ ماه، با کف ۵٬۵۳۱ آگهی در اسفند ۱۴۰۱.</p>
+          <span class="k">۳۶۰٬۰۸۳ آگهی · بخش ۴ و ۱۰</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۰۲</div><div>
+          <h3>شفافیت حقوق کم و ساختارمند</h3>
+          <p>فقط ۳۳٫۱٪ آگهی‌ها حقوق را اعلام می‌کنند. نرخ افشا در شرکت‌های ۱۱ تا ۵۰ نفره ۴۳٫۴٪ و در شرکت‌های ۱۰۰۱ تا ۵۰۰۰ نفره ۱۶٫۶٪ است؛ خی‌دو (Cramér's V = ۰٫۱۹) نشان می‌دهد گمشدگی تصادفی نیست.</p>
+          <span class="k">مدل احتمال افشا: AUC = ۰٫۶۵</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۰۳</div><div>
+          <h3>میانه ۱۱ میلیون، دامنه رقابتی ۹ تا ۱۷٫۵</h3>
+          <p>توزیع حقوق چوله است (میانگین ۱۳٫۴). برنامه‌نویسی با میانه ۱۷٫۵ حدود ۵۹٪ بالاتر از بازار است و کارگر ساده و کارمند دفتری با ۹ میلیون حدود ۱۸٪ پایین‌تر.</p>
+          <span class="k">۱۱۹٬۰۴۸ آگهی با حقوق اعلام‌شده</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۰۴</div><div>
+          <h3>قراردادی‌ها گران‌ترند، پاره‌وقت‌ها نه</h3>
+          <p>میانه درآمد ساعتی ۶۳٫۵ هزار تومان است. قراردادی و پروژه‌ای ۸۹ هزار تومان در ساعت می‌گیرد، اما «صرفه» ظاهری پاره‌وقت با ساعت‌های صریح متن آگهی از بین می‌رود؛ خطای برآورد است، نه واقعیت بازار.</p>
+          <span class="k">۱۱۶٬۲۴۴ آگهی با حقوق و ساعت</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۰۵</div><div>
+          <h3>هر پله مدرک ≈ ۱٫۳ سال سابقه</h3>
+          <p>با کنترل شغل و صنعت، هر سال سابقه ۱۱٫۱٪ و هر پله مدرک ۱۴٫۹٪ حقوق را بالا می‌برد. در ورود به بازار، فاصله کارشناسی و ارشد تا ۵۰٪ می‌رسد.</p>
+          <span class="k">مدل رگرسیون لگاریتم حقوق · بخش ۱۲</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۰۶</div><div>
+          <h3>فصل استخدام: دی، مهر و آبان</h3>
+          <p>شاخص فصلی در دی به ۱۲۳٪ می‌رسد و مهر و آبان ۱۱۵ و ۱۱۲٪؛ کم‌رقابت‌ترین ماه‌ها بهمن (۷۹٪)، خرداد (۸۶٪) و شهریور (۸۸٪) هستند. استخدام پیش از نوروز می‌خوابد.</p>
+          <span class="k">میانگین دو سال، تقویم شمسی</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۰۷</div><div>
+          <h3>تفکیک شغلی جنسیتی، بزرگ‌تر از شکاف دستمزد</h3>
+          <p>۳۳٫۵٪ آگهی‌ها شرط صریح جنسیت دارند؛ شکاف میانه «فقط آقا» و «فقط خانم» ۲۲٫۲٪ است، اما در رده مدیریتی به ۱۰۵٪ می‌رسد و در دسته تکنسین فنی ۷۹٪ آگهی‌ها مردانه‌اند.</p>
+          <span class="k">آزمون t و مان-ویتنی، p &lt; ۰٫۰۰۱</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۰۸</div><div>
+          <h3>تهران ۶۴٫۶٪ فرصت‌ها، بدون شکاف قیمتی</h3>
+          <p>میانه حقوق همه استان‌های پرتکرار ۱۱ میلیون است؛ اما دورکاری بیرون تهران (۱۵ تا ۲۱٪) بسیار رایج‌تر از خود تهران (۳٫۱٪) است. سهم تهران در دو سال ۲٫۷ واحد درصد افت کرده است.</p>
+          <span class="k">۳۲ استان · بخش ۱۴</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۰۹</div><div>
+          <h3>آفیس، هسته مهارت بازار</h3>
+          <p>Excel در ۳۸٫۴٪ کل آگهی‌ها خواسته شده است. شبکه هم‌رخدادی، چهار جامعه مهارتی روشن دارد: آفیس و مالی ایران، توسعه نرم‌افزار، طراحی و رسانه، و CAD و مهندسی.</p>
+          <span class="k">۴۹۱ مهارت · ۳۵ گره مرکزی</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">۱۰</div><div>
+          <h3>مدل، ۴۴٪ تغییرات حقوق را توضیح می‌دهد</h3>
+          <p>R² اعتبارسنجی ۰٫۴۴ و مدل درختی ۰٫۵۸. مهم‌ترین عامل، سابقه است (+۱۲٫۵٪ به‌ازای هر انحراف معیار در ۱۴۰۲) و شکاف دسته‌های شغلی تا −۶۰٪ می‌رسد.</p>
+          <span class="k">pipeline تکرارپذیر · بخش ۱۶</span>
+        </div></article>
+      </div>
+
+      <div class="callout reveal" style="margin-top:clamp(20px,2.6vw,32px)">
+        <p><b>محدودیت‌ها را هم بخوانید.</b> این داده فقط آگهی‌های منتشرشده در جاب‌ویژن را پوشش می‌دهد و نماینده کل بازار کار ایران نیست؛ نام شرکت‌ها ناشناس است؛ «بازه سنی» و «جنسیت» ترجیح کارفرما در آگهی است، نه ویژگی نیروی استخدام‌شده؛ و واحد حقوق بر پایه شواهد بیرونی «میلیون تومان در ماه» فرض شده است. فهرست کامل در بخش <a href="#limits">محدودیت‌ها</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================  VISUALS -->
+  <section class="section" id="visuals">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">گالری نمودارها</span>
+        <h2>سی‌وپنج نمودار، به تفکیک پرسش</h2>
+        <p class="lead">همه نمودارها از نوت‌بوک اجراشده تولید شده‌اند و شماره یکتای هر نمودار با گزارش ۱۲۵ صفحه‌ای و ارائه ۱۵ اسلایدی یکی است. برای دیدن اندازه کامل، روی هر نمودار بزنید.</p>
+      </div>
+
+      <div data-tabs>
+        <div class="tabs" role="tablist" aria-label="دسته‌بندی نمودارها">
+          <button class="tab" role="tab" data-tab="market" aria-selected="true">بازار و زمان</button>
+          <button class="tab" role="tab" data-tab="salary" aria-selected="false">حقوق و درآمد ساعتی</button>
+          <button class="tab" role="tab" data-tab="people" aria-selected="false">جنسیت، تحصیلات و سن</button>
+          <button class="tab" role="tab" data-tab="geo" aria-selected="false">جغرافیا</button>
+          <button class="tab" role="tab" data-tab="skills" aria-selected="false">مهارت و صنعت</button>
+          <button class="tab" role="tab" data-tab="model" aria-selected="false">مدل‌سازی و خوشه‌بندی</button>
+        </div>
+
+        <div class="gallery" data-panel="market">
+          <figure class="figure">
+            <button data-full="assets/img/fig_10_1.webp" data-caption="نمودار ۱۰.۱ — حجم ماهانه آگهی" aria-label="بزرگ‌نمایی نمودار ۱۰.۱">
+              <img src="assets/img/fig_10_1-sm.webp" alt="نمودار خطی تعداد آگهی منتشرشده در هر ماه" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>نمودار ۱۰.۱ · حجم ماهانه</b><span>روند تعداد آگهی در ۲۳ ماه، از ۱۲٬۷۸۲ به اوج ۲۴٬۰۱۷.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_10_2.webp" data-caption="نمودار ۱۰.۲ — الگوی فصلی در تقویم شمسی" aria-label="بزرگ‌نمایی نمودار ۱۰.۲">
+              <img src="assets/img/fig_10_2-sm.webp" alt="نمودار میله‌ای الگوی فصلی انتشار آگهی در ماه‌های شمسی" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>نمودار ۱۰.۲ · فصل استخدام</b><span>اوج در دی (۱۲۳٪)، مهر و آبان؛ کف در بهمن (۷۹٪).</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_22_1.webp" data-caption="نمودار ۲۲.۱ — تقویم پیشنهادی انتشار آگهی" aria-label="بزرگ‌نمایی نمودار ۲۲.۱">
+              <img src="assets/img/fig_22_1-sm.webp" alt="نمودار شاخص فصلی رقابت برای جذب نیرو" loading="lazy" width="700" height="300">
+            </button>
+            <figcaption><b>نمودار ۲۲.۱ · تقویم انتشار</b><span>ماه‌های کم‌رقابت برای نقش‌های غیرفوری: خرداد، شهریور، اردیبهشت، بهمن.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_4_3.webp" data-caption="نمودار ۴.۳ — بازه زمانی و پوشش ماهانه" aria-label="بزرگ‌نمایی نمودار ۴.۳">
+              <img src="assets/img/fig_4_3-sm.webp" alt="نمودار پوشش ماهانه داده با ماه‌های ناقص مشخص‌شده" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>نمودار ۴.۳ · پوشش داده</b><span>۲۵ ماه ثبت شده؛ دو ماه ابتدا و انتها ناقص و کنار گذاشته شده‌اند.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="salary" hidden>
+          <figure class="figure">
+            <button data-full="assets/img/fig_7_1-7_4.webp" data-caption="نمودارهای ۷.۱ تا ۷.۴ — توزیع‌ها" aria-label="بزرگ‌نمایی نمودارهای ۷.۱ تا ۷.۴">
+              <img src="assets/img/fig_7_1-7_4-sm.webp" alt="چهار نمودار توزیع حقوق، لگاریتم حقوق، درآمد ساعتی و سابقه" loading="lazy" width="700" height="412">
+            </button>
+            <figcaption><b>نمودار ۷.۱ تا ۷.۴ · توزیع‌ها</b><span>چولگی راست ۲٫۶۸؛ میانگین ۱۳٫۴ و میانه ۱۱ میلیون تومان.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_10_3.webp" data-caption="نمودار ۱۰.۳ — پویایی دستمزد" aria-label="بزرگ‌نمایی نمودار ۱۰.۳">
+              <img src="assets/img/fig_10_3-sm.webp" alt="نمودار روند میانه و میانگین حقوق ماهانه" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>نمودار ۱۰.۳ · پویایی دستمزد</b><span>میانه از ۷ به ۱۳٫۵ میلیون؛ رشد اسمی ۵۳٫۷٪ در ماه‌های هم‌نام.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_6_1-6_2.webp" data-caption="نمودار ۶.۱ و ۶.۲ — ساعت کار و بازه حقوق" aria-label="بزرگ‌نمایی نمودار ۶.۱ و ۶.۲">
+              <img src="assets/img/fig_6_1-6_2-sm.webp" alt="نمودارهای ساعت کار هفتگی و رابطه آن با بازه حقوق" loading="lazy" width="700" height="230">
+            </button>
+            <figcaption><b>نمودار ۶.۱ و ۶.۲ · ساعت کار</b><span>ساعت هفتگی استخراج‌شده از متن آزاد، مبنای شاخص درآمد ساعتی است.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_22_2.webp" data-caption="نمودار ۲۲.۲ — صرفه حقوقی مهارت‌ها" aria-label="بزرگ‌نمایی نمودار ۲۲.۲">
+              <img src="assets/img/fig_22_2-sm.webp" alt="نمودار صرفه حقوقی مهارت‌ها در دسته شغلی خودشان" loading="lazy" width="700" height="330">
+            </button>
+            <figcaption><b>نمودار ۲۲.۲ · صرفه مهارت</b><span>AutoCAD +۱۴٫۴٪، Visio +۱۳٫۲٪ و راهکاران +۱۱٫۸٪ در دسته خودشان.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_23_1.webp" data-caption="نمودار ۲۳.۱ — داشبورد جمع‌بندی" aria-label="بزرگ‌نمایی نمودار ۲۳.۱">
+              <img src="assets/img/fig_23_1-sm.webp" alt="داشبورد چهار نموداری جمع‌بندی بازار کار" loading="lazy" width="700" height="417">
+            </button>
+            <figcaption><b>نمودار ۲۳.۱ · داشبورد</b><span>چهار نما از یک تصویر: حجم، توزیع حقوق، تمرکز استانی و مهارت‌ها.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_8_1-8_2.webp" data-caption="نمودارهای ۸.۱ و ۸.۲ — همبستگی" aria-label="بزرگ‌نمایی نمودارهای ۸.۱ و ۸.۲">
+              <img src="assets/img/fig_8_1-8_2-sm.webp" alt="ماتریس همبستگی پیرسون و اسپیرمن" loading="lazy" width="700" height="282">
+            </button>
+            <figcaption><b>نمودار ۸.۱ و ۸.۲ · همبستگی</b><span>قوی‌ترین رابطه، ساعت هفتگی و درآمد ساعتی (−۰٫۶۸) که تا حدی مکانیکی است.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="people" hidden>
+          <figure class="figure">
+            <button data-full="assets/img/fig_11_2.webp" data-caption="نمودار ۱۱.۲ — توزیع حقوق به تفکیک ترجیح جنسیت" aria-label="بزرگ‌نمایی نمودار ۱۱.۲">
+              <img src="assets/img/fig_11_2-sm.webp" alt="نمودار توزیع حقوق در پنج گروه ترجیح جنسیت" loading="lazy" width="700" height="333">
+            </button>
+            <figcaption><b>نمودار ۱۱.۲ · شکاف جنسیتی</b><span>میانه «فقط آقا» ۱۱ و «فقط خانم» ۹ میلیون؛ شکاف ۲۲٫۲٪ و معنادار.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_11_1.webp" data-caption="نمودار ۱۱.۱ — ترجیح جنسیت در دسته‌های شغلی" aria-label="بزرگ‌نمایی نمودار ۱۱.۱">
+              <img src="assets/img/fig_11_1-sm.webp" alt="نمودار سهم آگهی‌های دارای شرط جنسیت به تفکیک دسته شغلی" loading="lazy" width="700" height="353">
+            </button>
+            <figcaption><b>نمودار ۱۱.۱ · تفکیک شغلی</b><span>تکنسین فنی ۷۹٪ مردانه؛ در رده مدیریتی شکاف به ۱۰۵٪ می‌رسد.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_12_1-12_2.webp" data-caption="نمودار ۱۲.۱ و ۱۲.۲ — بازده مدرک و سابقه" aria-label="بزرگ‌نمایی نمودار ۱۲.۱ و ۱۲.۲">
+              <img src="assets/img/fig_12_1-12_2-sm.webp" alt="نمودارهای میانه حقوق بر پایه مدرک و سابقه" loading="lazy" width="700" height="249">
+            </button>
+            <figcaption><b>نمودار ۱۲.۱ و ۱۲.۲ · سرمایه انسانی</b><span>هر پله مدرک ۱۴٫۹٪ و هر سال سابقه ۱۱٫۱٪؛ معادل ۱٫۳ سال.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_13_1.webp" data-caption="نمودار ۱۳.۱ — حقوق بر پایه بازه سنی" aria-label="بزرگ‌نمایی نمودار ۱۳.۱">
+              <img src="assets/img/fig_13_1-sm.webp" alt="نمودار میانه حقوق در بازه‌های سنی درخواستی" loading="lazy" width="700" height="287">
+            </button>
+            <figcaption><b>نمودار ۱۳.۱ · سن و درآمد</b><span>میانه از ۹ میلیون در ۲۴ تا ۲۶ سال به ۱۷٫۵ میلیون در ۴۲ سال و بالاتر.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_13_2.webp" data-caption="نمودار ۱۳.۲ — نقطه اوج درآمدی در صنایع" aria-label="بزرگ‌نمایی نمودار ۱۳.۲">
+              <img src="assets/img/fig_13_2-sm.webp" alt="نمودار نقطه اوج درآمدی در صنایع مختلف" loading="lazy" width="700" height="297">
+            </button>
+            <figcaption><b>نمودار ۱۳.۲ · اوج درآمد</b><span>در فناوری اطلاعات اوج ۴۰ سال و بالاتر است؛ در تولید و تجارت، ۳۵ تا ۴۰.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_8_3-8_4.webp" data-caption="نمودارهای ۸.۳ و ۸.۴ — بازده نزولی سابقه و سن" aria-label="بزرگ‌نمایی نمودارهای ۸.۳ و ۸.۴">
+              <img src="assets/img/fig_8_3-8_4-sm.webp" alt="نمودار رابطه غیرخطی سابقه و سن با حقوق" loading="lazy" width="700" height="233">
+            </button>
+            <figcaption><b>نمودار ۸.۳ و ۸.۴ · بازده نزولی</b><span>از ۴ تا ۶ سال سابقه به بعد، شیب رشد میانه حقوق کم می‌شود.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="geo" hidden>
+          <figure class="figure">
+            <button data-full="assets/img/fig_14_1-14_2.webp" data-caption="نمودار ۱۴.۱ و ۱۴.۲ — تمرکز استانی" aria-label="بزرگ‌نمایی نمودار ۱۴.۱ و ۱۴.۲">
+              <img src="assets/img/fig_14_1-14_2-sm.webp" alt="نمودار سهم استان‌ها و میانه حقوق آن‌ها" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>نمودار ۱۴.۱ و ۱۴.۲ · تمرکز استانی</b><span>تهران ۶۴٫۶٪؛ اما میانه حقوق همه استان‌های پرتکرار ۱۱ میلیون است.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_14_3-14_4.webp" data-caption="نمودار ۱۴.۳ و ۱۴.۴ — شکاف تهران در زمان" aria-label="بزرگ‌نمایی نمودار ۱۴.۳ و ۱۴.۴">
+              <img src="assets/img/fig_14_3-14_4-sm.webp" alt="نمودار روند سهم تهران و نسبت حقوق آن به سایر استان‌ها" loading="lazy" width="700" height="236">
+            </button>
+            <figcaption><b>نمودار ۱۴.۳ و ۱۴.۴ · تهران در زمان</b><span>سهم تهران از ۷۲٪ به ۶۲٪ کاهش یافته؛ نسبت حقوق ثابت مانده است.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_14_5.webp" data-caption="نمودار ۱۴.۵ — استان‌های در حال رشد" aria-label="بزرگ‌نمایی نمودار ۱۴.۵">
+              <img src="assets/img/fig_14_5-sm.webp" alt="نمودار تغییر سهم استان‌ها بین دو سال" loading="lazy" width="700" height="337">
+            </button>
+            <figcaption><b>نمودار ۱۴.۵ · استان‌های در حال رشد</b><span>فارس (+۰٫۶ واحد)، خراسان رضوی (+۰٫۵)، البرز و یزد (+۰٫۳).</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_4_2.webp" data-caption="نمودار ۴.۲ — توزیع گمشدگی در سطح ردیف" aria-label="بزرگ‌نمایی نمودار ۴.۲">
+              <img src="assets/img/fig_4_2-sm.webp" alt="نمودار توزیع تعداد خانه‌های خالی در هر ردیف" loading="lazy" width="700" height="357">
+            </button>
+            <figcaption><b>نمودار ۴.۲ · گمشدگی</b><span>فقط ۰٫۱٪ ردیف‌ها کامل‌اند؛ میانه گمشدگی هر ردیف ۵ خانه است.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="skills" hidden>
+          <figure class="figure">
+            <button data-full="assets/img/fig_6_3.webp" data-caption="نمودار ۶.۳ — بیست مهارت نرم‌افزاری پرتکرار" aria-label="بزرگ‌نمایی نمودار ۶.۳">
+              <img src="assets/img/fig_6_3-sm.webp" alt="نمودار میله‌ای بیست مهارت نرم‌افزاری پرتکرار" loading="lazy" width="700" height="482">
+            </button>
+            <figcaption><b>نمودار ۶.۳ · مهارت‌ها</b><span>Excel ۳۸٫۴٪، Word ۳۳٫۸٪ و PowerPoint ۱۲٫۸٪ کل آگهی‌ها.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_21_1.webp" data-caption="نمودار ۲۱.۱ — شبکه هم‌رخدادی مهارت‌ها" aria-label="بزرگ‌نمایی نمودار ۲۱.۱">
+              <img src="assets/img/fig_21_1-sm.webp" alt="شبکه هم‌رخدادی مهارت‌های نرم‌افزاری با چهار جامعه رنگی" loading="lazy" width="700" height="501">
+            </button>
+            <figcaption><b>نمودار ۲۱.۱ · شبکه مهارت</b><span>۳۵ مهارت، ۲۹۰ یال؛ چهار جامعه: آفیس، توسعه، طراحی، CAD.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_21_2-21_3.webp" data-caption="نمودار ۲۱.۲ و ۲۱.۳ — مرکزیت مهارت‌ها" aria-label="بزرگ‌نمایی نمودار ۲۱.۲ و ۲۱.۳">
+              <img src="assets/img/fig_21_2-21_3-sm.webp" alt="نمودارهای مرکزیت بینابینی و تغییر آن در دو سال" loading="lazy" width="700" height="285">
+            </button>
+            <figcaption><b>نمودار ۲۱.۲ و ۲۱.۳ · مرکزیت</b><span>Excel با درجه وزنی ۲۶۸٬۵۰۵ مرکزی‌ترین گره است؛ WordPress پل جوامع.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_19_1.webp" data-caption="نمودار ۱۹.۱ — مهارت‌های در حال رشد و افت" aria-label="بزرگ‌نمایی نمودار ۱۹.۱">
+              <img src="assets/img/fig_19_1-sm.webp" alt="نمودار تغییر سهم مهارت‌ها بین دو سال" loading="lazy" width="700" height="373">
+            </button>
+            <figcaption><b>نمودار ۱۹.۱ · تحول مهارت</b><span>WordPress +۱٫۴ و Google Analytics +۱٫۰ واحد؛ Outlook و PowerPoint نزولی.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_6_5-6_6.webp" data-caption="نمودار ۶.۵ و ۶.۶ — مهارت و درآمد ساعتی" aria-label="بزرگ‌نمایی نمودار ۶.۵ و ۶.۶">
+              <img src="assets/img/fig_6_5-6_6-sm.webp" alt="نمودارهای رابطه مهارت با حقوق و درآمد ساعتی" loading="lazy" width="700" height="233">
+            </button>
+            <figcaption><b>نمودار ۶.۵ و ۶.۶ · مهارت و درآمد</b><span>سطح مهارت بالاتر با میانه حقوق بالاتر همراه است، نه با ساعت بیشتر.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_18_1.webp" data-caption="نمودار ۱۸.۱ — صنعت در برابر دسته شغلی" aria-label="بزرگ‌نمایی نمودار ۱۸.۱">
+              <img src="assets/img/fig_18_1-sm.webp" alt="نقشه حرارتی ترکیب دسته‌های شغلی در صنایع" loading="lazy" width="700" height="322">
+            </button>
+            <figcaption><b>نمودار ۱۸.۱ · صنعت × شغل</b><span>هر صنعت ترکیب تخصصی خود را دارد؛ تمرکز تقاضا در چند دسته کلیدی.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="model" hidden>
+          <figure class="figure">
+            <button data-full="assets/img/fig_16_1-16_2.webp" data-caption="نمودار ۱۶.۱ و ۱۶.۲ — کارایی و اهمیت ویژگی‌ها" aria-label="بزرگ‌نمایی نمودار ۱۶.۱ و ۱۶.۲">
+              <img src="assets/img/fig_16_1-16_2-sm.webp" alt="نمودارهای کارایی مدل و اثر استانداردشده ویژگی‌ها" loading="lazy" width="700" height="264">
+            </button>
+            <figcaption><b>نمودار ۱۶.۱ و ۱۶.۲ · مدل حقوق</b><span>R² اعتبارسنجی ۰٫۴۴ در هر دو سال؛ سابقه مهم‌ترین عامل عددی.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_17_1-17_2.webp" data-caption="نمودار ۱۷.۱ و ۱۷.۲ — خوشه‌بندی عناوین شغلی" aria-label="بزرگ‌نمایی نمودار ۱۷.۱ و ۱۷.۲">
+              <img src="assets/img/fig_17_1-17_2-sm.webp" alt="نمودار انتخاب تعداد خوشه و نقشه دوبعدی خوشه‌ها" loading="lazy" width="700" height="238">
+            </button>
+            <figcaption><b>نمودار ۱۷.۱ و ۱۷.۲ · خوشه‌ها</b><span>k=۳ با سیلوئت ۰٫۵۱؛ یک توده عمومی و دو جزیره تخصصی.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_20_1-20_2.webp" data-caption="نمودار ۲۰.۱ و ۲۰.۲ — تیپ‌شناسی کارفرمایان" aria-label="بزرگ‌نمایی نمودار ۲۰.۱ و ۲۰.۲">
+              <img src="assets/img/fig_20_1-20_2-sm.webp" alt="نمودارهای خوشه‌بندی کارفرمایان و پروفایل آن‌ها" loading="lazy" width="700" height="245">
+            </button>
+            <figcaption><b>نمودار ۲۰.۱ و ۲۰.۲ · کارفرمایان</b><span>فاصله گاور روی ۴٬۰۰۰ آگهی: دو تیپ بزرگ و دو تیپ کوچک متمایز.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_19_2.webp" data-caption="نمودار ۱۹.۲ — عناوین شغلی در حال جهش" aria-label="بزرگ‌نمایی نمودار ۱۹.۲">
+              <img src="assets/img/fig_19_2-sm.webp" alt="نمودار رشد و افت تعداد آگهی عناوین شغلی" loading="lazy" width="700" height="373">
+            </button>
+            <figcaption><b>نمودار ۱۹.۲ · جهش عناوین</b><span>باریستا +۴۲۲٪، آشپز +۳۱۸٪ و ادمین اینستاگرام +۳۰۹٪.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_15_1.webp" data-caption="نمودار ۱۵.۱ — شاخص‌های جانشین جهانی" aria-label="بزرگ‌نمایی نمودار ۱۵.۱">
+              <img src="assets/img/fig_15_1-sm.webp" alt="نمودار شاخص‌های فناوری، داده و دورکاری در دو سال" loading="lazy" width="700" height="314">
+            </button>
+            <figcaption><b>نمودار ۱۵.۱ · مقایسه جهانی</b><span>سهم فناوری اطلاعات از ۹٫۲٪ به ۷٫۷٪ کاهش یافت؛ خلاف روند جهانی ۲۰۲۲–۲۰۲۴.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="assets/img/fig_17_3.webp" data-caption="نمودار ۱۷.۳ — پایداری خوشه‌ها بین دو سال" aria-label="بزرگ‌نمایی نمودار ۱۷.۳">
+              <img src="assets/img/fig_17_3-sm.webp" alt="نمودار پایداری خوشه‌های شغلی بین دو سال" loading="lazy" width="700" height="243">
+            </button>
+            <figcaption><b>نمودار ۱۷.۳ · پایداری</b><span>مرز خوشه‌ها بین ۱۴۰۱ و ۱۴۰۲ کم‌تغییر است؛ ۵۱۶ عنوان مشترک.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= PLAYBOOK -->
+  <section class="section tint" id="playbook">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">بسته پیشنهادی کسب‌وکار</span>
+        <h2>شش تصمیم برای مدیر، بر پایه شواهد</h2>
+        <p class="lead">این بخش پاسخ چهار پرسش مدیریتی به زبان تصمیم است؛ هر پیشنهاد یک شاهد عددی و یک ارجاع قابل بازبینی دارد.</p>
+      </div>
+
+      <div class="grid g3">
+        <article class="card hover reveal">
+          <span class="tag">تصمیم ۱ · قیمت</span>
+          <h3>هدف‌گذاری میانه تا چارک سوم دسته، نه میانگین بازار</h3>
+          <p>میانگین (۱۳٫۴) به‌دلیل چولگی برای نیمی از نقش‌ها گران‌تر از لازم است. جدول ۲۲.۱ دامنه چارک اول تا سوم هر دسته را می‌دهد.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">تصمیم ۲ · شفافیت</span>
+          <h3>بازه حقوق را با پهنای ۲۰ تا ۲۵ درصد افشا کنید</h3>
+          <p>فقط ۳۳٫۱٪ آگهی‌ها شفاف‌اند؛ افشای بازه هم تمایز می‌سازد و هم انتظارات را واقعی می‌کند، بدون اینکه قیمت مذاکره را لو بدهد.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">تصمیم ۳ · تقویم</span>
+          <h3>نقش‌های غیرفوری را در ماه‌های کم‌رقابت منتشر کنید</h3>
+          <p>بهمن (۷۹٪)، خرداد (۸۶٪) و شهریور (۸۸٪) کم‌رقابت‌ترین‌اند؛ برای نقش‌های حساس، دی و مهر زمان دیدن استعداد است.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">تصمیم ۴ · مهارت</span>
+          <h3>مهارت را در دسته خودش قیمت‌گذاری کنید</h3>
+          <p>صرفه AutoCAD (+۱۴٫۴٪) و Visio (+۱۳٫۲٪) فقط در دسته خودشان معنا دارد؛ فهرست کردن مهارت بدون زمینه، سیگنال قیمتی نمی‌سازد.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">تصمیم ۵ · شرایط احراز</span>
+          <h3>سابقه را واقعی بنویسید، مدرک را حذف نکنید</h3>
+          <p>هر پله مدرک معادل ۱٫۳ سال سابقه است؛ در ورود به بازار فاصله کارشناسی تا ارشد تا ۵۰٪ می‌رسد. شرط سابقه بالای ۵ سال کمتر از ۴٪ آگهی‌ها را پوشش می‌دهد.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">تصمیم ۶ · دسترسی</span>
+          <h3>دورکاری را جدی بگیرید، نه به‌عنوان تزئین</h3>
+          <p>دورکاری بیرون تهران ۱۵ تا ۲۱٪ و در تهران ۳٫۱٪ است؛ برای نقش‌های غیرحضوری، بازکردن این گزینه دامنه استعداد را چند برابر می‌کند.</p>
+        </article>
+      </div>
+
+      <div class="table-wrap reveal" style="margin-top:clamp(24px,3vw,40px)">
+        <table class="data">
+          <caption>بسته جبران خدمات پیشنهادی در دسته‌های شغلی پرتکرار<span>میلیون تومان در ماه · ۱۱۹٬۰۴۸ آگهی با حقوق اعلام‌شده · جدول ۲۲.۱</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">دسته شغلی</th>
+              <th scope="col" class="n">آگهی</th>
+              <th scope="col" class="n">چارک اول</th>
+              <th scope="col" class="n">میانه</th>
+              <th scope="col" class="n">چارک سوم</th>
+              <th scope="col" class="n">درآمد ساعتی</th>
+              <th scope="col" class="n">نرخ افشا</th>
+              <th scope="col" class="n">فاصله از میانه بازار</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>توسعه نرم‌افزار و برنامه‌نویسی</td><td class="n">۳٬۷۶۰</td><td class="n">۱۳٫۵</td><td class="n"><strong>۱۷٫۵</strong></td><td class="n">۲۲٫۵</td><td class="n">۹۲</td><td class="n">۲۴٫۹٪</td><td class="n pos">+۵۹٪</td></tr>
+            <tr><td>شبکه، DevOps و پشتیبانی</td><td class="n">۲٬۵۶۳</td><td class="n">۹٫۰</td><td class="n">۱۳٫۵</td><td class="n">۱۷٫۵</td><td class="n">۷۱</td><td class="n">۱۸٫۲٪</td><td class="n pos">+۲۳٪</td></tr>
+            <tr><td>مالی و حسابداری</td><td class="n">۱۳٬۴۷۷</td><td class="n">۹٫۰</td><td class="n">۱۳٫۵</td><td class="n">۱۷٫۵</td><td class="n">۶۶</td><td class="n">۳۱٫۹٪</td><td class="n pos">+۲۳٪</td></tr>
+            <tr><td>فروش و بازاریابی — کارشناسی و مدیریتی</td><td class="n">۱۳٬۰۳۲</td><td class="n">۹٫۰</td><td class="n">۱۳٫۵</td><td class="n">۱۷٫۵</td><td class="n">۷۳</td><td class="n">۳۴٫۳٪</td><td class="n pos">+۲۳٪</td></tr>
+            <tr><td>مهندسی صنایع و مدیریت پروژه</td><td class="n">۴٬۳۱۳</td><td class="n">۱۱٫۰</td><td class="n">۱۳٫۵</td><td class="n">۱۷٫۵</td><td class="n">۶۹</td><td class="n">۲۳٫۳٪</td><td class="n pos">+۲۳٪</td></tr>
+            <tr><td>دیجیتال مارکتینگ و سئو</td><td class="n">۵٬۴۲۶</td><td class="n">۹٫۰</td><td class="n">۱۱٫۰</td><td class="n">۱۳٫۵</td><td class="n">۷۵</td><td class="n">۴۲٫۳٪</td><td class="n">۰</td></tr>
+            <tr><td>تکنسین فنی و کارگر ماهر</td><td class="n">۴٬۳۰۶</td><td class="n">۹٫۰</td><td class="n">۱۱٫۰</td><td class="n">۱۳٫۵</td><td class="n">۵۵</td><td class="n">۳۴٫۴٪</td><td class="n">۰</td></tr>
+            <tr><td>فروشنده و بازاریاب و صندوقدار</td><td class="n">۱۵٬۷۱۰</td><td class="n">۹٫۰</td><td class="n">۱۱٫۰</td><td class="n">۱۳٫۵</td><td class="n">۶۳</td><td class="n">۴۴٫۶٪</td><td class="n">۰</td></tr>
+            <tr><td>مسئول دفتر و کارمند اداری</td><td class="n">۹٬۷۴۹</td><td class="n">۷٫۰</td><td class="n">۹٫۰</td><td class="n">۱۱٫۰</td><td class="n">۴۷</td><td class="n">۴۰٫۰٪</td><td class="n neg">−۱۸٪</td></tr>
+            <tr><td>کارگر ساده و نیروی خدماتی</td><td class="n">۶٬۸۵۰</td><td class="n">۷٫۰</td><td class="n">۹٫۰</td><td class="n">۱۱٫۰</td><td class="n">۴۳</td><td class="n">۴۷٫۸٪</td><td class="n neg">−۱۸٪</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid g2" style="margin-top:clamp(20px,2.4vw,30px)">
+        <div class="table-wrap reveal">
+          <table class="data compact">
+            <caption>تقویم استخدام: چه زمانی آگهی منتشر کنیم؟<span>شاخص فصلی، میانگین دو سال · جدول ۲۲.۳</span></caption>
+            <thead><tr><th scope="col">ماه شمسی</th><th scope="col" class="n">شاخص</th><th scope="col" class="n">رقابت</th><th scope="col" class="n">میانه حقوق</th></tr></thead>
+            <tbody>
+              <tr><td>دی</td><td class="n">۱۲۳</td><td class="n"><strong style="color:var(--red)">بالا</strong></td><td class="n">۱۳٫۵</td></tr>
+              <tr><td>مهر</td><td class="n">۱۱۵</td><td class="n">متوسط</td><td class="n">۱۳٫۵</td></tr>
+              <tr><td>آبان</td><td class="n">۱۱۲</td><td class="n">متوسط</td><td class="n">۱۳٫۵</td></tr>
+              <tr><td>آذر</td><td class="n">۱۰۶</td><td class="n">متوسط</td><td class="n">۱۳٫۵</td></tr>
+              <tr><td>مرداد</td><td class="n">۱۰۵</td><td class="n">متوسط</td><td class="n">۱۱٫۰</td></tr>
+              <tr><td>تیر</td><td class="n">۱۰۰</td><td class="n">متوسط</td><td class="n">۱۱٫۰</td></tr>
+              <tr><td>فروردین</td><td class="n">۹۶</td><td class="n">متوسط</td><td class="n">۹٫۰</td></tr>
+              <tr><td>اردیبهشت</td><td class="n">۹۱</td><td class="n"><span style="color:var(--teal-700)">پایین</span></td><td class="n">۱۱٫۰</td></tr>
+              <tr><td>شهریور</td><td class="n">۸۸</td><td class="n"><span style="color:var(--teal-700)">پایین</span></td><td class="n">۱۳٫۵</td></tr>
+              <tr><td>خرداد</td><td class="n">۸۶</td><td class="n"><span style="color:var(--teal-700)">پایین</span></td><td class="n">۱۱٫۰</td></tr>
+              <tr><td>بهمن</td><td class="n">۷۹</td><td class="n"><span style="color:var(--teal-700)">پایین</span></td><td class="n">۱۳٫۵</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="callout reveal">
+            <p><b>سه پیام برای مدیر:</b></p>
+            <p>۱) بسته جبران خدمات را با چارک‌ها ببندید، نه با میانگین.</p>
+            <p>۲) زمان انتشار آگهی، خودش یک اهرم مذاکره است.</p>
+            <p>۳) یک‌سوم بازار شفاف نیست؛ شفاف بودن، مزیت است.</p>
+          </div>
+          <div class="callout gold reveal" style="margin-top:1rem">
+            <p><b>مرحله بعد:</b> این بسته نقطه شروع گفت‌وگو با مدیر است، نه پایان آن. برای هر تصمیم، جدول مرجع در نوت‌بوک و گزارش PDF قابل بازبینی است.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== METHOD -->
+  <section class="section" id="method">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">روش و کیفیت</span>
+        <h2>چطور از ۳۶۴٬۸۳۸ ردیف خام به یک بسته تصمیم رسیدیم</h2>
+        <p class="lead">پنج گام، با قاعده‌های از پیش تعیین‌شده و لاگ تصمیم‌ها. هر جدول و نمودار شماره یکتا دارد و کنترل محاسبات در پایان اجرا انجام می‌شود.</p>
+      </div>
+
+      <div class="grid g2" style="align-items:start">
+        <div class="steps reveal">
+          <div class="step"><div><h4>شناخت و کنترل کیفیت</h4><p>ابعاد، انواع، گمشدگی، تکرار، بازه و کاردینالیتی ۴۳ ستون؛ بدون این گام هر عدد بعدی ممکن است بی‌معنا باشد.</p></div></div>
+          <div class="step"><div><h4>پاک‌سازی با قاعده ثابت</h4><p>حذف دو ماه ناقص، نرمال‌سازی نویسه‌های عربی، یکسان‌سازی متن‌های کلیدی و لاگ ۸ تصمیم پاک‌سازی با اثر آن‌ها.</p></div></div>
+          <div class="step"><div><h4>مهندسی ویژگی</h4><p>ساعت کاری از متن آزاد (۹۷٫۶٪ پوشش)، ۴۹۱ مهارت، مقطع و رشته، ۱۵ مزیت، ویژگی کارفرما و شاخص درآمد ساعتی.</p></div></div>
+          <div class="step"><div><h4>تحلیل و آزمون</h4><p>توزیع و پرت، همبستگی پیرسون و اسپیرمن، آزمون خی‌دو و t، رگرسیون، مدل‌سازی حقوق و خوشه‌بندی با فاصله گاور.</p></div></div>
+          <div class="step"><div><h4>کنترل و بازتولید</h4><p>۱۴ کنترل محاسباتی (جمع ماهانه، یکتایی شناسه، بازه ساعت، سهم‌ها) و اسکریپت بازتولید گزارش و ارائه.</p></div></div>
+        </div>
+
+        <div>
+          <div class="code-card reveal">
+            <header>
+              <span>python · تکرارپذیری</span>
+              <button class="copy-btn" data-copy="python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+jupyter notebook jobvision_analysis.ipynb" data-done-text="کپی شد">کپی</button>
+            </header>
+<pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+jupyter notebook jobvision_analysis.ipynb</code></pre>
+          </div>
+
+          <div class="table-wrap reveal" style="margin-top:1rem">
+            <table class="data compact">
+              <caption>داده در یک نگاه<span>کارت داده رسمی و مجوز در docs/dataset-card.md</span></caption>
+              <tbody>
+                <tr><td>منبع</td><td>JobVision Jobposts Dataset — Hugging Face</td></tr>
+                <tr><td>حجم خام</td><td class="n">۳۶۴٬۸۳۸ ردیف × ۴۳ ستون</td></tr>
+                <tr><td>بازه</td><td>مارس ۲۰۲۲ تا مارس ۲۰۲۴</td></tr>
+                <tr><td>دوره تحلیل</td><td class="n">۲۳ ماه · ۳۶۰٬۰۸۳ آگهی</td></tr>
+                <tr><td>واحد تحلیل</td><td>یک آگهی استخدامی</td></tr>
+                <tr><td>واحد حقوق</td><td>میلیون تومان در ماه</td></tr>
+                <tr><td>مجوز</td><td>CC BY-NC 4.0 — پژوهشی، غیرتجاری، با ذکر منبع</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid g2" style="margin-top:clamp(22px,3vw,36px)">
+        <div class="reveal">
+          <h3 style="margin-bottom:.7rem">نقشه نوت‌بوک</h3>
+          <div class="map">
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>01</i> معرفی و پرسش‌های راهبردی</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>02</i> داده و فرهنگ داده</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>04</i> شناخت داده و کیفیت</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>06</i> مهندسی ویژگی</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>09</i> سازوکار گمشدگی حقوق</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>10</i> روند و فصلی‌بودن</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>12</i> تحصیلات در برابر سابقه</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>14</i> تحلیل جغرافیایی</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>16</i> مدل‌سازی حقوق</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>18</i> صنعت × دسته شغلی</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>21</i> شبکه مهارت‌ها</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>24</i> کنترل محاسبات</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <h3 style="margin-bottom:.7rem">خروجی‌ها را دانلود کنید</h3>
+          <div class="download-list">
+            <a class="dl" href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_report.pdf">
+              <span class="ext">PDF</span><span><b>گزارش مدیریتی ۱۲۵ صفحه‌ای</b><span>چکیده، پاسخ پرسش‌ها، جدول‌ها و جمع‌بندی راهبردی</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+            </a>
+            <a class="dl" href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_presentation.pdf">
+              <span class="ext">PDF</span><span><b>ارائه ۱۵ اسلایدی ۱۶:۹</b><span>برای جلسه ۱۵ دقیقه‌ای مدیران</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+            </a>
+            <a class="dl" href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_presentation.pptx">
+              <span class="ext">PPTX</span><span><b>نسخه قابل ویرایش ارائه</b><span>آماده import در Google Slides</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+            </a>
+            <a class="dl" href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">
+              <span class="ext">IPYNB</span><span><b>نوت‌بوک کامل تحلیل</b><span>۲۴ بخش، ۹۰+ جدول و ۳۵ نمودار</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== RUN -->
+  <section class="section tint" id="run">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">اجرای آنلاین</span>
+        <h2>بدون نصب، در مرورگر اجرا کنید</h2>
+        <p class="lead">نوت‌بوک اصلی روی Colab اجرا می‌شود: داده به‌صورت خودکار از Hugging Face دانلود می‌شود و همه سلول‌ها به‌ترتیب اجرا می‌شوند. برای مطالعه بدون اجرا، نسخه خوانا روی nbviewer باز می‌شود.</p>
+      </div>
+
+      <div class="grid g2" style="align-items:start">
+        <div class="launch-card reveal">
+          <a class="launch-row" href="https://colab.research.google.com/github/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb" target="_blank" rel="noopener">
+            <span class="badge ok">Colab</span>
+            <span><strong>اجرای کامل در Google Colab</strong><br><span>دانلود خودکار داده، نصب وابستگی‌ها و اجرای همه سلول‌ها</span></span>
+          </a>
+          <a class="launch-row" href="https://nbviewer.org/github/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb" target="_blank" rel="noopener">
+            <span class="badge">View</span>
+            <span><strong>مشاهده نوت‌بوک با خروجی‌ها</strong><br><span>همه جدول‌ها و نمودارها، بدون نصب</span></span>
+          </a>
+          <a class="launch-row" href="https://github.com/arashalidadi/jobvision-labor-market#readme" target="_blank" rel="noopener">
+            <span class="badge">Docs</span>
+            <span><strong>راهنمای نصب محلی</strong><br><span>Python 3.12+، محیط مجازی و Jupyter</span></span>
+          </a>
+          <div class="callout" style="margin-top:.4rem">
+            <p><b>نکته:</b> فایل داده حدود ۳۷۴ مگابایت است و به‌دلیل حجم و مجوز در مخزن نگه‌داری نمی‌شود. نوت‌بوک Colab مسیر <code>JobVision-data/</code> و <code>/content/</code> را بررسی می‌کند و در صورت نبود فایل، دستور دانلود را نشان می‌دهد.</p>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="code-card">
+            <header>
+              <span>colab · سلول آماده‌سازی</span>
+              <button class="copy-btn" data-copy="!pip -q install -r https://raw.githubusercontent.com/arashalidadi/jobvision-labor-market/main/requirements.txt
+from huggingface_hub import hf_hub_download
+hf_hub_download('JobVision/JobVision_Jobposts_Dataset',
+                'JobVision_Jobposts_Dataset.csv',
+                repo_type='dataset', local_dir='/content')" data-done-text="کپی شد">کپی</button>
+            </header>
+<pre><code>!pip -q install -r https://raw.githubusercontent.com/\
+arashalidadi/jobvision-labor-market/main/requirements.txt
+
+from huggingface_hub import hf_hub_download
+hf_hub_download(
+    "JobVision/JobVision_Jobposts_Dataset",
+    "JobVision_Jobposts_Dataset.csv",
+    repo_type="dataset",
+    local_dir="/content",
+)</code></pre>
+          </div>
+          <div class="callout gold" style="margin-top:1rem">
+            <p><b>نسخه Colab حافظه‌محور است.</b> اگر Colab در بارگذاری داده هشدار حافظه داد، از محیط با ۱۲ گیگابایت رم استفاده کنید؛ نوت‌بوک برای همین حجم طراحی شده است.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ LIMITS -->
+  <section class="section" id="limits">
+    <div class="wrap-narrow">
+      <div class="section-head reveal">
+        <span class="eyebrow">محدودیت‌ها و اعتبار</span>
+        <h2>آنچه این داده نمی‌گوید</h2>
+        <p class="lead">شفافیت درباره محدودیت‌ها، بخشی از تحلیل است. هفت محدودیت زیر تفسیر نتایج را مشروط می‌کند.</p>
+      </div>
+
+      <details class="acc reveal" open>
+        <summary>داده فقط آگهی‌های منتشرشده است</summary>
+        <div class="acc-body"><p>این داده نماینده کل بازار کار ایران نیست؛ شرکت‌هایی که در جاب‌ویژن آگهی نمی‌دهند، استخدام‌های بدون آگهی و مشاغل غیررسمی در آن دیده نمی‌شوند.</p></div>
+      </details>
+      <details class="acc reveal">
+        <summary>نام شرکت‌ها ناشناس است</summary>
+        <div class="acc-body"><p>تحلیل کارفرما در سطح ویژگی‌های شرکت (اندازه، صنعت، استان، نرخ شفافیت) انجام می‌شود، نه برند. تیپ‌شناسی کارفرما یک ابزار تحلیلی است، نه قضاوت درباره یک شرکت مشخص.</p></div>
+      </details>
+      <details class="acc reveal">
+        <summary>حقوق فقط در یک‌سوم آگهی‌ها اعلام شده</summary>
+        <div class="acc-body"><p>همه تحلیل‌های حقوقی روی همین زیرمجموعه انجام و سوگیری آن جداگانه بررسی شده است. مدل احتمال افشا با AUC=۰٫۶۵ نشان می‌دهد گمشدگی ساختارمند است ولی به‌سادگی قابل پیش‌بینی نیست.</p></div>
+      </details>
+      <details class="acc reveal">
+        <summary>سن و جنسیت، ترجیح کارفرماست</summary>
+        <div class="acc-body"><p>این ستون‌ها شرایط درخواستی آگهی را نشان می‌دهند، نه ویژگی نیروی استخدام‌شده. شکاف واقعی دستمزد را نمی‌توان از آن‌ها استنتاج کرد.</p></div>
+      </details>
+      <details class="acc reveal">
+        <summary>دو ماه ابتدا و انتها ناقص‌اند</summary>
+        <div class="acc-body"><p>مارس ۲۰۲۲ و مارس ۲۰۲۴ به‌صورت برشی ثبت شده‌اند و در تحلیل روند کنار گذاشته شده‌اند؛ ۲۳ ماه کامل باقی می‌ماند.</p></div>
+      </details>
+      <details class="acc reveal">
+        <summary>ساعت کاری از متن آزاد استخراج شده</summary>
+        <div class="acc-body"><p>این استخراج برای ۹۷٫۶٪ آگهی‌ها انجام شده، اما بخشی از آن بر پایه فرض نوع همکاری است. تحلیل درآمد ساعتی با یک بررسی مقاومت همراه شده است (جدول ۶٫۱۱٫۱).</p></div>
+      </details>
+      <details class="acc reveal">
+        <summary>واحد حقوق یک فرض مستند است</summary>
+        <div class="acc-body"><p>کارت داده «Toman» می‌نویسد؛ بازه مقادیر (۲ تا ۱۰۰) و مقایسه با سطح دستمزد بازار نشان می‌دهد مقیاس واقعی «میلیون تومان در ماه» است. این فرض در نوت‌بوک به‌صراحت بررسی شده است.</p></div>
+      </details>
+
+      <div class="callout reveal" style="margin-top:1.6rem">
+        <p><b>مجوز:</b> داده تحت CC BY-NC 4.0 منتشر شده و استفاده تجاری ندارد؛ حق داده متعلق به جاب‌ویژن است. کد این مخزن برای اهداف آموزشی و پژوهشی ارائه می‌شود.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top" style="color:#fff">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg>
+          </span>
+          <span style="color:#fff">JobVision<small style="color:#8fb8b2">Labor Market Analytics</small></span>
+        </a>
+        <p class="small" style="margin-top:1rem;max-width:34ch">تحلیل بازار کار ایران بر پایه آگهی‌های استخدامی جاب‌ویژن؛ از داده خام تا بسته تصمیم مدیریتی.</p>
+      </div>
+      <div>
+        <h4>پروژه</h4>
+        <ul>
+          <li><a href="#findings">یافته‌های کلیدی</a></li>
+          <li><a href="#playbook">بسته پیشنهادی</a></li>
+          <li><a href="#method">روش و داده</a></li>
+          <li><a href="#limits">محدودیت‌ها</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>فایل‌ها</h4>
+        <ul>
+          <li><a href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_report.pdf">گزارش PDF</a></li>
+          <li><a href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_presentation.pdf">ارائه PDF</a></li>
+          <li><a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">نوت‌بوک</a></li>
+          <li><a href="https://huggingface.co/datasets/JobVision/JobVision_Jobposts_Dataset" target="_blank" rel="noopener">داده در Hugging Face</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>تماس</h4>
+        <ul>
+          <li><a href="https://github.com/arashalidadi" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="en/" hreflang="en" lang="en">English version</a></li>
+          <li><a href="#top">بازگشت به بالا ↑</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© ۱۴۰۲–<span data-year>۱۴۰۴</span> آرش علی‌دادی · کد با مجوز MIT</span>
+      <span>داده: JobVision Jobposts Dataset · CC BY-NC 4.0</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="نمایش نمودار">
+  <button aria-label="بستن">✕</button>
+  <img alt="">
+  <div class="cap"></div>
+</div>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
