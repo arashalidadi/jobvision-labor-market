@@ -46,21 +46,39 @@ JobVision/
 ├── docs/                         # سایت پروژه (GitHub Pages، فارسی + English)
 │   ├── index.html                # نسخه فارسی
 │   ├── en/index.html             # نسخه انگلیسی
+│   ├── guide/                    # راهنمای کامل پروژه (۲۴ بخش، فارسی)
+│   ├── en/guide/                 # راهنمای کامل پروژه (۲۴ بخش، انگلیسی)
 │   ├── assets/                   # فونت، CSS، JS و تصاویر بهینه‌شده
 │   ├── project-brief.md          # صورت پروژه و خواسته‌ها
 │   └── dataset-card.md           # کارت رسمی داده
+├── content/en/                   # لایه ترجمه انگلیسی راهنما (سلول‌ها و برچسب‌ها)
 ├── JobVision-data/               # داده خام (در گیت نادیده گرفته می‌شود)
 │   └── README.md                 # روش دریافت داده
 ├── outputs/figures/              # نمودارهای خروجی برای گزارش و ارائه
 ├── reports/                      # گزارش مدیریتی و ارائه (PDF/PPTX)
-├── scripts/                       # ساخت گزارش، ارائه و دارایی‌های سایت
+├── scripts/                       # ساخت گزارش، ارائه، دارایی‌های سایت و راهنما
 ├── requirements.txt
 ├── requirements-lock.txt          # نسخه‌های دقیق نصب‌شده
 ├── .gitignore
 └── README.md
 ```
 
-> سایت پروژه یک سطح مرور سبک است: محتوای آن از نوت‌بوک و جدول‌های همین مخزن تولید می‌شود و هیچ محاسبه‌ای را تکرار نمی‌کند. برای بازسازی دارایی‌های سایت پس از اجرای نوت‌بوک، `python scripts/build_site_assets.py` را اجرا کنید.
+> سایت پروژه یک سطح مرور سبک است: محتوای آن از نوتبوک و جدولهای همین مخزن تولید میشود و هیچ محاسبهای را تکرار نمیکند. برای بازسازی داراییهای سایت پس از اجرای نوتبوک، `python scripts/build_site_assets.py` را اجرا کنید.
+
+### راهنمای مستندات پروژه
+
+راهنمای کامل پروژه یک سایت مستندات دوزبانه است که **از نوتبوک اجراشده ساخته میشود**: هر بخش یک صفحه است و شامل متن تحلیلی، جدولها، نمودارها، کد و اعداد کلیدی همان بخش است.
+
+- فارسی: [`/guide/`](https://arashalidadi.github.io/jobvision-labor-market/guide/) — انگلیسی: [`/en/guide/`](https://arashalidadi.github.io/jobvision-labor-market/en/guide/)
+- جستوجوی کلاینت‌ساید، فهرست «در این صفحه»، ناوبری قبلی/بعدی، بلوکهای کد با دکمه کپی و نمایش تمام‌صفحه نمودارها.
+
+```bash
+python scripts/build_guide.py            # ساخت هر دو نسخه زبانی راهنما
+python scripts/build_guide.py --lang fa  # فقط فارسی
+python scripts/build_sitemap.py          # بازسازی sitemap.xml با hreflang
+```
+
+ترجمه انگلیسی در `content/en/` نگهداری میشود (`cells.json` برای متن سلولها و `strings.json` برای برچسب جدولها و اعداد کلیدی). برای بازتولید فایل‌های کاری ترجمه، `python scripts/prep_translation.py` سپس `python scripts/merge_translations.py` را اجرا کنید.
 
 ## ۴. نصب و اجرا
 

@@ -6,7 +6,7 @@
     <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/"/>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
@@ -14,7 +14,215 @@
     <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/"/>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/en/guide/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/01-project-brief-and-questions/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/01-project-brief-and-questions/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/01-project-brief-and-questions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/01-project-brief-and-questions/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/02-data-rules/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/02-data-rules/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/02-data-rules/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/02-data-rules/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/03-tooling-and-helpers/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/03-tooling-and-helpers/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/03-tooling-and-helpers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/03-tooling-and-helpers/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/04-data-quality/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/04-data-quality/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/04-data-quality/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/04-data-quality/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/05-cleaning-and-analysis-layer/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/05-cleaning-and-analysis-layer/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/05-cleaning-and-analysis-layer/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/05-cleaning-and-analysis-layer/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/06-feature-engineering/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/06-feature-engineering/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/06-feature-engineering/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/06-feature-engineering/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/07-distributions-and-outliers/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/07-distributions-and-outliers/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/07-distributions-and-outliers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/07-distributions-and-outliers/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/08-correlation-and-collinearity/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/08-correlation-and-collinearity/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/08-correlation-and-collinearity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/08-correlation-and-collinearity/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/09-salary-disclosure/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/09-salary-disclosure/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/09-salary-disclosure/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/09-salary-disclosure/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/10-time-trends-and-seasonality/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/10-time-trends-and-seasonality/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/10-time-trends-and-seasonality/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/10-time-trends-and-seasonality/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/11-gender-and-opportunity/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/11-gender-and-opportunity/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/11-gender-and-opportunity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/11-gender-and-opportunity/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/12-education-vs-experience/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/12-education-vs-experience/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/12-education-vs-experience/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/12-education-vs-experience/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/13-income-peak-by-age/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/13-income-peak-by-age/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/13-income-peak-by-age/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/13-income-peak-by-age/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/14-geography-and-provinces/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/14-geography-and-provinces/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/14-geography-and-provinces/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/14-geography-and-provinces/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/15-global-comparison/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/15-global-comparison/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/15-global-comparison/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/15-global-comparison/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/16-salary-modelling/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/16-salary-modelling/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/16-salary-modelling/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/16-salary-modelling/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/17-job-title-clustering/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/17-job-title-clustering/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/17-job-title-clustering/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/17-job-title-clustering/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/18-industry-occupation/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/18-industry-occupation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/18-industry-occupation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/18-industry-occupation/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/19-skills-evolution/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/19-skills-evolution/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/19-skills-evolution/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/19-skills-evolution/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/20-employer-typology/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/20-employer-typology/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/20-employer-typology/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/20-employer-typology/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/21-skill-network/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/21-skill-network/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/21-skill-network/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/21-skill-network/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/22-decision-package/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/22-decision-package/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/22-decision-package/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/22-decision-package/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/23-conclusions-and-dashboard/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/23-conclusions-and-dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/23-conclusions-and-dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/23-conclusions-and-dashboard/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arashalidadi.github.io/jobvision-labor-market/guide/24-reproducibility-checks/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/24-reproducibility-checks/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/24-reproducibility-checks/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/24-reproducibility-checks/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
