@@ -64,8 +64,17 @@ def _mix(fg, bg, alpha):
     return tuple(int(f * alpha + b * (1 - alpha)) for f, b in zip(fg, bg))
 
 
+ARABIC_LETTER = re.compile(r"[\u0621-\u064a\u0671-\u06d3\u200c]")
+
+
 def _shape(text: str, has_raqm: bool) -> str:
-    if has_raqm:
+    """Shape Persian text for drawing.
+
+    Strings without Arabic letters (pure numbers, Latin, symbols) must skip the
+    bidi pass entirely: in an RTL paragraph the bidi algorithm would otherwise
+    reorder their digits, so "۳۶۰٬۰۸۳" would render as "۳۸۰٬۰۶۳".
+    """
+    if has_raqm or not ARABIC_LETTER.search(text):
         return text
     import arabic_reshaper
     from bidi.algorithm import get_display
