@@ -17,8 +17,10 @@ docs/
 
 ## Hosting
 
-Everything in this folder is published as-is by `.github/workflows/pages.yml`
-(GitHub Actions → Pages). Locally:
+Everything in this folder is published as-is: **Settings → Pages → Source:
+*Deploy from a branch* → `main` / `/docs`**. No workflow or build step is
+required, and `.nojekyll` keeps the folder byte-for-byte identical to what is
+served. Locally:
 
 ```bash
 python -m http.server -d docs 8000
