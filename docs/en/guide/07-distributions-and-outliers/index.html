@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7. Distributions, skewness and outliers — JobVision Guide</title>
+<meta name="description" content="The question of this section is simple: what shape do the key variables have? The answer to this question determines whether we use the median or the mean, and which values are outliers. 7.1. Summary ">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/07-distributions-and-outliers/">
+<link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/07-distributions-and-outliers/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/07-distributions-and-outliers/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7. Distributions, skewness and outliers — JobVision Guide">
+<meta property="og:description" content="The question of this section is simple: what shape do the key variables have? The answer to this question determines whether we use the median or the mean, and which values are outliers. 7.1. Summary ">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/07-distributions-and-outliers/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/pygments.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "7. Distributions, skewness and outliers — JobVision Guide",
+  "description": "The question of this section is simple: what shape do the key variables have? The answer to this question determines whether we use the median or the mean, and which values are outliers. 7.1. Summary ",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/07-distributions-and-outliers/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Arash Alidadi"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "JobVision Labor Market",
+    "url": "https://arashalidadi.github.io/jobvision-labor-market"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+}
+</script>
+</head>
+<body class="guide-page en">
+<a class="skip-link" href="#main">Skip</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../index.html" aria-label="JobVision Labor Market">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="../../index.html#problem">Home</a>
+      <a href="../../index.html#findings">Findings</a>
+      <a href="../../index.html#visuals">Visuals</a>
+      <a href="../../index.html#playbook">Playbook</a>
+      <a class="active" href="../">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../../../guide/07-distributions-and-outliers/" hreflang="fa" lang="fa">FA</a><span class="on" aria-current="true">EN</span>
+      </div>
+      <button class="guide-search-btn" type="button" aria-label="Search the guide…">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>Search the guide</span>
+      </button>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="guide-shell">
+  <aside class="guide-side" id="guideSide" aria-label="Sections">
+    <div class="guide-side-head">
+  <a class="guide-back" href="../">← Guide index</a>
+  <p class="guide-side-title">Table of contents</p>
+</div>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link is-active" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-7-1">7.1. Summary statistics of numeric variables</a></li><li class="lvl-h2"><a href="#sec-7-2">7.2. Identifying outliers</a></li><li class="lvl-h2"><a href="#sec-7-3">7.3. Work experience and requested age</a></li></ul></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+  </aside>
+  <main class="guide-main" id="main">
+    <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 7</span></nav>
+<h1>7. Distributions, skewness and outliers</h1>
+<p class="guide-meta">3 min read · 4 tables · 1 figures · 3 code cells</p>
+<p>The question of this section is simple: what shape do the key variables have? The answer to this question determines whether we use the median or the mean, and which values are outliers.</p>
+<h2 class="guide-heading" id="sec-7-1">7.1. Summary statistics of numeric variables <a aria-label="link" class="anchor" href="#sec-7-1">#</a></h2><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>71 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="numeric_cols = {
+    &#x27;salary_mid&#x27;: &#x27;میانه بازه حقوق&#x27;, &#x27;hourly_income&#x27;: &#x27;درآمد ساعتی&#x27;,
+    &#x27;Jobpost_RequiredExperienceYears&#x27;: &#x27;سابقه لازم&#x27;, &#x27;age_mid&#x27;: &#x27;میانه بازه سنی درخواستی&#x27;,
+    &#x27;weekly_hours&#x27;: &#x27;ساعت هفتگی&#x27;, &#x27;benefit_count&#x27;: &#x27;تعداد مزایا&#x27;, &#x27;skill_count&#x27;: &#x27;تعداد مهارت&#x27;,
+}
+ads[&#x27;age_mid&#x27;] = ads[[&#x27;Jobpost_RequiredMinAge&#x27;, &#x27;Jobpost_RequiredMaxAge&#x27;]].mean(axis=1)
+sync_snapshots()
+
+numeric_profile = ads[list(numeric_cols)].describe(
+    percentiles=[.05, .25, .5, .75, .95]).T
+numeric_profile[&#x27;چولگی&#x27;] = ads[list(numeric_cols)].skew()
+numeric_profile[&#x27;کشیدگی&#x27;] = ads[list(numeric_cols)].kurtosis()
+numeric_profile = numeric_profile.rename(columns={
+    &#x27;count&#x27;: &#x27;تعداد معتبر&#x27;, &#x27;mean&#x27;: &#x27;میانگین&#x27;, &#x27;std&#x27;: &#x27;انحراف معیار&#x27;, &#x27;min&#x27;: &#x27;کمینه&#x27;, &#x27;max&#x27;: &#x27;بیشینه&#x27;,
+    &#x27;5%&#x27;: &#x27;صدک ۵&#x27;, &#x27;25%&#x27;: &#x27;چارک اول&#x27;, &#x27;50%&#x27;: &#x27;میانه&#x27;, &#x27;75%&#x27;: &#x27;چارک سوم&#x27;, &#x27;95%&#x27;: &#x27;صدک ۹۵&#x27;})
+numeric_profile.index = [numeric_cols[name] for name in numeric_profile.index]
+numeric_profile = numeric_profile[[&#x27;تعداد معتبر&#x27;, &#x27;میانگین&#x27;, &#x27;کمینه&#x27;, &#x27;چارک اول&#x27;,
+                                   &#x27;میانه&#x27;, &#x27;چارک سوم&#x27;, &#x27;بیشینه&#x27;, &#x27;چولگی&#x27;]]
+show_table(&#x27;7.1&#x27;, &#x27;خلاصه آماری متغیرهای عددی کلیدی&#x27;, numeric_profile,
+           formats={&#x27;تعداد معتبر&#x27;: &#x27;int&#x27;, &#x27;میانگین&#x27;: &#x27;money2&#x27;, &#x27;کمینه&#x27;: &#x27;money2&#x27;,
+                    &#x27;چارک اول&#x27;: &#x27;money2&#x27;, &#x27;میانه&#x27;: &#x27;money2&#x27;, &#x27;چارک سوم&#x27;: &#x27;money2&#x27;,
+                    &#x27;بیشینه&#x27;: &#x27;money2&#x27;, &#x27;چولگی&#x27;: &#x27;score&#x27;},
+           sample=f&#x27;{len(ads):,} آگهی (هر ستون روی داده در دسترس خود)&#x27;,
+           note=&#x27;واحد ستون‌های حقوقی میلیون تومان، درآمد ساعتی هزار تومان، سابقه و سن سال و ساعات هفتگی ساعت است.&#x27;)
+
+fig, axes = plt.subplots(2, 2, figsize=(13.5, 8))
+ax = axes[0, 0]
+salary_series = paid.salary_mid
+ax.hist(salary_series, bins=np.arange(0, 72, 1.5), color=TEAL, edgecolor=&#x27;white&#x27;)
+ax.axvline(salary_series.median(), color=GOLD, linewidth=1.8, label=fa(f&#x27;میانه {salary_series.median():.1f}&#x27;))
+ax.axvline(salary_series.mean(), color=RED, linewidth=1.6, linestyle=&#x27;--&#x27;, label=fa(f&#x27;میانگین {salary_series.mean():.1f}&#x27;))
+ax.set_xlabel(fa(&#x27;میانه بازه حقوق (میلیون تومان)&#x27;))
+ax.set_ylabel(fa(&#x27;تعداد آگهی&#x27;))
+ax.legend(fontsize=8)
+heading(ax, &#x27;۷.۱&#x27;, &#x27;توزیع حقوق ماهانه (خطی)&#x27;)
+
+ax = axes[0, 1]
+ax.hist(np.log(salary_series), bins=45, color=BLUE, edgecolor=&#x27;white&#x27;)
+ax.set_xlabel(fa(&#x27;لگاریتم طبیعی حقوق&#x27;))
+ax.set_ylabel(fa(&#x27;تعداد آگهی&#x27;))
+heading(ax, &#x27;۷.۲&#x27;, &#x27;توزیع لگاریتم حقوق (نزدیک به نرمال)&#x27;)
+
+ax = axes[1, 0]
+hourly_series = hourly_ready.hourly_income
+ax.hist(hourly_series.clip(upper=hourly_series.quantile(.99)), bins=60, color=GOLD, edgecolor=&#x27;white&#x27;)
+ax.axvline(hourly_series.median(), color=DARK, linewidth=1.8, label=fa(f&#x27;میانه {hourly_series.median():.0f}&#x27;))
+ax.set_xlabel(fa(&#x27;درآمد ساعتی (هزار تومان)، برش صدک ۹۹&#x27;))
+ax.set_ylabel(fa(&#x27;تعداد آگهی&#x27;))
+ax.legend(fontsize=8)
+heading(ax, &#x27;۷.۳&#x27;, &#x27;توزیع درآمد ساعتی&#x27;)
+
+ax = axes[1, 1]
+experience = ads.Jobpost_RequiredExperienceYears.clip(upper=15)
+counts = experience.value_counts().sort_index()
+bars = ax.bar(counts.index, counts.values, color=GREEN, width=0.75)
+ax.set_xlabel(fa(&#x27;سال سابقه لازم (سقف ۱۵ سال نمایش)&#x27;))
+ax.set_ylabel(fa(&#x27;تعداد آگهی&#x27;))
+ax.set_xticks(range(0, 16))
+for position, value in zip(counts.index, counts.values):
+    if position in (0, 1, 2, 3, 5, 10):
+        ax.text(position, value, f&#x27;{value / 1000:.0f}k&#x27;, ha=&#x27;center&#x27;, va=&#x27;bottom&#x27;, fontsize=8)
+heading(ax, &#x27;۷.۴&#x27;, &#x27;توزیع سابقه کار مورد نیاز&#x27;)
+complete(&#x27;7.1-7.4&#x27;)
+
+show_metrics(&#x27;توزیع‌ها&#x27;, [
+    (&#x27;چولگی حقوق&#x27;, f&#x27;{salary_series.skew():.2f}&#x27;),
+    (&#x27;چولگی لگاریتم حقوق&#x27;, f&#x27;{np.log(salary_series).skew():.2f}&#x27;),
+    (&#x27;میانگین منهای میانه حقوق&#x27;, f&#x27;{salary_series.mean() - salary_series.median():.2f} میلیون&#x27;),
+    (&#x27;چولگی درآمد ساعتی&#x27;, f&#x27;{hourly_series.skew():.2f}&#x27;),
+    (&#x27;آگهی بدون نیاز به سابقه&#x27;, f&#x27;{ads.Jobpost_RequiredExperienceYears.eq(0).mean() * 100:.1f}٪&#x27;),
+])" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'salary_mid'</span><span class="p">:</span> <span class="s1">'میانه بازه حقوق'</span><span class="p">,</span> <span class="s1">'hourly_income'</span><span class="p">:</span> <span class="s1">'درآمد ساعتی'</span><span class="p">,</span>
+    <span class="s1">'Jobpost_RequiredExperienceYears'</span><span class="p">:</span> <span class="s1">'سابقه لازم'</span><span class="p">,</span> <span class="s1">'age_mid'</span><span class="p">:</span> <span class="s1">'میانه بازه سنی درخواستی'</span><span class="p">,</span>
+    <span class="s1">'weekly_hours'</span><span class="p">:</span> <span class="s1">'ساعت هفتگی'</span><span class="p">,</span> <span class="s1">'benefit_count'</span><span class="p">:</span> <span class="s1">'تعداد مزایا'</span><span class="p">,</span> <span class="s1">'skill_count'</span><span class="p">:</span> <span class="s1">'تعداد مهارت'</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'age_mid'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[[</span><span class="s1">'Jobpost_RequiredMinAge'</span><span class="p">,</span> <span class="s1">'Jobpost_RequiredMaxAge'</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sync_snapshots</span><span class="p">()</span>
+
+<span class="n">numeric_profile</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">)]</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span>
+    <span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mf">.95</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">numeric_profile</span><span class="p">[</span><span class="s1">'چولگی'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">)]</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span>
+<span class="n">numeric_profile</span><span class="p">[</span><span class="s1">'کشیدگی'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">)]</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">()</span>
+<span class="n">numeric_profile</span> <span class="o">=</span> <span class="n">numeric_profile</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">'count'</span><span class="p">:</span> <span class="s1">'تعداد معتبر'</span><span class="p">,</span> <span class="s1">'mean'</span><span class="p">:</span> <span class="s1">'میانگین'</span><span class="p">,</span> <span class="s1">'std'</span><span class="p">:</span> <span class="s1">'انحراف معیار'</span><span class="p">,</span> <span class="s1">'min'</span><span class="p">:</span> <span class="s1">'کمینه'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">:</span> <span class="s1">'بیشینه'</span><span class="p">,</span>
+    <span class="s1">'5%'</span><span class="p">:</span> <span class="s1">'صدک ۵'</span><span class="p">,</span> <span class="s1">'25%'</span><span class="p">:</span> <span class="s1">'چارک اول'</span><span class="p">,</span> <span class="s1">'50%'</span><span class="p">:</span> <span class="s1">'میانه'</span><span class="p">,</span> <span class="s1">'75%'</span><span class="p">:</span> <span class="s1">'چارک سوم'</span><span class="p">,</span> <span class="s1">'95%'</span><span class="p">:</span> <span class="s1">'صدک ۹۵'</span><span class="p">})</span>
+<span class="n">numeric_profile</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">numeric_cols</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">numeric_profile</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">numeric_profile</span> <span class="o">=</span> <span class="n">numeric_profile</span><span class="p">[[</span><span class="s1">'تعداد معتبر'</span><span class="p">,</span> <span class="s1">'میانگین'</span><span class="p">,</span> <span class="s1">'کمینه'</span><span class="p">,</span> <span class="s1">'چارک اول'</span><span class="p">,</span>
+                                   <span class="s1">'میانه'</span><span class="p">,</span> <span class="s1">'چارک سوم'</span><span class="p">,</span> <span class="s1">'بیشینه'</span><span class="p">,</span> <span class="s1">'چولگی'</span><span class="p">]]</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'7.1'</span><span class="p">,</span> <span class="s1">'خلاصه آماری متغیرهای عددی کلیدی'</span><span class="p">,</span> <span class="n">numeric_profile</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد معتبر'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'میانگین'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'کمینه'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span>
+                    <span class="s1">'چارک اول'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'میانه'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'چارک سوم'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span>
+                    <span class="s1">'بیشینه'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'چولگی'</span><span class="p">:</span> <span class="s1">'score'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی (هر ستون روی داده در دسترس خود)'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'واحد ستون‌های حقوقی میلیون تومان، درآمد ساعتی هزار تومان، سابقه و سن سال و ساعات هفتگی ساعت است.'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">13.5</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">salary_series</span> <span class="o">=</span> <span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">salary_series</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">salary_series</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">GOLD</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="sa">f</span><span class="s1">'میانه </span><span class="si">{</span><span class="n">salary_series</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">salary_series</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="sa">f</span><span class="s1">'میانگین </span><span class="si">{</span><span class="n">salary_series</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'میانه بازه حقوق (میلیون تومان)'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'تعداد آگهی'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۷.۱'</span><span class="p">,</span> <span class="s1">'توزیع حقوق ماهانه (خطی)'</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">salary_series</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'لگاریتم طبیعی حقوق'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'تعداد آگهی'</span><span class="p">))</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۷.۲'</span><span class="p">,</span> <span class="s1">'توزیع لگاریتم حقوق (نزدیک به نرمال)'</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">hourly_series</span> <span class="o">=</span> <span class="n">hourly_ready</span><span class="o">.</span><span class="n">hourly_income</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">hourly_series</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="n">hourly_series</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.99</span><span class="p">)),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GOLD</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">hourly_series</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">DARK</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="sa">f</span><span class="s1">'میانه </span><span class="si">{</span><span class="n">hourly_series</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'درآمد ساعتی (هزار تومان)، برش صدک ۹۹'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'تعداد آگهی'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۷.۳'</span><span class="p">,</span> <span class="s1">'توزیع درآمد ساعتی'</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">experience</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_RequiredExperienceYears</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">experience</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'سال سابقه لازم (سقف ۱۵ سال نمایش)'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'تعداد آگهی'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">position</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">k'</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">'bottom'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۷.۴'</span><span class="p">,</span> <span class="s1">'توزیع سابقه کار مورد نیاز'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'7.1-7.4'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'توزیع‌ها'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'چولگی حقوق'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">salary_series</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'چولگی لگاریتم حقوق'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">salary_series</span><span class="p">)</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانگین منهای میانه حقوق'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">salary_series</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">salary_series</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> میلیون'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'چولگی درآمد ساعتی'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">hourly_series</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'آگهی بدون نیاز به سابقه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_RequiredExperienceYears</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-7-1-7-4">
+  <button type="button" data-full="../../../assets/img/fig_7_1-7_4.webp" data-caption="Figure 7.1-7.4 | Monthly salary distribution (linear scale) · Distribution of required work experience">
+    <img src="../../../assets/img/fig_7_1-7_4-sm.webp" alt="Figure 7.1-7.4 | Monthly salary distribution (linear scale) · Distribution of required work experience" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 7.1-7.4 | Monthly salary distribution (linear scale) · Distribution of required work experience</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 7.1 | Statistical summary of key numeric variables | 360,083 postings (each column on its available data) | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Valid count</th>
+<th>Mean</th>
+<th>Minimum</th>
+<th>First quartile</th>
+<th>Median</th>
+<th>Third quartile</th>
+<th>Maximum</th>
+<th>Skewness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Median salary range</th>
+<td>119,048</td>
+<td>13.39</td>
+<td>2.50</td>
+<td>9.00</td>
+<td>11.00</td>
+<td>17.50</td>
+<td>85.00</td>
+<td>2.68</td>
+</tr>
+<tr>
+<th>Hourly income</th>
+<td>116,244</td>
+<td>77.54</td>
+<td>8.88</td>
+<td>44.91</td>
+<td>63.46</td>
+<td>89.74</td>
+<td>2,019.23</td>
+<td>6.80</td>
+</tr>
+<tr>
+<th>Required experience</th>
+<td>360,083</td>
+<td>2.17</td>
+<td>0.00</td>
+<td>1.00</td>
+<td>2.00</td>
+<td>3.00</td>
+<td>30.00</td>
+<td>2.00</td>
+</tr>
+<tr>
+<th>Median requested age range</th>
+<td>286,168</td>
+<td>31.06</td>
+<td>18.00</td>
+<td>28.50</td>
+<td>30.00</td>
+<td>34.00</td>
+<td>50.50</td>
+<td>0.41</td>
+</tr>
+<tr>
+<th>Weekly hours</th>
+<td>351,523</td>
+<td>44.27</td>
+<td>8.00</td>
+<td>43.00</td>
+<td>45.00</td>
+<td>48.00</td>
+<td>84.00</td>
+<td>-1.33</td>
+</tr>
+<tr>
+<th>Number of benefits</th>
+<td>360,083</td>
+<td>2.95</td>
+<td>0.00</td>
+<td>1.00</td>
+<td>3.00</td>
+<td>5.00</td>
+<td>24.00</td>
+<td>0.97</td>
+</tr>
+<tr>
+<th>Number of skills</th>
+<td>360,083</td>
+<td>1.64</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>1.00</td>
+<td>3.00</td>
+<td>69.00</td>
+<td>1.61</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>Note:</span> Salary columns are in million tomans, hourly income in thousand tomans, and experience, age and weekly hours in years and hours respectively.</p>
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">Key figures: distributions</p>
+  <ul><li>Salary skewness: 2.68</li><li>Log-salary skewness: 0.43</li><li>Mean minus median salary: 2.39 million</li><li>Hourly income skewness: 6.80</li><li>Postings requiring no experience: 15.8%</li></ul>
+</div><p><strong>Reading Table 7.1 and Figures 7.1 to 7.4:</strong> The salary distribution is right-skewed: median 11 and mean 13.4 million tomans, with skewness 2.68. The 2.4 million gap between the mean and the median is itself the best evidence that the “mean” is misleading for this data; a manager who sets pay on the market mean would offer above market for half of the roles. That is why the median and quartiles are reported in every section.</p>
+<p>Taking logarithms makes the distribution roughly normal (skewness falls from 2.68 to 0.43), and this is the technical justification for using log salary as the target variable in Section 16.</p>
+<p>The hourly income distribution is also skewed but its range is narrower: median 63.5 and the 99th percentile around 300 thousand tomans per hour. Requested work experience is skewed as well: median 2 years, third quartile 3 years, and 15.8% of postings require no experience at all; by contrast only 732 postings ask for more than 10 years. The overall picture is that the Iranian labor market is a “low-experience” market: employers usually want fresh recruits or two to three years of experience.</p>
+<p><strong>Figure 7.4</strong> shows that the experience distribution is concentrated in 0 to 3 years and thins rapidly after 5 years; this same pattern is examined in Section 8 as a clue to diminishing returns to experience.</p><h2 class="guide-heading" id="sec-7-2">7.2. Identifying outliers <a aria-label="link" class="anchor" href="#sec-7-2">#</a></h2>
+<div class="code-card">
+    <header><span>Python · 21 lines</span><button class="copy-btn" data-copy="def iqr_bounds(series, factor=1.5):
+    q1, q3 = series.quantile(.25), series.quantile(.75)
+    iqr = q3 - q1
+    return q1 - factor * iqr, q3 + factor * iqr
+
+
+outlier_rows = []
+for series, label in [(paid.salary_mid, &#x27;میانه بازه حقوق&#x27;), (hourly_ready.hourly_income, &#x27;درآمد ساعتی&#x27;),
+                      (ads.Jobpost_RequiredExperienceYears, &#x27;سابقه لازم&#x27;)]:
+    low, high = iqr_bounds(series)
+    flagged = (series &lt; low) | (series &gt; high)
+    outlier_rows.append({&#x27;متغیر&#x27;: label, &#x27;تعداد معتبر&#x27;: len(series),
+                         &#x27;کران پایین&#x27;: low, &#x27;کران بالا&#x27;: high,
+                         &#x27;تعداد پرت&#x27;: int(flagged.sum()), &#x27;سهم پرت&#x27;: flagged.mean() * 100,
+                         &#x27;سهم بالای کران&#x27;: (series &gt; high).mean() * 100})
+outlier_table = pd.DataFrame(outlier_rows).set_index(&#x27;متغیر&#x27;)
+show_table(&#x27;7.2&#x27;, &#x27;پرت‌ها بر پایه قاعده ۱٫۵ برابر دامنه میان‌چارکی&#x27;, outlier_table,
+           formats={&#x27;تعداد معتبر&#x27;: &#x27;int&#x27;, &#x27;کران پایین&#x27;: &#x27;money2&#x27;, &#x27;کران بالا&#x27;: &#x27;money2&#x27;,
+                    &#x27;تعداد پرت&#x27;: &#x27;int&#x27;, &#x27;سهم پرت&#x27;: &#x27;pct&#x27;, &#x27;سهم بالای کران&#x27;: &#x27;pct&#x27;},
+           sample=&#x27;داده در دسترس هر متغیر&#x27;,
+           note=&#x27;پرت‌ها حذف نمی‌شوند؛ فقط در مدل‌سازی سطح حقوق وینزور می‌شوند.&#x27;)" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="k">def</span><span class="w"> </span><span class="nf">iqr_bounds</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">):</span>
+    <span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.25</span><span class="p">),</span> <span class="n">series</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.75</span><span class="p">)</span>
+    <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+    <span class="k">return</span> <span class="n">q1</span> <span class="o">-</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">,</span> <span class="n">q3</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span>
+
+
+<span class="n">outlier_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">series</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="p">,</span> <span class="s1">'میانه بازه حقوق'</span><span class="p">),</span> <span class="p">(</span><span class="n">hourly_ready</span><span class="o">.</span><span class="n">hourly_income</span><span class="p">,</span> <span class="s1">'درآمد ساعتی'</span><span class="p">),</span>
+                      <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_RequiredExperienceYears</span><span class="p">,</span> <span class="s1">'سابقه لازم'</span><span class="p">)]:</span>
+    <span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">iqr_bounds</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+    <span class="n">flagged</span> <span class="o">=</span> <span class="p">(</span><span class="n">series</span> <span class="o">&lt;</span> <span class="n">low</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">series</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">)</span>
+    <span class="n">outlier_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'متغیر'</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span> <span class="s1">'تعداد معتبر'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">),</span>
+                         <span class="s1">'کران پایین'</span><span class="p">:</span> <span class="n">low</span><span class="p">,</span> <span class="s1">'کران بالا'</span><span class="p">:</span> <span class="n">high</span><span class="p">,</span>
+                         <span class="s1">'تعداد پرت'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">flagged</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="s1">'سهم پرت'</span><span class="p">:</span> <span class="n">flagged</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+                         <span class="s1">'سهم بالای کران'</span><span class="p">:</span> <span class="p">(</span><span class="n">series</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">})</span>
+<span class="n">outlier_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">outlier_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'متغیر'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'7.2'</span><span class="p">,</span> <span class="s1">'پرت‌ها بر پایه قاعده ۱٫۵ برابر دامنه میان‌چارکی'</span><span class="p">,</span> <span class="n">outlier_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد معتبر'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'کران پایین'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'کران بالا'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span>
+                    <span class="s1">'تعداد پرت'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'سهم پرت'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'سهم بالای کران'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="s1">'داده در دسترس هر متغیر'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'پرت‌ها حذف نمی‌شوند؛ فقط در مدل‌سازی سطح حقوق وینزور می‌شوند.'</span><span class="p">)</span>
+</code></pre>
+  </div><figure class="guide-table" id="table-">
+  <figcaption>Table 7.2 | Outliers based on the 1.5 × IQR rule | available data for each variable | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Valid count</th>
+<th>Lower bound</th>
+<th>Upper bound</th>
+<th>Number of outliers</th>
+<th>Outlier share</th>
+<th>Share above the bound</th>
+</tr>
+<tr>
+<th>Variable</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Median salary range</th>
+<td>119,048</td>
+<td>-3.75</td>
+<td>30.25</td>
+<td>2,382</td>
+<td>2.0%</td>
+<td>2.0%</td>
+</tr>
+<tr>
+<th>Hourly income</th>
+<td>116,244</td>
+<td>-22.35</td>
+<td>157.00</td>
+<td>7,203</td>
+<td>6.2%</td>
+<td>6.2%</td>
+</tr>
+<tr>
+<th>Required experience</th>
+<td>360,083</td>
+<td>-2.00</td>
+<td>6.00</td>
+<td>10,915</td>
+<td>3.0%</td>
+<td>3.0%</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>Note:</span> Outliers are not removed; they are only winsorized at the salary level in modelling.</p>
+  
+</figure><p><strong>Reading Table 7.2:</strong> The 1.5 × interquartile range rule flags 2,382 postings (2%) above the 30.3 million tomans upper bound and 115 postings at the floor (2.5 million or less). This share is small and dropping them would not change the composition of the market, but we do not recommend removing them: a 60 million tomans CEO posting or a 2.5 million tomans intern posting are both market realities. In the descriptive analysis we keep them all, and in modelling we winsorize only the 1st and 99th percentiles so that a single row cannot shift a regression coefficient.</p><h2 class="guide-heading" id="sec-7-3">7.3. Work experience and requested age <a aria-label="link" class="anchor" href="#sec-7-3">#</a></h2>
+<details class="code-fold">
+  <summary><span>Show the code for this step</span><em>26 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="experience_bucket = pd.cut(ads.Jobpost_RequiredExperienceYears, bins=[-1, 0, 1, 2, 3, 5, 10, 100],
+                           labels=[&#x27;بدون سابقه&#x27;, &#x27;۱ سال&#x27;, &#x27;۲ سال&#x27;, &#x27;۳ سال&#x27;, &#x27;۴ تا ۵&#x27;, &#x27;۶ تا ۱۰&#x27;, &#x27;بیش از ۱۰&#x27;])
+experience_table = (ads.groupby(experience_bucket, observed=True)
+                    .agg(**{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;), &#x27;میانه حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;median&#x27;),
+                            &#x27;نرخ افشای حقوق&#x27;: (&#x27;salary_disclosed&#x27;, lambda s: s.mean() * 100)}))
+experience_table[&#x27;سهم&#x27;] = experience_table[&#x27;تعداد آگهی&#x27;] / len(ads) * 100
+show_table(&#x27;7.3&#x27;, &#x27;آگهی‌ها بر پایه سابقه کار درخواستی&#x27;, experience_table,
+           formats={&#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;سهم&#x27;: &#x27;pct&#x27;, &#x27;میانه حقوق&#x27;: &#x27;money&#x27;, &#x27;نرخ افشای حقوق&#x27;: &#x27;pct&#x27;},
+           sample=f&#x27;{len(ads):,} آگهی&#x27;, index_name=&#x27;سابقه درخواستی&#x27;)
+
+age_bucket = pd.cut(ads.age_mid, bins=[17, 22, 27, 32, 37, 60],
+                    labels=[&#x27;زیر ۲۲&#x27;, &#x27;۲۲ تا ۲۷&#x27;, &#x27;۲۷ تا ۳۲&#x27;, &#x27;۳۲ تا ۳۷&#x27;, &#x27;بالای ۳۷&#x27;])
+age_table = (ads.groupby(age_bucket, observed=True)
+             .agg(**{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;), &#x27;میانه حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;median&#x27;),
+                     &#x27;میانه سابقه لازم&#x27;: (&#x27;Jobpost_RequiredExperienceYears&#x27;, &#x27;median&#x27;)}))
+age_table[&#x27;سهم&#x27;] = age_table[&#x27;تعداد آگهی&#x27;] / len(ads) * 100
+show_table(&#x27;7.4&#x27;, &#x27;آگهی‌ها بر پایه میانه بازه سنی درخواستی&#x27;, age_table,
+           formats={&#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;سهم&#x27;: &#x27;pct&#x27;, &#x27;میانه حقوق&#x27;: &#x27;money&#x27;, &#x27;میانه سابقه لازم&#x27;: &#x27;hours&#x27;},
+           sample=f&#x27;{int(ads.age_mid.notna().sum()):,} آگهی دارای بازه سنی&#x27;, index_name=&#x27;بازه سنی&#x27;)
+
+show_metrics(&#x27;سابقه و سن&#x27;, [
+    (&#x27;میانه سابقه درخواستی&#x27;, f&#x27;{ads.Jobpost_RequiredExperienceYears.median():.0f} سال&#x27;),
+    (&#x27;آگهی با بیش از ۱۰ سال سابقه&#x27;, f&#x27;{int(ads.Jobpost_RequiredExperienceYears.gt(10).sum()):,}&#x27;),
+    (&#x27;آگهی دارای بازه سنی&#x27;, f&#x27;{ads.age_mid.notna().mean() * 100:.1f}٪&#x27;),
+    (&#x27;میانه سن درخواستی&#x27;, f&#x27;{ads.age_mid.median():.1f} سال&#x27;),
+])" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">experience_bucket</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_RequiredExperienceYears</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+                           <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'بدون سابقه'</span><span class="p">,</span> <span class="s1">'۱ سال'</span><span class="p">,</span> <span class="s1">'۲ سال'</span><span class="p">,</span> <span class="s1">'۳ سال'</span><span class="p">,</span> <span class="s1">'۴ تا ۵'</span><span class="p">,</span> <span class="s1">'۶ تا ۱۰'</span><span class="p">,</span> <span class="s1">'بیش از ۱۰'</span><span class="p">])</span>
+<span class="n">experience_table</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">experience_bucket</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">),</span>
+                            <span class="s1">'نرخ افشای حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_disclosed'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)}))</span>
+<span class="n">experience_table</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span> <span class="o">=</span> <span class="n">experience_table</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'7.3'</span><span class="p">,</span> <span class="s1">'آگهی‌ها بر پایه سابقه کار درخواستی'</span><span class="p">,</span> <span class="n">experience_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'سهم'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">,</span> <span class="s1">'نرخ افشای حقوق'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'سابقه درخواستی'</span><span class="p">)</span>
+
+<span class="n">age_bucket</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">age_mid</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+                    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'زیر ۲۲'</span><span class="p">,</span> <span class="s1">'۲۲ تا ۲۷'</span><span class="p">,</span> <span class="s1">'۲۷ تا ۳۲'</span><span class="p">,</span> <span class="s1">'۳۲ تا ۳۷'</span><span class="p">,</span> <span class="s1">'بالای ۳۷'</span><span class="p">])</span>
+<span class="n">age_table</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">age_bucket</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">),</span>
+                     <span class="s1">'میانه سابقه لازم'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'Jobpost_RequiredExperienceYears'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">)}))</span>
+<span class="n">age_table</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span> <span class="o">=</span> <span class="n">age_table</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'7.4'</span><span class="p">,</span> <span class="s1">'آگهی‌ها بر پایه میانه بازه سنی درخواستی'</span><span class="p">,</span> <span class="n">age_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'سهم'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">,</span> <span class="s1">'میانه سابقه لازم'</span><span class="p">:</span> <span class="s1">'hours'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">age_mid</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی دارای بازه سنی'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'بازه سنی'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'سابقه و سن'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'میانه سابقه درخواستی'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_RequiredExperienceYears</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> سال'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'آگهی با بیش از ۱۰ سال سابقه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_RequiredExperienceYears</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'آگهی دارای بازه سنی'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">age_mid</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانه سن درخواستی'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">age_mid</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> سال'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>Table 7.3 | Postings by requested work experience | 360,083 postings | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Number of postings</th>
+<th>Median salary</th>
+<th>Salary disclosure rate</th>
+<th>Share</th>
+</tr>
+<tr>
+<th>Requested experience</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>No experience</th>
+<td>56,838</td>
+<td>9.0</td>
+<td>44.7%</td>
+<td>15.8%</td>
+</tr>
+<tr>
+<th>1 year</th>
+<td>85,929</td>
+<td>11.0</td>
+<td>34.7%</td>
+<td>23.9%</td>
+</tr>
+<tr>
+<th>2 years</th>
+<td>95,180</td>
+<td>11.0</td>
+<td>30.3%</td>
+<td>26.4%</td>
+</tr>
+<tr>
+<th>3 years</th>
+<td>67,749</td>
+<td>13.5</td>
+<td>29.0%</td>
+<td>18.8%</td>
+</tr>
+<tr>
+<th>4 to 5</th>
+<td>40,853</td>
+<td>17.5</td>
+<td>28.5%</td>
+<td>11.3%</td>
+</tr>
+<tr>
+<th>6 to 10</th>
+<td>12,802</td>
+<td>22.5</td>
+<td>26.8%</td>
+<td>3.6%</td>
+</tr>
+<tr>
+<th>Over 10</th>
+<td>732</td>
+<td>30.0</td>
+<td>27.2%</td>
+<td>0.2%</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 7.4 | Postings by median requested age range | 286,168 postings with an age range | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Number of postings</th>
+<th>Median salary</th>
+<th>Median required experience</th>
+<th>Share</th>
+</tr>
+<tr>
+<th>Age range</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Under 22</th>
+<td>6,411</td>
+<td>13.5</td>
+<td>0.0</td>
+<td>1.8%</td>
+</tr>
+<tr>
+<th>22 to 27</th>
+<td>38,680</td>
+<td>9.0</td>
+<td>1.0</td>
+<td>10.7%</td>
+</tr>
+<tr>
+<th>27 to 32</th>
+<td>136,400</td>
+<td>11.0</td>
+<td>2.0</td>
+<td>37.9%</td>
+</tr>
+<tr>
+<th>32 to 37</th>
+<td>76,531</td>
+<td>11.0</td>
+<td>2.0</td>
+<td>21.3%</td>
+</tr>
+<tr>
+<th>Above 37</th>
+<td>28,146</td>
+<td>13.5</td>
+<td>4.0</td>
+<td>7.8%</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">Key figures: experience and age</p>
+  <ul><li>Median requested experience: 2 years</li><li>Postings requiring over 10 years of experience: 732</li><li>Postings with an age range: 79.5%</li><li>Median requested age: 30.0 years</li></ul>
+</div><p><strong>Reading Tables 7.3 and 7.4:</strong> Requested experience hits its ceiling very early: 52% of postings ask for at most 2 years of experience and only about 4% for more than 5 years. On the salary side, the median rises from about 11 million for postings with no experience requirement to 13.5 million for postings asking for 3 years of experience; that is, the largest wage jump happens in the first two years and the slope flattens afterwards. This is exactly the “diminishing returns to experience” pattern that is plotted in Section 8.</p>
+<p>The requested age range is stated in only 79.5% of postings, and even in those it is narrow: median 30 years with quartiles of 28.5 to 34 years. In other words, Iranian employers mainly want workers from young to mid-career, and requests above 40 years are very rare. This pattern returns in Section 13 as a market constraint and in Section 22 as an operational warning (avoid artificially narrowing the age range).</p>
+<p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
+<nav class="guide-pager"><a class="prev" href="../06-feature-engineering/"><span>Previous</span><b>Feature engineering</b></a><a class="next" href="../08-correlation-and-collinearity/"><span>Next</span><b>Correlation, collinearity and non-linear relations</b></a></nav>
+  </main>
+  <aside class="guide-aside" aria-label="On this page">
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-7-1">7.1. Summary statistics of numeric variables</a></li><li class="lvl-h2"><a href="#sec-7-2">7.2. Identifying outliers</a></li><li class="lvl-h2"><a href="#sec-7-3">7.3. Work experience and requested age</a></li></ul>
+  </aside>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" aria-label="close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the guide…">
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="Search the guide…" autocomplete="off">
+    <p class="hint">Type to search, Esc to close</p>
+    <ul id="searchResults"></ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>This guide is generated from the project notebook; every number is reproducible.</p>
+      <p><a href="https://github.com/arashalidadi/jobvision-labor-market">GitHub</a> · <a href="../../index.html">Home</a> · <a href="../">Guide index</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/site.js"></script>
+<script src="../../../assets/js/guide.js" data-index="../search.json" data-ui-search="Search the guide…"></script>
+</body>
+</html>

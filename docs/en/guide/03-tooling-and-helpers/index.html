@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3. Tooling, helper functions and data loading — JobVision Guide</title>
+<meta name="description" content="This section builds the analysis infrastructure and runs once and for all. All tables are displayed with a single function ( show_table ), all key numbers with a single template ( show_metrics ) and a">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/03-tooling-and-helpers/">
+<link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/03-tooling-and-helpers/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/03-tooling-and-helpers/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3. Tooling, helper functions and data loading — JobVision Guide">
+<meta property="og:description" content="This section builds the analysis infrastructure and runs once and for all. All tables are displayed with a single function ( show_table ), all key numbers with a single template ( show_metrics ) and a">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/03-tooling-and-helpers/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/pygments.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "3. Tooling, helper functions and data loading — JobVision Guide",
+  "description": "This section builds the analysis infrastructure and runs once and for all. All tables are displayed with a single function ( show_table ), all key numbers with a single template ( show_metrics ) and a",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/03-tooling-and-helpers/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Arash Alidadi"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "JobVision Labor Market",
+    "url": "https://arashalidadi.github.io/jobvision-labor-market"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+}
+</script>
+</head>
+<body class="guide-page en">
+<a class="skip-link" href="#main">Skip</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../index.html" aria-label="JobVision Labor Market">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="../../index.html#problem">Home</a>
+      <a href="../../index.html#findings">Findings</a>
+      <a href="../../index.html#visuals">Visuals</a>
+      <a href="../../index.html#playbook">Playbook</a>
+      <a class="active" href="../">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../../../guide/03-tooling-and-helpers/" hreflang="fa" lang="fa">FA</a><span class="on" aria-current="true">EN</span>
+      </div>
+      <button class="guide-search-btn" type="button" aria-label="Search the guide…">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>Search the guide</span>
+      </button>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="guide-shell">
+  <aside class="guide-side" id="guideSide" aria-label="Sections">
+    <div class="guide-side-head">
+  <a class="guide-back" href="../">← Guide index</a>
+  <p class="guide-side-title">Table of contents</p>
+</div>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link is-active" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+  </aside>
+  <main class="guide-main" id="main">
+    <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 3</span></nav>
+<h1>3. Tooling, helper functions and data loading</h1>
+<p class="guide-meta">1 min read · 2 tables · 1 code cells</p>
+<p>This section builds the analysis infrastructure and runs once and for all. All tables are displayed with a single function (<code>show_table</code>), all key numbers with a single template (<code>show_metrics</code>) and all figures with a single colour style, so that the reader is not confused between the different sections.</p>
+<ul>
+<li><code>fa</code> prepares Persian text for display in figures (letter shaping and right-to-left ordering).</li>
+<li><code>RTLTable</code> and <code>show_table</code> display a table with its number, title, sample and period, and keep the unit of each column in its header.</li>
+<li><code>MetricBlock</code> and <code>show_metrics</code> isolate the key numbers of each section so that they can be referenced in the text.</li>
+<li><code>AnswerText</code> and <code>show_answer</code> present the final answer to each question with numeric evidence.</li>
+<li><code>complete</code> saves the figure with a unique number in <code>outputs/figures/</code> and displays it in the notebook; these same files are used in the PDF report.</li>
+</ul>
+<p>At the end of the cell, the raw data is read, and if the file is absent, an alternative path is checked and a download guide is displayed.</p><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>353 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="%matplotlib inline
+from pathlib import Path
+import json
+import math
+import re
+import time
+import unicodedata
+from html import escape
+
+import numpy as np
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib import ft2font
+from matplotlib.ticker import FuncFormatter, PercentFormatter
+import seaborn as sns
+from packaging.version import Version
+import arabic_reshaper
+from bidi.algorithm import get_display
+from IPython.display import display, HTML
+
+import scipy
+import sklearn
+import statsmodels
+import networkx as nx
+
+pd.set_option(&#x27;display.max_rows&#x27;, 250)
+pd.set_option(&#x27;display.max_columns&#x27;, 50)
+pd.set_option(&#x27;display.width&#x27;, 220)
+
+# پالت یکدست پروژه
+TEAL, DARK, GOLD = &#x27;#2f7f7a&#x27;, &#x27;#263746&#x27;, &#x27;#c9974b&#x27;
+RED, GRAY, LIGHT = &#x27;#b5534b&#x27;, &#x27;#7b8c8c&#x27;, &#x27;#e8f2f1&#x27;
+BLUE, PURPLE, GREEN = &#x27;#5b8db8&#x27;, &#x27;#9c7bb5&#x27;, &#x27;#7aa974&#x27;
+PALETTE = [TEAL, GOLD, BLUE, PURPLE, GREEN, RED, &#x27;#c9a227&#x27;, GRAY]
+
+sns.set_theme(style=&#x27;whitegrid&#x27;, font=&#x27;DejaVu Sans&#x27;, rc={
+    &#x27;axes.spines.top&#x27;: False, &#x27;axes.spines.right&#x27;: False,
+    &#x27;grid.color&#x27;: &#x27;#e3eceb&#x27;, &#x27;axes.edgecolor&#x27;: &#x27;#c3d4d2&#x27;,
+    &#x27;axes.labelcolor&#x27;: DARK, &#x27;text.color&#x27;: DARK,
+    &#x27;xtick.color&#x27;: GRAY, &#x27;ytick.color&#x27;: GRAY,
+    &#x27;axes.unicode_minus&#x27;: False, &#x27;figure.dpi&#x27;: 110,
+    &#x27;figure.facecolor&#x27;: &#x27;white&#x27;, &#x27;savefig.facecolor&#x27;: &#x27;white&#x27;,
+})
+
+
+def fa(value):
+    &quot;&quot;&quot;آماده‌سازی متن فارسی برای matplotlib.&quot;&quot;&quot;
+    value = str(value)
+    value = re.sub(r&#x27;(?&lt;![0-9])\d{4}-\d{2}(?:-\d{2})?(?![0-9])&#x27;,
+                   lambda m: &#x27;\u200e&#x27; + m.group() + &#x27;\u200e&#x27;, value)
+    if Version(matplotlib.__version__) &gt;= Version(&#x27;3.11&#x27;) and getattr(ft2font, &#x27;__libraqm_version__&#x27;, &#x27;&#x27;):
+        return value
+    return &#x27;\n&#x27;.join(get_display(arabic_reshaper.reshape(line)) for line in value.split(&#x27;\n&#x27;))
+
+
+_FA_DIGITS = str.maketrans(&#x27;0123456789,&#x27;, &#x27;۰۱۲۳۴۵۶۷۸۹٬&#x27;)
+_FA_NUM = str.maketrans(&#x27;0123456789&#x27;, &#x27;۰۱۲۳۴۵۶۷۸۹&#x27;)
+
+
+def fa_num(value):
+    &quot;&quot;&quot;رقم فارسی بدون جداکننده هزارگان (برای سال و شماره).&quot;&quot;&quot;
+    return str(value).translate(_FA_NUM)
+
+
+def nf(value, decimals=0):
+    &quot;&quot;&quot;عدد فارسی با جداکننده هزارگان.&quot;&quot;&quot;
+    if value is None or (isinstance(value, float) and math.isnan(value)):
+        return &#x27;—&#x27;
+    return f&#x27;{value:,.{decimals}f}&#x27;.translate(_FA_DIGITS)
+
+
+def pf(value, decimals=1):
+    return nf(value, decimals) + &#x27;٪&#x27;
+
+
+def _cell(value, kind=&#x27;auto&#x27;):
+    if value is None:
+        return &#x27;—&#x27;
+    try:
+        if pd.isna(value):
+            return &#x27;—&#x27;
+    except (TypeError, ValueError):
+        pass
+    if kind == &#x27;int&#x27;:
+        return f&#x27;{int(round(float(value))):,}&#x27;
+    if kind == &#x27;money&#x27;:
+        return f&#x27;{float(value):,.1f}&#x27;
+    if kind == &#x27;money2&#x27;:
+        return f&#x27;{float(value):,.2f}&#x27;
+    if kind == &#x27;pct&#x27;:
+        return f&#x27;{float(value):,.1f}٪&#x27;
+    if kind == &#x27;pp&#x27;:
+        return f&#x27;{float(value):+,.1f}&#x27;
+    if kind == &#x27;score&#x27;:
+        return f&#x27;{float(value):.2f}&#x27;
+    if kind == &#x27;hours&#x27;:
+        return f&#x27;{float(value):,.1f}&#x27;
+    if kind == &#x27;hourly&#x27;:
+        return f&#x27;{float(value):,.0f}&#x27;
+    if kind == &#x27;ratio&#x27;:
+        return f&#x27;{float(value):.3f}&#x27;
+    if kind == &#x27;pvalue&#x27;:
+        return f&#x27;{float(value):.2e}&#x27;
+    if kind == &#x27;signed&#x27;:
+        return f&#x27;{int(round(float(value))):+d}&#x27;
+    if kind == &#x27;bool&#x27;:
+        return &#x27;بله&#x27; if bool(value) else &#x27;خیر&#x27;
+    if kind == &#x27;auto&#x27;:
+        if isinstance(value, (bool, np.bool_)):
+            return &#x27;بله&#x27; if value else &#x27;خیر&#x27;
+        if isinstance(value, (int, np.integer)):
+            return f&#x27;{int(value):,}&#x27;
+        if isinstance(value, (float, np.floating)):
+            return f&#x27;{float(value):,.2f}&#x27;
+        return str(value)
+    return f&#x27;{value:,.1f}&#x27;
+
+
+class RTLTable:
+    def __init__(self, caption, frame, note=None):
+        self.caption, self.frame, self.note = caption, frame, note
+
+    def __repr__(self):
+        return self.caption + &#x27;\n&#x27; + self.frame.to_string()
+
+    def _repr_html_(self):
+        table = self.frame.to_html(border=0, classes=&#x27;jv&#x27;)
+        note = f&#x27;&lt;div class=&quot;jv-note&quot;&gt;{escape(self.note)}&lt;/div&gt;&#x27; if self.note else &#x27;&#x27;
+        return (f&#x27;&lt;div class=&quot;jv-wrap&quot;&gt;&lt;div class=&quot;jv-caption&quot;&gt;{escape(self.caption)}&lt;/div&gt;&#x27;
+                f&#x27;{table}{note}&lt;/div&gt;&#x27;)
+
+
+def show_table(number, title, frame, formats=None, labels=None, sample=None, period=None,
+               index_name=None, note=None):
+    &quot;&quot;&quot;نمایش یکدست جدول با شماره، نمونه و دوره.&quot;&quot;&quot;
+    out = frame.to_frame() if isinstance(frame, pd.Series) else frame.copy()
+    assert out.shape[1] + out.index.nlevels &lt;= 9, (number, out.shape)
+    formats, labels = formats or {}, labels or {}
+    for col in out.columns:
+        kind = formats.get(col, &#x27;auto&#x27;)
+        out[col] = out[col].map(lambda v: _cell(v, kind))
+    if index_name:
+        out.index = out.index.rename(index_name)
+    out = out.rename(columns={key: labels.get(value, value) for key, value in labels.items()})
+    assert out.columns.is_unique, number
+    caption = f&#x27;جدول {number} | {title}&#x27;
+    if sample:
+        caption += f&#x27; | {sample}&#x27;
+    if period is not False:
+        caption += f&#x27; | {period or PERIOD_LABEL}&#x27;
+    display(RTLTable(caption, out, note))
+
+
+class MetricBlock:
+    def __init__(self, number, rows):
+        self.number, self.rows = number, rows
+
+    def __repr__(self):
+        return f&#x27;عددهای کلیدی {self.number}\n&#x27; + &#x27;\n&#x27;.join(f&#x27;{k}: {v}&#x27; for k, v in self.rows)
+
+    def _repr_html_(self):
+        items = &#x27;&#x27;.join(
+            f&#x27;&lt;li&gt;{escape(str(label))}: &lt;bdi dir=&quot;ltr&quot;&gt;&lt;strong&gt;{escape(str(value))}&lt;/strong&gt;&lt;/bdi&gt;&lt;/li&gt;&#x27;
+            for label, value in self.rows)
+        return (f&#x27;&lt;div class=&quot;jv-metrics&quot;&gt;&lt;div class=&quot;jv-metrics-title&quot;&gt;عددهای کلیدی {escape(str(self.number))}&lt;/div&gt;&#x27;
+                f&#x27;&lt;ul&gt;{items}&lt;/ul&gt;&lt;/div&gt;&#x27;)
+
+
+def show_metrics(number, rows):
+    display(MetricBlock(number, rows))
+
+
+class AnswerText:
+    def __init__(self, title, paragraphs):
+        self.title, self.paragraphs = title, paragraphs
+
+    def __repr__(self):
+        return self.title + &#x27;\n\n&#x27; + &#x27;\n\n&#x27;.join(self.paragraphs)
+
+    def _repr_html_(self):
+        body = &#x27;&#x27;.join(f&#x27;&lt;p&gt;{escape(str(p))}&lt;/p&gt;&#x27; for p in self.paragraphs)
+        return (f&#x27;&lt;div class=&quot;jv-answer&quot;&gt;&lt;div class=&quot;jv-answer-title&quot;&gt;{escape(self.title)}&lt;/div&gt;&#x27;
+                f&#x27;{body}&lt;/div&gt;&#x27;)
+
+
+def show_answer(title, paragraphs):
+    display(AnswerText(title, paragraphs))
+
+
+def heading(ax, number, title, period=None):
+    ax.set_title(fa(f&#x27;نمودار {number} | {title} | {period or PERIOD_LABEL}&#x27;), fontsize=10.5, pad=12)
+
+
+def axes_labels(ax, x, y):
+    ax.set_xlabel(fa(x))
+    ax.set_ylabel(fa(y))
+
+
+def sync_snapshots():
+    &quot;&quot;&quot;بازسازی جدول‌های مشتق از ads پس از افزودن ستون‌های تازه.
+
+    paid: آگهی‌های دارای حقوق اعلام‌شده؛ hourly_ready: آگهی‌های دارای حقوق و ساعت معتبر.
+    این تابع تضمین می‌کند بخش‌های بعدی روی جدیدترین نسخه ads کار کنند.
+    &quot;&quot;&quot;
+    globals()[&#x27;paid&#x27;] = ads.loc[ads.salary_disclosed].copy()
+    globals()[&#x27;hourly_ready&#x27;] = ads.loc[ads.salary_disclosed &amp; ads.hourly_income.notna()].copy()
+
+
+def complete(number=None):
+    &quot;&quot;&quot;مرتب‌سازی، ذخیره و نمایش نمودار جاری.&quot;&quot;&quot;
+    fig = plt.gcf()
+    fig.tight_layout()
+    if number:
+        for attempt in range(3):
+            try:
+                FIG_DIR.mkdir(parents=True, exist_ok=True)
+                fig.savefig(FIG_DIR / f&#x27;fig_{str(number).replace(&quot;.&quot;, &quot;_&quot;)}.png&#x27;,
+                            dpi=160, bbox_inches=&#x27;tight&#x27;, facecolor=&#x27;white&#x27;)
+                break
+            except OSError as error:
+                if attempt == 2:
+                    print(f&#x27;هشدار: ذخیره نمودار {number} ناموفق بود ({error})&#x27;)
+                time.sleep(0.6)
+    plt.show()
+
+
+def bar_labels(ax, fmt=&#x27;{:,.0f}&#x27;, horizontal=False, padding=2, fontsize=8.5):
+    for patch in ax.patches:
+        if horizontal:
+            value = patch.get_width()
+            ax.annotate(fmt.format(value), (value, patch.get_y() + patch.get_height() / 2),
+                        xytext=(padding, 0), textcoords=&#x27;offset points&#x27;, va=&#x27;center&#x27;, fontsize=fontsize)
+        else:
+            value = patch.get_height()
+            ax.annotate(fmt.format(value), (patch.get_x() + patch.get_width() / 2, value),
+                        xytext=(0, padding), textcoords=&#x27;offset points&#x27;, ha=&#x27;center&#x27;, fontsize=fontsize)
+
+
+def pct_axis(ax, decimals=0):
+    ax.yaxis.set_major_formatter(PercentFormatter(xmax=100, decimals=decimals))
+
+
+display(HTML(&quot;&quot;&quot;
+&lt;style&gt;
+.jp-RenderedMarkdown, .text_cell_render, .rendered_html { direction: rtl; text-align: right; }
+.jp-RenderedMarkdown ul, .jp-RenderedMarkdown ol { padding-right: 1.5em; padding-left: 0; }
+.jp-RenderedMarkdown pre, .jp-RenderedMarkdown code { direction: ltr; text-align: left; }
+.jp-RenderedMarkdown table { direction: rtl; }
+.jv-wrap { direction: rtl; text-align: right; margin: 6px 0 16px; overflow-x: auto; }
+.jv-caption { font-size: 13px; font-weight: 700; color: #1f4b48; margin: 2px 0 7px; }
+.jv-note { font-size: 12px; color: #5c6f6d; margin-top: 5px; }
+.jv-wrap table.jv { border-collapse: collapse; width: 100%; font-size: 12.5px; background: #fff; }
+.jv-wrap table.jv thead th { background: #e8f2f1; color: #173b37; font-weight: 700;
+  border-bottom: 2px solid #b9d6d3; padding: 7px 10px; white-space: nowrap; }
+.jv-wrap table.jv tbody td { border-bottom: 1px solid #e6eeed; padding: 6px 10px; vertical-align: top; }
+.jv-wrap table.jv tbody tr:nth-child(even) td { background: #f8fbfa; }
+.jv-wrap table.jv tbody tr:hover td { background: #eef7f5; }
+.jv-metrics { direction: rtl; text-align: right; border-right: 4px solid #2f7f7a; background: #f1f8f6;
+  padding: 8px 14px; border-radius: 6px; margin: 10px 0 14px; font-size: 13px; }
+.jv-metrics-title { font-weight: 700; color: #173b37; margin-bottom: 3px; }
+.jv-metrics ul { margin: 3px 0 0; padding-right: 18px; }
+.jv-answer { direction: rtl; text-align: right; border-right: 4px solid #c9974b; background: #fdf8ef;
+  padding: 8px 14px; border-radius: 6px; margin: 10px 0 14px; font-size: 13px; }
+.jv-answer-title { font-weight: 700; color: #6b4a13; margin-bottom: 3px; }
+.jv-answer p { margin: 4px 0; }
+&lt;/style&gt;
+&quot;&quot;&quot;))
+
+
+# ---------------------------------------------------------------------------
+# پیکربندی پروژه
+# ---------------------------------------------------------------------------
+PERIOD_START = &#x27;2022-04&#x27;
+PERIOD_END = &#x27;2024-02&#x27;
+PERIOD_LABEL = &#x27;فروردین ۱۴۰۱ تا بهمن ۱۴۰۲&#x27;
+MIN_N = 30           # حداقل نمونه برای گزارش درصد و میانه
+MIN_CAT = 100        # آستانه دسته شغلی پرتکرار
+ALPHA = 0.05         # سطح معناداری
+RANDOM_STATE = 42
+SALARY_UNIT = &#x27;میلیون تومان در ماه&#x27;
+
+DATA_DIR = Path(&#x27;JobVision-data&#x27;)
+FIG_DIR = Path(&#x27;outputs/figures&#x27;)
+
+J_MONTHS = [&#x27;فروردین&#x27;, &#x27;اردیبهشت&#x27;, &#x27;خرداد&#x27;, &#x27;تیر&#x27;, &#x27;مرداد&#x27;, &#x27;شهریور&#x27;,
+            &#x27;مهر&#x27;, &#x27;آبان&#x27;, &#x27;آذر&#x27;, &#x27;دی&#x27;, &#x27;بهمن&#x27;, &#x27;اسفند&#x27;]
+SEASONS = [&#x27;بهار&#x27;, &#x27;تابستان&#x27;, &#x27;پاییز&#x27;, &#x27;زمستان&#x27;]
+
+
+def jmonth(year_month):
+    &quot;&quot;&quot;برچسب ماه شمسی متناظر با ماه میلادی داده.
+
+    داده فقط دقت ماه دارد؛ هر ماه میلادی به ماه شمسی که بیشتر روزهایش در آن است
+    نسبت داده می‌شود (مثلاً 2022-04 → فروردین ۱۴۰۱).
+    &quot;&quot;&quot;
+    year, month = (int(part) for part in str(year_month).split(&#x27;-&#x27;))
+    jm = (month + 8) % 12 + 1
+    jy = year - 621 if month &gt;= 4 else year - 622
+    return jy, jm, f&#x27;{J_MONTHS[jm - 1]} {fa_num(jy)}&#x27;
+
+
+def jseason(year_month):
+    _, jm, _ = jmonth(year_month)
+    return SEASONS[(jm - 1) // 3]
+
+
+# ---------------------------------------------------------------------------
+# بارگذاری داده
+# ---------------------------------------------------------------------------
+CANDIDATES = [DATA_DIR / &#x27;JobVision_Jobposts_Dataset.csv&#x27;,
+              Path(&#x27;JobVision_Jobposts_Dataset.csv&#x27;),
+              Path(&#x27;/content/JobVision_Jobposts_Dataset.csv&#x27;)]
+DATA_FILE = next((path for path in CANDIDATES if path.is_file()), None)
+if DATA_FILE is None:
+    raise FileNotFoundError(
+        &#x27;فایل JobVision_Jobposts_Dataset.csv پیدا نشد. آن را در پوشه JobVision-data/ &#x27;
+        &#x27;قرار دهید یا از https://huggingface.co/datasets/JobVision/JobVision_Jobposts_Dataset دانلود کنید.&#x27;)
+
+raw = pd.read_csv(DATA_FILE, low_memory=False)
+raw = raw.rename(columns={
+    &#x27;RowNumber&#x27;: &#x27;ad_id&#x27;,
+    &#x27;Comany_CompanyOwnershipTypesFa&#x27;: &#x27;Company_OwnershipFa&#x27;,
+    &#x27;Company_CompanyOwnershipTypesEn&#x27;: &#x27;Company_OwnershipEn&#x27;,
+})
+raw[&#x27;release_month&#x27;] = raw[&#x27;Jobpost_ActivationTime_YEAR_MONTH&#x27;].astype(str)
+
+assert raw.ad_id.is_unique, &#x27;شناسه آگهی یکتا نیست&#x27;
+assert len(raw) == 364_838, f&#x27;تعداد ردیف غیرمنتظره: {len(raw):,}&#x27;
+
+versions = pd.DataFrame({
+    &#x27;کتابخانه&#x27;: [&#x27;Python&#x27;, &#x27;pandas&#x27;, &#x27;numpy&#x27;, &#x27;matplotlib&#x27;, &#x27;seaborn&#x27;, &#x27;scipy&#x27;, &#x27;scikit-learn&#x27;, &#x27;statsmodels&#x27;, &#x27;networkx&#x27;],
+    &#x27;نسخه&#x27;: [f&#x27;{__import__(&quot;sys&quot;).version_info.major}.{__import__(&quot;sys&quot;).version_info.minor}.{__import__(&quot;sys&quot;).version_info.micro}&#x27;,
+             pd.__version__, np.__version__, matplotlib.__version__, sns.__version__,
+             scipy.__version__, sklearn.__version__, statsmodels.__version__, nx.__version__],
+}).set_index(&#x27;کتابخانه&#x27;)
+
+show_table(&#x27;3.1&#x27;, &#x27;نسخه کتابخانه‌های اجرا&#x27;, versions,
+           labels={&#x27;نسخه&#x27;: &#x27;نسخه&#x27;}, sample=&#x27;محیط اجرا&#x27;, period=False,
+           index_name=&#x27;کتابخانه&#x27;)
+
+load_summary = pd.DataFrame({
+    &#x27;مقدار&#x27;: [f&#x27;{len(raw):,}&#x27;, &#x27;۴۳&#x27;, f&#x27;{raw.memory_usage(deep=True).sum() / 1024**2:,.0f} مگابایت&#x27;,
+              f&#x27;{DATA_FILE.stat().st_size / 1024**2:,.0f} مگابایت&#x27;, f&#x27;{raw.release_month.nunique():,}&#x27;],
+}, index=[&#x27;تعداد آگهی&#x27;, &#x27;تعداد ستون اصلی&#x27;, &#x27;حجم در حافظه&#x27;, &#x27;حجم فایل&#x27;, &#x27;تعداد ماه&#x27;])
+show_table(&#x27;3.2&#x27;, &#x27;خلاصه بارگذاری داده&#x27;, load_summary,
+           sample=&#x27;داده خام&#x27;, period=False, index_name=&#x27;مشخصه&#x27;)
+
+show_metrics(&#x27;بارگذاری&#x27;, [
+    (&#x27;فایل داده&#x27;, str(DATA_FILE).replace(&#x27;\\&#x27;, &#x27;/&#x27;)),
+    (&#x27;بازه ماه‌ها&#x27;, f&#x27;{raw.release_month.min()} تا {raw.release_month.max()}&#x27;),
+    (&#x27;ستون شناسه&#x27;, &#x27;ad_id (یکتا)&#x27;),
+])" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">html</span><span class="w"> </span><span class="kn">import</span> <span class="n">escape</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ft2font</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">FuncFormatter</span><span class="p">,</span> <span class="n">PercentFormatter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">packaging.version</span><span class="w"> </span><span class="kn">import</span> <span class="n">Version</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">arabic_reshaper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bidi.algorithm</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sklearn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_rows'</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_columns'</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.width'</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+
+<span class="c1"># پالت یکدست پروژه</span>
+<span class="n">TEAL</span><span class="p">,</span> <span class="n">DARK</span><span class="p">,</span> <span class="n">GOLD</span> <span class="o">=</span> <span class="s1">'#2f7f7a'</span><span class="p">,</span> <span class="s1">'#263746'</span><span class="p">,</span> <span class="s1">'#c9974b'</span>
+<span class="n">RED</span><span class="p">,</span> <span class="n">GRAY</span><span class="p">,</span> <span class="n">LIGHT</span> <span class="o">=</span> <span class="s1">'#b5534b'</span><span class="p">,</span> <span class="s1">'#7b8c8c'</span><span class="p">,</span> <span class="s1">'#e8f2f1'</span>
+<span class="n">BLUE</span><span class="p">,</span> <span class="n">PURPLE</span><span class="p">,</span> <span class="n">GREEN</span> <span class="o">=</span> <span class="s1">'#5b8db8'</span><span class="p">,</span> <span class="s1">'#9c7bb5'</span><span class="p">,</span> <span class="s1">'#7aa974'</span>
+<span class="n">PALETTE</span> <span class="o">=</span> <span class="p">[</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">GOLD</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">PURPLE</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="s1">'#c9a227'</span><span class="p">,</span> <span class="n">GRAY</span><span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">'whitegrid'</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s1">'DejaVu Sans'</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">'axes.spines.top'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">'axes.spines.right'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">'grid.color'</span><span class="p">:</span> <span class="s1">'#e3eceb'</span><span class="p">,</span> <span class="s1">'axes.edgecolor'</span><span class="p">:</span> <span class="s1">'#c3d4d2'</span><span class="p">,</span>
+    <span class="s1">'axes.labelcolor'</span><span class="p">:</span> <span class="n">DARK</span><span class="p">,</span> <span class="s1">'text.color'</span><span class="p">:</span> <span class="n">DARK</span><span class="p">,</span>
+    <span class="s1">'xtick.color'</span><span class="p">:</span> <span class="n">GRAY</span><span class="p">,</span> <span class="s1">'ytick.color'</span><span class="p">:</span> <span class="n">GRAY</span><span class="p">,</span>
+    <span class="s1">'axes.unicode_minus'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">'figure.dpi'</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span>
+    <span class="s1">'figure.facecolor'</span><span class="p">:</span> <span class="s1">'white'</span><span class="p">,</span> <span class="s1">'savefig.facecolor'</span><span class="p">:</span> <span class="s1">'white'</span><span class="p">,</span>
+<span class="p">})</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fa</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""آماده‌سازی متن فارسی برای matplotlib."""</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'(?&lt;![0-9])\d</span><span class="si">{4}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">(?:-\d</span><span class="si">{2}</span><span class="s1">)?(?![0-9])'</span><span class="p">,</span>
+                   <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="s1">'</span><span class="se">\u200e</span><span class="s1">'</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\u200e</span><span class="s1">'</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">Version</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Version</span><span class="p">(</span><span class="s1">'3.11'</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ft2font</span><span class="p">,</span> <span class="s1">'__libraqm_version__'</span><span class="p">,</span> <span class="s1">''</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_display</span><span class="p">(</span><span class="n">arabic_reshaper</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">line</span><span class="p">))</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">))</span>
+
+
+<span class="n">_FA_DIGITS</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">'0123456789,'</span><span class="p">,</span> <span class="s1">'۰۱۲۳۴۵۶۷۸۹٬'</span><span class="p">)</span>
+<span class="n">_FA_NUM</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">'0123456789'</span><span class="p">,</span> <span class="s1">'۰۱۲۳۴۵۶۷۸۹'</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fa_num</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""رقم فارسی بدون جداکننده هزارگان (برای سال و شماره)."""</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">_FA_NUM</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">nf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""عدد فارسی با جداکننده هزارگان."""</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="s1">'—'</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">,.</span><span class="si">{</span><span class="n">decimals</span><span class="si">}</span><span class="s1">f</span><span class="si">}</span><span class="s1">'</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">_FA_DIGITS</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">nf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">decimals</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'٪'</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_cell</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">'—'</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s1">'—'</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'int'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'money'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'money2'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">,.2f</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'pct'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1">٪'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'pp'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">+,.1f</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'score'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'hours'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'hourly'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'ratio'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'pvalue'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'signed'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span><span class="si">:</span><span class="s1">+d</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'bool'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">'بله'</span> <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">else</span> <span class="s1">'خیر'</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'auto'</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="s1">'بله'</span> <span class="k">if</span> <span class="n">value</span> <span class="k">else</span> <span class="s1">'خیر'</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s1">,.2f</span><span class="si">}</span><span class="s1">'</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1">'</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RTLTable</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">caption</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">note</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">caption</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">note</span> <span class="o">=</span> <span class="n">caption</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">note</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">caption</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">border</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="s1">'jv'</span><span class="p">)</span>
+        <span class="n">note</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'&lt;div class="jv-note"&gt;</span><span class="si">{</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">note</span><span class="p">)</span><span class="si">}</span><span class="s1">&lt;/div&gt;'</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">note</span> <span class="k">else</span> <span class="s1">''</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;div class="jv-wrap"&gt;&lt;div class="jv-caption"&gt;</span><span class="si">{</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">caption</span><span class="p">)</span><span class="si">}</span><span class="s1">&lt;/div&gt;'</span>
+                <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">table</span><span class="si">}{</span><span class="n">note</span><span class="si">}</span><span class="s1">&lt;/div&gt;'</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">show_table</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">index_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">note</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""نمایش یکدست جدول با شماره، نمونه و دوره."""</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="k">else</span> <span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">out</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">,</span> <span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">formats</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">formats</span> <span class="ow">or</span> <span class="p">{},</span> <span class="n">labels</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="n">formats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="s1">'auto'</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">_cell</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">kind</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">index_name</span><span class="p">:</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index_name</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">labels</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+    <span class="k">assert</span> <span class="n">out</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">is_unique</span><span class="p">,</span> <span class="n">number</span>
+    <span class="n">caption</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'جدول </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">sample</span><span class="p">:</span>
+        <span class="n">caption</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">' | </span><span class="si">{</span><span class="n">sample</span><span class="si">}</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="n">period</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">caption</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">' | </span><span class="si">{</span><span class="n">period</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">PERIOD_LABEL</span><span class="si">}</span><span class="s1">'</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">RTLTable</span><span class="p">(</span><span class="n">caption</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">note</span><span class="p">))</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MetricBlock</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="n">number</span><span class="p">,</span> <span class="n">rows</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'عددهای کلیدی </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">'&lt;li&gt;</span><span class="si">{</span><span class="n">escape</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">))</span><span class="si">}</span><span class="s1">: &lt;bdi dir="ltr"&gt;&lt;strong&gt;</span><span class="si">{</span><span class="n">escape</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="si">}</span><span class="s1">&lt;/strong&gt;&lt;/bdi&gt;&lt;/li&gt;'</span>
+            <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;div class="jv-metrics"&gt;&lt;div class="jv-metrics-title"&gt;عددهای کلیدی </span><span class="si">{</span><span class="n">escape</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">))</span><span class="si">}</span><span class="s1">&lt;/div&gt;'</span>
+                <span class="sa">f</span><span class="s1">'&lt;ul&gt;</span><span class="si">{</span><span class="n">items</span><span class="si">}</span><span class="s1">&lt;/ul&gt;&lt;/div&gt;'</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">show_metrics</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">MetricBlock</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">rows</span><span class="p">))</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AnswerText</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">paragraphs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">paragraphs</span> <span class="o">=</span> <span class="n">title</span><span class="p">,</span> <span class="n">paragraphs</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n\n</span><span class="s1">'</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;p&gt;</span><span class="si">{</span><span class="n">escape</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="si">}</span><span class="s1">&lt;/p&gt;'</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">'&lt;div class="jv-answer"&gt;&lt;div class="jv-answer-title"&gt;</span><span class="si">{</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span><span class="si">}</span><span class="s1">&lt;/div&gt;'</span>
+                <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">body</span><span class="si">}</span><span class="s1">&lt;/div&gt;'</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">show_answer</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">paragraphs</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">AnswerText</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">paragraphs</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="sa">f</span><span class="s1">'نمودار </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">period</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">PERIOD_LABEL</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">axes_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sync_snapshots</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""بازسازی جدول‌های مشتق از ads پس از افزودن ستون‌های تازه.</span>
+
+<span class="sd">    paid: آگهی‌های دارای حقوق اعلام‌شده؛ hourly_ready: آگهی‌های دارای حقوق و ساعت معتبر.</span>
+<span class="sd">    این تابع تضمین می‌کند بخش‌های بعدی روی جدیدترین نسخه ads کار کنند.</span>
+<span class="sd">    """</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="s1">'paid'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ads</span><span class="o">.</span><span class="n">salary_disclosed</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="s1">'hourly_ready'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ads</span><span class="o">.</span><span class="n">salary_disclosed</span> <span class="o">&amp;</span> <span class="n">ads</span><span class="o">.</span><span class="n">hourly_income</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">complete</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""مرتب‌سازی، ذخیره و نمایش نمودار جاری."""</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">number</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">FIG_DIR</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">FIG_DIR</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">'fig_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"."</span><span class="p">,</span><span class="w"> </span><span class="s2">"_"</span><span class="p">)</span><span class="si">}</span><span class="s1">.png'</span><span class="p">,</span>
+                            <span class="n">dpi</span><span class="o">=</span><span class="mi">160</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">'tight'</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'هشدار: ذخیره نمودار </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1"> ناموفق بود (</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">bar_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'</span><span class="si">{:,.0f}</span><span class="s1">'</span><span class="p">,</span> <span class="n">horizontal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">patch</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">horizontal</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">patch</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">patch</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span> <span class="o">+</span> <span class="n">patch</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">padding</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">'offset points'</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">patch</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="p">(</span><span class="n">patch</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">patch</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span>
+                        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">padding</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">'offset points'</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pct_axis</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="n">xmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="n">decimals</span><span class="p">))</span>
+
+
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">&lt;style&gt;</span>
+<span class="s2">.jp-RenderedMarkdown, .text_cell_render, .rendered_html { direction: rtl; text-align: right; }</span>
+<span class="s2">.jp-RenderedMarkdown ul, .jp-RenderedMarkdown ol { padding-right: 1.5em; padding-left: 0; }</span>
+<span class="s2">.jp-RenderedMarkdown pre, .jp-RenderedMarkdown code { direction: ltr; text-align: left; }</span>
+<span class="s2">.jp-RenderedMarkdown table { direction: rtl; }</span>
+<span class="s2">.jv-wrap { direction: rtl; text-align: right; margin: 6px 0 16px; overflow-x: auto; }</span>
+<span class="s2">.jv-caption { font-size: 13px; font-weight: 700; color: #1f4b48; margin: 2px 0 7px; }</span>
+<span class="s2">.jv-note { font-size: 12px; color: #5c6f6d; margin-top: 5px; }</span>
+<span class="s2">.jv-wrap table.jv { border-collapse: collapse; width: 100%; font-size: 12.5px; background: #fff; }</span>
+<span class="s2">.jv-wrap table.jv thead th { background: #e8f2f1; color: #173b37; font-weight: 700;</span>
+<span class="s2">  border-bottom: 2px solid #b9d6d3; padding: 7px 10px; white-space: nowrap; }</span>
+<span class="s2">.jv-wrap table.jv tbody td { border-bottom: 1px solid #e6eeed; padding: 6px 10px; vertical-align: top; }</span>
+<span class="s2">.jv-wrap table.jv tbody tr:nth-child(even) td { background: #f8fbfa; }</span>
+<span class="s2">.jv-wrap table.jv tbody tr:hover td { background: #eef7f5; }</span>
+<span class="s2">.jv-metrics { direction: rtl; text-align: right; border-right: 4px solid #2f7f7a; background: #f1f8f6;</span>
+<span class="s2">  padding: 8px 14px; border-radius: 6px; margin: 10px 0 14px; font-size: 13px; }</span>
+<span class="s2">.jv-metrics-title { font-weight: 700; color: #173b37; margin-bottom: 3px; }</span>
+<span class="s2">.jv-metrics ul { margin: 3px 0 0; padding-right: 18px; }</span>
+<span class="s2">.jv-answer { direction: rtl; text-align: right; border-right: 4px solid #c9974b; background: #fdf8ef;</span>
+<span class="s2">  padding: 8px 14px; border-radius: 6px; margin: 10px 0 14px; font-size: 13px; }</span>
+<span class="s2">.jv-answer-title { font-weight: 700; color: #6b4a13; margin-bottom: 3px; }</span>
+<span class="s2">.jv-answer p { margin: 4px 0; }</span>
+<span class="s2">&lt;/style&gt;</span>
+<span class="s2">"""</span><span class="p">))</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># پیکربندی پروژه</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="n">PERIOD_START</span> <span class="o">=</span> <span class="s1">'2022-04'</span>
+<span class="n">PERIOD_END</span> <span class="o">=</span> <span class="s1">'2024-02'</span>
+<span class="n">PERIOD_LABEL</span> <span class="o">=</span> <span class="s1">'فروردین ۱۴۰۱ تا بهمن ۱۴۰۲'</span>
+<span class="n">MIN_N</span> <span class="o">=</span> <span class="mi">30</span>           <span class="c1"># حداقل نمونه برای گزارش درصد و میانه</span>
+<span class="n">MIN_CAT</span> <span class="o">=</span> <span class="mi">100</span>        <span class="c1"># آستانه دسته شغلی پرتکرار</span>
+<span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">0.05</span>         <span class="c1"># سطح معناداری</span>
+<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">SALARY_UNIT</span> <span class="o">=</span> <span class="s1">'میلیون تومان در ماه'</span>
+
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'JobVision-data'</span><span class="p">)</span>
+<span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'outputs/figures'</span><span class="p">)</span>
+
+<span class="n">J_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'فروردین'</span><span class="p">,</span> <span class="s1">'اردیبهشت'</span><span class="p">,</span> <span class="s1">'خرداد'</span><span class="p">,</span> <span class="s1">'تیر'</span><span class="p">,</span> <span class="s1">'مرداد'</span><span class="p">,</span> <span class="s1">'شهریور'</span><span class="p">,</span>
+            <span class="s1">'مهر'</span><span class="p">,</span> <span class="s1">'آبان'</span><span class="p">,</span> <span class="s1">'آذر'</span><span class="p">,</span> <span class="s1">'دی'</span><span class="p">,</span> <span class="s1">'بهمن'</span><span class="p">,</span> <span class="s1">'اسفند'</span><span class="p">]</span>
+<span class="n">SEASONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'بهار'</span><span class="p">,</span> <span class="s1">'تابستان'</span><span class="p">,</span> <span class="s1">'پاییز'</span><span class="p">,</span> <span class="s1">'زمستان'</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">jmonth</span><span class="p">(</span><span class="n">year_month</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""برچسب ماه شمسی متناظر با ماه میلادی داده.</span>
+
+<span class="sd">    داده فقط دقت ماه دارد؛ هر ماه میلادی به ماه شمسی که بیشتر روزهایش در آن است</span>
+<span class="sd">    نسبت داده می‌شود (مثلاً 2022-04 → فروردین ۱۴۰۱).</span>
+<span class="sd">    """</span>
+    <span class="n">year</span><span class="p">,</span> <span class="n">month</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">year_month</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'-'</span><span class="p">))</span>
+    <span class="n">jm</span> <span class="o">=</span> <span class="p">(</span><span class="n">month</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">%</span> <span class="mi">12</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">jy</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span> <span class="mi">621</span> <span class="k">if</span> <span class="n">month</span> <span class="o">&gt;=</span> <span class="mi">4</span> <span class="k">else</span> <span class="n">year</span> <span class="o">-</span> <span class="mi">622</span>
+    <span class="k">return</span> <span class="n">jy</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">J_MONTHS</span><span class="p">[</span><span class="n">jm</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">fa_num</span><span class="p">(</span><span class="n">jy</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">jseason</span><span class="p">(</span><span class="n">year_month</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">jmonth</span><span class="p">(</span><span class="n">year_month</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">SEASONS</span><span class="p">[(</span><span class="n">jm</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">]</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># بارگذاری داده</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="n">CANDIDATES</span> <span class="o">=</span> <span class="p">[</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s1">'JobVision_Jobposts_Dataset.csv'</span><span class="p">,</span>
+              <span class="n">Path</span><span class="p">(</span><span class="s1">'JobVision_Jobposts_Dataset.csv'</span><span class="p">),</span>
+              <span class="n">Path</span><span class="p">(</span><span class="s1">'/content/JobVision_Jobposts_Dataset.csv'</span><span class="p">)]</span>
+<span class="n">DATA_FILE</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">path</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">CANDIDATES</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">DATA_FILE</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+        <span class="s1">'فایل JobVision_Jobposts_Dataset.csv پیدا نشد. آن را در پوشه JobVision-data/ '</span>
+        <span class="s1">'قرار دهید یا از https://huggingface.co/datasets/JobVision/JobVision_Jobposts_Dataset دانلود کنید.'</span><span class="p">)</span>
+
+<span class="n">raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_FILE</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">'RowNumber'</span><span class="p">:</span> <span class="s1">'ad_id'</span><span class="p">,</span>
+    <span class="s1">'Comany_CompanyOwnershipTypesFa'</span><span class="p">:</span> <span class="s1">'Company_OwnershipFa'</span><span class="p">,</span>
+    <span class="s1">'Company_CompanyOwnershipTypesEn'</span><span class="p">:</span> <span class="s1">'Company_OwnershipEn'</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="n">raw</span><span class="p">[</span><span class="s1">'release_month'</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw</span><span class="p">[</span><span class="s1">'Jobpost_ActivationTime_YEAR_MONTH'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">raw</span><span class="o">.</span><span class="n">ad_id</span><span class="o">.</span><span class="n">is_unique</span><span class="p">,</span> <span class="s1">'شناسه آگهی یکتا نیست'</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span> <span class="o">==</span> <span class="mi">364_838</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'تعداد ردیف غیرمنتظره: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span>
+
+<span class="n">versions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'کتابخانه'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Python'</span><span class="p">,</span> <span class="s1">'pandas'</span><span class="p">,</span> <span class="s1">'numpy'</span><span class="p">,</span> <span class="s1">'matplotlib'</span><span class="p">,</span> <span class="s1">'seaborn'</span><span class="p">,</span> <span class="s1">'scipy'</span><span class="p">,</span> <span class="s1">'scikit-learn'</span><span class="p">,</span> <span class="s1">'statsmodels'</span><span class="p">,</span> <span class="s1">'networkx'</span><span class="p">],</span>
+    <span class="s1">'نسخه'</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">__import__</span><span class="p">(</span><span class="s2">"sys"</span><span class="p">)</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">major</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="nb">__import__</span><span class="p">(</span><span class="s2">"sys"</span><span class="p">)</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">minor</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="nb">__import__</span><span class="p">(</span><span class="s2">"sys"</span><span class="p">)</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">micro</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+             <span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span>
+             <span class="n">scipy</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">statsmodels</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">__version__</span><span class="p">],</span>
+<span class="p">})</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'کتابخانه'</span><span class="p">)</span>
+
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'3.1'</span><span class="p">,</span> <span class="s1">'نسخه کتابخانه‌های اجرا'</span><span class="p">,</span> <span class="n">versions</span><span class="p">,</span>
+           <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">'نسخه'</span><span class="p">:</span> <span class="s1">'نسخه'</span><span class="p">},</span> <span class="n">sample</span><span class="o">=</span><span class="s1">'محیط اجرا'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+           <span class="n">index_name</span><span class="o">=</span><span class="s1">'کتابخانه'</span><span class="p">)</span>
+
+<span class="n">load_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'مقدار'</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="s1">'۴۳'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">raw</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1"> مگابایت'</span><span class="p">,</span>
+              <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">DATA_FILE</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1"> مگابایت'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">raw</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">],</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">,</span> <span class="s1">'تعداد ستون اصلی'</span><span class="p">,</span> <span class="s1">'حجم در حافظه'</span><span class="p">,</span> <span class="s1">'حجم فایل'</span><span class="p">,</span> <span class="s1">'تعداد ماه'</span><span class="p">])</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'3.2'</span><span class="p">,</span> <span class="s1">'خلاصه بارگذاری داده'</span><span class="p">,</span> <span class="n">load_summary</span><span class="p">,</span>
+           <span class="n">sample</span><span class="o">=</span><span class="s1">'داده خام'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'مشخصه'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'بارگذاری'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'فایل داده'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">DATA_FILE</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'بازه ماه‌ها'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">raw</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1"> تا </span><span class="si">{</span><span class="n">raw</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'ستون شناسه'</span><span class="p">,</span> <span class="s1">'ad_id (یکتا)'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>Table 3.1 | Versions of the libraries used | runtime environment</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Version</th>
+</tr>
+<tr>
+<th>Library</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Python</th>
+<td>3.12.10</td>
+</tr>
+<tr>
+<th>pandas</th>
+<td>3.1.1</td>
+</tr>
+<tr>
+<th>numpy</th>
+<td>2.5.5</td>
+</tr>
+<tr>
+<th>matplotlib</th>
+<td>3.11.2</td>
+</tr>
+<tr>
+<th>seaborn</th>
+<td>0.13.2</td>
+</tr>
+<tr>
+<th>scipy</th>
+<td>1.18.1</td>
+</tr>
+<tr>
+<th>scikit-learn</th>
+<td>1.9.1</td>
+</tr>
+<tr>
+<th>statsmodels</th>
+<td>0.15.0</td>
+</tr>
+<tr>
+<th>networkx</th>
+<td>3.7</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 3.2 | Data loading summary | raw data</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Value</th>
+</tr>
+<tr>
+<th>Feature</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Number of postings</th>
+<td>364,838</td>
+</tr>
+<tr>
+<th>Number of main columns</th>
+<td>43</td>
+</tr>
+<tr>
+<th>In-memory size</th>
+<td>1,025 MB</td>
+</tr>
+<tr>
+<th>File size</th>
+<td>374 MB</td>
+</tr>
+<tr>
+<th>Number of months</th>
+<td>25</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">Key figures: data loading</p>
+  <ul><li>Data file: JobVision-data/JobVision_Jobposts_Dataset.csv</li><li>Month range: 2022-03 to 2024-03</li><li>Identifier column: ad_id (unique)</li></ul>
+</div>
+<p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
+<nav class="guide-pager"><a class="prev" href="../02-data-rules/"><span>Previous</span><b>Data, data culture and analysis rules</b></a><a class="next" href="../04-data-quality/"><span>Next</span><b>Data understanding and quality</b></a></nav>
+  </main>
+  <aside class="guide-aside" aria-label="On this page">
+    
+  </aside>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" aria-label="close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the guide…">
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="Search the guide…" autocomplete="off">
+    <p class="hint">Type to search, Esc to close</p>
+    <ul id="searchResults"></ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>This guide is generated from the project notebook; every number is reproducible.</p>
+      <p><a href="https://github.com/arashalidadi/jobvision-labor-market">GitHub</a> · <a href="../../index.html">Home</a> · <a href="../">Guide index</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/site.js"></script>
+<script src="../../../assets/js/guide.js" data-index="../search.json" data-ui-search="Search the guide…"></script>
+</body>
+</html>

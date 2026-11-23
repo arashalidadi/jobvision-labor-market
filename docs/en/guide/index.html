@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide — JobVision</title>
+<meta name="description" content="The full project guide, generated directly from the executed notebook.">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/">
+<link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guide — JobVision">
+<meta property="og:description" content="The full project guide, generated directly from the executed notebook.">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pygments.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Guide — JobVision",
+  "description": "The full project guide, generated directly from the executed notebook.",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Arash Alidadi"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "JobVision Labor Market",
+    "url": "https://arashalidadi.github.io/jobvision-labor-market"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+}
+</script>
+</head>
+<body class="guide-page en">
+<a class="skip-link" href="#main">Skip</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="JobVision Labor Market">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="../index.html#problem">Home</a>
+      <a href="../index.html#findings">Findings</a>
+      <a href="../index.html#visuals">Visuals</a>
+      <a href="../index.html#playbook">Playbook</a>
+      <a class="active" href="">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../../guide/" hreflang="fa" lang="fa">FA</a><span class="on" aria-current="true">EN</span>
+      </div>
+      <button class="guide-search-btn" type="button" aria-label="Search the guide…">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>Search the guide</span>
+      </button>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="guide-shell">
+  <aside class="guide-side" id="guideSide" aria-label="Sections">
+    <div class="guide-side-head">
+  <a class="guide-back" href="../">← Guide index</a>
+  <p class="guide-side-title">Table of contents</p>
+</div>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+  </aside>
+  <main class="guide-main" id="main">
+    <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <span>Docs</span></nav>
+<h1>Guide</h1>
+<p class="lead">The full project guide, generated directly from the executed notebook.</p>
+<div class="kpi-strip guide-kpis">
+  <div class="kpi"><b>24</b><span>sections</span></div>
+  <div class="kpi"><b>95</b><span>tables</span></div>
+  <div class="kpi"><b>35</b><span>figures</span></div>
+  <div class="kpi"><b>69</b><span>code cells</span></div>
+</div>
+<ul class="guide-cards"><li class="guide-card reveal"><a href="../guide/01-project-brief-and-questions/"><span class="num">1</span><span class="t">Project brief and strategic questions</span><span class="meta">1008 words</span></a></li><li class="guide-card reveal"><a href="../guide/02-data-rules/"><span class="num">2</span><span class="t">Data, data culture and analysis rules</span><span class="meta">1019 words</span></a></li><li class="guide-card reveal"><a href="../guide/03-tooling-and-helpers/"><span class="num">3</span><span class="t">Tooling, helper functions and data loading</span><span class="meta">2 tables · 1 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/04-data-quality/"><span class="num">4</span><span class="t">Data understanding and quality</span><span class="meta">8 tables · 3 figures · 6 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/05-cleaning-and-analysis-layer/"><span class="num">5</span><span class="t">Cleaning and building the analysis layer</span><span class="meta">5 tables · 5 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/06-feature-engineering/"><span class="num">6</span><span class="t">Feature engineering</span><span class="meta">15 tables · 4 figures · 9 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/07-distributions-and-outliers/"><span class="num">7</span><span class="t">Distributions, skewness and outliers</span><span class="meta">4 tables · 1 figures · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/08-correlation-and-collinearity/"><span class="num">8</span><span class="t">Correlation, collinearity and non-linear relations</span><span class="meta">3 tables · 2 figures · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/09-salary-disclosure/"><span class="num">9</span><span class="t">Salary missingness: random or dependent?</span><span class="meta">7 tables · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/10-time-trends-and-seasonality/"><span class="num">10</span><span class="t">Time trends, seasonality and wage dynamics</span><span class="meta">7 tables · 4 figures · 4 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/11-gender-and-opportunity/"><span class="num">11</span><span class="t">Gender preference, job opportunity and pay</span><span class="meta">5 tables · 2 figures · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/12-education-vs-experience/"><span class="num">12</span><span class="t">Education vs work experience</span><span class="meta">5 tables · 1 figures · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/13-income-peak-by-age/"><span class="num">13</span><span class="t">Income peak by requested age</span><span class="meta">2 tables · 2 figures · 2 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/14-geography-and-provinces/"><span class="num">14</span><span class="t">Geography and provincial concentration</span><span class="meta">5 tables · 3 figures · 4 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/15-global-comparison/"><span class="num">15</span><span class="t">Iran against the global labor market (2022–2024)</span><span class="meta">2 tables · 1 figures · 1 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/16-salary-modelling/"><span class="num">16</span><span class="t">Salary modelling and shifting feature importance</span><span class="meta">3 tables · 1 figures · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/17-job-title-clustering/"><span class="num">17</span><span class="t">Clustering job titles by skills and education</span><span class="meta">4 tables · 2 figures · 4 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/18-industry-occupation/"><span class="num">18</span><span class="t">Industry × job category: what does each industry hire for?</span><span class="meta">1 tables · 1 figures · 1 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/19-skills-evolution/"><span class="num">19</span><span class="t">Skill evolution and fast-growing job titles</span><span class="meta">3 tables · 2 figures · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/20-employer-typology/"><span class="num">20</span><span class="t">Employer profiling and clustering [bonus]</span><span class="meta">3 tables · 1 figures · 2 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/21-skill-network/"><span class="num">21</span><span class="t">Skill co-occurrence network [bonus]</span><span class="meta">4 tables · 2 figures · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/22-decision-package/"><span class="num">22</span><span class="t">Decision package for business managers</span><span class="meta">4 tables · 2 figures · 3 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/23-conclusions-and-dashboard/"><span class="num">23</span><span class="t">Conclusions, dashboard and key findings</span><span class="meta">2 tables · 1 figures · 2 code cells</span></a></li><li class="guide-card reveal"><a href="../guide/24-reproducibility-checks/"><span class="num">24</span><span class="t">Computation checks and reproducibility</span><span class="meta">1 tables · 1 code cells</span></a></li></ul>
+  </main>
+  <aside class="guide-aside" aria-label="On this page">
+    
+  </aside>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" aria-label="close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the guide…">
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="Search the guide…" autocomplete="off">
+    <p class="hint">Type to search, Esc to close</p>
+    <ul id="searchResults"></ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>This guide is generated from the project notebook; every number is reproducible.</p>
+      <p><a href="https://github.com/arashalidadi/jobvision-labor-market">GitHub</a> · <a href="../index.html">Home</a> · <a href="">Guide index</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+<script src="../../assets/js/guide.js" data-index="search.json" data-ui-search="Search the guide…"></script>
+</body>
+</html>

@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10. Time trends, seasonality and wage dynamics — JobVision Guide</title>
+<meta name="description" content="10.1. Posting volume over time #">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/10-time-trends-and-seasonality/">
+<link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/10-time-trends-and-seasonality/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/10-time-trends-and-seasonality/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10. Time trends, seasonality and wage dynamics — JobVision Guide">
+<meta property="og:description" content="10.1. Posting volume over time #">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/10-time-trends-and-seasonality/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/pygments.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "10. Time trends, seasonality and wage dynamics — JobVision Guide",
+  "description": "10.1. Posting volume over time #",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/10-time-trends-and-seasonality/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Arash Alidadi"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "JobVision Labor Market",
+    "url": "https://arashalidadi.github.io/jobvision-labor-market"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+}
+</script>
+</head>
+<body class="guide-page en">
+<a class="skip-link" href="#main">Skip</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../index.html" aria-label="JobVision Labor Market">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="../../index.html#problem">Home</a>
+      <a href="../../index.html#findings">Findings</a>
+      <a href="../../index.html#visuals">Visuals</a>
+      <a href="../../index.html#playbook">Playbook</a>
+      <a class="active" href="../">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../../../guide/10-time-trends-and-seasonality/" hreflang="fa" lang="fa">FA</a><span class="on" aria-current="true">EN</span>
+      </div>
+      <button class="guide-search-btn" type="button" aria-label="Search the guide…">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>Search the guide</span>
+      </button>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="guide-shell">
+  <aside class="guide-side" id="guideSide" aria-label="Sections">
+    <div class="guide-side-head">
+  <a class="guide-back" href="../">← Guide index</a>
+  <p class="guide-side-title">Table of contents</p>
+</div>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link is-active" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-10-1">10.1. Posting volume over time</a></li><li class="lvl-h2"><a href="#sec-10-2">10.2. Seasonality with the Solar Hijri calendar</a></li><li class="lvl-h2"><a href="#sec-10-3">10.3. Wage dynamics and comparison with inflation</a></li><li class="lvl-h2"><a href="#sec-10-4">10.4. Change in the share of job categories over time</a></li></ul></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+  </aside>
+  <main class="guide-main" id="main">
+    <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 10</span></nav>
+<h1>10. Time trends, seasonality and wage dynamics</h1>
+<p class="guide-meta">4 min read · 7 tables · 4 figures · 4 code cells</p>
+<h2 class="guide-heading" id="sec-10-1">10.1. Posting volume over time <a aria-label="link" class="anchor" href="#sec-10-1">#</a></h2><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>29 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="monthly_trend = (ads.groupby(&#x27;release_month&#x27;)
+                 .agg(**{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;),
+                         &#x27;میانه حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;median&#x27;),
+                         &#x27;نرخ افشا&#x27;: (&#x27;salary_disclosed&#x27;, lambda s: s.mean() * 100)}))
+monthly_trend[&#x27;ماه شمسی&#x27;] = [jmonth(month)[2] for month in monthly_trend.index]
+monthly_trend[&#x27;سهم&#x27;] = monthly_trend[&#x27;تعداد آگهی&#x27;] / len(ads) * 100
+monthly_trend[&#x27;رشد ماهانه&#x27;] = monthly_trend[&#x27;تعداد آگهی&#x27;].pct_change() * 100
+monthly_trend[&#x27;میانگین متحرک ۳ ماهه&#x27;] = monthly_trend[&#x27;تعداد آگهی&#x27;].rolling(3).mean()
+show_table(&#x27;10.1&#x27;, &#x27;روند ماهانه حجم آگهی و میانه حقوق&#x27;, monthly_trend,
+           formats={&#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;میانه حقوق&#x27;: &#x27;money&#x27;, &#x27;نرخ افشا&#x27;: &#x27;pct&#x27;, &#x27;سهم&#x27;: &#x27;pct&#x27;,
+                    &#x27;رشد ماهانه&#x27;: &#x27;pp&#x27;, &#x27;میانگین متحرک ۳ ماهه&#x27;: &#x27;hourly&#x27;},
+           sample=f&#x27;{len(ads):,} آگهی&#x27;, index_name=&#x27;ماه میلادی&#x27;)
+
+fig, ax = plt.subplots(figsize=(13, 5))
+x = np.arange(len(monthly_trend))
+ax.bar(x, monthly_trend[&#x27;تعداد آگهی&#x27;], color=LIGHT, edgecolor=TEAL, width=0.72, label=fa(&#x27;تعداد آگهی&#x27;))
+ax.plot(x, monthly_trend[&#x27;میانگین متحرک ۳ ماهه&#x27;], color=GOLD, linewidth=2, label=fa(&#x27;میانگین متحرک ۳ ماهه&#x27;))
+ax.set_xticks(x)
+ax.set_xticklabels([fa(label) for label in monthly_trend[&#x27;ماه شمسی&#x27;]], rotation=60, ha=&#x27;right&#x27;, fontsize=8)
+ax.set_ylabel(fa(&#x27;تعداد آگهی&#x27;))
+peak_month = monthly_trend[&#x27;تعداد آگهی&#x27;].idxmax()
+peak_position = int(monthly_trend.index.get_loc(peak_month))
+ax.annotate(fa(f&#x27;اوج: {monthly_trend.loc[peak_month, &quot;ماه شمسی&quot;]}&#x27;),
+            xy=(peak_position, monthly_trend[&#x27;تعداد آگهی&#x27;].max()),
+            xytext=(peak_position - 5.5, monthly_trend[&#x27;تعداد آگهی&#x27;].max() * 1.03),
+            fontsize=8.5, arrowprops=dict(arrowstyle=&#x27;-&gt;&#x27;, color=DARK))
+ax.legend(fontsize=8.5)
+heading(ax, &#x27;۱۰.۱&#x27;, &#x27;روند ماهانه تعداد آگهی و میانگین متحرک&#x27;)
+complete(&#x27;10.1&#x27;)" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">monthly_trend</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'release_month'</span><span class="p">)</span>
+                 <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span>
+                         <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">),</span>
+                         <span class="s1">'نرخ افشا'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_disclosed'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)}))</span>
+<span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'ماه شمسی'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">jmonth</span><span class="p">(</span><span class="n">month</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">monthly_trend</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span> <span class="o">=</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'رشد ماهانه'</span><span class="p">]</span> <span class="o">=</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'میانگین متحرک ۳ ماهه'</span><span class="p">]</span> <span class="o">=</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'10.1'</span><span class="p">,</span> <span class="s1">'روند ماهانه حجم آگهی و میانه حقوق'</span><span class="p">,</span> <span class="n">monthly_trend</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">,</span> <span class="s1">'نرخ افشا'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'سهم'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span>
+                    <span class="s1">'رشد ماهانه'</span><span class="p">:</span> <span class="s1">'pp'</span><span class="p">,</span> <span class="s1">'میانگین متحرک ۳ ماهه'</span><span class="p">:</span> <span class="s1">'hourly'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'ماه میلادی'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">monthly_trend</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">LIGHT</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.72</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="s1">'تعداد آگهی'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'میانگین متحرک ۳ ماهه'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">GOLD</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="s1">'میانگین متحرک ۳ ماهه'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="n">fa</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'ماه شمسی'</span><span class="p">]],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'right'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'تعداد آگهی'</span><span class="p">))</span>
+<span class="n">peak_month</span> <span class="o">=</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="n">peak_position</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">monthly_trend</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">peak_month</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="sa">f</span><span class="s1">'اوج: </span><span class="si">{</span><span class="n">monthly_trend</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">peak_month</span><span class="p">,</span><span class="w"> </span><span class="s2">"ماه شمسی"</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+            <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">peak_position</span><span class="p">,</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">peak_position</span> <span class="o">-</span> <span class="mf">5.5</span><span class="p">,</span> <span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.03</span><span class="p">),</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">'-&gt;'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">DARK</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۱۰.۱'</span><span class="p">,</span> <span class="s1">'روند ماهانه تعداد آگهی و میانگین متحرک'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'10.1'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-10-1">
+  <button type="button" data-full="../../../assets/img/fig_10_1.webp" data-caption="Figure 10.1 | Monthly posting volume with moving average">
+    <img src="../../../assets/img/fig_10_1-sm.webp" alt="Figure 10.1 | Monthly posting volume with moving average" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 10.1 | Monthly posting volume with moving average</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 10.1 | Monthly trend of posting volume and median salary | 360,083 postings | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Number of postings</th>
+<th>Median salary</th>
+<th>Disclosure rate</th>
+<th>Solar Hijri month</th>
+<th>Share</th>
+<th>Monthly growth</th>
+<th>3-month moving average</th>
+</tr>
+<tr>
+<th>Gregorian month</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>2022-04</th>
+<td>12,782</td>
+<td>7.0</td>
+<td>32.7%</td>
+<td>Farvardin 1401</td>
+<td>3.5%</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<th>2022-05</th>
+<td>11,026</td>
+<td>7.0</td>
+<td>36.1%</td>
+<td>Ordibehesht 1401</td>
+<td>3.1%</td>
+<td>-13.7</td>
+<td>—</td>
+</tr>
+<tr>
+<th>2022-06</th>
+<td>11,348</td>
+<td>9.0</td>
+<td>38.2%</td>
+<td>Khordad 1401</td>
+<td>3.2%</td>
+<td>+2.9</td>
+<td>11,719</td>
+</tr>
+<tr>
+<th>2022-07</th>
+<td>11,862</td>
+<td>9.0</td>
+<td>36.4%</td>
+<td>Tir 1401</td>
+<td>3.3%</td>
+<td>+4.5</td>
+<td>11,412</td>
+</tr>
+<tr>
+<th>2022-08</th>
+<td>13,538</td>
+<td>9.0</td>
+<td>37.4%</td>
+<td>Mordad 1401</td>
+<td>3.8%</td>
+<td>+14.1</td>
+<td>12,249</td>
+</tr>
+<tr>
+<th>2022-09</th>
+<td>10,261</td>
+<td>9.0</td>
+<td>33.6%</td>
+<td>Shahrivar 1401</td>
+<td>2.8%</td>
+<td>-24.2</td>
+<td>11,887</td>
+</tr>
+<tr>
+<th>2022-10</th>
+<td>12,944</td>
+<td>9.0</td>
+<td>35.2%</td>
+<td>Mehr 1401</td>
+<td>3.6%</td>
+<td>+26.1</td>
+<td>12,248</td>
+</tr>
+<tr>
+<th>2022-11</th>
+<td>13,317</td>
+<td>9.0</td>
+<td>32.8%</td>
+<td>Aban 1401</td>
+<td>3.7%</td>
+<td>+2.9</td>
+<td>12,174</td>
+</tr>
+<tr>
+<th>2022-12</th>
+<td>12,111</td>
+<td>9.0</td>
+<td>31.6%</td>
+<td>Azar 1401</td>
+<td>3.4%</td>
+<td>-9.1</td>
+<td>12,791</td>
+</tr>
+<tr>
+<th>2023-01</th>
+<td>16,316</td>
+<td>9.0</td>
+<td>30.7%</td>
+<td>Dey 1401</td>
+<td>4.5%</td>
+<td>+34.7</td>
+<td>13,915</td>
+</tr>
+<tr>
+<th>2023-02</th>
+<td>8,916</td>
+<td>9.0</td>
+<td>33.2%</td>
+<td>Bahman 1401</td>
+<td>2.5%</td>
+<td>-45.4</td>
+<td>12,448</td>
+</tr>
+<tr>
+<th>2023-03</th>
+<td>5,531</td>
+<td>11.0</td>
+<td>29.7%</td>
+<td>Esfand 1401</td>
+<td>1.5%</td>
+<td>-38.0</td>
+<td>10,254</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-04</th>
+<td>18,217</td>
+<td>11.0</td>
+<td>31.0%</td>
+<td>Farvardin 1402</td>
+<td>5.1%</td>
+<td>+229.4</td>
+<td>10,888</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-05</th>
+<td>18,376</td>
+<td>13.5</td>
+<td>27.6%</td>
+<td>Ordibehesht 1402</td>
+<td>5.1%</td>
+<td>+0.9</td>
+<td>14,041</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-06</th>
+<td>16,222</td>
+<td>13.5</td>
+<td>28.9%</td>
+<td>Khordad 1402</td>
+<td>4.5%</td>
+<td>-11.7</td>
+<td>17,605</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-07</th>
+<td>20,265</td>
+<td>13.5</td>
+<td>30.4%</td>
+<td>Tir 1402</td>
+<td>5.6%</td>
+<td>+24.9</td>
+<td>18,288</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-08</th>
+<td>20,166</td>
+<td>13.5</td>
+<td>33.6%</td>
+<td>Mordad 1402</td>
+<td>5.6%</td>
+<td>-0.5</td>
+<td>18,884</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-09</th>
+<td>18,176</td>
+<td>13.5</td>
+<td>32.6%</td>
+<td>Shahrivar 1402</td>
+<td>5.0%</td>
+<td>-9.9</td>
+<td>19,536</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-10</th>
+<td>24,017</td>
+<td>13.5</td>
+<td>33.4%</td>
+<td>Mehr 1402</td>
+<td>6.7%</td>
+<td>+32.1</td>
+<td>20,786</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-11</th>
+<td>22,807</td>
+<td>13.5</td>
+<td>35.3%</td>
+<td>Aban 1402</td>
+<td>6.3%</td>
+<td>-5.0</td>
+<td>21,667</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-12</th>
+<td>21,939</td>
+<td>13.5</td>
+<td>34.8%</td>
+<td>Azar 1402</td>
+<td>6.1%</td>
+<td>-3.8</td>
+<td>22,921</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2024-01</th>
+<td>23,417</td>
+<td>13.5</td>
+<td>35.0%</td>
+<td>Dey 1402</td>
+<td>6.5%</td>
+<td>+6.7</td>
+<td>22,721</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2024-02</th>
+<td>16,529</td>
+<td>13.5</td>
+<td>31.3%</td>
+<td>Bahman 1402</td>
+<td>4.6%</td>
+<td>-29.4</td>
+<td>20,628</td>
+</tr>
+</tbody>
+</table></div>
+  
+  <button class="table-more" type="button" data-rows="23">Show all rows (23)</button>
+</figure><p><strong>Interpretation of Table 10.1 and Figure 10.1:</strong> The volume of postings rose from 12,782 in Farvardin 1401 to 24,017 in Mehr 1402; nearly 88% growth over 19 months. The trend is not uniform: Esfand 1401, with 5,531 postings, is the trough of the period, and Farvardin 1402, with a 229% jump relative to it, shows that this decline was mostly seasonal and temporary. The three-month moving average also confirms the long-term upward trend.</p>
+<p>The Bahman and Esfand drop and the Farvardin surge are a familiar pattern in the Iranian job market: employers stop hiring before the Nowruz holidays and, immediately afterwards, the accumulated postings are published.</p><h2 class="guide-heading" id="sec-10-2">10.2. Seasonality with the Solar Hijri calendar <a aria-label="link" class="anchor" href="#sec-10-2">#</a></h2>
+<details class="code-fold">
+  <summary><span>Show the code for this step</span><em>45 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="seasonal = (ads.loc[ads.jmonth_num.le(11)]
+            .groupby([&#x27;jmonth_num&#x27;, &#x27;jmonth_label&#x27;, &#x27;jyear&#x27;])
+            .agg(**{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;)})
+            .reset_index())
+seasonal_pivot = seasonal.pivot_table(index=&#x27;jmonth_num&#x27;, columns=&#x27;jyear&#x27;, values=&#x27;تعداد آگهی&#x27;, fill_value=0)
+seasonal_pivot.index = [J_MONTHS[index - 1] for index in seasonal_pivot.index]
+seasonal_pivot.columns = [f&#x27;سال {fa_num(year)}&#x27; for year in seasonal_pivot.columns]
+seasonal_mean = seasonal_pivot.mean(axis=1)
+seasonal_table = pd.DataFrame({&#x27;میانگین دو سال&#x27;: seasonal_mean})
+seasonal_table[&#x27;شاخص فصلی&#x27;] = seasonal_table[&#x27;میانگین دو سال&#x27;] / seasonal_table[&#x27;میانگین دو سال&#x27;].mean() * 100
+seasonal_table[&#x27;کمینه تا بیشینه سال‌ها&#x27;] = [f&#x27;{seasonal_pivot.loc[month].min():,.0f} تا {seasonal_pivot.loc[month].max():,.0f}&#x27;
+                                             for month in seasonal_table.index]
+show_table(&#x27;10.2&#x27;, &#x27;الگوی فصلی انتشار آگهی بر پایه ماه شمسی&#x27;, seasonal_table,
+           formats={&#x27;میانگین دو سال&#x27;: &#x27;int&#x27;, &#x27;شاخص فصلی&#x27;: &#x27;pct&#x27;},
+           sample=&#x27;میانگین ماه‌های کامل دو سال&#x27;, period=False, index_name=&#x27;ماه شمسی&#x27;,
+           note=&#x27;اسفند در شاخص فصلی نیامده است، چون اسفند ۱۴۰۲ در داده کامل نیست و مقایسه دو سال ممکن نبود.&#x27;)
+
+fig, ax = plt.subplots(figsize=(12, 4.8))
+positions = np.arange(len(seasonal_pivot))
+width = 0.38
+for offset, (year, color) in enumerate(zip(seasonal_pivot.columns, [TEAL, GOLD])):
+    ax.bar(positions + (offset - 0.5) * width, seasonal_pivot[year], width=width,
+           color=color, label=fa(year), alpha=0.9)
+ax.plot(positions, seasonal_mean.values, color=DARK, linewidth=1.6, marker=&#x27;o&#x27;, markersize=3.5,
+        label=fa(&#x27;میانگین دو سال&#x27;))
+ax.set_xticks(positions)
+ax.set_xticklabels([fa(month) for month in seasonal_pivot.index], fontsize=8.5)
+ax.set_ylabel(fa(&#x27;تعداد آگهی&#x27;))
+ax.legend(fontsize=8.5)
+heading(ax, &#x27;۱۰.۲&#x27;, &#x27;الگوی فصلی انتشار آگهی در دو سال&#x27;)
+complete(&#x27;10.2&#x27;)
+
+season_table = (ads.groupby([&#x27;jyear&#x27;, &#x27;jseason&#x27;])
+                .agg(**{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;)})
+                .reset_index())
+season_table[&#x27;سهم&#x27;] = season_table[&#x27;تعداد آگهی&#x27;] / season_table.groupby(&#x27;jyear&#x27;)[&#x27;تعداد آگهی&#x27;].transform(&#x27;sum&#x27;) * 100
+season_pivot = season_table.pivot(index=&#x27;jseason&#x27;, columns=&#x27;jyear&#x27;, values=&#x27;تعداد آگهی&#x27;).reindex(SEASONS)
+season_share = season_table.pivot(index=&#x27;jseason&#x27;, columns=&#x27;jyear&#x27;, values=&#x27;سهم&#x27;).reindex(SEASONS)
+season_pivot.columns = [f&#x27;سال {fa_num(year)}&#x27; for year in season_pivot.columns]
+season_share.columns = [f&#x27;سال {fa_num(year)} (٪)&#x27; for year in season_share.columns]
+show_table(&#x27;10.3&#x27;, &#x27;تعداد و سهم آگهی در فصل‌های سال شمسی&#x27;, season_pivot.join(season_share),
+           formats={column: &#x27;int&#x27; for column in season_pivot.columns} |
+                   {column: &#x27;pct&#x27; for column in season_share.columns},
+           sample=f&#x27;{len(ads):,} آگهی&#x27;, period=False, index_name=&#x27;فصل&#x27;,
+           note=&#x27;سهم فصل‌ها در هر سال جدا محاسبه شده است؛ اسفند ۱۴۰۲ ناقص است و سهم زمستان ۱۴۰۲ را کمی کم‌نمایی می‌کند.&#x27;)" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">seasonal</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ads</span><span class="o">.</span><span class="n">jmonth_num</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="mi">11</span><span class="p">)]</span>
+            <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'jmonth_num'</span><span class="p">,</span> <span class="s1">'jmonth_label'</span><span class="p">,</span> <span class="s1">'jyear'</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">)})</span>
+            <span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+<span class="n">seasonal_pivot</span> <span class="o">=</span> <span class="n">seasonal</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">'jmonth_num'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">'jyear'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">'تعداد آگهی'</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">J_MONTHS</span><span class="p">[</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'سال </span><span class="si">{</span><span class="n">fa_num</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">seasonal_mean</span> <span class="o">=</span> <span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">seasonal_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'میانگین دو سال'</span><span class="p">:</span> <span class="n">seasonal_mean</span><span class="p">})</span>
+<span class="n">seasonal_table</span><span class="p">[</span><span class="s1">'شاخص فصلی'</span><span class="p">]</span> <span class="o">=</span> <span class="n">seasonal_table</span><span class="p">[</span><span class="s1">'میانگین دو سال'</span><span class="p">]</span> <span class="o">/</span> <span class="n">seasonal_table</span><span class="p">[</span><span class="s1">'میانگین دو سال'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">seasonal_table</span><span class="p">[</span><span class="s1">'کمینه تا بیشینه سال‌ها'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1"> تا </span><span class="si">{</span><span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">'</span>
+                                             <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">seasonal_table</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'10.2'</span><span class="p">,</span> <span class="s1">'الگوی فصلی انتشار آگهی بر پایه ماه شمسی'</span><span class="p">,</span> <span class="n">seasonal_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'میانگین دو سال'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'شاخص فصلی'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="s1">'میانگین ماه‌های کامل دو سال'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'ماه شمسی'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'اسفند در شاخص فصلی نیامده است، چون اسفند ۱۴۰۲ در داده کامل نیست و مقایسه دو سال ممکن نبود.'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">))</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seasonal_pivot</span><span class="p">))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.38</span>
+<span class="k">for</span> <span class="n">offset</span><span class="p">,</span> <span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="p">[</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">GOLD</span><span class="p">])):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">positions</span> <span class="o">+</span> <span class="p">(</span><span class="n">offset</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">seasonal_pivot</span><span class="p">[</span><span class="n">year</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span>
+           <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">seasonal_mean</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">DARK</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="s1">'میانگین دو سال'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="n">fa</span><span class="p">(</span><span class="n">month</span><span class="p">)</span> <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">seasonal_pivot</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'تعداد آگهی'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۱۰.۲'</span><span class="p">,</span> <span class="s1">'الگوی فصلی انتشار آگهی در دو سال'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'10.2'</span><span class="p">)</span>
+
+<span class="n">season_table</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'jyear'</span><span class="p">,</span> <span class="s1">'jseason'</span><span class="p">])</span>
+                <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">)})</span>
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+<span class="n">season_table</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span> <span class="o">=</span> <span class="n">season_table</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span> <span class="o">/</span> <span class="n">season_table</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'jyear'</span><span class="p">)[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">'sum'</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">season_pivot</span> <span class="o">=</span> <span class="n">season_table</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">'jseason'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">'jyear'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">'تعداد آگهی'</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">SEASONS</span><span class="p">)</span>
+<span class="n">season_share</span> <span class="o">=</span> <span class="n">season_table</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">'jseason'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">'jyear'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">'سهم'</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">SEASONS</span><span class="p">)</span>
+<span class="n">season_pivot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'سال </span><span class="si">{</span><span class="n">fa_num</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">season_pivot</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">season_share</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'سال </span><span class="si">{</span><span class="n">fa_num</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="si">}</span><span class="s1"> (٪)'</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">season_share</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'10.3'</span><span class="p">,</span> <span class="s1">'تعداد و سهم آگهی در فصل‌های سال شمسی'</span><span class="p">,</span> <span class="n">season_pivot</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">season_share</span><span class="p">),</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="n">column</span><span class="p">:</span> <span class="s1">'int'</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">season_pivot</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span> <span class="o">|</span>
+                   <span class="p">{</span><span class="n">column</span><span class="p">:</span> <span class="s1">'pct'</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">season_share</span><span class="o">.</span><span class="n">columns</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'فصل'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'سهم فصل‌ها در هر سال جدا محاسبه شده است؛ اسفند ۱۴۰۲ ناقص است و سهم زمستان ۱۴۰۲ را کمی کم‌نمایی می‌کند.'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-10-2">
+  <button type="button" data-full="../../../assets/img/fig_10_2.webp" data-caption="Figure 10.2 | Seasonal posting pattern across the two years">
+    <img src="../../../assets/img/fig_10_2-sm.webp" alt="Figure 10.2 | Seasonal posting pattern across the two years" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 10.2 | Seasonal posting pattern across the two years</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 10.2 | Seasonal pattern of posting publication by Solar Hijri month | Mean of full months across the two years</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Two-year mean</th>
+<th>Seasonal index</th>
+<th>Minimum to maximum years</th>
+</tr>
+<tr>
+<th>Solar Hijri month</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Farvardin</th>
+<td>15,500</td>
+<td>96.2%</td>
+<td>12,782 to 18,217</td>
+</tr>
+<tr>
+<th>Ordibehesht</th>
+<td>14,701</td>
+<td>91.2%</td>
+<td>11,026 to 18,376</td>
+</tr>
+<tr>
+<th>Khordad</th>
+<td>13,785</td>
+<td>85.5%</td>
+<td>11,348 to 16,222</td>
+</tr>
+<tr>
+<th>Tir</th>
+<td>16,064</td>
+<td>99.7%</td>
+<td>11,862 to 20,265</td>
+</tr>
+<tr>
+<th>Mordad</th>
+<td>16,852</td>
+<td>104.6%</td>
+<td>13,538 to 20,166</td>
+</tr>
+<tr>
+<th>Shahrivar</th>
+<td>14,218</td>
+<td>88.2%</td>
+<td>10,261 to 18,176</td>
+</tr>
+<tr>
+<th>Mehr</th>
+<td>18,480</td>
+<td>114.7%</td>
+<td>12,944 to 24,017</td>
+</tr>
+<tr>
+<th>Aban</th>
+<td>18,062</td>
+<td>112.1%</td>
+<td>13,317 to 22,807</td>
+</tr>
+<tr>
+<th>Azar</th>
+<td>17,025</td>
+<td>105.6%</td>
+<td>12,111 to 21,939</td>
+</tr>
+<tr>
+<th>Dey</th>
+<td>19,866</td>
+<td>123.3%</td>
+<td>16,316 to 23,417</td>
+</tr>
+<tr>
+<th>Bahman</th>
+<td>12,722</td>
+<td>78.9%</td>
+<td>8,916 to 16,529</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>Note:</span> Esfand is absent from the seasonal index because Esfand 1402 is incomplete in the data and a two-year comparison was not possible.</p>
+  
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 10.3 | Number and share of postings by Solar Hijri season | 360,083 postings</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Year 1401</th>
+<th>Year 1402</th>
+<th>Year 1401 (%)</th>
+<th>Year 1402 (%)</th>
+</tr>
+<tr>
+<th>Season</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>spring</th>
+<td>35,156</td>
+<td>52,815</td>
+<td>25.1%</td>
+<td>24.0%</td>
+</tr>
+<tr>
+<th>summer</th>
+<td>35,661</td>
+<td>58,607</td>
+<td>25.5%</td>
+<td>26.6%</td>
+</tr>
+<tr>
+<th>Autumn</th>
+<td>38,372</td>
+<td>68,763</td>
+<td>27.4%</td>
+<td>31.2%</td>
+</tr>
+<tr>
+<th>Winter</th>
+<td>30,763</td>
+<td>39,946</td>
+<td>22.0%</td>
+<td>18.1%</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>Note:</span> Seasonal shares are computed separately for each year; Esfand 1402 is incomplete, which slightly understates the winter 1402 share.</p>
+  
+</figure><p><strong>Interpretation of Tables 10.2 and 10.3 and Figure 10.2:</strong> The seasonal index shows a clear peak in <strong>Dey</strong> (123%) and then <strong>Mehr and Aban</strong> (115 and 112%); the lowest months are <strong>Bahman</strong> (79%), <strong>Khordad</strong> (86%) and <strong>Shahrivar</strong> (88%). In other words, the job market is more active in the second half of the year and before the end of the Solar Hijri year, and it quietens down on the eve of Nowruz and during the summer holidays.</p>
+<p>We deliberately excluded Esfand from the seasonal index: Esfand 1401 had only 5,531 postings and Esfand 1402 is incomplete in the data; had we included it, the index would have become a misleading figure (18%) because of a single observation.</p>
+<p><strong>Methodological caveat:</strong> because the total market volume grew over these two years, the closing months of each year naturally have more postings. The seasonal index does not fully remove the growth trend; so read it as an "indication of the direction of the seasonal pattern", not as a precise forecasting coefficient.</p><h2 class="guide-heading" id="sec-10-3">10.3. Wage dynamics and comparison with inflation <a aria-label="link" class="anchor" href="#sec-10-3">#</a></h2>
+<details class="code-fold">
+  <summary><span>Show the code for this step</span><em>59 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="salary_monthly = (paid.groupby(&#x27;release_month&#x27;)
+                  .agg(**{&#x27;تعداد آگهی دارای حقوق&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;),
+                          &#x27;میانه حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;median&#x27;),
+                          &#x27;چارک اول&#x27;: (&#x27;salary_mid&#x27;, lambda s: s.quantile(.25)),
+                          &#x27;چارک سوم&#x27;: (&#x27;salary_mid&#x27;, lambda s: s.quantile(.75)),
+                          &#x27;میانگین حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;mean&#x27;)}))
+salary_monthly[&#x27;ماه شمسی&#x27;] = [jmonth(month)[2] for month in salary_monthly.index]
+show_table(&#x27;10.4&#x27;, &#x27;میانه و چارک‌های حقوق در ماه‌های دوره&#x27;, salary_monthly,
+           formats={&#x27;تعداد آگهی دارای حقوق&#x27;: &#x27;int&#x27;, &#x27;میانه حقوق&#x27;: &#x27;money&#x27;, &#x27;چارک اول&#x27;: &#x27;money&#x27;,
+                    &#x27;چارک سوم&#x27;: &#x27;money&#x27;, &#x27;میانگین حقوق&#x27;: &#x27;money&#x27;},
+           sample=f&#x27;{len(paid):,} آگهی با حقوق اعلام‌شده&#x27;, index_name=&#x27;ماه میلادی&#x27;)
+
+fig, ax = plt.subplots(figsize=(13, 5))
+x = np.arange(len(salary_monthly))
+ax.fill_between(x, salary_monthly[&#x27;چارک اول&#x27;], salary_monthly[&#x27;چارک سوم&#x27;], color=LIGHT, alpha=0.9,
+                label=fa(&#x27;چارک اول تا سوم&#x27;))
+ax.plot(x, salary_monthly[&#x27;میانه حقوق&#x27;], color=TEAL, linewidth=2.2, marker=&#x27;o&#x27;, markersize=3,
+        label=fa(&#x27;میانه حقوق&#x27;))
+ax.plot(x, salary_monthly[&#x27;میانگین حقوق&#x27;], color=RED, linewidth=1.4, linestyle=&#x27;--&#x27;,
+        label=fa(&#x27;میانگین حقوق&#x27;))
+ax.set_xticks(x)
+ax.set_xticklabels([fa(label) for label in salary_monthly[&#x27;ماه شمسی&#x27;]], rotation=60, ha=&#x27;right&#x27;, fontsize=8)
+ax.set_ylabel(fa(&#x27;حقوق (میلیون تومان)&#x27;))
+ax.legend(fontsize=8.5)
+heading(ax, &#x27;۱۰.۳&#x27;, &#x27;روند میانه و میانگین حقوق ماهانه&#x27;)
+complete(&#x27;10.3&#x27;)
+
+year_salary = (paid.groupby([&#x27;jyear&#x27;, &#x27;jmonth_num&#x27;])
+               .agg(**{&#x27;تعداد&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;), &#x27;میانه حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;median&#x27;)})
+               .reset_index())
+common_months = sorted(set(year_salary.loc[year_salary.jyear.eq(1401), &#x27;jmonth_num&#x27;]) &amp;
+                       set(year_salary.loc[year_salary.jyear.eq(1402), &#x27;jmonth_num&#x27;]))
+comparison = (year_salary[year_salary.jmonth_num.isin(common_months)]
+              .pivot(index=&#x27;jmonth_num&#x27;, columns=&#x27;jyear&#x27;, values=&#x27;میانه حقوق&#x27;))
+comparison.index = [J_MONTHS[index - 1] for index in comparison.index]
+comparison[&#x27;رشد اسمی&#x27;] = (comparison[1402] / comparison[1401] - 1) * 100
+comparison[&#x27;نسبت&#x27;] = comparison[1402] / comparison[1401]
+comparison.columns = [&#x27;میانه ۱۴۰۱&#x27;, &#x27;میانه ۱۴۰۲&#x27;, &#x27;رشد اسمی&#x27;, &#x27;نسبت&#x27;]
+
+growth_nominal = (comparison[&#x27;میانه ۱۴۰۲&#x27;].mean() / comparison[&#x27;میانه ۱۴۰۱&#x27;].mean() - 1) * 100
+show_table(&#x27;10.5&#x27;, &#x27;مقایسه میانه حقوق ماه‌های هم‌نام دو سال&#x27;, comparison,
+           formats={&#x27;میانه ۱۴۰۱&#x27;: &#x27;money&#x27;, &#x27;میانه ۱۴۰۲&#x27;: &#x27;money&#x27;,
+                    &#x27;رشد اسمی&#x27;: &#x27;pp&#x27;, &#x27;نسبت&#x27;: &#x27;score&#x27;},
+           sample=f&#x27;{len(common_months)} ماه هم‌نام&#x27;, period=False, index_name=&#x27;ماه شمسی&#x27;,
+           note=&#x27;رشد اسمی حقوق بدون تعدیل تورم محاسبه شده است؛ مقایسه با تورم در متن تفسیر می‌شود.&#x27;)
+
+inflations = [30, 35, 40, 45, 50]
+real_growth = pd.DataFrame({&#x27;تورم فرضی سالانه&#x27;: [f&#x27;{value}٪&#x27; for value in inflations],
+                            &#x27;رشد حقیقی حقوق&#x27;: [growth_nominal - value for value in inflations]})
+show_table(&#x27;10.6&#x27;, &#x27;رشد حقیقی حقوق در سناریوهای تورم&#x27;, real_growth.set_index(&#x27;تورم فرضی سالانه&#x27;),
+           formats={&#x27;رشد حقیقی حقوق&#x27;: &#x27;pp&#x27;}, sample=f&#x27;رشد اسمی {growth_nominal:.1f}٪&#x27;,
+           period=False, index_name=&#x27;تورم فرضی&#x27;)
+
+show_metrics(&#x27;دستمزد در زمان&#x27;, [
+    (&#x27;رشد اسمی میانه حقوق&#x27;, f&#x27;{growth_nominal:.1f}٪ بین دو سال&#x27;),
+    (&#x27;میانه حقوق ابتدای دوره&#x27;, f&#x27;{comparison[&quot;میانه ۱۴۰۱&quot;].iloc[0]:,.1f} میلیون&#x27;),
+    (&#x27;میانه حقوق پایان دوره&#x27;, f&#x27;{salary_monthly[&quot;میانه حقوق&quot;].iloc[-1]:,.1f} میلیون&#x27;),
+    (&#x27;میانه رشد ماهانه&#x27;, f&#x27;{salary_monthly[&quot;میانه حقوق&quot;].pct_change().median() * 100:,.1f}٪&#x27;),
+])" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">salary_monthly</span> <span class="o">=</span> <span class="p">(</span><span class="n">paid</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'release_month'</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی دارای حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span>
+                          <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">),</span>
+                          <span class="s1">'چارک اول'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.25</span><span class="p">)),</span>
+                          <span class="s1">'چارک سوم'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.75</span><span class="p">)),</span>
+                          <span class="s1">'میانگین حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'mean'</span><span class="p">)}))</span>
+<span class="n">salary_monthly</span><span class="p">[</span><span class="s1">'ماه شمسی'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">jmonth</span><span class="p">(</span><span class="n">month</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">salary_monthly</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'10.4'</span><span class="p">,</span> <span class="s1">'میانه و چارک‌های حقوق در ماه‌های دوره'</span><span class="p">,</span> <span class="n">salary_monthly</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی دارای حقوق'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">,</span> <span class="s1">'چارک اول'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">,</span>
+                    <span class="s1">'چارک سوم'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">,</span> <span class="s1">'میانگین حقوق'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paid</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی با حقوق اعلام‌شده'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'ماه میلادی'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">salary_monthly</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">salary_monthly</span><span class="p">[</span><span class="s1">'چارک اول'</span><span class="p">],</span> <span class="n">salary_monthly</span><span class="p">[</span><span class="s1">'چارک سوم'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">LIGHT</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="s1">'چارک اول تا سوم'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">salary_monthly</span><span class="p">[</span><span class="s1">'میانه حقوق'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.2</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="s1">'میانه حقوق'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">salary_monthly</span><span class="p">[</span><span class="s1">'میانگین حقوق'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">fa</span><span class="p">(</span><span class="s1">'میانگین حقوق'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="n">fa</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">salary_monthly</span><span class="p">[</span><span class="s1">'ماه شمسی'</span><span class="p">]],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'right'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'حقوق (میلیون تومان)'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۱۰.۳'</span><span class="p">,</span> <span class="s1">'روند میانه و میانگین حقوق ماهانه'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'10.3'</span><span class="p">)</span>
+
+<span class="n">year_salary</span> <span class="o">=</span> <span class="p">(</span><span class="n">paid</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'jyear'</span><span class="p">,</span> <span class="s1">'jmonth_num'</span><span class="p">])</span>
+               <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">)})</span>
+               <span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+<span class="n">common_months</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">year_salary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year_salary</span><span class="o">.</span><span class="n">jyear</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1401</span><span class="p">),</span> <span class="s1">'jmonth_num'</span><span class="p">])</span> <span class="o">&amp;</span>
+                       <span class="nb">set</span><span class="p">(</span><span class="n">year_salary</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year_salary</span><span class="o">.</span><span class="n">jyear</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1402</span><span class="p">),</span> <span class="s1">'jmonth_num'</span><span class="p">]))</span>
+<span class="n">comparison</span> <span class="o">=</span> <span class="p">(</span><span class="n">year_salary</span><span class="p">[</span><span class="n">year_salary</span><span class="o">.</span><span class="n">jmonth_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">common_months</span><span class="p">)]</span>
+              <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">'jmonth_num'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">'jyear'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">'میانه حقوق'</span><span class="p">))</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">J_MONTHS</span><span class="p">[</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">comparison</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">comparison</span><span class="p">[</span><span class="s1">'رشد اسمی'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">comparison</span><span class="p">[</span><span class="mi">1402</span><span class="p">]</span> <span class="o">/</span> <span class="n">comparison</span><span class="p">[</span><span class="mi">1401</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">comparison</span><span class="p">[</span><span class="s1">'نسبت'</span><span class="p">]</span> <span class="o">=</span> <span class="n">comparison</span><span class="p">[</span><span class="mi">1402</span><span class="p">]</span> <span class="o">/</span> <span class="n">comparison</span><span class="p">[</span><span class="mi">1401</span><span class="p">]</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'میانه ۱۴۰۱'</span><span class="p">,</span> <span class="s1">'میانه ۱۴۰۲'</span><span class="p">,</span> <span class="s1">'رشد اسمی'</span><span class="p">,</span> <span class="s1">'نسبت'</span><span class="p">]</span>
+
+<span class="n">growth_nominal</span> <span class="o">=</span> <span class="p">(</span><span class="n">comparison</span><span class="p">[</span><span class="s1">'میانه ۱۴۰۲'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="n">comparison</span><span class="p">[</span><span class="s1">'میانه ۱۴۰۱'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'10.5'</span><span class="p">,</span> <span class="s1">'مقایسه میانه حقوق ماه‌های هم‌نام دو سال'</span><span class="p">,</span> <span class="n">comparison</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'میانه ۱۴۰۱'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">,</span> <span class="s1">'میانه ۱۴۰۲'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">,</span>
+                    <span class="s1">'رشد اسمی'</span><span class="p">:</span> <span class="s1">'pp'</span><span class="p">,</span> <span class="s1">'نسبت'</span><span class="p">:</span> <span class="s1">'score'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">common_months</span><span class="p">)</span><span class="si">}</span><span class="s1"> ماه هم‌نام'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'ماه شمسی'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'رشد اسمی حقوق بدون تعدیل تورم محاسبه شده است؛ مقایسه با تورم در متن تفسیر می‌شود.'</span><span class="p">)</span>
+
+<span class="n">inflations</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">real_growth</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'تورم فرضی سالانه'</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">٪'</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">inflations</span><span class="p">],</span>
+                            <span class="s1">'رشد حقیقی حقوق'</span><span class="p">:</span> <span class="p">[</span><span class="n">growth_nominal</span> <span class="o">-</span> <span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">inflations</span><span class="p">]})</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'10.6'</span><span class="p">,</span> <span class="s1">'رشد حقیقی حقوق در سناریوهای تورم'</span><span class="p">,</span> <span class="n">real_growth</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'تورم فرضی سالانه'</span><span class="p">),</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'رشد حقیقی حقوق'</span><span class="p">:</span> <span class="s1">'pp'</span><span class="p">},</span> <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'رشد اسمی </span><span class="si">{</span><span class="n">growth_nominal</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">,</span>
+           <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'تورم فرضی'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'دستمزد در زمان'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'رشد اسمی میانه حقوق'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">growth_nominal</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪ بین دو سال'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانه حقوق ابتدای دوره'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">comparison</span><span class="p">[</span><span class="s2">"میانه ۱۴۰۱"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1"> میلیون'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانه حقوق پایان دوره'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">salary_monthly</span><span class="p">[</span><span class="s2">"میانه حقوق"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1"> میلیون'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانه رشد ماهانه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">salary_monthly</span><span class="p">[</span><span class="s2">"میانه حقوق"</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-10-3">
+  <button type="button" data-full="../../../assets/img/fig_10_3.webp" data-caption="Figure 10.3 | Trend of median and mean monthly salary">
+    <img src="../../../assets/img/fig_10_3-sm.webp" alt="Figure 10.3 | Trend of median and mean monthly salary" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 10.3 | Trend of median and mean monthly salary</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 10.4 | Median and quartiles of salary by month of the period | 119,048 postings with disclosed salary | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Postings with salary</th>
+<th>Median salary</th>
+<th>First quartile</th>
+<th>Third quartile</th>
+<th>Mean salary</th>
+<th>Solar Hijri month</th>
+</tr>
+<tr>
+<th>Gregorian month</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>2022-04</th>
+<td>4,181</td>
+<td>7.0</td>
+<td>5.5</td>
+<td>9.0</td>
+<td>8.5</td>
+<td>Farvardin 1401</td>
+</tr>
+<tr>
+<th>2022-05</th>
+<td>3,980</td>
+<td>7.0</td>
+<td>5.5</td>
+<td>11.0</td>
+<td>8.9</td>
+<td>Ordibehesht 1401</td>
+</tr>
+<tr>
+<th>2022-06</th>
+<td>4,338</td>
+<td>9.0</td>
+<td>7.0</td>
+<td>11.0</td>
+<td>9.7</td>
+<td>Khordad 1401</td>
+</tr>
+<tr>
+<th>2022-07</th>
+<td>4,313</td>
+<td>9.0</td>
+<td>7.0</td>
+<td>11.0</td>
+<td>9.8</td>
+<td>Tir 1401</td>
+</tr>
+<tr>
+<th>2022-08</th>
+<td>5,066</td>
+<td>9.0</td>
+<td>7.0</td>
+<td>11.0</td>
+<td>10.1</td>
+<td>Mordad 1401</td>
+</tr>
+<tr>
+<th>2022-09</th>
+<td>3,450</td>
+<td>9.0</td>
+<td>7.0</td>
+<td>11.0</td>
+<td>9.9</td>
+<td>Shahrivar 1401</td>
+</tr>
+<tr>
+<th>2022-10</th>
+<td>4,555</td>
+<td>9.0</td>
+<td>7.0</td>
+<td>13.5</td>
+<td>10.8</td>
+<td>Mehr 1401</td>
+</tr>
+<tr>
+<th>2022-11</th>
+<td>4,373</td>
+<td>9.0</td>
+<td>7.0</td>
+<td>13.5</td>
+<td>10.7</td>
+<td>Aban 1401</td>
+</tr>
+<tr>
+<th>2022-12</th>
+<td>3,828</td>
+<td>9.0</td>
+<td>7.0</td>
+<td>13.5</td>
+<td>10.9</td>
+<td>Azar 1401</td>
+</tr>
+<tr>
+<th>2023-01</th>
+<td>5,001</td>
+<td>9.0</td>
+<td>9.0</td>
+<td>13.5</td>
+<td>11.6</td>
+<td>Dey 1401</td>
+</tr>
+<tr>
+<th>2023-02</th>
+<td>2,958</td>
+<td>9.0</td>
+<td>9.0</td>
+<td>13.5</td>
+<td>11.7</td>
+<td>Bahman 1401</td>
+</tr>
+<tr>
+<th>2023-03</th>
+<td>1,644</td>
+<td>11.0</td>
+<td>9.0</td>
+<td>13.5</td>
+<td>12.7</td>
+<td>Esfand 1401</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-04</th>
+<td>5,650</td>
+<td>11.0</td>
+<td>9.0</td>
+<td>13.5</td>
+<td>12.9</td>
+<td>Farvardin 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-05</th>
+<td>5,075</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>14.1</td>
+<td>Ordibehesht 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-06</th>
+<td>4,695</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>14.4</td>
+<td>Khordad 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-07</th>
+<td>6,163</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>14.8</td>
+<td>Tir 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-08</th>
+<td>6,767</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>16.1</td>
+<td>Mordad 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-09</th>
+<td>5,922</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>15.8</td>
+<td>Shahrivar 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-10</th>
+<td>8,014</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>15.8</td>
+<td>Mehr 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-11</th>
+<td>8,061</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>15.3</td>
+<td>Aban 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2023-12</th>
+<td>7,641</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>15.7</td>
+<td>Azar 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2024-01</th>
+<td>8,199</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>16.9</td>
+<td>Dey 1402</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2024-02</th>
+<td>5,174</td>
+<td>13.5</td>
+<td>11.0</td>
+<td>17.5</td>
+<td>16.7</td>
+<td>Bahman 1402</td>
+</tr>
+</tbody>
+</table></div>
+  
+  <button class="table-more" type="button" data-rows="23">Show all rows (23)</button>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 10.5 | Comparison of median salary across same-named months of the two years | 11 same-named months</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Median 1401</th>
+<th>Median 1402</th>
+<th>Nominal growth</th>
+<th>Ratio</th>
+</tr>
+<tr>
+<th>Solar Hijri month</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Farvardin</th>
+<td>7.0</td>
+<td>11.0</td>
+<td>+57.1</td>
+<td>1.57</td>
+</tr>
+<tr>
+<th>Ordibehesht</th>
+<td>7.0</td>
+<td>13.5</td>
+<td>+92.9</td>
+<td>1.93</td>
+</tr>
+<tr>
+<th>Khordad</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+<tr>
+<th>Tir</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+<tr>
+<th>Mordad</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+<tr>
+<th>Shahrivar</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+<tr>
+<th>Mehr</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+<tr>
+<th>Aban</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+<tr>
+<th>Azar</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+<tr>
+<th>Dey</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+<tr>
+<th>Bahman</th>
+<td>9.0</td>
+<td>13.5</td>
+<td>+50.0</td>
+<td>1.50</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>Note:</span> Nominal salary growth is calculated without inflation adjustment; the comparison with inflation is interpreted in the text.</p>
+  
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 10.6 | Real salary growth under inflation scenarios | 53.7% nominal growth</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Real salary growth</th>
+</tr>
+<tr>
+<th>Assumed inflation</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>30%</th>
+<td>+23.7</td>
+</tr>
+<tr>
+<th>35%</th>
+<td>+18.7</td>
+</tr>
+<tr>
+<th>40%</th>
+<td>+13.7</td>
+</tr>
+<tr>
+<th>45%</th>
+<td>+8.7</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>+3.7</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">Key figures: wages over time</p>
+  <ul><li>Nominal growth of median salary: 53.7% between the two years</li><li>Median salary at period start: 7.0 million</li><li>Median salary at period end: 13.5 million</li><li>Median monthly growth: 0.0%</li></ul>
+</div><p><strong>Interpretation of Tables 10.4 to 10.6 and Figure 10.3:</strong> The median salary rose from 7 million tomans in Farvardin 1401 to 13.5 million in Bahman 1402; comparing like-named months, nominal growth is <strong>53.7%</strong>. If we assume annual inflation of 40%, real growth comes to about <strong>+13.7%</strong>, and if we assume 50%, only <strong>+3.7%</strong> remains. That is, the salaries offered in this period ran ahead of 40 percent inflation but behind 50 percent inflation.</p>
+<p><strong>Warning:</strong> This growth is a combination of three things: real wage growth, a shift in the mix of postings toward more expensive roles, and the rounding of medians onto discrete values (9, 11, 13.5, 17.5). The figure 53.7% should not be interpreted as wage growth for "the same job"; that would require panel data or repeated observations of the same employer.</p><h2 class="guide-heading" id="sec-10-4">10.4. Change in the share of job categories over time <a aria-label="link" class="anchor" href="#sec-10-4">#</a></h2>
+<details class="code-fold">
+  <summary><span>Show the code for this step</span><em>31 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="category_year = (ads.groupby([&#x27;category_group&#x27;, &#x27;jyear&#x27;])
+                 .agg(**{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;)})
+                 .reset_index())
+year_totals = category_year.groupby(&#x27;jyear&#x27;)[&#x27;تعداد آگهی&#x27;].transform(&#x27;sum&#x27;)
+category_year[&#x27;سهم&#x27;] = category_year[&#x27;تعداد آگهی&#x27;] / year_totals * 100
+share_pivot = category_year.pivot(index=&#x27;category_group&#x27;, columns=&#x27;jyear&#x27;, values=&#x27;سهم&#x27;).fillna(0)
+count_pivot = category_year.pivot(index=&#x27;category_group&#x27;, columns=&#x27;jyear&#x27;, values=&#x27;تعداد آگهی&#x27;).fillna(0)
+share_change = share_pivot.copy()
+share_change.columns = [&#x27;سهم ۱۴۰۱&#x27;, &#x27;سهم ۱۴۰۲&#x27;]
+share_change[&#x27;تغییر واحد درصدی&#x27;] = share_change[&#x27;سهم ۱۴۰۲&#x27;] - share_change[&#x27;سهم ۱۴۰۱&#x27;]
+share_change[&#x27;تعداد ۱۴۰۲&#x27;] = count_pivot[1402]
+share_change = share_change.sort_values(&#x27;تعداد ۱۴۰۲&#x27;, ascending=False).head(12)
+show_table(&#x27;10.7&#x27;, &#x27;تغییر سهم دسته‌های شغلی پرتکرار بین دو سال&#x27;, share_change,
+           formats={&#x27;سهم ۱۴۰۱&#x27;: &#x27;pct&#x27;, &#x27;سهم ۱۴۰۲&#x27;: &#x27;pct&#x27;, &#x27;تغییر واحد درصدی&#x27;: &#x27;pp&#x27;, &#x27;تعداد ۱۴۰۲&#x27;: &#x27;int&#x27;},
+           sample=f&#x27;{len(ads):,} آگهی&#x27;, period=False, index_name=&#x27;دسته شغلی&#x27;)
+
+fig, ax = plt.subplots(figsize=(11.5, 6.4))
+plot_data = share_change.sort_values(&#x27;تغییر واحد درصدی&#x27;)
+colors = [RED if value &lt; 0 else TEAL for value in plot_data[&#x27;تغییر واحد درصدی&#x27;]]
+ax.barh(range(len(plot_data)), plot_data[&#x27;تغییر واحد درصدی&#x27;], color=colors, height=0.7)
+ax.set_yticks(range(len(plot_data)))
+ax.set_yticklabels([fa(name) for name in plot_data.index], fontsize=8.5)
+ax.axvline(0, color=DARK, linewidth=0.9)
+ax.set_xlabel(fa(&#x27;تغییر سهم ۱۴۰۲ نسبت به ۱۴۰۱ (واحد درصدی)&#x27;))
+for position, value in enumerate(plot_data[&#x27;تغییر واحد درصدی&#x27;]):
+    offset = 0.08 if value &gt;= 0 else -0.08
+    ax.text(value + offset, position, f&#x27;{value:+.1f}&#x27;, va=&#x27;center&#x27;,
+            ha=&#x27;left&#x27; if value &gt;= 0 else &#x27;right&#x27;, fontsize=7.5)
+ax.set_xlim(plot_data[&#x27;تغییر واحد درصدی&#x27;].min() - 0.9, plot_data[&#x27;تغییر واحد درصدی&#x27;].max() + 0.9)
+heading(ax, &#x27;۱۰.۴&#x27;, &#x27;تغییر سهم دسته‌های شغلی بین دو سال&#x27;, period=&#x27;۱۴۰۱ در برابر ۱۴۰۲&#x27;)
+complete(&#x27;10.4&#x27;)" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">category_year</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'category_group'</span><span class="p">,</span> <span class="s1">'jyear'</span><span class="p">])</span>
+                 <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">)})</span>
+                 <span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+<span class="n">year_totals</span> <span class="o">=</span> <span class="n">category_year</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'jyear'</span><span class="p">)[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">'sum'</span><span class="p">)</span>
+<span class="n">category_year</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span> <span class="o">=</span> <span class="n">category_year</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span> <span class="o">/</span> <span class="n">year_totals</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">share_pivot</span> <span class="o">=</span> <span class="n">category_year</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">'category_group'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">'jyear'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">'سهم'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">count_pivot</span> <span class="o">=</span> <span class="n">category_year</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">'category_group'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">'jyear'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">'تعداد آگهی'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">share_change</span> <span class="o">=</span> <span class="n">share_pivot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">share_change</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'سهم ۱۴۰۱'</span><span class="p">,</span> <span class="s1">'سهم ۱۴۰۲'</span><span class="p">]</span>
+<span class="n">share_change</span><span class="p">[</span><span class="s1">'تغییر واحد درصدی'</span><span class="p">]</span> <span class="o">=</span> <span class="n">share_change</span><span class="p">[</span><span class="s1">'سهم ۱۴۰۲'</span><span class="p">]</span> <span class="o">-</span> <span class="n">share_change</span><span class="p">[</span><span class="s1">'سهم ۱۴۰۱'</span><span class="p">]</span>
+<span class="n">share_change</span><span class="p">[</span><span class="s1">'تعداد ۱۴۰۲'</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_pivot</span><span class="p">[</span><span class="mi">1402</span><span class="p">]</span>
+<span class="n">share_change</span> <span class="o">=</span> <span class="n">share_change</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'تعداد ۱۴۰۲'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'10.7'</span><span class="p">,</span> <span class="s1">'تغییر سهم دسته‌های شغلی پرتکرار بین دو سال'</span><span class="p">,</span> <span class="n">share_change</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'سهم ۱۴۰۱'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'سهم ۱۴۰۲'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'تغییر واحد درصدی'</span><span class="p">:</span> <span class="s1">'pp'</span><span class="p">,</span> <span class="s1">'تعداد ۱۴۰۲'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'دسته شغلی'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">11.5</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">))</span>
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">share_change</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'تغییر واحد درصدی'</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">RED</span> <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">TEAL</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">'تغییر واحد درصدی'</span><span class="p">]]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_data</span><span class="p">)),</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">'تغییر واحد درصدی'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_data</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="n">fa</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">DARK</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'تغییر سهم ۱۴۰۲ نسبت به ۱۴۰۱ (واحد درصدی)'</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">plot_data</span><span class="p">[</span><span class="s1">'تغییر واحد درصدی'</span><span class="p">]):</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="mf">0.08</span> <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">0.08</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">value</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">+.1f</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s1">'left'</span> <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">'right'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">plot_data</span><span class="p">[</span><span class="s1">'تغییر واحد درصدی'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">'تغییر واحد درصدی'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۱۰.۴'</span><span class="p">,</span> <span class="s1">'تغییر سهم دسته‌های شغلی بین دو سال'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s1">'۱۴۰۱ در برابر ۱۴۰۲'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'10.4'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-10-4">
+  <button type="button" data-full="../../../assets/img/fig_10_4.webp" data-caption="Figure 10.4 | Change in job-category share between the two years">
+    <img src="../../../assets/img/fig_10_4-sm.webp" alt="Figure 10.4 | Change in job-category share between the two years" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 10.4 | Change in job-category share between the two years</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 10.7 | Change in share of the most frequent job categories between the two years | 360,083 postings</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Share 1401</th>
+<th>Share 1402</th>
+<th>Change in percentage points</th>
+<th>Count 1402</th>
+</tr>
+<tr>
+<th>Job category</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Other categories</th>
+<td>36.0%</td>
+<td>37.4%</td>
+<td>+1.4</td>
+<td>82,388</td>
+</tr>
+<tr>
+<th>Finance and accounting</th>
+<td>11.3%</td>
+<td>12.0%</td>
+<td>+0.6</td>
+<td>26,371</td>
+</tr>
+<tr>
+<th>Sales and marketing - salesperson / marketer and sales representative / cashier</th>
+<td>9.1%</td>
+<td>10.2%</td>
+<td>+1.1</td>
+<td>22,489</td>
+</tr>
+<tr>
+<th>Sales and marketing - bachelor's and managerial levels</th>
+<td>12.4%</td>
+<td>9.4%</td>
+<td>-3.1</td>
+<td>20,626</td>
+</tr>
+<tr>
+<th>Office administrator / administrative and data-entry clerk / typist</th>
+<td>6.4%</td>
+<td>7.0%</td>
+<td>+0.5</td>
+<td>15,373</td>
+</tr>
+<tr>
+<th>Industrial engineering / Production management / Project management / Operations management</th>
+<td>5.7%</td>
+<td>4.8%</td>
+<td>-0.9</td>
+<td>10,533</td>
+</tr>
+<tr>
+<th>Digital marketing and SEO</th>
+<td>2.6%</td>
+<td>4.2%</td>
+<td>+1.6</td>
+<td>9,196</td>
+</tr>
+<tr>
+<th>General worker / support staff</th>
+<td>3.7%</td>
+<td>4.2%</td>
+<td>+0.5</td>
+<td>9,177</td>
+</tr>
+<tr>
+<th>Technical technician / repairer / skilled worker</th>
+<td>3.1%</td>
+<td>3.7%</td>
+<td>+0.5</td>
+<td>8,120</td>
+</tr>
+<tr>
+<th>Network / DevOps / hardware and software support</th>
+<td>4.3%</td>
+<td>3.7%</td>
+<td>-0.6</td>
+<td>8,067</td>
+</tr>
+<tr>
+<th>Software development and programming</th>
+<td>5.2%</td>
+<td>3.5%</td>
+<td>-1.7</td>
+<td>7,791</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><p><strong>Interpretation of Table 10.7 and Figure 10.4:</strong> The composition of demand changed over the two years. The largest declines belong to sales at the bachelor's and managerial levels (−3.1 percentage points), programming (−1.7), industrial engineering (−0.9) and DevOps (−0.6); the largest increases go to digital marketing (+1.6), salesperson and van sales representative (+1.1), finance and accounting (+0.6) and administrative clerk (+0.5).</p>
+<p>This shift carries two messages. First, the market moved away from "senior sales" and "pure programming" roles toward operational and digital roles. Second, the growth of digital marketing is consistent with the rising share of WordPress and Google Analytics skills in Section 19; that is, this compositional change also has a skills underpinning.</p>
+<p><strong>Limitation:</strong> A smaller share for programming does not mean an absolute decline in demand; the number of postings in this category, 7,791 in 1402, is higher than the previous year, but its growth rate has lagged the market and its share has fallen.</p>
+<p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
+<nav class="guide-pager"><a class="prev" href="../09-salary-disclosure/"><span>Previous</span><b>Salary missingness: random or dependent?</b></a><a class="next" href="../11-gender-and-opportunity/"><span>Next</span><b>Gender preference, job opportunity and pay</b></a></nav>
+  </main>
+  <aside class="guide-aside" aria-label="On this page">
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-10-1">10.1. Posting volume over time</a></li><li class="lvl-h2"><a href="#sec-10-2">10.2. Seasonality with the Solar Hijri calendar</a></li><li class="lvl-h2"><a href="#sec-10-3">10.3. Wage dynamics and comparison with inflation</a></li><li class="lvl-h2"><a href="#sec-10-4">10.4. Change in the share of job categories over time</a></li></ul>
+  </aside>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" aria-label="close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the guide…">
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="Search the guide…" autocomplete="off">
+    <p class="hint">Type to search, Esc to close</p>
+    <ul id="searchResults"></ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>This guide is generated from the project notebook; every number is reproducible.</p>
+      <p><a href="https://github.com/arashalidadi/jobvision-labor-market">GitHub</a> · <a href="../../index.html">Home</a> · <a href="../">Guide index</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/site.js"></script>
+<script src="../../../assets/js/guide.js" data-index="../search.json" data-ui-search="Search the guide…"></script>
+</body>
+</html>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>21. Skill co-occurrence network [bonus] — JobVision Guide</title>
+<meta name="description" content="If two skills are repeatedly requested together in the same posting, they probably form a “work package”. We build a network whose nodes are skills and whose edges are the co-occurrence of two skills ">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/21-skill-network/">
+<link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/21-skill-network/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/21-skill-network/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21. Skill co-occurrence network [bonus] — JobVision Guide">
+<meta property="og:description" content="If two skills are repeatedly requested together in the same posting, they probably form a “work package”. We build a network whose nodes are skills and whose edges are the co-occurrence of two skills ">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/21-skill-network/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/pygments.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "21. Skill co-occurrence network [bonus] — JobVision Guide",
+  "description": "If two skills are repeatedly requested together in the same posting, they probably form a “work package”. We build a network whose nodes are skills and whose edges are the co-occurrence of two skills ",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/21-skill-network/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Arash Alidadi"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "JobVision Labor Market",
+    "url": "https://arashalidadi.github.io/jobvision-labor-market"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+}
+</script>
+</head>
+<body class="guide-page en">
+<a class="skip-link" href="#main">Skip</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../index.html" aria-label="JobVision Labor Market">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="../../index.html#problem">Home</a>
+      <a href="../../index.html#findings">Findings</a>
+      <a href="../../index.html#visuals">Visuals</a>
+      <a href="../../index.html#playbook">Playbook</a>
+      <a class="active" href="../">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../../../guide/21-skill-network/" hreflang="fa" lang="fa">FA</a><span class="on" aria-current="true">EN</span>
+      </div>
+      <button class="guide-search-btn" type="button" aria-label="Search the guide…">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>Search the guide</span>
+      </button>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="guide-shell">
+  <aside class="guide-side" id="guideSide" aria-label="Sections">
+    <div class="guide-side-head">
+  <a class="guide-back" href="../">← Guide index</a>
+  <p class="guide-side-title">Table of contents</p>
+</div>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link is-active" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-21-1">21.1. Network structure and skill communities</a></li><li class="lvl-h2"><a href="#sec-21-2">21.2. Skill centrality and how it changed over the two years</a></li></ul></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+  </aside>
+  <main class="guide-main" id="main">
+    <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 21</span></nav>
+<h1>21. Skill co-occurrence network [bonus]</h1>
+<p class="guide-meta">3 min read · 4 tables · 2 figures · 3 code cells</p>
+<p>If two skills are repeatedly requested together in the same posting, they probably form a “work package”. We build a network whose nodes are skills and whose edges are the co-occurrence of two skills in the same posting: node size scales with skill frequency and edge thickness with the number of co-occurrences. We then measure the skill communities and the shift in centrality over the two years.</p><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>33 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="from itertools import combinations
+from collections import Counter
+
+TOP_NETWORK = 35
+network_skills = skills_long.skill.value_counts().head(TOP_NETWORK).index
+skill_ads = skills_long.loc[skills_long.skill.isin(network_skills), [&#x27;ad_id&#x27;, &#x27;skill&#x27;]].drop_duplicates()
+pair_counter = Counter()
+for _, group in skill_ads.groupby(&#x27;ad_id&#x27;).skill:
+    names = sorted(set(group))
+    if 1 &lt; len(names) &lt;= 12:
+        pair_counter.update(combinations(names, 2))
+
+frequency = skill_ads.skill.value_counts()
+graph = nx.Graph()
+for skill, count in frequency.items():
+    graph.add_node(skill, frequency=int(count))
+for (first, second), weight in pair_counter.items():
+    if weight &gt;= 20:
+        graph.add_edge(first, second, weight=int(weight))
+graph.remove_nodes_from(list(nx.isolates(graph)))
+
+communities = list(nx.community.greedy_modularity_communities(graph, weight=&#x27;weight&#x27;))
+community_of = {node: index for index, members in enumerate(communities) for node in members}
+betweenness = nx.betweenness_centrality(graph, weight=&#x27;weight&#x27;)
+weighted_degree = dict(graph.degree(weight=&#x27;weight&#x27;))
+
+network_summary = pd.DataFrame({&#x27;مقدار&#x27;: [f&#x27;{graph.number_of_nodes():,}&#x27;, f&#x27;{graph.number_of_edges():,}&#x27;,
+                                          f&#x27;{len(communities)}&#x27;, f&#x27;{len(skill_ads):,}&#x27;,
+                                          f&#x27;{sum(pair_counter.values()):,}&#x27;]},
+                               index=[&#x27;گره (مهارت)&#x27;, &#x27;یال (هم‌رخدادی)&#x27;, &#x27;جامعه مهارتی&#x27;,
+                                      &#x27;ردیف مهارت-آگهی&#x27;, &#x27;کل جفت هم‌رخداد&#x27;])
+show_table(&#x27;21.1&#x27;, &#x27;خلاصه شبکه مهارت‌ها&#x27;, network_summary, sample=&#x27;کل دوره&#x27;, period=False,
+           index_name=&#x27;شاخص&#x27;)" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">TOP_NETWORK</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">network_skills</span> <span class="o">=</span> <span class="n">skills_long</span><span class="o">.</span><span class="n">skill</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP_NETWORK</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+<span class="n">skill_ads</span> <span class="o">=</span> <span class="n">skills_long</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">skills_long</span><span class="o">.</span><span class="n">skill</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">network_skills</span><span class="p">),</span> <span class="p">[</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'skill'</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">pair_counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">skill_ads</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'ad_id'</span><span class="p">)</span><span class="o">.</span><span class="n">skill</span><span class="p">:</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">group</span><span class="p">))</span>
+    <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">pair_counter</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">frequency</span> <span class="o">=</span> <span class="n">skill_ads</span><span class="o">.</span><span class="n">skill</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">skill</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">frequency</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">skill</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">),</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">pair_counter</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">weight</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">isolates</span><span class="p">(</span><span class="n">graph</span><span class="p">)))</span>
+
+<span class="n">communities</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">greedy_modularity_communities</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">'weight'</span><span class="p">))</span>
+<span class="n">community_of</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">index</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">members</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">communities</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">members</span><span class="p">}</span>
+<span class="n">betweenness</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">'weight'</span><span class="p">)</span>
+<span class="n">weighted_degree</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="s1">'weight'</span><span class="p">))</span>
+
+<span class="n">network_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'مقدار'</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">graph</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+                                          <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">communities</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">skill_ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+                                          <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">pair_counter</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">]},</span>
+                               <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'گره (مهارت)'</span><span class="p">,</span> <span class="s1">'یال (هم‌رخدادی)'</span><span class="p">,</span> <span class="s1">'جامعه مهارتی'</span><span class="p">,</span>
+                                      <span class="s1">'ردیف مهارت-آگهی'</span><span class="p">,</span> <span class="s1">'کل جفت هم‌رخداد'</span><span class="p">])</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'21.1'</span><span class="p">,</span> <span class="s1">'خلاصه شبکه مهارت‌ها'</span><span class="p">,</span> <span class="n">network_summary</span><span class="p">,</span> <span class="n">sample</span><span class="o">=</span><span class="s1">'کل دوره'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+           <span class="n">index_name</span><span class="o">=</span><span class="s1">'شاخص'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>Table 21.1 | Summary of the skill network | full period</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Value</th>
+</tr>
+<tr>
+<th>Index</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Node (skill)</th>
+<td>35</td>
+</tr>
+<tr>
+<th>Edge (co-occurrence)</th>
+<td>290</td>
+</tr>
+<tr>
+<th>Skill community</th>
+<td>4</td>
+</tr>
+<tr>
+<th>Skill-posting rows</th>
+<td>496,705</td>
+</tr>
+<tr>
+<th>Total co-occurring pairs</th>
+<td>553,697</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><h2 class="guide-heading" id="sec-21-1">21.1. Network structure and skill communities <a aria-label="link" class="anchor" href="#sec-21-1">#</a></h2>
+<details class="code-fold">
+  <summary><span>Show the code for this step</span><em>25 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="layout = nx.spring_layout(graph, weight=&#x27;weight&#x27;, seed=RANDOM_STATE, k=0.55, iterations=250)
+sizes = np.array([graph.nodes[node][&#x27;frequency&#x27;] for node in graph.nodes()])
+size_scaled = 90 + 1500 * (sizes - sizes.min()) / (sizes.max() - sizes.min())
+weights = np.array([graph[u][v][&#x27;weight&#x27;] for u, v in graph.edges()])
+width_scaled = 0.4 + 4.0 * (weights - weights.min()) / max(weights.max() - weights.min(), 1)
+
+fig, ax = plt.subplots(figsize=(12.5, 9))
+nx.draw_networkx_edges(graph, layout, ax=ax, width=width_scaled, alpha=0.25, edge_color=&#x27;#8aa9a6&#x27;)
+nx.draw_networkx_nodes(graph, layout, ax=ax, node_size=size_scaled,
+                       node_color=[PALETTE[community_of[node] % len(PALETTE)] for node in graph.nodes()],
+                       alpha=0.9, linewidths=0.8, edgecolors=&#x27;white&#x27;)
+nx.draw_networkx_labels(graph, layout, ax=ax, font_size=7,
+                        labels={node: fa(node) for node in graph.nodes()})
+ax.set_axis_off()
+heading(ax, &#x27;۲۱.۱&#x27;, &#x27;شبکه هم‌رخدادی مهارت‌ها؛ اندازه گره = فراوانی، ضخامت یال = هم‌رخدادی&#x27;)
+complete(&#x27;21.1&#x27;)
+
+community_rows = []
+for index, members in enumerate(communities, start=1):
+    ranked = sorted(members, key=lambda node: frequency[node], reverse=True)
+    community_rows.append({&#x27;جامعه&#x27;: f&#x27;جامعه {index}&#x27;, &#x27;تعداد مهارت&#x27;: len(members),
+                           &#x27;مهارت‌های اصلی&#x27;: &#x27;، &#x27;.join(ranked[:6]),
+                           &#x27;بیشترین هم‌رخدادی&#x27;: max(ranked, key=lambda node: weighted_degree[node])})
+show_table(&#x27;21.2&#x27;, &#x27;جوامع مهارتی شناسایی‌شده&#x27;, pd.DataFrame(community_rows).set_index(&#x27;جامعه&#x27;),
+           sample=&#x27;شبکه کل دوره&#x27;, period=False, index_name=&#x27;جامعه&#x27;)" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">layout</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">'weight'</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">'frequency'</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()])</span>
+<span class="n">size_scaled</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">+</span> <span class="mi">1500</span> <span class="o">*</span> <span class="p">(</span><span class="n">sizes</span> <span class="o">-</span> <span class="n">sizes</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">sizes</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">sizes</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">][</span><span class="s1">'weight'</span><span class="p">]</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()])</span>
+<span class="n">width_scaled</span> <span class="o">=</span> <span class="mf">0.4</span> <span class="o">+</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">weights</span> <span class="o">-</span> <span class="n">weights</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">weights</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">12.5</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width_scaled</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">'#8aa9a6'</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="n">size_scaled</span><span class="p">,</span>
+                       <span class="n">node_color</span><span class="o">=</span><span class="p">[</span><span class="n">PALETTE</span><span class="p">[</span><span class="n">community_of</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">PALETTE</span><span class="p">)]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()],</span>
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                        <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">fa</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۲۱.۱'</span><span class="p">,</span> <span class="s1">'شبکه هم‌رخدادی مهارت‌ها؛ اندازه گره = فراوانی، ضخامت یال = هم‌رخدادی'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'21.1'</span><span class="p">)</span>
+
+<span class="n">community_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">members</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">communities</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">ranked</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">members</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">node</span><span class="p">:</span> <span class="n">frequency</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">community_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'جامعه'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'جامعه </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="s1">'تعداد مهارت'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">members</span><span class="p">),</span>
+                           <span class="s1">'مهارت‌های اصلی'</span><span class="p">:</span> <span class="s1">'، '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ranked</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span>
+                           <span class="s1">'بیشترین هم‌رخدادی'</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">ranked</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">node</span><span class="p">:</span> <span class="n">weighted_degree</span><span class="p">[</span><span class="n">node</span><span class="p">])})</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'21.2'</span><span class="p">,</span> <span class="s1">'جوامع مهارتی شناسایی‌شده'</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">community_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'جامعه'</span><span class="p">),</span>
+           <span class="n">sample</span><span class="o">=</span><span class="s1">'شبکه کل دوره'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'جامعه'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-21-1">
+  <button type="button" data-full="../../../assets/img/fig_21_1.webp" data-caption="Figure 21.1 | Skill co-occurrence network; node size = frequency, edge width = co-occurrence">
+    <img src="../../../assets/img/fig_21_1-sm.webp" alt="Figure 21.1 | Skill co-occurrence network; node size = frequency, edge width = co-occurrence" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 21.1 | Skill co-occurrence network; node size = frequency, edge width = co-occurrence</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 21.2 | Identified skill communities | full-period network</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Number of skills</th>
+<th>Core skills</th>
+<th>Most frequent co-occurrence</th>
+</tr>
+<tr>
+<th>Community</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Community 1</th>
+<td>12</td>
+<td>Microsoft Excel, Microsoft Word, Microsoft Powerpoint, Microsoft Outlook, Sepidar, Microsoft Access</td>
+<td>Microsoft Excel</td>
+</tr>
+<tr>
+<th>Community 2</th>
+<td>11</td>
+<td>Sql Server, Html &amp; CSS, GIT, JavaScript, Network+, C#</td>
+<td>Html &amp; CSS</td>
+</tr>
+<tr>
+<th>Community 3</th>
+<td>9</td>
+<td>Adobe Photoshop, Adobe Illustrator, Wordpress, Adobe Premiere, After Effects, Google Analytics</td>
+<td>Adobe Photoshop</td>
+</tr>
+<tr>
+<th>Community 4</th>
+<td>3</td>
+<td>AutoCad, Solidworks, Catia</td>
+<td>AutoCad</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><p><strong>Interpretation of Table 21.1 and Figure 21.1:</strong> The network was built from the 35 most frequent skills and 290 edges with at least 20 co-occurrences remained. Node sizes are proportional to skill frequency and edge thicknesses to the number of co-occurrences. The size of the network (not the number of nodes, but the density of edges) shows that Iran's skill basket is “concentrated”: a limited number of skills are repeated together many times.</p><p><strong>Interpretation of Table 21.2:</strong> Four skill communities were identified:</p>
+<ol>
+<li><strong>Office and Iran's financial/administrative software (12 skills):</strong> Excel, Word, PowerPoint, Outlook, Access together with Sepidar, Rahkaran and Hamkaran System. This community is the core of the administrative market.</li>
+<li><strong>Development and infrastructure (11 skills):</strong> SQL Server, HTML/CSS, Git, JavaScript, Network+, C#.</li>
+<li><strong>Design and digital content (9 skills):</strong> Photoshop, Illustrator, WordPress, Premiere, After Effects, Google Analytics.</li>
+<li><strong>Engineering and industrial design (3 skills):</strong> AutoCAD, SolidWorks, CATIA.</li>
+</ol>
+<p>An important point: <strong>Iran's local accounting software</strong> falls in the same community as office tools, not in the development community; that is, from the market's point of view these skills are “office tools” rather than “technology”. This is an important difference from global markets.</p><h2 class="guide-heading" id="sec-21-2">21.2. Skill centrality and how it changed over the two years <a aria-label="link" class="anchor" href="#sec-21-2">#</a></h2>
+<details class="code-fold">
+  <summary><span>Show the code for this step</span><em>66 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="centrality_table = pd.DataFrame({
+    &#x27;فراوانی آگهی&#x27;: [graph.nodes[node][&#x27;frequency&#x27;] for node in graph.nodes()],
+    &#x27;مرکزیت بینابینی&#x27;: [betweenness[node] for node in graph.nodes()],
+    &#x27;درجه وزنی&#x27;: [weighted_degree[node] for node in graph.nodes()],
+    &#x27;جامعه&#x27;: [f&#x27;جامعه {community_of[node] + 1}&#x27; for node in graph.nodes()],
+}, index=list(graph.nodes())).sort_values(&#x27;درجه وزنی&#x27;, ascending=False)
+centrality_table[&#x27;رتبه&#x27;] = range(1, len(centrality_table) + 1)
+show_table(&#x27;21.3&#x27;, &#x27;پانزده مهارت مرکزی شبکه&#x27;, centrality_table.head(15),
+           formats={&#x27;فراوانی آگهی&#x27;: &#x27;int&#x27;, &#x27;مرکزیت بینابینی&#x27;: &#x27;score&#x27;, &#x27;درجه وزنی&#x27;: &#x27;int&#x27;, &#x27;رتبه&#x27;: &#x27;int&#x27;},
+           sample=&#x27;شبکه کل دوره&#x27;, period=False, index_name=&#x27;مهارت&#x27;)
+
+
+def annual_degree(year):
+    frame = skill_ads.merge(ads.loc[ads.jyear.eq(year), [&#x27;ad_id&#x27;]], on=&#x27;ad_id&#x27;)
+    counter = Counter()
+    for _, group in frame.groupby(&#x27;ad_id&#x27;).skill:
+        names = sorted(set(group))
+        if 1 &lt; len(names) &lt;= 12:
+            counter.update(combinations(names, 2))
+    degree = {skill: 0 for skill in network_skills}
+    for (first, second), weight in counter.items():
+        degree[first] += weight
+        degree[second] += weight
+    return pd.Series(degree).sort_values(ascending=False), counter
+
+
+degree_1401, pairs_1401 = annual_degree(1401)
+degree_1402, pairs_1402 = annual_degree(1402)
+rank_compare = pd.DataFrame({&#x27;درجه ۱۴۰۱&#x27;: degree_1401, &#x27;درجه ۱۴۰۲&#x27;: degree_1402})
+rank_compare[&#x27;رتبه ۱۴۰۱&#x27;] = rank_compare[&#x27;درجه ۱۴۰۱&#x27;].rank(ascending=False).astype(int)
+rank_compare[&#x27;رتبه ۱۴۰۲&#x27;] = rank_compare[&#x27;درجه ۱۴۰۲&#x27;].rank(ascending=False).astype(int)
+rank_compare[&#x27;تغییر رتبه&#x27;] = rank_compare[&#x27;رتبه ۱۴۰۱&#x27;] - rank_compare[&#x27;رتبه ۱۴۰۲&#x27;]
+rank_compare[&#x27;رشد درجه&#x27;] = (rank_compare[&#x27;درجه ۱۴۰۲&#x27;] / rank_compare[&#x27;درجه ۱۴۰۱&#x27;].replace(0, np.nan) - 1) * 100
+rank_movers = rank_compare.reindex(rank_compare[&#x27;درجه ۱۴۰۲&#x27;].sort_values(ascending=False).index).head(15)
+show_table(&#x27;21.4&#x27;, &#x27;تغییر مرکزیت مهارت‌ها بین دو سال&#x27;, rank_movers,
+           formats={&#x27;درجه ۱۴۰۱&#x27;: &#x27;int&#x27;, &#x27;درجه ۱۴۰۲&#x27;: &#x27;int&#x27;, &#x27;رتبه ۱۴۰۱&#x27;: &#x27;int&#x27;, &#x27;رتبه ۱۴۰۲&#x27;: &#x27;int&#x27;,
+                    &#x27;تغییر رتبه&#x27;: &#x27;signed&#x27;, &#x27;رشد درجه&#x27;: &#x27;pp&#x27;},
+           sample=&#x27;شبکه ۳۵ مهارت پرتکرار&#x27;, period=False, index_name=&#x27;مهارت&#x27;)
+
+fig, axes = plt.subplots(1, 2, figsize=(15, 6.2))
+for ax, year, degree, yearly_pairs, panel in [(axes[0], 1401, degree_1401, pairs_1401, &#x27;۲&#x27;),
+                                              (axes[1], 1402, degree_1402, pairs_1402, &#x27;۳&#x27;)]:
+    year_graph = nx.Graph()
+    for skill, weight in degree.head(18).items():
+        year_graph.add_node(skill, frequency=weight)
+    for (first, second), weight in yearly_pairs.items():
+        if first in year_graph and second in year_graph and weight &gt;= 40:
+            year_graph.add_edge(first, second, weight=weight)
+    positions = nx.spring_layout(year_graph, weight=&#x27;weight&#x27;, seed=RANDOM_STATE, k=0.6, iterations=200)
+    node_sizes = np.array([year_graph.nodes[node][&#x27;frequency&#x27;] for node in year_graph.nodes()])
+    nx.draw_networkx_edges(year_graph, positions, ax=ax, alpha=0.22, edge_color=&#x27;#8aa9a6&#x27;)
+    nx.draw_networkx_nodes(year_graph, positions, ax=ax, node_size=60 + 900 * (node_sizes / node_sizes.max()),
+                           node_color=[PALETTE[community_of.get(node, 0) % len(PALETTE)] for node in year_graph.nodes()],
+                           alpha=0.9, linewidths=0.6, edgecolors=&#x27;white&#x27;)
+    nx.draw_networkx_labels(year_graph, positions, ax=ax, font_size=6.5,
+                            labels={node: fa(node) for node in year_graph.nodes()})
+    ax.set_axis_off()
+    heading(ax, f&#x27;۲۱.{panel}&#x27;, f&#x27;شبکه مهارت‌ها در سال {nf(year)}&#x27;)
+complete(&#x27;21.2-21.3&#x27;)
+
+show_metrics(&#x27;شبکه مهارت&#x27;, [
+    (&#x27;مهارت‌های شبکه&#x27;, f&#x27;{graph.number_of_nodes()}&#x27;),
+    (&#x27;جوامع&#x27;, f&#x27;{len(communities)}&#x27;),
+    (&#x27;مرکزی‌ترین مهارت&#x27;, f&#x27;{centrality_table.index[0]}&#x27;),
+    (&#x27;بیشترین رشد درجه&#x27;, f&#x27;{rank_compare[&quot;رشد درجه&quot;].idxmax()} ({rank_compare[&quot;رشد درجه&quot;].max():+.0f}٪)&#x27;),
+])" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">centrality_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'فراوانی آگهی'</span><span class="p">:</span> <span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">'frequency'</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()],</span>
+    <span class="s1">'مرکزیت بینابینی'</span><span class="p">:</span> <span class="p">[</span><span class="n">betweenness</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()],</span>
+    <span class="s1">'درجه وزنی'</span><span class="p">:</span> <span class="p">[</span><span class="n">weighted_degree</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()],</span>
+    <span class="s1">'جامعه'</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'جامعه </span><span class="si">{</span><span class="n">community_of</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()],</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'درجه وزنی'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">centrality_table</span><span class="p">[</span><span class="s1">'رتبه'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">centrality_table</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'21.3'</span><span class="p">,</span> <span class="s1">'پانزده مهارت مرکزی شبکه'</span><span class="p">,</span> <span class="n">centrality_table</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'فراوانی آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'مرکزیت بینابینی'</span><span class="p">:</span> <span class="s1">'score'</span><span class="p">,</span> <span class="s1">'درجه وزنی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'رتبه'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="s1">'شبکه کل دوره'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'مهارت'</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">annual_degree</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">skill_ads</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ads</span><span class="o">.</span><span class="n">jyear</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="p">[</span><span class="s1">'ad_id'</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s1">'ad_id'</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'ad_id'</span><span class="p">)</span><span class="o">.</span><span class="n">skill</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">group</span><span class="p">))</span>
+        <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">:</span>
+            <span class="n">counter</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">degree</span> <span class="o">=</span> <span class="p">{</span><span class="n">skill</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">skill</span> <span class="ow">in</span> <span class="n">network_skills</span><span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">),</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">counter</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">degree</span><span class="p">[</span><span class="n">first</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weight</span>
+        <span class="n">degree</span><span class="p">[</span><span class="n">second</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weight</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">degree</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">counter</span>
+
+
+<span class="n">degree_1401</span><span class="p">,</span> <span class="n">pairs_1401</span> <span class="o">=</span> <span class="n">annual_degree</span><span class="p">(</span><span class="mi">1401</span><span class="p">)</span>
+<span class="n">degree_1402</span><span class="p">,</span> <span class="n">pairs_1402</span> <span class="o">=</span> <span class="n">annual_degree</span><span class="p">(</span><span class="mi">1402</span><span class="p">)</span>
+<span class="n">rank_compare</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'درجه ۱۴۰۱'</span><span class="p">:</span> <span class="n">degree_1401</span><span class="p">,</span> <span class="s1">'درجه ۱۴۰۲'</span><span class="p">:</span> <span class="n">degree_1402</span><span class="p">})</span>
+<span class="n">rank_compare</span><span class="p">[</span><span class="s1">'رتبه ۱۴۰۱'</span><span class="p">]</span> <span class="o">=</span> <span class="n">rank_compare</span><span class="p">[</span><span class="s1">'درجه ۱۴۰۱'</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">rank_compare</span><span class="p">[</span><span class="s1">'رتبه ۱۴۰۲'</span><span class="p">]</span> <span class="o">=</span> <span class="n">rank_compare</span><span class="p">[</span><span class="s1">'درجه ۱۴۰۲'</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">rank_compare</span><span class="p">[</span><span class="s1">'تغییر رتبه'</span><span class="p">]</span> <span class="o">=</span> <span class="n">rank_compare</span><span class="p">[</span><span class="s1">'رتبه ۱۴۰۱'</span><span class="p">]</span> <span class="o">-</span> <span class="n">rank_compare</span><span class="p">[</span><span class="s1">'رتبه ۱۴۰۲'</span><span class="p">]</span>
+<span class="n">rank_compare</span><span class="p">[</span><span class="s1">'رشد درجه'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">rank_compare</span><span class="p">[</span><span class="s1">'درجه ۱۴۰۲'</span><span class="p">]</span> <span class="o">/</span> <span class="n">rank_compare</span><span class="p">[</span><span class="s1">'درجه ۱۴۰۱'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">rank_movers</span> <span class="o">=</span> <span class="n">rank_compare</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">rank_compare</span><span class="p">[</span><span class="s1">'درجه ۱۴۰۲'</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'21.4'</span><span class="p">,</span> <span class="s1">'تغییر مرکزیت مهارت‌ها بین دو سال'</span><span class="p">,</span> <span class="n">rank_movers</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'درجه ۱۴۰۱'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'درجه ۱۴۰۲'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'رتبه ۱۴۰۱'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'رتبه ۱۴۰۲'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span>
+                    <span class="s1">'تغییر رتبه'</span><span class="p">:</span> <span class="s1">'signed'</span><span class="p">,</span> <span class="s1">'رشد درجه'</span><span class="p">:</span> <span class="s1">'pp'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="s1">'شبکه ۳۵ مهارت پرتکرار'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'مهارت'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">degree</span><span class="p">,</span> <span class="n">yearly_pairs</span><span class="p">,</span> <span class="n">panel</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1401</span><span class="p">,</span> <span class="n">degree_1401</span><span class="p">,</span> <span class="n">pairs_1401</span><span class="p">,</span> <span class="s1">'۲'</span><span class="p">),</span>
+                                              <span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1402</span><span class="p">,</span> <span class="n">degree_1402</span><span class="p">,</span> <span class="n">pairs_1402</span><span class="p">,</span> <span class="s1">'۳'</span><span class="p">)]:</span>
+    <span class="n">year_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">skill</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">degree</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">year_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">skill</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">),</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">yearly_pairs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">first</span> <span class="ow">in</span> <span class="n">year_graph</span> <span class="ow">and</span> <span class="n">second</span> <span class="ow">in</span> <span class="n">year_graph</span> <span class="ow">and</span> <span class="n">weight</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">:</span>
+            <span class="n">year_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span>
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">year_graph</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">'weight'</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">node_sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">year_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="s1">'frequency'</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">year_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()])</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">year_graph</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.22</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">'#8aa9a6'</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">year_graph</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">60</span> <span class="o">+</span> <span class="mi">900</span> <span class="o">*</span> <span class="p">(</span><span class="n">node_sizes</span> <span class="o">/</span> <span class="n">node_sizes</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+                           <span class="n">node_color</span><span class="o">=</span><span class="p">[</span><span class="n">PALETTE</span><span class="p">[</span><span class="n">community_of</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">PALETTE</span><span class="p">)]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">year_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()],</span>
+                           <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">year_graph</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mf">6.5</span><span class="p">,</span>
+                            <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">fa</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">year_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()})</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'۲۱.</span><span class="si">{</span><span class="n">panel</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'شبکه مهارت‌ها در سال </span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'21.2-21.3'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'شبکه مهارت'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'مهارت‌های شبکه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'جوامع'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">communities</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'مرکزی‌ترین مهارت'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">centrality_table</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'بیشترین رشد درجه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">rank_compare</span><span class="p">[</span><span class="s2">"رشد درجه"</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">rank_compare</span><span class="p">[</span><span class="s2">"رشد درجه"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s1">+.0f</span><span class="si">}</span><span class="s1">٪)'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-21-2-21-3">
+  <button type="button" data-full="../../../assets/img/fig_21_2-21_3.webp" data-caption="Figure 21.2-21.3">
+    <img src="../../../assets/img/fig_21_2-21_3-sm.webp" alt="Figure 21.2-21.3" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 21.2-21.3</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 21.3 | Fifteen central skills of the network | full-period network</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Posting frequency</th>
+<th>Betweenness centrality</th>
+<th>Weighted degree</th>
+<th>Community</th>
+<th>Rank</th>
+</tr>
+<tr>
+<th>Skill</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Microsoft Excel</th>
+<td>138,198</td>
+<td>0.00</td>
+<td>268,505</td>
+<td>Community 1</td>
+<td>1</td>
+</tr>
+<tr>
+<th>Microsoft Word</th>
+<td>121,872</td>
+<td>0.00</td>
+<td>253,683</td>
+<td>Community 1</td>
+<td>2</td>
+</tr>
+<tr>
+<th>Microsoft Powerpoint</th>
+<td>46,173</td>
+<td>0.03</td>
+<td>133,200</td>
+<td>Community 1</td>
+<td>3</td>
+</tr>
+<tr>
+<th>Microsoft Outlook</th>
+<td>39,152</td>
+<td>0.14</td>
+<td>111,795</td>
+<td>Community 1</td>
+<td>4</td>
+</tr>
+<tr>
+<th>Microsoft Access</th>
+<td>9,721</td>
+<td>0.07</td>
+<td>32,281</td>
+<td>Community 1</td>
+<td>5</td>
+</tr>
+<tr>
+<th>Adobe Photoshop</th>
+<td>12,623</td>
+<td>0.02</td>
+<td>29,529</td>
+<td>Community 3</td>
+<td>6</td>
+</tr>
+<tr>
+<th>Microsoft Project</th>
+<td>8,480</td>
+<td>0.08</td>
+<td>26,437</td>
+<td>Community 1</td>
+<td>7</td>
+</tr>
+<tr>
+<th>Microsoft Visio</th>
+<td>6,509</td>
+<td>0.16</td>
+<td>23,503</td>
+<td>Community 1</td>
+<td>8</td>
+</tr>
+<tr>
+<th>Rahkaran</th>
+<td>9,639</td>
+<td>0.01</td>
+<td>21,936</td>
+<td>Community 1</td>
+<td>9</td>
+</tr>
+<tr>
+<th>Sepidar</th>
+<td>9,897</td>
+<td>0.00</td>
+<td>19,115</td>
+<td>Community 1</td>
+<td>10</td>
+</tr>
+<tr>
+<th>Hamkaran System</th>
+<td>6,706</td>
+<td>0.02</td>
+<td>17,171</td>
+<td>Community 1</td>
+<td>11</td>
+</tr>
+<tr>
+<th>Adobe Illustrator</th>
+<td>6,324</td>
+<td>0.11</td>
+<td>17,003</td>
+<td>Community 3</td>
+<td>12</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>AutoCad</th>
+<td>7,508</td>
+<td>0.01</td>
+<td>12,308</td>
+<td>Community 4</td>
+<td>13</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>Adobe Premiere</th>
+<td>4,000</td>
+<td>0.00</td>
+<td>11,445</td>
+<td>Community 3</td>
+<td>14</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>Wordpress</th>
+<td>6,088</td>
+<td>0.23</td>
+<td>10,679</td>
+<td>Community 3</td>
+<td>15</td>
+</tr>
+</tbody>
+</table></div>
+  
+  <button class="table-more" type="button" data-rows="15">Show all rows (15)</button>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 21.4 | Change in skill centrality between the two years | network of 35 most frequent skills</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Degree 1401</th>
+<th>Degree 1402</th>
+<th>Rank 1401</th>
+<th>Rank 1402</th>
+<th>Rank change</th>
+<th>Degree growth</th>
+</tr>
+<tr>
+<th>Skill</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Microsoft Excel</th>
+<td>109,435</td>
+<td>159,082</td>
+<td>1</td>
+<td>1</td>
+<td>+0</td>
+<td>+45.4</td>
+</tr>
+<tr>
+<th>Microsoft Word</th>
+<td>102,919</td>
+<td>150,789</td>
+<td>2</td>
+<td>2</td>
+<td>+0</td>
+<td>+46.5</td>
+</tr>
+<tr>
+<th>Microsoft Powerpoint</th>
+<td>57,938</td>
+<td>75,300</td>
+<td>3</td>
+<td>3</td>
+<td>+0</td>
+<td>+30.0</td>
+</tr>
+<tr>
+<th>Microsoft Outlook</th>
+<td>49,433</td>
+<td>62,411</td>
+<td>4</td>
+<td>4</td>
+<td>+0</td>
+<td>+26.3</td>
+</tr>
+<tr>
+<th>Microsoft Access</th>
+<td>14,086</td>
+<td>18,337</td>
+<td>5</td>
+<td>5</td>
+<td>+0</td>
+<td>+30.2</td>
+</tr>
+<tr>
+<th>Adobe Photoshop</th>
+<td>11,728</td>
+<td>17,941</td>
+<td>7</td>
+<td>6</td>
+<td>+1</td>
+<td>+53.0</td>
+</tr>
+<tr>
+<th>Microsoft Project</th>
+<td>12,146</td>
+<td>14,421</td>
+<td>6</td>
+<td>7</td>
+<td>-1</td>
+<td>+18.7</td>
+</tr>
+<tr>
+<th>Rahkaran</th>
+<td>8,729</td>
+<td>13,255</td>
+<td>9</td>
+<td>8</td>
+<td>+1</td>
+<td>+51.9</td>
+</tr>
+<tr>
+<th>Microsoft Visio</th>
+<td>10,496</td>
+<td>13,162</td>
+<td>8</td>
+<td>9</td>
+<td>-1</td>
+<td>+25.4</td>
+</tr>
+<tr>
+<th>Sepidar</th>
+<td>7,200</td>
+<td>11,960</td>
+<td>11</td>
+<td>10</td>
+<td>+1</td>
+<td>+66.1</td>
+</tr>
+<tr>
+<th>Adobe Illustrator</th>
+<td>6,736</td>
+<td>10,308</td>
+<td>12</td>
+<td>11</td>
+<td>+1</td>
+<td>+53.0</td>
+</tr>
+<tr>
+<th>Hamkaran System</th>
+<td>7,482</td>
+<td>9,745</td>
+<td>10</td>
+<td>12</td>
+<td>-2</td>
+<td>+30.2</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>AutoCad</th>
+<td>4,770</td>
+<td>7,638</td>
+<td>13</td>
+<td>13</td>
+<td>+0</td>
+<td>+60.1</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>Adobe Premiere</th>
+<td>4,286</td>
+<td>7,234</td>
+<td>14</td>
+<td>14</td>
+<td>+0</td>
+<td>+68.8</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>Wordpress</th>
+<td>4,084</td>
+<td>6,643</td>
+<td>16</td>
+<td>15</td>
+<td>+1</td>
+<td>+62.7</td>
+</tr>
+</tbody>
+</table></div>
+  
+  <button class="table-more" type="button" data-rows="15">Show all rows (15)</button>
+</figure><div class="guide-metrics">
+  <p class="m-title">Key figures: skill network</p>
+  <ul><li>Skills in the network: 35</li><li>Communities: 4</li><li>Most central skill: Microsoft Excel</li><li>Largest degree growth: Google Analytics (+241%)</li></ul>
+</div><p><strong>Interpretation of Tables 21.3 and 21.4 and Figures 21.2 and 21.3:</strong> The most central nodes of the network are office skills: Excel with a weighted degree of 268,505 and Word with 253,683. But <strong>betweenness centrality</strong> — the ability to connect communities — tells a different story: WordPress (0.23), Visio (0.16), Outlook (0.14) and Illustrator (0.11) have the highest betweenness centrality; that is, these skills are bridges between the administrative, design and technology communities.</p>
+<p>Comparing the two years, the rankings have remained almost unchanged (the largest rank change is only 2 places), but the degree of every skill has grown; part of this growth is the growth of the whole posting market. The largest relative growth in degree: Google Analytics (+241%), Adobe Premiere (+69%), Sepidar (+66%), WordPress (+63%) and AutoCAD (+60%).</p>
+<p><strong>Message for the job seeker:</strong> if you want to move between areas, “bridge” skills (WordPress, Visio, advanced Excel) have high connecting value; if you want to go deep in one area, strengthen the central skills of that same community.</p>
+<p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
+<nav class="guide-pager"><a class="prev" href="../20-employer-typology/"><span>Previous</span><b>Employer profiling and clustering [bonus]</b></a><a class="next" href="../22-decision-package/"><span>Next</span><b>Decision package for business managers</b></a></nav>
+  </main>
+  <aside class="guide-aside" aria-label="On this page">
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-21-1">21.1. Network structure and skill communities</a></li><li class="lvl-h2"><a href="#sec-21-2">21.2. Skill centrality and how it changed over the two years</a></li></ul>
+  </aside>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" aria-label="close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the guide…">
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="Search the guide…" autocomplete="off">
+    <p class="hint">Type to search, Esc to close</p>
+    <ul id="searchResults"></ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>This guide is generated from the project notebook; every number is reproducible.</p>
+      <p><a href="https://github.com/arashalidadi/jobvision-labor-market">GitHub</a> · <a href="../../index.html">Home</a> · <a href="../">Guide index</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/site.js"></script>
+<script src="../../../assets/js/guide.js" data-index="../search.json" data-ui-search="Search the guide…"></script>
+</body>
+</html>
