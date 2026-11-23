@@ -2,8 +2,8 @@
 
 **از داده خام تا تصمیم مدیریتی: حقوق، مهارت، جغرافیا و رقابت در بازار کار ۱۴۰۱–۱۴۰۲**
 
-[![Website](https://img.shields.io/badge/🌐_Project_site-فارسی_·_English-0f766e)](https://arashalidadi.github.io/jobvision-labor-market/)
-[![Colab](https://img.shields.io/badge/▶_Run_on-Colab-F9AB00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb)
+[![Website](https://img.shields.io/badge/Website-FA%20%7C%20EN-0f766e)](https://arashalidadi.github.io/jobvision-labor-market/)
+[![Colab](https://img.shields.io/badge/Run_on-Colab-F9AB00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb)
 [![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)](jobvision_analysis.ipynb)
 [![Data](https://img.shields.io/badge/Data-Hugging%20Face-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/JobVision/JobVision_Jobposts_Dataset)
