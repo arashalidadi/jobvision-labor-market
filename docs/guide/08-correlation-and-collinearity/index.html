@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>۸. همبستگی، هم‌خطی و روابط غیرخطی — JobVision راهنما</title>
+<meta name="description" content="۸.۱. ماتریس همبستگی پیرسون و اسپیرمن #">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/guide/08-correlation-and-collinearity/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/08-correlation-and-collinearity/">
+<link rel="alternate" hreflang="en" href="../../en/guide/08-correlation-and-collinearity/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="۸. همبستگی، هم‌خطی و روابط غیرخطی — JobVision راهنما">
+<meta property="og:description" content="۸.۱. ماتریس همبستگی پیرسون و اسپیرمن #">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/guide/08-correlation-and-collinearity/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pygments.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "۸. همبستگی، هم‌خطی و روابط غیرخطی — JobVision راهنما",
+  "description": "۸.۱. ماتریس همبستگی پیرسون و اسپیرمن #",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/guide/08-correlation-and-collinearity/",
+  "inLanguage": "fa",
+  "author": {
+    "@type": "Person",
+    "name": "Arash Alidadi"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "JobVision Labor Market",
+    "url": "https://arashalidadi.github.io/jobvision-labor-market"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+}
+</script>
+</head>
+<body class="guide-page">
+<a class="skip-link" href="#main">Skip</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../index.html" aria-label="JobVision Labor Market">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="../../index.html#problem">صفحه اصلی</a>
+      <a href="../../index.html#findings">یافته‌ها</a>
+      <a href="../../index.html#visuals">نمودارها</a>
+      <a href="../../index.html#playbook">بسته اجرایی</a>
+      <a class="active" href="../">مستندات</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <span class="on" aria-current="true">FA</span><span class="off" title="EN">EN</span>
+      </div>
+      <button class="guide-search-btn" type="button" aria-label="جست‌وجو در راهنما…">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>جست‌وجو در راهنما</span>
+      </button>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="guide-shell">
+  <aside class="guide-side" id="guideSide" aria-label="فهرست بخش‌ها">
+    <div class="guide-side-head">
+  <a class="guide-back" href="../">← فهرست راهنما</a>
+  <p class="guide-side-title">فهرست مطالب</p>
+</div>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>معرفی پروژه و پرسش‌های راهبردی</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>داده، فرهنگ داده و قواعد تحلیل</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>ابزارها، توابع کمکی و بارگذاری داده</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>شناخت داده و کیفیت</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>پاک‌سازی و ساخت لایه تحلیل</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>مهندسی ویژگی</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>تحلیل توزیع‌ها، چولگی و پرت‌ها</span></a></li><li><a class="guide-nav-link is-active" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>همبستگی، هم‌خطی و روابط غیرخطی</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-8-1">۸.۱. ماتریس همبستگی پیرسون و اسپیرمن</a></li><li class="lvl-h2"><a href="#sec-8-2">۸.۲. هم‌خطی چندگانه</a></li><li class="lvl-h2"><a href="#sec-8-3">۸.۳. روابط غیرخطی: بازده نزولی سابقه و سن</a></li></ul></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>سازوکار گمشدگی حقوق: تصادفی یا وابسته؟</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>روند زمانی، فصلی‌بودن و پویایی دستمزد</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>ترجیح جنسیت، فرصت شغلی و دستمزد</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>ارزش تحصیلات در برابر سابقه کار</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>نقطه اوج درآمدی بر اساس سن</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>تحلیل جغرافیایی و تمرکز استانی</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>ایران در آینه بازار کار جهانی (۲۰۲۲–۲۰۲۴)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>مدل‌سازی حقوق و تغییر اهمیت ویژگی‌ها در زمان</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>خوشه‌بندی عناوین شغلی بر پایه مهارت و تحصیلات</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>صنعت × دسته شغلی: هر صنعت چه تخصصی می‌خواهد؟</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>تحول مهارت‌ها و جهش عناوین شغلی</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>پروفایل‌سازی و خوشه‌بندی کارفرمایان [امتیازی]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>شبکه هم‌رخدادی مهارت‌ها [امتیازی]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>بسته پیشنهادی برای مدیر کسب‌وکار</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>جمع‌بندی، داشبورد و یافته‌های کلیدی</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>کنترل محاسبات و بازتولید</span></a></li></ul>
+  </aside>
+  <main class="guide-main" id="main">
+    <nav class="guide-crumbs"><a href="../../index.html">صفحه اصلی</a> <span>/</span> <a href="../">مستندات</a> <span>/</span> <span>بخش 8</span></nav>
+<h1>۸. همبستگی، هم‌خطی و روابط غیرخطی</h1>
+<p class="guide-meta">3 دقیقه مطالعه · 3 جدول · 2 نمودار · 3 سلول کد</p>
+<h2 class="guide-heading" id="sec-8-1">۸.۱. ماتریس همبستگی پیرسون و اسپیرمن <a aria-label="link" class="anchor" href="#sec-8-1">#</a></h2><details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>31 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="corr_map = {
+    &#x27;salary_mid&#x27;: &#x27;میانه حقوق&#x27;, &#x27;hourly_income&#x27;: &#x27;درآمد ساعتی&#x27;, &#x27;monthly_hours&#x27;: &#x27;ساعت ماهانه&#x27;,
+    &#x27;weekly_hours&#x27;: &#x27;ساعت هفتگی&#x27;, &#x27;Jobpost_RequiredExperienceYears&#x27;: &#x27;سابقه لازم&#x27;,
+    &#x27;age_mid&#x27;: &#x27;میانه سن&#x27;, &#x27;skill_count&#x27;: &#x27;تعداد مهارت&#x27;, &#x27;benefit_count&#x27;: &#x27;تعداد مزایا&#x27;,
+    &#x27;company_size_rank&#x27;: &#x27;اندازه شرکت&#x27;, &#x27;company_age_rank&#x27;: &#x27;قدمت شرکت&#x27;,
+}
+corr_base = hourly_ready[list(corr_map)].rename(columns=corr_map)
+pearson = corr_base.corr(method=&#x27;pearson&#x27;)
+spearman = corr_base.corr(method=&#x27;spearman&#x27;)
+
+fig, axes = plt.subplots(1, 2, figsize=(15, 5.6))
+for ax, matrix, title in [(axes[0], pearson, &#x27;۸.۱ | همبستگی پیرسون&#x27;),
+                          (axes[1], spearman, &#x27;۸.۲ | همبستگی اسپیرمن (رتبه‌ای)&#x27;)]:
+    sns.heatmap(matrix, ax=ax, cmap=&#x27;crest&#x27;, center=0, vmin=-1, vmax=1, annot=True, fmt=&#x27;.2f&#x27;,
+                annot_kws={&#x27;size&#x27;: 7.5}, cbar_kws={&#x27;shrink&#x27;: 0.8}, square=True,
+                xticklabels=[fa(c) for c in matrix.columns], yticklabels=[fa(c) for c in matrix.index])
+    ax.set_title(fa(f&#x27;نمودار {title}&#x27;), fontsize=10.5, pad=10)
+    ax.tick_params(labelsize=8)
+    plt.setp(ax.get_xticklabels(), rotation=45, ha=&#x27;right&#x27;)
+complete(&#x27;8.1-8.2&#x27;)
+
+top_pairs = (pearson.where(np.triu(np.ones(pearson.shape), 1).astype(bool)).stack()
+             .rename(&#x27;پیرسون&#x27;).to_frame())
+top_pairs[&#x27;اسپیرمن&#x27;] = [spearman.loc[a, b] for a, b in top_pairs.index]
+top_pairs[&#x27;اختلاف&#x27;] = top_pairs[&#x27;اسپیرمن&#x27;] - top_pairs[&#x27;پیرسون&#x27;]
+top_pairs = top_pairs.reindex(top_pairs[&#x27;پیرسون&#x27;].abs().sort_values(ascending=False).index).head(12)
+top_pairs.index = [f&#x27;{a} — {b}&#x27; for a, b in top_pairs.index]
+show_table(&#x27;8.1&#x27;, &#x27;دوازده جفت متغیر با بیشترین قدرمطلق همبستگی پیرسون&#x27;, top_pairs,
+           formats={&#x27;پیرسون&#x27;: &#x27;ratio&#x27;, &#x27;اسپیرمن&#x27;: &#x27;ratio&#x27;, &#x27;اختلاف&#x27;: &#x27;ratio&#x27;},
+           sample=f&#x27;{len(hourly_ready):,} آگهی دارای حقوق و ساعت&#x27;, period=False, index_name=&#x27;جفت متغیر&#x27;,
+           note=&#x27;اختلاف مثبت قابل توجه یعنی رابطه رتبه‌ای قوی‌تر از رابطه خطی است (نشانه غیرخطی‌بودن).&#x27;)" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="n">corr_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'salary_mid'</span><span class="p">:</span> <span class="s1">'میانه حقوق'</span><span class="p">,</span> <span class="s1">'hourly_income'</span><span class="p">:</span> <span class="s1">'درآمد ساعتی'</span><span class="p">,</span> <span class="s1">'monthly_hours'</span><span class="p">:</span> <span class="s1">'ساعت ماهانه'</span><span class="p">,</span>
+    <span class="s1">'weekly_hours'</span><span class="p">:</span> <span class="s1">'ساعت هفتگی'</span><span class="p">,</span> <span class="s1">'Jobpost_RequiredExperienceYears'</span><span class="p">:</span> <span class="s1">'سابقه لازم'</span><span class="p">,</span>
+    <span class="s1">'age_mid'</span><span class="p">:</span> <span class="s1">'میانه سن'</span><span class="p">,</span> <span class="s1">'skill_count'</span><span class="p">:</span> <span class="s1">'تعداد مهارت'</span><span class="p">,</span> <span class="s1">'benefit_count'</span><span class="p">:</span> <span class="s1">'تعداد مزایا'</span><span class="p">,</span>
+    <span class="s1">'company_size_rank'</span><span class="p">:</span> <span class="s1">'اندازه شرکت'</span><span class="p">,</span> <span class="s1">'company_age_rank'</span><span class="p">:</span> <span class="s1">'قدمت شرکت'</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">corr_base</span> <span class="o">=</span> <span class="n">hourly_ready</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">corr_map</span><span class="p">)]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">corr_map</span><span class="p">)</span>
+<span class="n">pearson</span> <span class="o">=</span> <span class="n">corr_base</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'pearson'</span><span class="p">)</span>
+<span class="n">spearman</span> <span class="o">=</span> <span class="n">corr_base</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'spearman'</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pearson</span><span class="p">,</span> <span class="s1">'۸.۱ | همبستگی پیرسون'</span><span class="p">),</span>
+                          <span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">spearman</span><span class="p">,</span> <span class="s1">'۸.۲ | همبستگی اسپیرمن (رتبه‌ای)'</span><span class="p">)]:</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'crest'</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'.2f'</span><span class="p">,</span>
+                <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">'size'</span><span class="p">:</span> <span class="mf">7.5</span><span class="p">},</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">'shrink'</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">},</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="n">fa</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="n">fa</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">matrix</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="sa">f</span><span class="s1">'نمودار </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'8.1-8.2'</span><span class="p">)</span>
+
+<span class="n">top_pairs</span> <span class="o">=</span> <span class="p">(</span><span class="n">pearson</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">pearson</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">))</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+             <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">'پیرسون'</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">())</span>
+<span class="n">top_pairs</span><span class="p">[</span><span class="s1">'اسپیرمن'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">spearman</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">top_pairs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">top_pairs</span><span class="p">[</span><span class="s1">'اختلاف'</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_pairs</span><span class="p">[</span><span class="s1">'اسپیرمن'</span><span class="p">]</span> <span class="o">-</span> <span class="n">top_pairs</span><span class="p">[</span><span class="s1">'پیرسون'</span><span class="p">]</span>
+<span class="n">top_pairs</span> <span class="o">=</span> <span class="n">top_pairs</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">top_pairs</span><span class="p">[</span><span class="s1">'پیرسون'</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">top_pairs</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> — </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">top_pairs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'8.1'</span><span class="p">,</span> <span class="s1">'دوازده جفت متغیر با بیشترین قدرمطلق همبستگی پیرسون'</span><span class="p">,</span> <span class="n">top_pairs</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'پیرسون'</span><span class="p">:</span> <span class="s1">'ratio'</span><span class="p">,</span> <span class="s1">'اسپیرمن'</span><span class="p">:</span> <span class="s1">'ratio'</span><span class="p">,</span> <span class="s1">'اختلاف'</span><span class="p">:</span> <span class="s1">'ratio'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hourly_ready</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی دارای حقوق و ساعت'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'جفت متغیر'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'اختلاف مثبت قابل توجه یعنی رابطه رتبه‌ای قوی‌تر از رابطه خطی است (نشانه غیرخطی‌بودن).'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-8-1-8-2">
+  <button type="button" data-full="../../assets/img/fig_8_1-8_2.webp" data-caption="نمودار 8.1-8.2">
+    <img src="../../assets/img/fig_8_1-8_2-sm.webp" alt="نمودار 8.1-8.2" loading="lazy" decoding="async">
+  </button>
+  <figcaption>نمودار 8.1-8.2</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>جدول 8.1 | دوازده جفت متغیر با بیشترین قدرمطلق همبستگی پیرسون | 116,244 آگهی دارای حقوق و ساعت</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>پیرسون</th>
+<th>اسپیرمن</th>
+<th>اختلاف</th>
+</tr>
+<tr>
+<th>جفت متغیر</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>ساعت ماهانه — ساعت هفتگی</th>
+<td>1.000</td>
+<td>1.000</td>
+<td>0.000</td>
+</tr>
+<tr>
+<th>میانه حقوق — درآمد ساعتی</th>
+<td>0.633</td>
+<td>0.864</td>
+<td>0.231</td>
+</tr>
+<tr>
+<th>درآمد ساعتی — ساعت ماهانه</th>
+<td>-0.535</td>
+<td>-0.409</td>
+<td>0.127</td>
+</tr>
+<tr>
+<th>درآمد ساعتی — ساعت هفتگی</th>
+<td>-0.535</td>
+<td>-0.409</td>
+<td>0.127</td>
+</tr>
+<tr>
+<th>سابقه لازم — میانه سن</th>
+<td>0.398</td>
+<td>0.373</td>
+<td>-0.025</td>
+</tr>
+<tr>
+<th>میانه حقوق — سابقه لازم</th>
+<td>0.394</td>
+<td>0.376</td>
+<td>-0.018</td>
+</tr>
+<tr>
+<th>تعداد مزایا — اندازه شرکت</th>
+<td>0.311</td>
+<td>0.316</td>
+<td>0.005</td>
+</tr>
+<tr>
+<th>درآمد ساعتی — سابقه لازم</th>
+<td>0.216</td>
+<td>0.272</td>
+<td>0.055</td>
+</tr>
+<tr>
+<th>میانه حقوق — میانه سن</th>
+<td>0.212</td>
+<td>0.216</td>
+<td>0.004</td>
+</tr>
+<tr>
+<th>سابقه لازم — تعداد مهارت</th>
+<td>0.194</td>
+<td>0.245</td>
+<td>0.051</td>
+</tr>
+<tr>
+<th>میانه حقوق — تعداد مزایا</th>
+<td>0.148</td>
+<td>0.177</td>
+<td>0.029</td>
+</tr>
+<tr>
+<th>سابقه لازم — اندازه شرکت</th>
+<td>0.125</td>
+<td>0.166</td>
+<td>0.041</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>یادداشت:</span> اختلاف مثبت قابل توجه یعنی رابطه رتبه‌ای قوی‌تر از رابطه خطی است (نشانه غیرخطی‌بودن).</p>
+  
+</figure><p><strong>تفسیر نمودارهای ۸.۱ و ۸.۲ و جدول ۸.۱:</strong> قوی‌ترین رابطه، رابطه منفی ساعت هفتگی با درآمد ساعتی است (−۰٫۶۸) که تا حدی مکانیکی است: درآمد ساعتی از تقسیم حقوق بر ساعت ساخته می‌شود. مهم‌تر از آن، اختلاف پیرسون و اسپیرمن در جفت «حقوق–درآمد ساعتی» است (۰٫۴۴ در برابر ۰٫۶۹)؛ این اختلاف نشان می‌دهد رابطه این دو متغیر غیرخطی است و رتبه‌ها بیشتر از مقادیر خطی هم‌جهت‌اند.</p>
+<p>سابقه کار با حقوق ۰٫۴۰ همبستگی دارد؛ هیچ متغیری به‌تنهایی بیش از ۰٫۵ از تغییرات حقوق را توضیح نمی‌دهد. این خودش یک یافته است: حقوق یک متغیر تک‌عاملی نیست و ترکیبی از شغل، مهارت، جغرافیا، اندازه شرکت و سابقه است. به همین دلیل مدل چندمتغیره بخش ۱۶ لازم است.</p>
+<p><strong>تفسیر جدول ۸.۲:</strong> عامل تورم واریانس برای همه متغیرهای عددی زیر ۱٫۵ است؛ یعنی هم‌خطی چندگانه جدی وجود ندارد. این نتیجه کمی غیرشهودی است، چون معمولاً انتظار می‌رود سابقه و سن یا اندازه شرکت و تعداد مزایا هم‌پوشانی داشته باشند؛ اما در این داده همبستگی‌ها ملایم‌اند و هر متغیر اطلاعات نسبتاً مستقلی حمل می‌کند. بنابراین ضرایب مدل ریج در بخش ۱۶ قابل تفسیرند. محدودیت: این آزمون فقط روی متغیرهای عددی انجام شده و متغیرهای دسته‌ای را در بر نمی‌گیرد.</p><h2 class="guide-heading" id="sec-8-2">۸.۲. هم‌خطی چندگانه <a aria-label="link" class="anchor" href="#sec-8-2">#</a></h2>
+<div class="code-card">
+    <header><span>Python · 15 خط</span><button class="copy-btn" data-copy="from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+vif_cols = [&#x27;salary_mid&#x27;, &#x27;Jobpost_RequiredExperienceYears&#x27;, &#x27;age_mid&#x27;, &#x27;skill_count&#x27;, &#x27;benefit_count&#x27;,
+            &#x27;company_size_rank&#x27;, &#x27;company_age_rank&#x27;, &#x27;weekly_hours&#x27;]
+vif_source = hourly_ready[vif_cols].dropna()
+vif_matrix = np.column_stack([np.ones(len(vif_source)), vif_source.values])
+vif_values = [variance_inflation_factor(vif_matrix, position) for position in range(1, vif_matrix.shape[1])]
+vif_table = pd.DataFrame({&#x27;عامل تورم واریانس&#x27;: vif_values},
+                         index=[corr_map[name] for name in vif_cols]).sort_values(&#x27;عامل تورم واریانس&#x27;, ascending=False)
+vif_table[&#x27;وضعیت&#x27;] = np.select([vif_table[&#x27;عامل تورم واریانس&#x27;].ge(10), vif_table[&#x27;عامل تورم واریانس&#x27;].ge(5)],
+                               [&#x27;هم‌خطی شدید&#x27;, &#x27;هم‌خطی متوسط&#x27;], default=&#x27;قابل قبول&#x27;)
+show_table(&#x27;8.2&#x27;, &#x27;عامل تورم واریانس متغیرهای عددی&#x27;, vif_table,
+           formats={&#x27;عامل تورم واریانس&#x27;: &#x27;score&#x27;}, sample=f&#x27;{len(vif_source):,} آگهی کامل&#x27;,
+           period=False, index_name=&#x27;متغیر&#x27;,
+           note=&#x27;VIF بیش از ۵ نشانه هم‌خطی متوسط و بیش از ۱۰ نشانه هم‌خطی شدید است.&#x27;)" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.outliers_influence</span><span class="w"> </span><span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+
+<span class="n">vif_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'Jobpost_RequiredExperienceYears'</span><span class="p">,</span> <span class="s1">'age_mid'</span><span class="p">,</span> <span class="s1">'skill_count'</span><span class="p">,</span> <span class="s1">'benefit_count'</span><span class="p">,</span>
+            <span class="s1">'company_size_rank'</span><span class="p">,</span> <span class="s1">'company_age_rank'</span><span class="p">,</span> <span class="s1">'weekly_hours'</span><span class="p">]</span>
+<span class="n">vif_source</span> <span class="o">=</span> <span class="n">hourly_ready</span><span class="p">[</span><span class="n">vif_cols</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">vif_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vif_source</span><span class="p">)),</span> <span class="n">vif_source</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+<span class="n">vif_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">vif_matrix</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span> <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">vif_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+<span class="n">vif_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'عامل تورم واریانس'</span><span class="p">:</span> <span class="n">vif_values</span><span class="p">},</span>
+                         <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">corr_map</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">vif_cols</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'عامل تورم واریانس'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">vif_table</span><span class="p">[</span><span class="s1">'وضعیت'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">vif_table</span><span class="p">[</span><span class="s1">'عامل تورم واریانس'</span><span class="p">]</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">vif_table</span><span class="p">[</span><span class="s1">'عامل تورم واریانس'</span><span class="p">]</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="mi">5</span><span class="p">)],</span>
+                               <span class="p">[</span><span class="s1">'هم‌خطی شدید'</span><span class="p">,</span> <span class="s1">'هم‌خطی متوسط'</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">'قابل قبول'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'8.2'</span><span class="p">,</span> <span class="s1">'عامل تورم واریانس متغیرهای عددی'</span><span class="p">,</span> <span class="n">vif_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'عامل تورم واریانس'</span><span class="p">:</span> <span class="s1">'score'</span><span class="p">},</span> <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">vif_source</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی کامل'</span><span class="p">,</span>
+           <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'متغیر'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'VIF بیش از ۵ نشانه هم‌خطی متوسط و بیش از ۱۰ نشانه هم‌خطی شدید است.'</span><span class="p">)</span>
+</code></pre>
+  </div><figure class="guide-table" id="table-">
+  <figcaption>جدول 8.2 | عامل تورم واریانس متغیرهای عددی | 92,829 آگهی کامل</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>عامل تورم واریانس</th>
+<th>وضعیت</th>
+</tr>
+<tr>
+<th>متغیر</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>سابقه لازم</th>
+<td>1.46</td>
+<td>قابل قبول</td>
+</tr>
+<tr>
+<th>میانه حقوق</th>
+<td>1.26</td>
+<td>قابل قبول</td>
+</tr>
+<tr>
+<th>میانه سن</th>
+<td>1.20</td>
+<td>قابل قبول</td>
+</tr>
+<tr>
+<th>تعداد مزایا</th>
+<td>1.14</td>
+<td>قابل قبول</td>
+</tr>
+<tr>
+<th>اندازه شرکت</th>
+<td>1.14</td>
+<td>قابل قبول</td>
+</tr>
+<tr>
+<th>تعداد مهارت</th>
+<td>1.06</td>
+<td>قابل قبول</td>
+</tr>
+<tr>
+<th>قدمت شرکت</th>
+<td>1.02</td>
+<td>قابل قبول</td>
+</tr>
+<tr>
+<th>ساعت هفتگی</th>
+<td>1.01</td>
+<td>قابل قبول</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>یادداشت:</span> VIF بیش از ۵ نشانه هم‌خطی متوسط و بیش از ۱۰ نشانه هم‌خطی شدید است.</p>
+  
+</figure><h2 class="guide-heading" id="sec-8-3">۸.۳. روابط غیرخطی: بازده نزولی سابقه و سن <a aria-label="link" class="anchor" href="#sec-8-3">#</a></h2>
+<details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>29 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="experience_series = ads.loc[ads.salary_disclosed].groupby(&#x27;Jobpost_RequiredExperienceYears&#x27;).agg(
+    **{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;), &#x27;میانه حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;median&#x27;)})
+experience_series = experience_series.loc[experience_series[&#x27;تعداد آگهی&#x27;].ge(MIN_N)]
+
+age_series = paid.groupby(pd.cut(paid.age_mid, bins=range(18, 46, 2)), observed=True).agg(
+    **{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;), &#x27;میانه حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;median&#x27;)})
+age_series = age_series.loc[age_series[&#x27;تعداد آگهی&#x27;].ge(MIN_N)]
+
+fig, axes = plt.subplots(1, 2, figsize=(13.5, 4.6))
+ax = axes[0]
+ax.plot(experience_series.index, experience_series[&#x27;میانه حقوق&#x27;], marker=&#x27;o&#x27;, color=TEAL, linewidth=1.8)
+for x, y, n in zip(experience_series.index, experience_series[&#x27;میانه حقوق&#x27;], experience_series[&#x27;تعداد آگهی&#x27;]):
+    ax.annotate(f&#x27;{y:.1f}&#x27;, (x, y), textcoords=&#x27;offset points&#x27;, xytext=(0, 7), ha=&#x27;center&#x27;, fontsize=7.5)
+ax.set_xlabel(fa(&#x27;سال سابقه کار درخواستی&#x27;))
+ax.set_ylabel(fa(&#x27;میانه حقوق (میلیون تومان)&#x27;))
+ax.set_xticks(list(experience_series.index))
+heading(ax, &#x27;۸.۳&#x27;, &#x27;میانه حقوق بر پایه سابقه درخواستی&#x27;)
+ax = axes[1]
+ax.plot([interval.mid for interval in age_series.index], age_series[&#x27;میانه حقوق&#x27;],
+        marker=&#x27;o&#x27;, color=GOLD, linewidth=1.8)
+ax.set_xlabel(fa(&#x27;میانه بازه سنی درخواستی (سال)&#x27;))
+ax.set_ylabel(fa(&#x27;میانه حقوق (میلیون تومان)&#x27;))
+heading(ax, &#x27;۸.۴&#x27;, &#x27;میانه حقوق بر پایه سن درخواستی&#x27;)
+complete(&#x27;8.3-8.4&#x27;)
+
+show_table(&#x27;8.3&#x27;, &#x27;میانه حقوق به تفکیک سابقه درخواستی&#x27;, experience_series,
+           formats={&#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;میانه حقوق&#x27;: &#x27;money&#x27;},
+           sample=f&#x27;{int(experience_series[&quot;تعداد آگهی&quot;].sum()):,} آگهی با حقوق&#x27;, index_name=&#x27;سال سابقه&#x27;,
+           note=f&#x27;فقط سال‌هایی که دست‌کم {MIN_N} آگهی دارند نشان داده شده‌اند.&#x27;)" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="n">experience_series</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ads</span><span class="o">.</span><span class="n">salary_disclosed</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Jobpost_RequiredExperienceYears'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">)})</span>
+<span class="n">experience_series</span> <span class="o">=</span> <span class="n">experience_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">experience_series</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="n">MIN_N</span><span class="p">)]</span>
+
+<span class="n">age_series</span> <span class="o">=</span> <span class="n">paid</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">paid</span><span class="o">.</span><span class="n">age_mid</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">)})</span>
+<span class="n">age_series</span> <span class="o">=</span> <span class="n">age_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">age_series</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="n">MIN_N</span><span class="p">)]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">13.5</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">experience_series</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">experience_series</span><span class="p">[</span><span class="s1">'میانه حقوق'</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">experience_series</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">experience_series</span><span class="p">[</span><span class="s1">'میانه حقوق'</span><span class="p">],</span> <span class="n">experience_series</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">'offset points'</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'سال سابقه کار درخواستی'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'میانه حقوق (میلیون تومان)'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">experience_series</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۸.۳'</span><span class="p">,</span> <span class="s1">'میانه حقوق بر پایه سابقه درخواستی'</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">interval</span><span class="o">.</span><span class="n">mid</span> <span class="k">for</span> <span class="n">interval</span> <span class="ow">in</span> <span class="n">age_series</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">age_series</span><span class="p">[</span><span class="s1">'میانه حقوق'</span><span class="p">],</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GOLD</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'میانه بازه سنی درخواستی (سال)'</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fa</span><span class="p">(</span><span class="s1">'میانه حقوق (میلیون تومان)'</span><span class="p">))</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۸.۴'</span><span class="p">,</span> <span class="s1">'میانه حقوق بر پایه سن درخواستی'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'8.3-8.4'</span><span class="p">)</span>
+
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'8.3'</span><span class="p">,</span> <span class="s1">'میانه حقوق به تفکیک سابقه درخواستی'</span><span class="p">,</span> <span class="n">experience_series</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">experience_series</span><span class="p">[</span><span class="s2">"تعداد آگهی"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی با حقوق'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'سال سابقه'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="sa">f</span><span class="s1">'فقط سال‌هایی که دست‌کم </span><span class="si">{</span><span class="n">MIN_N</span><span class="si">}</span><span class="s1"> آگهی دارند نشان داده شده‌اند.'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-8-3-8-4">
+  <button type="button" data-full="../../assets/img/fig_8_3-8_4.webp" data-caption="نمودار 8.3-8.4">
+    <img src="../../assets/img/fig_8_3-8_4-sm.webp" alt="نمودار 8.3-8.4" loading="lazy" decoding="async">
+  </button>
+  <figcaption>نمودار 8.3-8.4</figcaption>
+</figure><figure class="guide-table" id="table-">
+  <figcaption>جدول 8.3 | میانه حقوق به تفکیک سابقه درخواستی | 119,019 آگهی با حقوق | فروردین ۱۴۰۱ تا بهمن ۱۴۰۲</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>تعداد آگهی</th>
+<th>میانه حقوق</th>
+</tr>
+<tr>
+<th>سال سابقه</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>25,433</td>
+<td>9.0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>29,783</td>
+<td>11.0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>28,879</td>
+<td>11.0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>19,674</td>
+<td>13.5</td>
+</tr>
+<tr>
+<th>4</th>
+<td>4,242</td>
+<td>17.5</td>
+</tr>
+<tr>
+<th>5</th>
+<td>7,406</td>
+<td>17.5</td>
+</tr>
+<tr>
+<th>6</th>
+<td>734</td>
+<td>17.5</td>
+</tr>
+<tr>
+<th>7</th>
+<td>884</td>
+<td>22.5</td>
+</tr>
+<tr>
+<th>8</th>
+<td>591</td>
+<td>22.5</td>
+</tr>
+<tr>
+<th>9</th>
+<td>40</td>
+<td>22.5</td>
+</tr>
+<tr>
+<th>10</th>
+<td>1,183</td>
+<td>22.5</td>
+</tr>
+<tr>
+<th>12</th>
+<td>51</td>
+<td>30.0</td>
+</tr>
+<tr>
+<th>15</th>
+<td>119</td>
+<td>30.0</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>یادداشت:</span> فقط سال‌هایی که دست‌کم 30 آگهی دارند نشان داده شده‌اند.</p>
+  
+</figure><p><strong>تفسیر نمودارهای ۸.۳ و ۸.۴ و جدول ۸.۳:</strong> منحنی سابقه، الگوی «بازده نزولی» را به‌وضوح نشان می‌دهد. میانه حقوق از ۹ میلیون در آگهی‌های بدون سابقه به ۱۱ میلیون در ۱ تا ۲ سال، ۱۳٫۵ میلیون در ۳ سال، ۱۷٫۵ میلیون در ۴ تا ۶ سال و ۲۲٫۵ میلیون در ۷ سال و بالاتر می‌رسد. جهش اصلی در سال‌های ۱، ۳ و ۴ رخ می‌دهد و بین ۴ تا ۶ سال تقریباً تخت می‌شود؛ یعنی بعد از پنج سال، هر سال سابقه به‌تنهایی ارزش افزوده چشمگیری نمی‌سازد و ارزش بیشتر به نوع نقش و مهارت وابسته است.</p>
+<p>منحنی سن هم صعودی اما کم‌شیب است: میانه از ۹ میلیون در بازه ۲۲ تا ۲۸ سال به ۱۱ میلیون در ۲۸ تا ۳۴ سال و ۱۳٫۵ میلیون در ۳۴ تا ۴۰ سال می‌رسد. در بازه‌های بالای ۴۰ سال میانه به ۱۷٫۵ و ۲۲٫۵ میلیون می‌رسد، اما نمونه این بازه‌ها کوچک است و نباید به‌عنوان «اوج درآمدی» قطعی خوانده شود؛ تحلیل دقیق‌تر در بخش ۱۳ با تفکیک صنعت می‌آید.</p>
+<p>نکته مهم برای مدیریت: اگر آگهی «۳ سال سابقه» می‌خواهد، تفاوت دستمزدی با «بدون سابقه» حدود ۵۰٪ است؛ اما اگر همان نقش را با ۵ سال سابقه بخواهید، تقریباً همان سطح حقوق ۳ سال را باید بپردازید. این یعنی <strong>شرط سابقه بیش از ۳ سال، در بیشتر مشاغل ارزش پرداختی اضافه‌ای ایجاد نمی‌کند</strong>.</p>
+<p class="guide-source">آخرین بازسازی از نوتبوک · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">نوتبوک در گیت‌هاب</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">اجرا در Colab</a></p>
+<nav class="guide-pager"><a class="prev" href="../07-distributions-and-outliers/"><span>قبلی</span><b>تحلیل توزیع‌ها، چولگی و پرت‌ها</b></a><a class="next" href="../09-salary-disclosure/"><span>بعدی</span><b>سازوکار گمشدگی حقوق: تصادفی یا وابسته؟</b></a></nav>
+  </main>
+  <aside class="guide-aside" aria-label="در این صفحه">
+    <p class="aside-title">در این صفحه</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-8-1">۸.۱. ماتریس همبستگی پیرسون و اسپیرمن</a></li><li class="lvl-h2"><a href="#sec-8-2">۸.۲. هم‌خطی چندگانه</a></li><li class="lvl-h2"><a href="#sec-8-3">۸.۳. روابط غیرخطی: بازده نزولی سابقه و سن</a></li></ul>
+  </aside>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" aria-label="close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="جست‌وجو در راهنما…">
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="جست‌وجو در راهنما…" autocomplete="off">
+    <p class="hint">برای جست‌وجو تایپ کنید؛ Esc برای بستن</p>
+    <ul id="searchResults"></ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>این راهنما از اجرای نوتبوک پروژه ساخته شده است؛ هر عدد قابل بازتولید است.</p>
+      <p><a href="https://github.com/arashalidadi/jobvision-labor-market">GitHub</a> · <a href="../../index.html">صفحه اصلی</a> · <a href="https://arashalidadi.github.io/jobvision-labor-market/guide/">فهرست راهنما</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+<script src="../../assets/js/guide.js" data-index="../search.json" data-ui-search="جست‌وجو در راهنما…"></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>۲۴. کنترل محاسبات و بازتولید — JobVision راهنما</title>
+<meta name="description" content="۲۴. کنترل محاسبات و بازتولید">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/guide/24-reproducibility-checks/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/24-reproducibility-checks/">
+<link rel="alternate" hreflang="en" href="../../en/guide/24-reproducibility-checks/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="۲۴. کنترل محاسبات و بازتولید — JobVision راهنما">
+<meta property="og:description" content="۲۴. کنترل محاسبات و بازتولید">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/guide/24-reproducibility-checks/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pygments.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "۲۴. کنترل محاسبات و بازتولید — JobVision راهنما",
+  "description": "۲۴. کنترل محاسبات و بازتولید",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/guide/24-reproducibility-checks/",
+  "inLanguage": "fa",
+  "author": {
+    "@type": "Person",
+    "name": "Arash Alidadi"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "JobVision Labor Market",
+    "url": "https://arashalidadi.github.io/jobvision-labor-market"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+}
+</script>
+</head>
+<body class="guide-page">
+<a class="skip-link" href="#main">Skip</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../index.html" aria-label="JobVision Labor Market">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="../../index.html#problem">صفحه اصلی</a>
+      <a href="../../index.html#findings">یافته‌ها</a>
+      <a href="../../index.html#visuals">نمودارها</a>
+      <a href="../../index.html#playbook">بسته اجرایی</a>
+      <a class="active" href="../">مستندات</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <span class="on" aria-current="true">FA</span><span class="off" title="EN">EN</span>
+      </div>
+      <button class="guide-search-btn" type="button" aria-label="جست‌وجو در راهنما…">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>جست‌وجو در راهنما</span>
+      </button>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="guide-shell">
+  <aside class="guide-side" id="guideSide" aria-label="فهرست بخش‌ها">
+    <div class="guide-side-head">
+  <a class="guide-back" href="../">← فهرست راهنما</a>
+  <p class="guide-side-title">فهرست مطالب</p>
+</div>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>معرفی پروژه و پرسش‌های راهبردی</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>داده، فرهنگ داده و قواعد تحلیل</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>ابزارها، توابع کمکی و بارگذاری داده</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>شناخت داده و کیفیت</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>پاک‌سازی و ساخت لایه تحلیل</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>مهندسی ویژگی</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>تحلیل توزیع‌ها، چولگی و پرت‌ها</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>همبستگی، هم‌خطی و روابط غیرخطی</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>سازوکار گمشدگی حقوق: تصادفی یا وابسته؟</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>روند زمانی، فصلی‌بودن و پویایی دستمزد</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>ترجیح جنسیت، فرصت شغلی و دستمزد</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>ارزش تحصیلات در برابر سابقه کار</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>نقطه اوج درآمدی بر اساس سن</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>تحلیل جغرافیایی و تمرکز استانی</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>ایران در آینه بازار کار جهانی (۲۰۲۲–۲۰۲۴)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>مدل‌سازی حقوق و تغییر اهمیت ویژگی‌ها در زمان</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>خوشه‌بندی عناوین شغلی بر پایه مهارت و تحصیلات</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>صنعت × دسته شغلی: هر صنعت چه تخصصی می‌خواهد؟</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>تحول مهارت‌ها و جهش عناوین شغلی</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>پروفایل‌سازی و خوشه‌بندی کارفرمایان [امتیازی]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>شبکه هم‌رخدادی مهارت‌ها [امتیازی]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>بسته پیشنهادی برای مدیر کسب‌وکار</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>جمع‌بندی، داشبورد و یافته‌های کلیدی</span></a></li><li><a class="guide-nav-link is-active" href="../24-reproducibility-checks/"><span class="n">24</span><span>کنترل محاسبات و بازتولید</span></a></li></ul>
+  </aside>
+  <main class="guide-main" id="main">
+    <nav class="guide-crumbs"><a href="../../index.html">صفحه اصلی</a> <span>/</span> <a href="../">مستندات</a> <span>/</span> <span>بخش 24</span></nav>
+<h1>۲۴. کنترل محاسبات و بازتولید</h1>
+<p class="guide-meta">1 دقیقه مطالعه · 1 جدول · 1 سلول کد</p>
+<details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>39 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="checks = [
+    (&#x27;تعداد آگهی دوره&#x27;, len(ads) == 360_083, f&#x27;{len(ads):,}&#x27;),
+    (&#x27;تعداد ماه کامل&#x27;, ads.release_month.nunique() == 23, f&#x27;{ads.release_month.nunique()}&#x27;),
+    (&#x27;یکتایی شناسه&#x27;, bool(ads.ad_id.is_unique), f&#x27;{ads.ad_id.nunique():,}&#x27;),
+    (&#x27;مجموع ماهانه = کل&#x27;, int(monthly_trend[&#x27;تعداد آگهی&#x27;].sum()) == len(ads),
+     f&#x27;{int(monthly_trend[&quot;تعداد آگهی&quot;].sum()):,}&#x27;),
+    (&#x27;حقوق مثبت&#x27;, bool((ads.salary_mid.dropna() &gt; 0).all()), &#x27;همه مقادیر&#x27;),
+    (&#x27;حداقل ≤ حداکثر حقوق&#x27;, bool(ads.dropna(subset=[&#x27;salary_min&#x27;, &#x27;salary_max&#x27;])
+                                  .eval(&#x27;salary_min &lt;= salary_max&#x27;).all()), &#x27;همه مقادیر&#x27;),
+    (&#x27;ساعت هفتگی در بازه ۸ تا ۸۴&#x27;, bool(ads.weekly_hours.dropna().between(8, 84).all()),
+     f&#x27;{int(ads.weekly_hours.notna().sum()):,} مقدار&#x27;),
+    (&#x27;سهم ترجیح جنسیت = ۱۰۰٪&#x27;, abs(gender_table[&#x27;سهم&#x27;].sum() - 100) &lt; 0.01,
+     f&#x27;{gender_table[&quot;سهم&quot;].sum():.1f}٪&#x27;),
+    (&#x27;سهم مقاطع = ۱۰۰٪&#x27;, abs(degree_table[&#x27;سهم&#x27;].sum() - 100) &lt; 0.01,
+     f&#x27;{degree_table[&quot;سهم&quot;].sum():.1f}٪&#x27;),
+    (&#x27;سهم دسته‌ها = ۱۰۰٪&#x27;,
+     abs(category_year.loc[category_year.jyear.eq(1402), &#x27;سهم&#x27;].sum() - 100) &lt; 0.01,
+     f&#x27;{category_year.loc[category_year.jyear.eq(1402), &quot;سهم&quot;].sum():.1f}٪&#x27;),
+    (&#x27;پیش‌بینی مدل = تعداد آگهی سال&#x27;, len(models[1402][&#x27;prediction&#x27;]) == len(year_frames[1402]),
+     f&#x27;{len(models[1402][&quot;prediction&quot;]):,}&#x27;),
+    (&#x27;جمع آگهی خوشه‌ها = آگهی عنوان‌دار&#x27;, int(cluster_profile[&#x27;تعداد آگهی&#x27;].sum()) == int(title_ads.sum()),
+     f&#x27;{int(cluster_profile[&quot;تعداد آگهی&quot;].sum()):,}&#x27;),
+    (&#x27;نرخ افشای حقوق در بازه منطقی&#x27;, 0.30 &lt;= ads.salary_disclosed.mean() &lt;= 0.36,
+     f&#x27;{ads.salary_disclosed.mean() * 100:.1f}٪&#x27;),
+    (&#x27;همه آگهی‌ها داخل دوره&#x27;, bool(ads.release_month.between(PERIOD_START, PERIOD_END).all()), &#x27;۱۲/۱۲&#x27;),
+]
+check_table = pd.DataFrame([{&#x27;بررسی&#x27;: name, &#x27;نتیجه&#x27;: &#x27;✓&#x27; if passed else &#x27;✗&#x27;, &#x27;جزئیات&#x27;: detail}
+                            for name, passed, detail in checks]).set_index(&#x27;بررسی&#x27;)
+show_table(&#x27;24.1&#x27;, &#x27;کنترل محاسبات کلیدی&#x27;, check_table, sample=&#x27;اجرای نهایی&#x27;, period=False,
+           index_name=&#x27;بررسی&#x27;)
+failed = [name for name, passed, _ in checks if not passed]
+print(&#x27;همه کنترل‌ها موفق بود.&#x27; if not failed else f&#x27;کنترل‌های ناموفق: {failed}&#x27;)
+
+show_metrics(&#x27;بازتولید&#x27;, [
+    (&#x27;نسخه پایتون&#x27;, f&#x27;{__import__(&quot;sys&quot;).version_info.major}.{__import__(&quot;sys&quot;).version_info.minor}&#x27;),
+    (&#x27;دانه تصادفی&#x27;, str(RANDOM_STATE)),
+    (&#x27;تعداد جدول&#x27;, &#x27;بیش از ۹۰&#x27;),
+    (&#x27;تعداد نمودار&#x27;, f&#x27;{len(list(FIG_DIR.glob(&quot;*.png&quot;)))} فایل ذخیره‌شده&#x27;),
+])" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="n">checks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'تعداد آگهی دوره'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span> <span class="o">==</span> <span class="mi">360_083</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'تعداد ماه کامل'</span><span class="p">,</span> <span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">23</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'یکتایی شناسه'</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">ad_id</span><span class="o">.</span><span class="n">is_unique</span><span class="p">),</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">ad_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'مجموع ماهانه = کل'</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">monthly_trend</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">),</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">monthly_trend</span><span class="p">[</span><span class="s2">"تعداد آگهی"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'حقوق مثبت'</span><span class="p">,</span> <span class="nb">bool</span><span class="p">((</span><span class="n">ads</span><span class="o">.</span><span class="n">salary_mid</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()),</span> <span class="s1">'همه مقادیر'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'حداقل ≤ حداکثر حقوق'</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'salary_min'</span><span class="p">,</span> <span class="s1">'salary_max'</span><span class="p">])</span>
+                                  <span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">'salary_min &lt;= salary_max'</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()),</span> <span class="s1">'همه مقادیر'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'ساعت هفتگی در بازه ۸ تا ۸۴'</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">weekly_hours</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">84</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()),</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">weekly_hours</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> مقدار'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'سهم ترجیح جنسیت = ۱۰۰٪'</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">gender_table</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">gender_table</span><span class="p">[</span><span class="s2">"سهم"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'سهم مقاطع = ۱۰۰٪'</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">degree_table</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">degree_table</span><span class="p">[</span><span class="s2">"سهم"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'سهم دسته‌ها = ۱۰۰٪'</span><span class="p">,</span>
+     <span class="nb">abs</span><span class="p">(</span><span class="n">category_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">category_year</span><span class="o">.</span><span class="n">jyear</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1402</span><span class="p">),</span> <span class="s1">'سهم'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">category_year</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">category_year</span><span class="o">.</span><span class="n">jyear</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1402</span><span class="p">),</span><span class="w"> </span><span class="s2">"سهم"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'پیش‌بینی مدل = تعداد آگهی سال'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">1402</span><span class="p">][</span><span class="s1">'prediction'</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">year_frames</span><span class="p">[</span><span class="mi">1402</span><span class="p">]),</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">1402</span><span class="p">][</span><span class="s2">"prediction"</span><span class="p">])</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'جمع آگهی خوشه‌ها = آگهی عنوان‌دار'</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">cluster_profile</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">title_ads</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">cluster_profile</span><span class="p">[</span><span class="s2">"تعداد آگهی"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'نرخ افشای حقوق در بازه منطقی'</span><span class="p">,</span> <span class="mf">0.30</span> <span class="o">&lt;=</span> <span class="n">ads</span><span class="o">.</span><span class="n">salary_disclosed</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mf">0.36</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">salary_disclosed</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'همه آگهی‌ها داخل دوره'</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">PERIOD_START</span><span class="p">,</span> <span class="n">PERIOD_END</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()),</span> <span class="s1">'۱۲/۱۲'</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">check_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s1">'بررسی'</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">'نتیجه'</span><span class="p">:</span> <span class="s1">'✓'</span> <span class="k">if</span> <span class="n">passed</span> <span class="k">else</span> <span class="s1">'✗'</span><span class="p">,</span> <span class="s1">'جزئیات'</span><span class="p">:</span> <span class="n">detail</span><span class="p">}</span>
+                            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">passed</span><span class="p">,</span> <span class="n">detail</span> <span class="ow">in</span> <span class="n">checks</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'بررسی'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'24.1'</span><span class="p">,</span> <span class="s1">'کنترل محاسبات کلیدی'</span><span class="p">,</span> <span class="n">check_table</span><span class="p">,</span> <span class="n">sample</span><span class="o">=</span><span class="s1">'اجرای نهایی'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+           <span class="n">index_name</span><span class="o">=</span><span class="s1">'بررسی'</span><span class="p">)</span>
+<span class="n">failed</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">passed</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">checks</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">passed</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'همه کنترل‌ها موفق بود.'</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">failed</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">'کنترل‌های ناموفق: </span><span class="si">{</span><span class="n">failed</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'بازتولید'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'نسخه پایتون'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">__import__</span><span class="p">(</span><span class="s2">"sys"</span><span class="p">)</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">major</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="nb">__import__</span><span class="p">(</span><span class="s2">"sys"</span><span class="p">)</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">minor</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'دانه تصادفی'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'تعداد جدول'</span><span class="p">,</span> <span class="s1">'بیش از ۹۰'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'تعداد نمودار'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">FIG_DIR</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"*.png"</span><span class="p">)))</span><span class="si">}</span><span class="s1"> فایل ذخیره‌شده'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>جدول 24.1 | کنترل محاسبات کلیدی | اجرای نهایی</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>نتیجه</th>
+<th>جزئیات</th>
+</tr>
+<tr>
+<th>بررسی</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>تعداد آگهی دوره</th>
+<td>✓</td>
+<td>360,083</td>
+</tr>
+<tr>
+<th>تعداد ماه کامل</th>
+<td>✓</td>
+<td>23</td>
+</tr>
+<tr>
+<th>یکتایی شناسه</th>
+<td>✓</td>
+<td>360,083</td>
+</tr>
+<tr>
+<th>مجموع ماهانه = کل</th>
+<td>✓</td>
+<td>360,083</td>
+</tr>
+<tr>
+<th>حقوق مثبت</th>
+<td>✓</td>
+<td>همه مقادیر</td>
+</tr>
+<tr>
+<th>حداقل ≤ حداکثر حقوق</th>
+<td>✓</td>
+<td>همه مقادیر</td>
+</tr>
+<tr>
+<th>ساعت هفتگی در بازه ۸ تا ۸۴</th>
+<td>✓</td>
+<td>351,523 مقدار</td>
+</tr>
+<tr>
+<th>سهم ترجیح جنسیت = ۱۰۰٪</th>
+<td>✓</td>
+<td>100.0٪</td>
+</tr>
+<tr>
+<th>سهم مقاطع = ۱۰۰٪</th>
+<td>✓</td>
+<td>100.0٪</td>
+</tr>
+<tr>
+<th>سهم دسته‌ها = ۱۰۰٪</th>
+<td>✓</td>
+<td>100.0٪</td>
+</tr>
+<tr>
+<th>پیش‌بینی مدل = تعداد آگهی سال</th>
+<td>✓</td>
+<td>71,361</td>
+</tr>
+<tr>
+<th>جمع آگهی خوشه‌ها = آگهی عنوان‌دار</th>
+<td>✓</td>
+<td>254,451</td>
+</tr>
+<tr>
+<th>نرخ افشای حقوق در بازه منطقی</th>
+<td>✓</td>
+<td>33.1٪</td>
+</tr>
+<tr>
+<th>همه آگهی‌ها داخل دوره</th>
+<td>✓</td>
+<td>۱۲/۱۲</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><pre class="out-text">همه کنترل‌ها موفق بود.</pre><div class="guide-metrics">
+  <p class="m-title">عددهای کلیدی بازتولید</p>
+  <ul><li>نسخه پایتون: 3.12</li><li>دانه تصادفی: 42</li><li>تعداد جدول: بیش از ۹۰</li><li>تعداد نمودار: 35 فایل ذخیره‌شده</li></ul>
+</div>
+<p class="guide-source">آخرین بازسازی از نوتبوک · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">نوتبوک در گیت‌هاب</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">اجرا در Colab</a></p>
+<nav class="guide-pager"><a class="prev" href="../23-conclusions-and-dashboard/"><span>قبلی</span><b>جمع‌بندی، داشبورد و یافته‌های کلیدی</b></a></nav>
+  </main>
+  <aside class="guide-aside" aria-label="در این صفحه">
+    
+  </aside>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" aria-label="close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="جست‌وجو در راهنما…">
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="جست‌وجو در راهنما…" autocomplete="off">
+    <p class="hint">برای جست‌وجو تایپ کنید؛ Esc برای بستن</p>
+    <ul id="searchResults"></ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>این راهنما از اجرای نوتبوک پروژه ساخته شده است؛ هر عدد قابل بازتولید است.</p>
+      <p><a href="https://github.com/arashalidadi/jobvision-labor-market">GitHub</a> · <a href="../../index.html">صفحه اصلی</a> · <a href="https://arashalidadi.github.io/jobvision-labor-market/guide/">فهرست راهنما</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+<script src="../../assets/js/guide.js" data-index="../search.json" data-ui-search="جست‌وجو در راهنما…"></script>
+</body>
+</html>
