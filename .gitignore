@@ -18,6 +18,6 @@ Thumbs.db
 
 # --- خروجی‌های سنگین و بازتولیدپذیر ---
 /outputs/cache/
-/outputs/final_report.html
+/reports/*.html
 *.pkl
 *.joblib
