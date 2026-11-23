@@ -21,3 +21,6 @@ Thumbs.db
 /reports/*.html
 *.pkl
 *.joblib
+
+# --- دارایی‌های موقت بازسازی سایت (خروجی نهایی در docs/assets/ نگه‌داری می‌شود) ---
+docs/assets/img/*.tmp

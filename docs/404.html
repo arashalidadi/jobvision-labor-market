@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>صفحه پیدا نشد — تحلیل بازار کار ایران</title>
+<meta name="robots" content="noindex">
+<!-- Self-contained: styles are inline so the page works at any path depth. -->
+<style>
+  :root {
+    --ink: #12211f; --muted: #5d716e; --canvas: #f6f8f7; --paper: #fff;
+    --teal-900: #0b3d39; --teal-700: #0f766e; --teal-100: #d9ece9;
+    --line: #cddad7; --shadow: 0 10px 30px rgba(10,48,44,.09);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: radial-gradient(1200px 600px at 50% -10%, #e7f2f0 0%, var(--canvas) 55%, var(--canvas) 100%);
+    color: var(--ink); font-family: "Vazirmatn", system-ui, sans-serif;
+    padding: clamp(20px, 6vw, 72px); text-align: center; line-height: 1.8;
+  }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 22px;
+    box-shadow: var(--shadow); padding: clamp(26px, 5vw, 54px); max-width: 640px;
+  }
+  .code { font-family: ui-monospace, monospace; font-size: clamp(4.5rem, 16vw, 9rem); font-weight: 800; line-height: .9; letter-spacing: -.05em; color: var(--teal-100); margin: 0; }
+  h1 { margin: .25em 0 .4em; font-size: clamp(1.35rem, 3.2vw, 2rem); line-height: 1.5; }
+  p { color: var(--muted); margin: 0 auto 1.5rem; max-width: 44ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: .65rem; justify-content: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem; padding: .72rem 1.25rem;
+    border-radius: 12px; border: 1px solid var(--line); color: var(--teal-900);
+    text-decoration: none; font-weight: 700; font-size: .95rem; transition: .2s ease;
+  }
+  .btn.primary { background: var(--teal-900); border-color: var(--teal-900); color: #fff; }
+  .btn:hover { transform: translateY(-1px); border-color: var(--teal-700); }
+  .btn.primary:hover { background: var(--teal-700); }
+  .en { direction: ltr; font-family: ui-sans-serif, system-ui, sans-serif; font-size: .9rem; margin: 2rem 0 0; }
+  .en a { color: var(--teal-700); }
+</style>
+</head>
+<body>
+  <main class="card">
+    <p class="code" aria-hidden="true">404</p>
+    <h1>این نشانی روی سایت وجود ندارد</h1>
+    <p>ممکن است پیوند قدیمی باشد یا نشانی با خطای تایپی وارد شده باشد. از صفحه اصلی می‌توانید به یافته‌های کلیدی، نمودارها و بسته اجرایی برسید.</p>
+    <div class="actions">
+      <a class="btn primary" data-home href="./">بازگشت به صفحه اصلی</a>
+      <a class="btn" data-charts href="./#visuals">دیدن نمودارها</a>
+      <a class="btn" href="https://github.com/arashalidadi/jobvision-labor-market">مخزن در GitHub</a>
+    </div>
+    <p class="en">This page does not exist. <a data-en href="./en/">Go to the English site →</a></p>
+  </main>
+  <script>
+    /* GitHub Pages serves this file for any missing path, so every URL is rebuilt
+       against the site root instead of the (missing) requested path. */
+    (function () {
+      var marker = "/jobvision-labor-market/";
+      var path = location.pathname;
+      var base = path.indexOf(marker) === 0 ? marker : "/";
+      var style = document.createElement("style");
+      style.textContent = '@font-face{font-family:"Vazirmatn";src:url("' + base +
+        'assets/fonts/Vazirmatn-var.woff2") format("woff2-variations");font-weight:100 900;font-display:swap}' +
+        'body{font-family:"Vazirmatn",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}';
+      document.head.appendChild(style);
+      document.querySelectorAll("[data-home]").forEach(function (a) { a.href = base; });
+      document.querySelectorAll("[data-charts]").forEach(function (a) { a.href = base + "#visuals"; });
+      document.querySelectorAll("[data-en]").forEach(function (a) { a.href = base + "en/"; });
+    })();
+  </script>
+</body>
+</html>

@@ -2,10 +2,14 @@
 
 **از داده خام تا تصمیم مدیریتی: حقوق، مهارت، جغرافیا و رقابت در بازار کار ۱۴۰۱–۱۴۰۲**
 
+[![Website](https://img.shields.io/badge/🌐_Project_site-فارسی_·_English-0f766e)](https://arashalidadi.github.io/jobvision-labor-market/)
+[![Colab](https://img.shields.io/badge/▶_Run_on-Colab-F9AB00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb)
 [![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)](jobvision_analysis.ipynb)
 [![Data](https://img.shields.io/badge/Data-Hugging%20Face-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/JobVision/JobVision_Jobposts_Dataset)
 [![License](https://img.shields.io/badge/Dataset%20License-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+**نسخه وب پروژه (دامنه مستقل ندارد؛ روی GitHub Pages میزبانی می‌شود):** [فارسی](https://arashalidadi.github.io/jobvision-labor-market/) · [English](https://arashalidadi.github.io/jobvision-labor-market/en/)
 
 ---
 
@@ -30,26 +34,33 @@
 | واحد حقوق | میلیون تومان در ماه |
 | مجوز | CC BY-NC 4.0 (پژوهشی/غیرتجاری با ذکر منبع) |
 
-فایل خام به دلیل حجم در مخزن قرار نمی‌گیرد؛ مسیر و روش دریافت آن در [`JobVision-data/README.md`](JobVision-data/README.md) و کارت رسمی داده در [`docs/dataset-card.md`](docs/dataset-card.md) آمده است. متن کامل صورت پروژه نیز در [`docs/project-brief.md`](docs/project-brief.md) نگه‌داری می‌شود.
+فایل خام به دلیل حجم در مخزن قرار نمی‌گیرد؛ مسیر و روش دریافت آن در [`JobVision-data/README.md`](JobVision-data/README.md) و کارت رسمی داده در [`docs/dataset-card.md`](docs/dataset-card.md) آمده است. متن کامل صورت پروژه نیز در [`docs/project-brief.md`](docs/project-brief.md) نگه‌داری می‌شود و نسخه خوانا و دو‌زبانه آن روی [سایت پروژه](https://arashalidadi.github.io/jobvision-labor-market/) قابل مشاهده است.
 
 ## ۳. ساختار پروژه
 
 ```text
 JobVision/
 ├── jobvision_analysis.ipynb      # نوت‌بوک اصلی تحلیل (فارسی، مرحله‌به‌مرحله)
-├── JobVision-data/               # داده خام (در گیت نادیده گرفته می‌شود)
-│   └── README.md                 # روش دریافت داده
-├── docs/
+├── notebooks/
+│   └── jobvision_colab.ipynb     # همان نوت‌بوک، با دو سلول تنظیم برای Colab
+├── docs/                         # سایت پروژه (GitHub Pages، فارسی + English)
+│   ├── index.html                # نسخه فارسی
+│   ├── en/index.html             # نسخه انگلیسی
+│   ├── assets/                   # فونت، CSS، JS و تصاویر بهینه‌شده
 │   ├── project-brief.md          # صورت پروژه و خواسته‌ها
 │   └── dataset-card.md           # کارت رسمی داده
-├── outputs/
-│   └── figures/                  # نمودارهای خروجی برای گزارش و ارائه
+├── JobVision-data/               # داده خام (در گیت نادیده گرفته می‌شود)
+│   └── README.md                 # روش دریافت داده
+├── outputs/figures/              # نمودارهای خروجی برای گزارش و ارائه
 ├── reports/                      # گزارش مدیریتی و ارائه (PDF/PPTX)
+├── scripts/                       # ساخت گزارش، ارائه و دارایی‌های سایت
 ├── requirements.txt
 ├── requirements-lock.txt          # نسخه‌های دقیق نصب‌شده
 ├── .gitignore
 └── README.md
 ```
+
+> سایت پروژه یک سطح مرور سبک است: محتوای آن از نوت‌بوک و جدول‌های همین مخزن تولید می‌شود و هیچ محاسبه‌ای را تکرار نمی‌کند. برای بازسازی دارایی‌های سایت پس از اجرای نوت‌بوک، `python scripts/build_site_assets.py` را اجرا کنید.
 
 ## ۴. نصب و اجرا
 
@@ -72,11 +83,11 @@ python -m notebook jobvision_analysis.ipynb
 
 ### اجرا در Google Colab
 
-نوت‌بوک برای اجرا در Colab نیز آماده است. سلول بارگذاری داده، مسیرهای `JobVision-data/` و `/content/` را بررسی می‌کند و در صورت نبود فایل، دستور دانلود از Hugging Face را نشان می‌دهد. در Colab:
+نسخه آماده Colab در [`notebooks/jobvision_colab.ipynb`](notebooks/jobvision_colab.ipynb) است و با یک کلیک اجرا می‌شود:
 
-1. نوت‌بوک را باز کنید و سلول نصب وابستگی‌ها را اجرا کنید.
-2. فایل داده را با دستور نمایش‌داده‌شده در `/content` دانلود کنید.
-3. سلول‌ها را از ابتدا به‌ترتیب اجرا کنید.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb)
+
+این نسخه همان تحلیل است (بدون خروجی‌های ذخیره‌شده) به‌همراه دو سلول تنظیم: نصب وابستگی‌ها و دانلود خودکار داده در `/content/`. نوت‌بوک اصلی هم مسیرهای `JobVision-data/` و `/content/` را بررسی می‌کند و در صورت نبود فایل، دستور دانلود از Hugging Face را نشان می‌دهد.
 
 ## ۵. نقشه نوت‌بوک
 
@@ -131,6 +142,7 @@ python -m notebook jobvision_analysis.ipynb
 | `reports/jobvision_presentation.pdf` | ارائه ۱۵ اسلایدی ۱۶:۹ برای جلسه ۱۵ دقیقه‌ای |
 | `reports/jobvision_presentation.pptx` | نسخه قابل import در Google Slides |
 | `outputs/figures/` | همه نمودارها با شماره یکتا برای گزارش و ارائه |
+| [سایت پروژه](https://arashalidadi.github.io/jobvision-labor-market/) | نسخه دو‌زبانه، گالری نمودارها، بسته اجرایی و راه اجرای Colab |
 
 بازتولید گزارش و ارائه (اختیاری):
 

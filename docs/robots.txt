@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arashalidadi.github.io/jobvision-labor-market/sitemap.xml

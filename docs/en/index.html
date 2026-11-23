@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iran's Labor Market Through 360K Job Posts | JobVision Data Analysis</title>
+<meta name="description" content="Analysis of 360,083 JobVision job postings over 23 months: pay benchmarks, hiring seasonality, gender and provincial gaps, returns to education and experience, salary modeling, and the skill network.">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/">
+<link rel="alternate" hreflang="en" href="https://arashalidadi.github.io/jobvision-labor-market/en/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fa_IR">
+<meta property="og:site_name" content="JobVision Labor Market">
+<meta property="og:title" content="Iran's Labor Market Through 360K Job Posts">
+<meta property="og:description" content="Pay, skills, geography and competition in JobVision job ads — April 2022 to February 2024">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Iran's Labor Market Through 360K Job Posts">
+<meta name="twitter:description" content="Pay, skills, geography and competition in JobVision job ads — 2022 to 2024">
+<meta name="twitter:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+
+<link rel="sitemap" type="application/xml" href="/jobvision-labor-market/sitemap.xml">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="en">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="JobVision Labor Market — home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg>
+      </span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#problem">Problem</a>
+      <a href="#findings">Findings</a>
+      <a href="#visuals">Charts</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#method">Method</a>
+      <a href="#run">Run it</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../" hreflang="fa" lang="fa">FA</a>
+        <span class="on" aria-current="true">EN</span>
+      </div>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub repository" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================================================ HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="hero-kicker"><span class="dot" aria-hidden="true"></span> Management report · data analysis project</span>
+          <h1>Iran's labor market through <em>360 thousand</em> job ads</h1>
+          <p class="lead">Pay, skills, geography and competition in JobVision job postings — from 364,838 raw rows to a hiring decision package.</p>
+          <ul class="hero-meta">
+            <li>Analyst: Arash Alidadi</li>
+            <li>Apr 2022 – Feb 2024</li>
+            <li>23 full months · 43 columns</li>
+            <li>Data license: CC BY-NC 4.0</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#findings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/></svg>
+              See the key findings
+            </a>
+            <a class="btn btn-ghost" href="https://colab.research.google.com/github/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4.5C5 3.7 5.7 3 6.5 3H12l7 7v10.5c0 .8-.7 1.5-1.5 1.5h-11c-.8 0-1.5-.7-1.5-1.5V4.5z"/><path d="M12 3v7h7"/></svg>
+              Run on Google Colab
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/arashalidadi/jobvision-labor-market" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              Code &amp; reports on GitHub
+            </a>
+          </div>
+        </div>
+
+        <figure class="chart-card" style="margin:0">
+          <header>
+            <h3>Job ads published per month</h3>
+            <span class="badge">+88% in 19 months</span>
+          </header>
+          <svg viewBox="0 0 960 380" role="img" aria-labelledby="hero-chart-title hero-chart-desc">
+            <title id="hero-chart-title">Monthly JobVision job postings, April 2022 to February 2024</title>
+            <desc id="hero-chart-desc">From 12,782 postings in April 2022 to a peak of 24,017 in October 2023, with a trough of 5,531 in March 2023.</desc>
+            <defs>
+              <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2f9c92" stop-opacity=".32"/>
+                <stop offset="100%" stop-color="#2f9c92" stop-opacity=".03"/>
+              </linearGradient>
+            </defs>
+            <g fill="none" stroke="#e9efee" stroke-width="1.4">
+              <line x1="40" x2="920" y1="306" y2="306"/>
+              <line x1="40" x2="920" y1="212.9" y2="212.9" stroke-dasharray="4 6"/>
+              <line x1="40" x2="920" y1="119.8" y2="119.8" stroke-dasharray="4 6"/>
+            </g>
+            <g class="ylab" font-family="InterVar, sans-serif" font-size="20" fill="#93a8a4">
+              <text x="14" y="340" text-anchor="start">0</text>
+              <text x="14" y="246" text-anchor="start">10k</text>
+              <text x="14" y="153" text-anchor="start">20k</text>
+            </g>
+            <g stroke="#eef3f2" stroke-width="1.2">
+              <line x1="117" x2="117" y1="64" y2="306"/><line x1="232" x2="232" y1="64" y2="306"/>
+              <line x1="346" x2="346" y1="64" y2="306"/><line x1="461" x2="461" y1="64" y2="306"/>
+              <line x1="575" x2="575" y1="64" y2="306"/><line x1="690" x2="690" y1="64" y2="306"/>
+              <line x1="805" x2="805" y1="64" y2="306"/>
+            </g>
+            <path d="M60.0 152.2 L98.2 88.0 L136.4 101.8 L174.5 93.7 L212.7 82.5 L250.9 136.8 L289.1 118.3 L327.3 117.4 L365.5 155.0 L403.6 135.0 L441.8 136.4 L480.0 254.5 L518.2 223.0 L556.4 154.1 L594.5 193.3 L632.7 182.0 L670.9 185.5 L709.1 210.5 L747.3 180.0 L785.5 195.6 L823.6 200.4 L861.8 203.4 L900.0 187.0 L900.0 306 L60.0 306 Z" fill="url(#heroFill)"/>
+            <path d="M60.0 152.2 L98.2 88.0 L136.4 101.8 L174.5 93.7 L212.7 82.5 L250.9 136.8 L289.1 118.3 L327.3 117.4 L365.5 155.0 L403.6 135.0 L441.8 136.4 L480.0 254.5 L518.2 223.0 L556.4 154.1 L594.5 193.3 L632.7 182.0 L670.9 185.5 L709.1 210.5 L747.3 180.0 L785.5 195.6 L823.6 200.4 L861.8 203.4 L900.0 187.0" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="823.6" cy="200.4" r="6.5" fill="#b8862f" stroke="#fff" stroke-width="3"/>
+            <g font-family="InterVar, sans-serif" font-size="20" font-weight="600" fill="#2c4541">
+              <text x="823.6" y="46" text-anchor="middle">Oct 2023 · 24,017</text>
+              <text x="480" y="288" text-anchor="middle" fill="#8a5a54">Mar 2023 · 5,531</text>
+            </g>
+            <g font-family="InterVar, sans-serif" font-size="19" fill="#7d918e">
+              <text x="180" y="344" text-anchor="middle">Q2 2022</text>
+              <text x="404" y="344" text-anchor="middle">Q2 2023</text>
+              <text x="633" y="344" text-anchor="middle">Q4 2023</text>
+            </g>
+          </svg>
+          <figcaption class="foot">
+            <span>23 full months · 360,083 postings</span>
+            <span>JobVision · CC BY-NC 4.0</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="kpi-strip" aria-label="Key indicators">
+        <div class="kpi"><span class="v" data-count="360083">360,083</span><span class="l">postings across 23 full months</span></div>
+        <div class="kpi"><span class="v">33.1<small>%</small></span><span class="l">of ads disclose a salary</span></div>
+        <div class="kpi"><span class="v">11.0</span><span class="l">median monthly pay, million toman</span></div>
+        <div class="kpi"><span class="v">64.6<small>%</small></span><span class="l">share of postings located in Tehran</span></div>
+        <div class="kpi"><span class="v">0.44</span><span class="l">held-out R² of the salary model</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== PROBLEM / 4 Qs -->
+  <section class="section" id="problem">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">From raw ads to decisions</span>
+        <h2>One raw dataset, one hiring manager, and four decisions due this year</h2>
+        <p class="lead">A job ad does three things at once: it announces the employer's demand, shows the expected skill level, and — when pay is disclosed — reveals the offered price of labor. Aggregated over 23 months, these ads describe <em>who hires whom, with what skill, where, and at what price</em>.</p>
+      </div>
+
+      <div class="grid g4">
+        <article class="card hover reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3v18M16.5 7.2c-.8-1-2.4-1.7-4.5-1.7-2.6 0-4.5 1.2-4.5 3.2 0 2.2 2 3 4.5 3.6 2.7.6 4.6 1.4 4.6 3.6 0 2-2 3.3-4.6 3.3-2.2 0-3.9-.7-4.8-1.9"/></svg></div>
+          <span class="tag">Question 1</span>
+          <h3>What is a defensible pay package?</h3>
+          <p>For each role family and province, which salary and hourly range is both competitive and defensible?</p>
+        </article>
+        <article class="card hover reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+          <span class="tag">Question 2</span>
+          <h3>When and with which skills should we hire?</h3>
+          <p>In which months does demand peak, and which skills carry the largest pay premium?</p>
+        </article>
+        <article class="card hover reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c.6-3.1 2.8-4.8 5.5-4.8s4.9 1.7 5.5 4.8"/><path d="M16 5.4a3 3 0 0 1 0 5.9M17.2 19.5c-.2-1.6-.7-2.9-1.6-3.9 2.6-.2 4.4 1.4 4.9 3.9"/></svg></div>
+          <span class="tag">Question 3</span>
+          <h3>How does an ad stand out?</h3>
+          <p>How does competition between employers work, and what do pay disclosure, benefits, and timing really change?</p>
+        </article>
+        <article class="card hover reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3l2.5 5.2 5.5.8-4 3.9 1 5.6-5-2.7-5 2.7 1-5.6-4-3.9 5.5-.8z"/></svg></div>
+          <span class="tag">Question 4</span>
+          <h3>What value can this data create?</h3>
+          <p>Five practical uses: pricing labor, a hiring calendar, a skill map, gap monitoring, and employer benchmarking.</p>
+        </article>
+      </div>
+
+      <div class="grid g2" style="margin-top:clamp(20px,2.6vw,34px)">
+        <div class="callout reveal">
+          <p><b>Ground rule:</b> every number is reported with its denominator, sample, and limitation. A "median salary" is computed only on ads that disclose pay, while the "disclosure rate" covers all ads; the two are not interchangeable.</p>
+        </div>
+        <div class="callout gold reveal">
+          <p><b>Why 360,083 and not 364,838?</b> The first and last months in the file (March 2022 and March 2024) are partial slices. Removing them leaves 23 complete months covering 98.7% of rows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= FINDINGS -->
+  <section class="section tint" id="findings">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Ten key findings</span>
+        <h2>What 360,000 job ads reveal about Iran's labor market</h2>
+        <p class="lead">Each finding pairs a number with a clean denominator and a reference to the analysis section in the notebook.</p>
+      </div>
+
+      <div class="grid g2">
+        <article class="finding reveal"><div class="n">01</div><div>
+          <h3>A market that grew steadily</h3>
+          <p>Monthly volume rose from 12,782 ads in April 2022 to 24,017 in October 2023 — 88% growth in 19 months — with a trough of 5,531 in March 2023.</p>
+          <span class="k">360,083 postings · sections 4 &amp; 10</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">02</div><div>
+          <h3>Thin, but structured, pay transparency</h3>
+          <p>Only 33.1% of ads disclose pay. Disclosure is 43.4% at firms with 11–50 employees and 16.6% at firms with 1,001–5,000; a chi-square test (Cramér's V = 0.19) shows the missingness is not random.</p>
+          <span class="k">disclosure model: AUC 0.65</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">03</div><div>
+          <h3>Median 11 million; the competitive band is 9–17.5</h3>
+          <p>Pay is right-skewed (mean 13.4). Software development sits at a median of 17.5, roughly 59% above the market, while office clerks and general laborers sit near 9, about 18% below.</p>
+          <span class="k">119,048 ads with disclosed pay</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">04</div><div>
+          <h3>Contract work pays more per hour; part-time does not</h3>
+          <p>The median hourly rate is 63.5 thousand toman. Contract and project work reaches 89 thousand, but the apparent part-time premium disappears once explicit hours are used — an estimation error, not a market fact.</p>
+          <span class="k">116,244 ads with pay and hours</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">05</div><div>
+          <h3>One degree level ≈ 1.3 years of experience</h3>
+          <p>Holding role and industry constant, one more year of experience adds 11.1% and one degree level adds 14.9%. For entry-level roles the bachelor-to-master gap reaches 50%.</p>
+          <span class="k">log-salary regression · section 12</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">06</div><div>
+          <h3>Hiring season: Dey, Mehr and Aban</h3>
+          <p>The seasonal index peaks at 123% in Dey (Dec–Jan) with Mehr and Aban at 115% and 112%; the quietest months are Bahman (79%), Khordad (86%) and Shahrivar (88%). Hiring freezes before Nowruz.</p>
+          <span class="k">two-year average, Persian calendar</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">07</div><div>
+          <h3>Occupational segregation is larger than the pay gap</h3>
+          <p>33.5% of ads state a gender requirement. The median "men only" vs "women only" gap is 22.2%, but it reaches 105% at the managerial level, and 79% of technical technician ads are male-only.</p>
+          <span class="k">t-test and Mann-Whitney, p &lt; 0.001</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">08</div><div>
+          <h3>Tehran holds 64.6% of opportunities — without a price gap</h3>
+          <p>The median salary is 11 million across every high-volume province. Remote work, however, is far more common outside Tehran (15–21%) than in it (3.1%), and Tehran's share fell 2.7 points in two years.</p>
+          <span class="k">32 provinces · section 14</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">09</div><div>
+          <h3>Office software is the core of the skill market</h3>
+          <p>Excel appears in 38.4% of all ads. Co-occurrence analysis finds four clear communities: office and Iranian finance software, software development, design and media, and CAD and engineering.</p>
+          <span class="k">491 skills · 35-node core network</span>
+        </div></article>
+
+        <article class="finding reveal"><div class="n">10</div><div>
+          <h3>The model explains 44% of pay variation</h3>
+          <p>Held-out R² is 0.44 (tree model 0.58). Experience matters most (+12.5% per standard deviation in 1402), and the gap between job families reaches −60%.</p>
+          <span class="k">reproducible pipeline · section 16</span>
+        </div></article>
+      </div>
+
+      <div class="callout reveal" style="margin-top:clamp(20px,2.6vw,32px)">
+        <p><b>Read the limitations too.</b> This data covers only postings published on JobVision and does not represent Iran's entire labor market; company names are anonymized; age and gender fields express employer preference, not the hired person's attributes; and the salary unit is documented as an assumption. See <a href="#limits">Limitations</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================  VISUALS -->
+  <section class="section" id="visuals">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Chart gallery</span>
+        <h2>Thirty-five charts, organized by question</h2>
+        <p class="lead">Every chart comes from the executed notebook, and figure numbers match the 125-page report and the 15-slide deck. Click a chart to open it full size.</p>
+      </div>
+
+      <div data-tabs>
+        <div class="tabs" role="tablist" aria-label="Chart categories">
+          <button class="tab" role="tab" data-tab="market" aria-selected="true">Market &amp; time</button>
+          <button class="tab" role="tab" data-tab="salary" aria-selected="false">Pay &amp; hourly income</button>
+          <button class="tab" role="tab" data-tab="people" aria-selected="false">Gender, education, age</button>
+          <button class="tab" role="tab" data-tab="geo" aria-selected="false">Geography</button>
+          <button class="tab" role="tab" data-tab="skills" aria-selected="false">Skills &amp; industry</button>
+          <button class="tab" role="tab" data-tab="model" aria-selected="false">Modeling &amp; clustering</button>
+        </div>
+
+        <div class="gallery" data-panel="market">
+          <figure class="figure">
+            <button data-full="../assets/img/fig_10_1.webp" data-caption="Figure 10.1 — monthly ad volume" aria-label="Enlarge figure 10.1">
+              <img src="../assets/img/fig_10_1-sm.webp" alt="Line chart of the number of job ads published per month" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>Figure 10.1 · Monthly volume</b><span>23 months of postings, from 12,782 to a peak of 24,017.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_10_2.webp" data-caption="Figure 10.2 — seasonal pattern in the Persian calendar" aria-label="Enlarge figure 10.2">
+              <img src="../assets/img/fig_10_2-sm.webp" alt="Bar chart of the seasonal pattern of job ads by Persian month" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>Figure 10.2 · Hiring season</b><span>Peak in Dey (123%), Mehr and Aban; trough in Bahman (79%).</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_22_1.webp" data-caption="Figure 22.1 — recommended publishing calendar" aria-label="Enlarge figure 22.1">
+              <img src="../assets/img/fig_22_1-sm.webp" alt="Bar chart of the seasonal competition index" loading="lazy" width="700" height="300">
+            </button>
+            <figcaption><b>Figure 22.1 · Publishing calendar</b><span>Low-competition months for non-urgent roles: Khordad, Shahrivar, Ordibehesht, Bahman.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_4_3.webp" data-caption="Figure 4.3 — time coverage" aria-label="Enlarge figure 4.3">
+              <img src="../assets/img/fig_4_3-sm.webp" alt="Monthly coverage chart with partial months highlighted" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>Figure 4.3 · Coverage</b><span>25 months are recorded; the first and last are partial and excluded.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="salary" hidden>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_7_1-7_4.webp" data-caption="Figures 7.1–7.4 — distributions" aria-label="Enlarge figures 7.1 to 7.4">
+              <img src="../assets/img/fig_7_1-7_4-sm.webp" alt="Four distribution charts: pay, log pay, hourly income, experience" loading="lazy" width="700" height="412">
+            </button>
+            <figcaption><b>Figures 7.1–7.4 · Distributions</b><span>Right skew of 2.68; mean 13.4 vs median 11 million toman.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_10_3.webp" data-caption="Figure 10.3 — pay dynamics" aria-label="Enlarge figure 10.3">
+              <img src="../assets/img/fig_10_3-sm.webp" alt="Line chart of median and mean monthly pay" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>Figure 10.3 · Pay dynamics</b><span>Median from 7 to 13.5 million; 53.7% nominal growth across same-name months.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_6_1-6_2.webp" data-caption="Figures 6.1–6.2 — working hours and pay bands" aria-label="Enlarge figures 6.1 and 6.2">
+              <img src="../assets/img/fig_6_1-6_2-sm.webp" alt="Charts of weekly working hours and their relation to pay" loading="lazy" width="700" height="230">
+            </button>
+            <figcaption><b>Figures 6.1–6.2 · Hours</b><span>Weekly hours extracted from free text underpin the hourly income index.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_22_2.webp" data-caption="Figure 22.2 — skill premiums" aria-label="Enlarge figure 22.2">
+              <img src="../assets/img/fig_22_2-sm.webp" alt="Chart of salary premiums associated with skills within their job family" loading="lazy" width="700" height="330">
+            </button>
+            <figcaption><b>Figure 22.2 · Skill premium</b><span>AutoCAD +14.4%, Visio +13.2%, Rahkaran +11.8% within their own job family.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_23_1.webp" data-caption="Figure 23.1 — summary dashboard" aria-label="Enlarge figure 23.1">
+              <img src="../assets/img/fig_23_1-sm.webp" alt="Four-panel summary dashboard of the labor market" loading="lazy" width="700" height="417">
+            </button>
+            <figcaption><b>Figure 23.1 · Dashboard</b><span>Volume, pay distribution, provincial concentration and top skills in one view.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_8_1-8_2.webp" data-caption="Figures 8.1–8.2 — correlation" aria-label="Enlarge figures 8.1 and 8.2">
+              <img src="../assets/img/fig_8_1-8_2-sm.webp" alt="Pearson and Spearman correlation matrices" loading="lazy" width="700" height="282">
+            </button>
+            <figcaption><b>Figures 8.1–8.2 · Correlation</b><span>Strongest link: weekly hours vs hourly income (−0.68), partly mechanical.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="people" hidden>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_11_2.webp" data-caption="Figure 11.2 — pay distribution by gender preference" aria-label="Enlarge figure 11.2">
+              <img src="../assets/img/fig_11_2-sm.webp" alt="Distribution of pay across five gender-preference groups" loading="lazy" width="700" height="333">
+            </button>
+            <figcaption><b>Figure 11.2 · Gender gap</b><span>Median 11 million for "men only" vs 9 million for "women only" — 22.2%, significant.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_11_1.webp" data-caption="Figure 11.1 — gender requirements by job family" aria-label="Enlarge figure 11.1">
+              <img src="../assets/img/fig_11_1-sm.webp" alt="Share of ads with a gender requirement by job family" loading="lazy" width="700" height="353">
+            </button>
+            <figcaption><b>Figure 11.1 · Segregation</b><span>Technical technicians are 79% male-only; the gap reaches 105% at managerial level.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_12_1-12_2.webp" data-caption="Figures 12.1–12.2 — returns to education and experience" aria-label="Enlarge figures 12.1 and 12.2">
+              <img src="../assets/img/fig_12_1-12_2-sm.webp" alt="Median pay by degree and by required experience" loading="lazy" width="700" height="249">
+            </button>
+            <figcaption><b>Figures 12.1–12.2 · Human capital</b><span>Each degree level adds 14.9%, each year of experience 11.1% — 1.3 years equivalent.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_13_1.webp" data-caption="Figure 13.1 — pay by age band" aria-label="Enlarge figure 13.1">
+              <img src="../assets/img/fig_13_1-sm.webp" alt="Median pay across requested age bands" loading="lazy" width="700" height="287">
+            </button>
+            <figcaption><b>Figure 13.1 · Age and pay</b><span>From 9 million at ages 24–26 to 17.5 million at 42 and above.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_13_2.webp" data-caption="Figure 13.2 — peak-earning age by industry" aria-label="Enlarge figure 13.2">
+              <img src="../assets/img/fig_13_2-sm.webp" alt="Peak earning age across industries" loading="lazy" width="700" height="297">
+            </button>
+            <figcaption><b>Figure 13.2 · Peak earnings</b><span>IT peaks at 40+; manufacturing and trade at 35–40.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_8_3-8_4.webp" data-caption="Figures 8.3–8.4 — diminishing returns" aria-label="Enlarge figures 8.3 and 8.4">
+              <img src="../assets/img/fig_8_3-8_4-sm.webp" alt="Non-linear relation of experience and age with pay" loading="lazy" width="700" height="233">
+            </button>
+            <figcaption><b>Figures 8.3–8.4 · Diminishing returns</b><span>Beyond 4–6 years of experience the slope of median pay flattens.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="geo" hidden>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_14_1-14_2.webp" data-caption="Figures 14.1–14.2 — provincial concentration" aria-label="Enlarge figures 14.1 and 14.2">
+              <img src="../assets/img/fig_14_1-14_2-sm.webp" alt="Provincial shares and their median pay" loading="lazy" width="700" height="266">
+            </button>
+            <figcaption><b>Figures 14.1–14.2 · Concentration</b><span>Tehran is 64.6% of ads, yet median pay is 11 million in every high-volume province.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_14_3-14_4.webp" data-caption="Figures 14.3–14.4 — the Tehran gap over time" aria-label="Enlarge figures 14.3 and 14.4">
+              <img src="../assets/img/fig_14_3-14_4-sm.webp" alt="Tehran's share and its pay ratio to other provinces over time" loading="lazy" width="700" height="236">
+            </button>
+            <figcaption><b>Figures 14.3–14.4 · Tehran over time</b><span>Tehran's share fell from 72% to 62% while the pay ratio stayed flat.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_14_5.webp" data-caption="Figure 14.5 — provinces on the rise" aria-label="Enlarge figure 14.5">
+              <img src="../assets/img/fig_14_5-sm.webp" alt="Change in provincial share between the two years" loading="lazy" width="700" height="337">
+            </button>
+            <figcaption><b>Figure 14.5 · Rising provinces</b><span>Fars (+0.6 pp), Razavi Khorasan (+0.5), Alborz and Yazd (+0.3).</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_4_2.webp" data-caption="Figure 4.2 — row-level missingness" aria-label="Enlarge figure 4.2">
+              <img src="../assets/img/fig_4_2-sm.webp" alt="Distribution of missing cells per row" loading="lazy" width="700" height="357">
+            </button>
+            <figcaption><b>Figure 4.2 · Missingness</b><span>Only 0.1% of rows are complete; the median row misses 5 cells.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="skills" hidden>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_6_3.webp" data-caption="Figure 6.3 — top 20 software skills" aria-label="Enlarge figure 6.3">
+              <img src="../assets/img/fig_6_3-sm.webp" alt="Bar chart of the twenty most requested software skills" loading="lazy" width="700" height="482">
+            </button>
+            <figcaption><b>Figure 6.3 · Skills</b><span>Excel 38.4%, Word 33.8% and PowerPoint 12.8% of all ads.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_21_1.webp" data-caption="Figure 21.1 — skill co-occurrence network" aria-label="Enlarge figure 21.1">
+              <img src="../assets/img/fig_21_1-sm.webp" alt="Skill co-occurrence network with four colored communities" loading="lazy" width="700" height="501">
+            </button>
+            <figcaption><b>Figure 21.1 · Skill network</b><span>35 skills, 290 edges, four communities: office, dev, design, CAD.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_21_2-21_3.webp" data-caption="Figures 21.2–21.3 — skill centrality" aria-label="Enlarge figures 21.2 and 21.3">
+              <img src="../assets/img/fig_21_2-21_3-sm.webp" alt="Betweenness centrality and its change over two years" loading="lazy" width="700" height="285">
+            </button>
+            <figcaption><b>Figures 21.2–21.3 · Centrality</b><span>Excel has the highest weighted degree (268,505); WordPress bridges communities.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_19_1.webp" data-caption="Figure 19.1 — rising and falling skills" aria-label="Enlarge figure 19.1">
+              <img src="../assets/img/fig_19_1-sm.webp" alt="Change in skill share between the two years" loading="lazy" width="700" height="373">
+            </button>
+            <figcaption><b>Figure 19.1 · Skill shift</b><span>WordPress +1.4 and Google Analytics +1.0 pp; Outlook and PowerPoint decline.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_6_5-6_6.webp" data-caption="Figures 6.5–6.6 — skills and hourly income" aria-label="Enlarge figures 6.5 and 6.6">
+              <img src="../assets/img/fig_6_5-6_6-sm.webp" alt="Skill level versus pay and hourly income" loading="lazy" width="700" height="233">
+            </button>
+            <figcaption><b>Figures 6.5–6.6 · Skills and pay</b><span>A higher skill level tracks higher median pay, not longer hours.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_18_1.webp" data-caption="Figure 18.1 — industry × job family" aria-label="Enlarge figure 18.1">
+              <img src="../assets/img/fig_18_1-sm.webp" alt="Heatmap of job-family mix by industry" loading="lazy" width="700" height="322">
+            </button>
+            <figcaption><b>Figure 18.1 · Industry × role</b><span>Each industry has its own specialization mix, concentrated in a few families.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery" data-panel="model" hidden>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_16_1-16_2.webp" data-caption="Figures 16.1–16.2 — model fit and feature effects" aria-label="Enlarge figures 16.1 and 16.2">
+              <img src="../assets/img/fig_16_1-16_2-sm.webp" alt="Model performance and standardized feature effects on pay" loading="lazy" width="700" height="264">
+            </button>
+            <figcaption><b>Figures 16.1–16.2 · Salary model</b><span>Held-out R² of 0.44 in both years; experience is the strongest numeric driver.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_17_1-17_2.webp" data-caption="Figures 17.1–17.2 — clustering job titles" aria-label="Enlarge figures 17.1 and 17.2">
+              <img src="../assets/img/fig_17_1-17_2-sm.webp" alt="Cluster-count selection and two-dimensional cluster map" loading="lazy" width="700" height="238">
+            </button>
+            <figcaption><b>Figures 17.1–17.2 · Clusters</b><span>k = 3 with silhouette 0.51: one large core and two specialist islands.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_20_1-20_2.webp" data-caption="Figures 20.1–20.2 — employer typology" aria-label="Enlarge figures 20.1 and 20.2">
+              <img src="../assets/img/fig_20_1-20_2-sm.webp" alt="Employer clustering and resulting profiles" loading="lazy" width="700" height="245">
+            </button>
+            <figcaption><b>Figures 20.1–20.2 · Employers</b><span>Gower distance over 4,000 ads: two large types and two small, distinct ones.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_19_2.webp" data-caption="Figure 19.2 — surging job titles" aria-label="Enlarge figure 19.2">
+              <img src="../assets/img/fig_19_2-sm.webp" alt="Growth and decline in ad counts by job title" loading="lazy" width="700" height="373">
+            </button>
+            <figcaption><b>Figure 19.2 · Surging titles</b><span>Barista +422%, chef +318%, Instagram admin +309%.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_15_1.webp" data-caption="Figure 15.1 — global comparison proxies" aria-label="Enlarge figure 15.1">
+              <img src="../assets/img/fig_15_1-sm.webp" alt="Technology, data and remote-work indicators over two years" loading="lazy" width="700" height="314">
+            </button>
+            <figcaption><b>Figure 15.1 · Global comparison</b><span>IT's share fell from 9.2% to 7.7%, against the 2022–2024 global trend.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <button data-full="../assets/img/fig_17_3.webp" data-caption="Figure 17.3 — cluster stability across years" aria-label="Enlarge figure 17.3">
+              <img src="../assets/img/fig_17_3-sm.webp" alt="Stability of job clusters between the two years" loading="lazy" width="700" height="243">
+            </button>
+            <figcaption><b>Figure 17.3 · Stability</b><span>Cluster boundaries barely move between 1401 and 1402; 516 shared titles.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= PLAYBOOK -->
+  <section class="section tint" id="playbook">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Business playbook</span>
+        <h2>Six decisions for a hiring manager, backed by evidence</h2>
+        <p class="lead">Each recommendation links to a numeric piece of evidence and a table you can audit.</p>
+      </div>
+
+      <div class="grid g3">
+        <article class="card hover reveal">
+          <span class="tag">Decision 1 · Price</span>
+          <h3>Anchor on the family median-to-Q3, not the market mean</h3>
+          <p>A mean of 13.4 is skewed by the tail; for half of all roles it overpays. Table 22.1 gives the Q1–Q3 band per family.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">Decision 2 · Transparency</span>
+          <h3>Publish a pay band that is 20–25% wide</h3>
+          <p>Only 33.1% of ads are transparent. A band differentiates the ad and anchors expectations without exposing your walk-away price.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">Decision 3 · Calendar</span>
+          <h3>Post non-urgent roles in low-competition months</h3>
+          <p>Bahman (79%), Khordad (86%) and Shahrivar (88%) are the quietest. For critical roles, Dey and Mehr are when talent is looking.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">Decision 4 · Skills</span>
+          <h3>Price a skill inside its own job family</h3>
+          <p>AutoCAD (+14.4%) and Visio (+13.2%) premiums exist only within their family. A skill list without context carries no price signal.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">Decision 5 · Requirements</span>
+          <h3>Ask for realistic experience; keep the degree signal</h3>
+          <p>Each degree level equals 1.3 years of experience, and the bachelor-to-master gap reaches 50% early in careers. Fewer than 4% of ads demand more than 5 years.</p>
+        </article>
+        <article class="card hover reveal">
+          <span class="tag">Decision 6 · Access</span>
+          <h3>Treat remote work as a sourcing channel</h3>
+          <p>Remote work is 15–21% outside Tehran versus 3.1% inside it. For location-independent roles it multiplies the talent pool.</p>
+        </article>
+      </div>
+
+      <div class="table-wrap reveal" style="margin-top:clamp(24px,3vw,40px)">
+        <table class="data">
+          <caption>Recommended pay packages for high-volume job families<span>million toman per month · 119,048 ads with disclosed pay · table 22.1</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">Job family</th>
+              <th scope="col" class="n">Ads</th>
+              <th scope="col" class="n">Q1</th>
+              <th scope="col" class="n">Median</th>
+              <th scope="col" class="n">Q3</th>
+              <th scope="col" class="n">Hourly (k)</th>
+              <th scope="col" class="n">Disclosure</th>
+              <th scope="col" class="n">vs market median</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Software development</td><td class="n">3,760</td><td class="n">13.5</td><td class="n"><strong>17.5</strong></td><td class="n">22.5</td><td class="n">92</td><td class="n">24.9%</td><td class="n pos">+59%</td></tr>
+            <tr><td>Network, DevOps &amp; support</td><td class="n">2,563</td><td class="n">9.0</td><td class="n">13.5</td><td class="n">17.5</td><td class="n">71</td><td class="n">18.2%</td><td class="n pos">+23%</td></tr>
+            <tr><td>Finance &amp; accounting</td><td class="n">13,477</td><td class="n">9.0</td><td class="n">13.5</td><td class="n">17.5</td><td class="n">66</td><td class="n">31.9%</td><td class="n pos">+23%</td></tr>
+            <tr><td>Sales &amp; marketing — professional</td><td class="n">13,032</td><td class="n">9.0</td><td class="n">13.5</td><td class="n">17.5</td><td class="n">73</td><td class="n">34.3%</td><td class="n pos">+23%</td></tr>
+            <tr><td>Industrial engineering &amp; project management</td><td class="n">4,313</td><td class="n">11.0</td><td class="n">13.5</td><td class="n">17.5</td><td class="n">69</td><td class="n">23.3%</td><td class="n pos">+23%</td></tr>
+            <tr><td>Digital marketing &amp; SEO</td><td class="n">5,426</td><td class="n">9.0</td><td class="n">11.0</td><td class="n">13.5</td><td class="n">75</td><td class="n">42.3%</td><td class="n">0</td></tr>
+            <tr><td>Technical technicians</td><td class="n">4,306</td><td class="n">9.0</td><td class="n">11.0</td><td class="n">13.5</td><td class="n">55</td><td class="n">34.4%</td><td class="n">0</td></tr>
+            <tr><td>Salespeople &amp; cashiers</td><td class="n">15,710</td><td class="n">9.0</td><td class="n">11.0</td><td class="n">13.5</td><td class="n">63</td><td class="n">44.6%</td><td class="n">0</td></tr>
+            <tr><td>Office &amp; data-entry clerks</td><td class="n">9,749</td><td class="n">7.0</td><td class="n">9.0</td><td class="n">11.0</td><td class="n">47</td><td class="n">40.0%</td><td class="n neg">−18%</td></tr>
+            <tr><td>General laborers</td><td class="n">6,850</td><td class="n">7.0</td><td class="n">9.0</td><td class="n">11.0</td><td class="n">43</td><td class="n">47.8%</td><td class="n neg">−18%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid g2" style="margin-top:clamp(20px,2.4vw,30px)">
+        <div class="table-wrap reveal">
+          <table class="data compact">
+            <caption>Hiring calendar: when to publish?<span>seasonal index, two-year average · table 22.3</span></caption>
+            <thead><tr><th scope="col">Persian month</th><th scope="col" class="n">Index</th><th scope="col" class="n">Competition</th><th scope="col" class="n">Median pay</th></tr></thead>
+            <tbody>
+              <tr><td>Dey</td><td class="n">123</td><td class="n"><strong style="color:var(--red)">High</strong></td><td class="n">13.5</td></tr>
+              <tr><td>Mehr</td><td class="n">115</td><td class="n">Medium</td><td class="n">13.5</td></tr>
+              <tr><td>Aban</td><td class="n">112</td><td class="n">Medium</td><td class="n">13.5</td></tr>
+              <tr><td>Azar</td><td class="n">106</td><td class="n">Medium</td><td class="n">13.5</td></tr>
+              <tr><td>Mordad</td><td class="n">105</td><td class="n">Medium</td><td class="n">11.0</td></tr>
+              <tr><td>Tir</td><td class="n">100</td><td class="n">Medium</td><td class="n">11.0</td></tr>
+              <tr><td>Farvardin</td><td class="n">96</td><td class="n">Medium</td><td class="n">9.0</td></tr>
+              <tr><td>Ordibehesht</td><td class="n">91</td><td class="n"><span style="color:var(--teal-700)">Low</span></td><td class="n">11.0</td></tr>
+              <tr><td>Shahrivar</td><td class="n">88</td><td class="n"><span style="color:var(--teal-700)">Low</span></td><td class="n">13.5</td></tr>
+              <tr><td>Khordad</td><td class="n">86</td><td class="n"><span style="color:var(--teal-700)">Low</span></td><td class="n">11.0</td></tr>
+              <tr><td>Bahman</td><td class="n">79</td><td class="n"><span style="color:var(--teal-700)">Low</span></td><td class="n">13.5</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="callout reveal">
+            <p><b>Three messages for managers:</b></p>
+            <p>1) Close pay packages on quartiles, not on the mean.</p>
+            <p>2) The publishing month is itself a negotiating lever.</p>
+            <p>3) A third of the market is opaque; being transparent is an advantage.</p>
+          </div>
+          <div class="callout gold reveal" style="margin-top:1rem">
+            <p><b>Next step:</b> this package opens a conversation with management rather than closing it. Every decision links back to a table in the notebook and the PDF report.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== METHOD -->
+  <section class="section" id="method">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Method &amp; quality</span>
+        <h2>From 364,838 raw rows to a decision package</h2>
+        <p class="lead">Five stages, fixed analysis rules declared up front, and a decision log. Every table and chart carries a unique number, and the notebook ends with an automated audit.</p>
+      </div>
+
+      <div class="grid g2" style="align-items:start">
+        <div class="steps reveal">
+          <div class="step"><div><h4>Understand and quality-check</h4><p>Shape, dtypes, missingness, duplicates, time coverage and cardinality across 43 columns. Without this, every later number is suspect.</p></div></div>
+          <div class="step"><div><h4>Clean under fixed rules</h4><p>Drop the two partial months, normalize Arabic characters, harmonize key text fields, and log all eight cleaning decisions with their effect.</p></div></div>
+          <div class="step"><div><h4>Engineer features</h4><p>Weekly hours from free text (97.6% coverage), 491 skills, degrees and fields, 15 benefit types, employer features, and hourly income.</p></div></div>
+          <div class="step"><div><h4>Analyze and test</h4><p>Distributions and outliers, Pearson and Spearman, chi-square and t-tests, regressions, salary modeling, and Gower-distance clustering.</p></div></div>
+          <div class="step"><div><h4>Audit and reproduce</h4><p>Fourteen automated checks (monthly totals, ID uniqueness, hour bounds, share sums) plus scripts that rebuild the report and the deck.</p></div></div>
+        </div>
+
+        <div>
+          <div class="code-card reveal">
+            <header>
+              <span>python · reproducibility</span>
+              <button class="copy-btn" data-copy="python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+jupyter notebook jobvision_analysis.ipynb" data-done-text="Copied">Copy</button>
+            </header>
+<pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+jupyter notebook jobvision_analysis.ipynb</code></pre>
+          </div>
+
+          <div class="table-wrap reveal" style="margin-top:1rem">
+            <table class="data compact">
+              <caption>The data at a glance<span>full dataset card in docs/dataset-card.md</span></caption>
+              <tbody>
+                <tr><td>Source</td><td>JobVision Jobposts Dataset — Hugging Face</td></tr>
+                <tr><td>Raw size</td><td class="n">364,838 rows × 43 columns</td></tr>
+                <tr><td>Period</td><td>March 2022 – March 2024</td></tr>
+                <tr><td>Analysis window</td><td class="n">23 months · 360,083 ads</td></tr>
+                <tr><td>Unit of analysis</td><td>one job posting</td></tr>
+                <tr><td>Salary unit</td><td>million toman per month</td></tr>
+                <tr><td>License</td><td>CC BY-NC 4.0 — non-commercial, attribution required</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid g2" style="margin-top:clamp(22px,3vw,36px)">
+        <div class="reveal">
+          <h3 style="margin-bottom:.7rem">Notebook map</h3>
+          <div class="map">
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>01</i> Introduction &amp; business questions</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>02</i> Data &amp; data culture</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>04</i> Profiling &amp; quality</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>06</i> Feature engineering</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>09</i> Why pay is missing</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>10</i> Trend &amp; seasonality</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>12</i> Education vs experience</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>14</i> Geography</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>16</i> Salary modeling</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>18</i> Industry × job family</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>21</i> Skill network</a>
+            <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb"><i>24</i> Computational audit</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <h3 style="margin-bottom:.7rem">Download the outputs</h3>
+          <div class="download-list">
+            <a class="dl" href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_report.pdf">
+              <span class="ext">PDF</span><span><b>125-page management report</b><span>Executive summary, answers to each question, tables and strategy</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+            </a>
+            <a class="dl" href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_presentation.pdf">
+              <span class="ext">PDF</span><span><b>15-slide 16:9 deck</b><span>Built for a 15-minute management review</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+            </a>
+            <a class="dl" href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_presentation.pptx">
+              <span class="ext">PPTX</span><span><b>Editable deck</b><span>Ready to import into Google Slides</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+            </a>
+            <a class="dl" href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">
+              <span class="ext">IPYNB</span><span><b>The full analysis notebook</b><span>24 sections, 90+ tables, 35 figures</span></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== RUN -->
+  <section class="section tint" id="run">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Run it online</span>
+        <h2>Run it in the browser — nothing to install</h2>
+        <p class="lead">The notebook runs on Colab: the dataset downloads from Hugging Face automatically and every cell runs in order. To read it without executing anything, open the rendered version on nbviewer.</p>
+      </div>
+
+      <div class="grid g2" style="align-items:start">
+        <div class="launch-card reveal">
+          <a class="launch-row" href="https://colab.research.google.com/github/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb" target="_blank" rel="noopener">
+            <span class="badge ok">Colab</span>
+            <span><strong>Run everything on Google Colab</strong><br><span>Automatic data download, dependency install and full execution</span></span>
+          </a>
+          <a class="launch-row" href="https://nbviewer.org/github/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb" target="_blank" rel="noopener">
+            <span class="badge">View</span>
+            <span><strong>Read the notebook with outputs</strong><br><span>All tables and figures, without installing anything</span></span>
+          </a>
+          <a class="launch-row" href="https://github.com/arashalidadi/jobvision-labor-market#readme" target="_blank" rel="noopener">
+            <span class="badge">Docs</span>
+            <span><strong>Local setup guide</strong><br><span>Python 3.12+, virtual environment, Jupyter</span></span>
+          </a>
+          <div class="callout" style="margin-top:.4rem">
+            <p><b>Note:</b> the raw file is about 374 MB and is not stored in the repository because of its size and license. The Colab notebook checks <code>JobVision-data/</code> and <code>/content/</code>, and shows the download command if the file is missing.</p>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="code-card">
+            <header>
+              <span>colab · setup cell</span>
+              <button class="copy-btn" data-copy="!pip -q install -r https://raw.githubusercontent.com/arashalidadi/jobvision-labor-market/main/requirements.txt
+from huggingface_hub import hf_hub_download
+hf_hub_download('JobVision/JobVision_Jobposts_Dataset',
+                'JobVision_Jobposts_Dataset.csv',
+                repo_type='dataset', local_dir='/content')" data-done-text="Copied">Copy</button>
+            </header>
+<pre><code>!pip -q install -r https://raw.githubusercontent.com/\
+arashalidadi/jobvision-labor-market/main/requirements.txt
+
+from huggingface_hub import hf_hub_download
+hf_hub_download(
+    "JobVision/JobVision_Jobposts_Dataset",
+    "JobVision_Jobposts_Dataset.csv",
+    repo_type="dataset",
+    local_dir="/content",
+)</code></pre>
+          </div>
+          <div class="callout gold" style="margin-top:1rem">
+            <p><b>Colab is memory-bound.</b> If it warns about memory while loading the CSV, pick a 12 GB RAM runtime; the notebook was designed around that footprint.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ LIMITS -->
+  <section class="section" id="limits">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Limitations &amp; licensing</span>
+        <h2>What this data does not tell you</h2>
+        <p class="lead">Being explicit about limitations is part of the analysis. Seven constraints condition how the results should be read.</p>
+      </div>
+
+      <div class="grid g2">
+        <div>
+          <details class="acc reveal" open>
+            <summary>The data covers published ads only</summary>
+            <div class="acc-body"><p>It is not the whole Iranian labor market: firms that never post on JobVision, hires without an ad, and informal work are invisible here.</p></div>
+          </details>
+          <details class="acc reveal">
+            <summary>Company names are anonymized</summary>
+            <div class="acc-body"><p>Employer analysis works at the level of firm attributes (size, industry, province, disclosure rate), never brands. The employer typology is an analytical device, not a verdict on a company.</p></div>
+          </details>
+          <details class="acc reveal">
+            <summary>Only one in three ads discloses pay</summary>
+            <div class="acc-body"><p>All salary analysis uses that subset, and its selection bias is tested separately. A disclosure model reaching AUC 0.65 shows the missingness is structured but not easily predictable.</p></div>
+          </details>
+          <details class="acc reveal">
+            <summary>Age and gender are employer preferences</summary>
+            <div class="acc-body"><p>These fields describe what the ad asks for, not who was hired. The true wage gap cannot be inferred from them.</p></div>
+          </details>
+        </div>
+        <div>
+          <details class="acc reveal">
+            <summary>The first and last months are partial</summary>
+            <div class="acc-body"><p>March 2022 and March 2024 are truncated slices and are excluded from time-series work; 23 complete months remain.</p></div>
+          </details>
+          <details class="acc reveal">
+            <summary>Working hours are parsed from free text</summary>
+            <div class="acc-body"><p>Hours were reconstructed for 97.6% of ads, but part of that relies on assumptions about the contract type. The hourly analysis is paired with a robustness check (table 6.11.1).</p></div>
+          </details>
+          <details class="acc reveal">
+            <summary>The salary unit is a documented assumption</summary>
+            <div class="acc-body"><p>The dataset card says "Toman"; the value range (2–100) and the comparison with market wages indicate the real scale is <em>million toman per month</em>. The notebook tests this assumption explicitly.</p></div>
+          </details>
+          <div class="callout reveal" style="margin-top:1.4rem">
+            <p><b>License:</b> the dataset is published under CC BY-NC 4.0 and may not be used commercially; the data rights belong to JobVision. The code in this repository is MIT-licensed for educational and research use.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top" style="color:#fff">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg>
+          </span>
+          <span style="color:#fff">JobVision<small style="color:#8fb8b2">Labor Market Analytics</small></span>
+        </a>
+        <p class="small" style="margin-top:1rem;max-width:34ch">An analysis of Iran's labor market built on JobVision job postings — from raw data to a hiring decision package.</p>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <ul>
+          <li><a href="#findings">Key findings</a></li>
+          <li><a href="#playbook">Business playbook</a></li>
+          <li><a href="#method">Method &amp; data</a></li>
+          <li><a href="#limits">Limitations</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Files</h4>
+        <ul>
+          <li><a href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_report.pdf">PDF report</a></li>
+          <li><a href="https://github.com/arashalidadi/jobvision-labor-market/raw/main/reports/jobvision_presentation.pdf">Slide deck PDF</a></li>
+          <li><a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook</a></li>
+          <li><a href="https://huggingface.co/datasets/JobVision/JobVision_Jobposts_Dataset" target="_blank" rel="noopener">Dataset on Hugging Face</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://github.com/arashalidadi" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="../" hreflang="fa" lang="fa">نسخه فارسی</a></li>
+          <li><a href="#top">Back to top ↑</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2023–<span data-year>2026</span> Arash Alidadi · code under MIT</span>
+      <span>Data: JobVision Jobposts Dataset · CC BY-NC 4.0</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Chart viewer">
+  <button aria-label="Close">✕</button>
+  <img alt="">
+  <div class="cap"></div>
+</div>
+
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
