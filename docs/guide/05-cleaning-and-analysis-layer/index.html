@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>۵. پاک‌سازی و ساخت لایه تحلیل — JobVision راهنما</title>
+<meta name="description" content="از این بخش به بعد، همه تحلیل‌ها روی یک جدول واحد در سطح آگهی به نام ads انجام می‌شود. این جدول سه ویژگی دارد: فقط ماه‌های کامل را در بر می‌گیرد، متن‌های کلیدی نرمال شده‌اند و ستون‌های پایه حقوق و زمان">
+<meta name="author" content="Arash Alidadi">
+<meta name="theme-color" content="#0b3d39">
+<link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/guide/05-cleaning-and-analysis-layer/">
+<link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/05-cleaning-and-analysis-layer/">
+<link rel="alternate" hreflang="en" href="../../en/guide/05-cleaning-and-analysis-layer/">
+<link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="۵. پاک‌سازی و ساخت لایه تحلیل — JobVision راهنما">
+<meta property="og:description" content="از این بخش به بعد، همه تحلیل‌ها روی یک جدول واحد در سطح آگهی به نام ads انجام می‌شود. این جدول سه ویژگی دارد: فقط ماه‌های کامل را در بر می‌گیرد، متن‌های کلیدی نرمال شده‌اند و ستون‌های پایه حقوق و زمان">
+<meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/guide/05-cleaning-and-analysis-layer/">
+<meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pygments.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "۵. پاک‌سازی و ساخت لایه تحلیل — JobVision راهنما",
+  "description": "از این بخش به بعد، همه تحلیل‌ها روی یک جدول واحد در سطح آگهی به نام ads انجام می‌شود. این جدول سه ویژگی دارد: فقط ماه‌های کامل را در بر می‌گیرد، متن‌های کلیدی نرمال شده‌اند و ستون‌های پایه حقوق و زمان",
+  "url": "https://arashalidadi.github.io/jobvision-labor-market/guide/05-cleaning-and-analysis-layer/",
+  "inLanguage": "fa",
+  "author": {
+    "@type": "Person",
+    "name": "Arash Alidadi"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "JobVision Labor Market",
+    "url": "https://arashalidadi.github.io/jobvision-labor-market"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+}
+</script>
+</head>
+<body class="guide-page">
+<a class="skip-link" href="#main">Skip</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../index.html" aria-label="JobVision Labor Market">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
+      <span>JobVision<small>Labor Market Analytics</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="../../index.html#problem">صفحه اصلی</a>
+      <a href="../../index.html#findings">یافته‌ها</a>
+      <a href="../../index.html#visuals">نمودارها</a>
+      <a href="../../index.html#playbook">بسته اجرایی</a>
+      <a class="active" href="../">مستندات</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <span class="on" aria-current="true">FA</span><span class="off" title="EN">EN</span>
+      </div>
+      <button class="guide-search-btn" type="button" aria-label="جست‌وجو در راهنما…">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span>جست‌وجو در راهنما</span>
+      </button>
+      <a class="icon-link" href="https://github.com/arashalidadi/jobvision-labor-market" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-link menu-toggle" aria-label="menu" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="guide-shell">
+  <aside class="guide-side" id="guideSide" aria-label="فهرست بخش‌ها">
+    <div class="guide-side-head">
+  <a class="guide-back" href="../">← فهرست راهنما</a>
+  <p class="guide-side-title">فهرست مطالب</p>
+</div>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>معرفی پروژه و پرسش‌های راهبردی</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>داده، فرهنگ داده و قواعد تحلیل</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>ابزارها، توابع کمکی و بارگذاری داده</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>شناخت داده و کیفیت</span></a></li><li><a class="guide-nav-link is-active" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>پاک‌سازی و ساخت لایه تحلیل</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-5-1">۵.۱. تعیین دوره تحلیل و ستون‌های زمانی</a></li><li class="lvl-h2"><a href="#sec-5-2">۵.۲. نرمال‌سازی متن‌های کلیدی</a></li><li class="lvl-h2"><a href="#sec-5-3">۵.۳. ساخت ستون‌های پایه حقوق و بررسی سلامت مقادیر</a></li><li class="lvl-h2"><a href="#sec-5-4">۵.۴. یکسانی محل آگهی و محل شرکت</a></li><li class="lvl-h2"><a href="#sec-5-5">۵.۵. لاگ تصمیم‌های پاک‌سازی</a></li></ul></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>مهندسی ویژگی</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>تحلیل توزیع‌ها، چولگی و پرت‌ها</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>همبستگی، هم‌خطی و روابط غیرخطی</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>سازوکار گمشدگی حقوق: تصادفی یا وابسته؟</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>روند زمانی، فصلی‌بودن و پویایی دستمزد</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>ترجیح جنسیت، فرصت شغلی و دستمزد</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>ارزش تحصیلات در برابر سابقه کار</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>نقطه اوج درآمدی بر اساس سن</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>تحلیل جغرافیایی و تمرکز استانی</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>ایران در آینه بازار کار جهانی (۲۰۲۲–۲۰۲۴)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>مدل‌سازی حقوق و تغییر اهمیت ویژگی‌ها در زمان</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>خوشه‌بندی عناوین شغلی بر پایه مهارت و تحصیلات</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>صنعت × دسته شغلی: هر صنعت چه تخصصی می‌خواهد؟</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>تحول مهارت‌ها و جهش عناوین شغلی</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>پروفایل‌سازی و خوشه‌بندی کارفرمایان [امتیازی]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>شبکه هم‌رخدادی مهارت‌ها [امتیازی]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>بسته پیشنهادی برای مدیر کسب‌وکار</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>جمع‌بندی، داشبورد و یافته‌های کلیدی</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>کنترل محاسبات و بازتولید</span></a></li></ul>
+  </aside>
+  <main class="guide-main" id="main">
+    <nav class="guide-crumbs"><a href="../../index.html">صفحه اصلی</a> <span>/</span> <a href="../">مستندات</a> <span>/</span> <span>بخش 5</span></nav>
+<h1>۵. پاک‌سازی و ساخت لایه تحلیل</h1>
+<p class="guide-meta">1 دقیقه مطالعه · 5 جدول · 5 سلول کد</p>
+<p>از این بخش به بعد، همه تحلیل‌ها روی یک جدول واحد در سطح آگهی به نام <code>ads</code> انجام می‌شود. این جدول سه ویژگی دارد: فقط ماه‌های کامل را در بر می‌گیرد، متن‌های کلیدی نرمال شده‌اند و ستون‌های پایه حقوق و زمان در آن ساخته شده است. ساخت یک‌باره این لایه، از محاسبات تکراری در بخش‌های بعد جلوگیری می‌کند.</p>
+<h2 class="guide-heading" id="sec-5-1">۵.۱. تعیین دوره تحلیل و ستون‌های زمانی <a aria-label="link" class="anchor" href="#sec-5-1">#</a></h2><details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>28 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="ads = raw.loc[raw.release_month.between(PERIOD_START, PERIOD_END)].copy()
+
+months = sorted(ads.release_month.unique())
+month_index = {month: position for position, month in enumerate(months)}
+ads[&#x27;month_index&#x27;] = ads.release_month.map(month_index)
+jalali = [jmonth(month) for month in ads.release_month]
+ads[&#x27;jyear&#x27;] = [item[0] for item in jalali]
+ads[&#x27;jmonth_num&#x27;] = [item[1] for item in jalali]
+ads[&#x27;jmonth_label&#x27;] = [item[2] for item in jalali]
+ads[&#x27;jseason&#x27;] = [jseason(month) for month in ads.release_month]
+ads[&#x27;jseason_num&#x27;] = (ads.jmonth_num - 1) // 3
+ads[&#x27;year_label&#x27;] = ads.jyear.astype(str).map(lambda value: nf(int(value)))
+
+period_table = pd.DataFrame({
+    &#x27;مقدار&#x27;: [f&#x27;{len(raw):,}&#x27;, f&#x27;{len(raw) - len(ads):,}&#x27;, f&#x27;{len(ads):,}&#x27;,
+              f&#x27;{ads.release_month.min()} تا {ads.release_month.max()}&#x27;,
+              f&#x27;{nf(ads.jyear.min())} تا {nf(ads.jyear.max())}&#x27;, f&#x27;{ads.month_index.nunique()}&#x27;, &#x27;۲۳ ماه&#x27;],
+}, index=[&#x27;کل ردیف‌های خام&#x27;, &#x27;حذف‌شده (ماه ناقص)&#x27;, &#x27;ردیف‌های دوره تحلیل&#x27;, &#x27;بازه میلادی&#x27;,
+          &#x27;بازه شمسی&#x27;, &#x27;تعداد ماه میلادی&#x27;, &#x27;تعداد ماه کامل&#x27;])
+show_table(&#x27;5.1&#x27;, &#x27;اثر تعیین دوره تحلیل&#x27;, period_table, sample=f&#x27;{len(ads):,} آگهی&#x27;, period=False,
+           index_name=&#x27;مشخصه&#x27;)
+
+show_metrics(&#x27;دوره تحلیل&#x27;, [
+    (&#x27;ردیف‌های واردشده&#x27;, f&#x27;{len(ads):,}&#x27;),
+    (&#x27;حذف‌شده&#x27;, f&#x27;{len(raw) - len(ads):,} ({((len(raw) - len(ads)) / len(raw) * 100):.1f}٪)&#x27;),
+    (&#x27;ماه‌های کامل&#x27;, f&#x27;{ads.release_month.nunique()}&#x27;),
+    (&#x27;سهم دوره از داده&#x27;, f&#x27;{len(ads) / len(raw) * 100:.1f}٪&#x27;),
+])" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="n">ads</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">raw</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">PERIOD_START</span><span class="p">,</span> <span class="n">PERIOD_END</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">months</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">month_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">month</span><span class="p">:</span> <span class="n">position</span> <span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">months</span><span class="p">)}</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'month_index'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">month_index</span><span class="p">)</span>
+<span class="n">jalali</span> <span class="o">=</span> <span class="p">[</span><span class="n">jmonth</span><span class="p">(</span><span class="n">month</span><span class="p">)</span> <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="p">]</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'jyear'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">jalali</span><span class="p">]</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'jmonth_num'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">jalali</span><span class="p">]</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'jmonth_label'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">jalali</span><span class="p">]</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'jseason'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">jseason</span><span class="p">(</span><span class="n">month</span><span class="p">)</span> <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="p">]</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'jseason_num'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">jmonth_num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'year_label'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">jyear</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">nf</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span>
+
+<span class="n">period_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'مقدار'</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+              <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1"> تا </span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+              <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">jyear</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="si">}</span><span class="s1"> تا </span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">jyear</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">month_index</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="s1">'۲۳ ماه'</span><span class="p">],</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'کل ردیف‌های خام'</span><span class="p">,</span> <span class="s1">'حذف‌شده (ماه ناقص)'</span><span class="p">,</span> <span class="s1">'ردیف‌های دوره تحلیل'</span><span class="p">,</span> <span class="s1">'بازه میلادی'</span><span class="p">,</span>
+          <span class="s1">'بازه شمسی'</span><span class="p">,</span> <span class="s1">'تعداد ماه میلادی'</span><span class="p">,</span> <span class="s1">'تعداد ماه کامل'</span><span class="p">])</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'5.1'</span><span class="p">,</span> <span class="s1">'اثر تعیین دوره تحلیل'</span><span class="p">,</span> <span class="n">period_table</span><span class="p">,</span> <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+           <span class="n">index_name</span><span class="o">=</span><span class="s1">'مشخصه'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'دوره تحلیل'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'ردیف‌های واردشده'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'حذف‌شده'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪)'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'ماه‌های کامل'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">release_month</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'سهم دوره از داده'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>جدول 5.1 | اثر تعیین دوره تحلیل | 360,083 آگهی</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>مقدار</th>
+</tr>
+<tr>
+<th>مشخصه</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>کل ردیف‌های خام</th>
+<td>364,838</td>
+</tr>
+<tr>
+<th>حذف‌شده (ماه ناقص)</th>
+<td>4,755</td>
+</tr>
+<tr>
+<th>ردیف‌های دوره تحلیل</th>
+<td>360,083</td>
+</tr>
+<tr>
+<th>بازه میلادی</th>
+<td>2022-04 تا 2024-02</td>
+</tr>
+<tr>
+<th>بازه شمسی</th>
+<td>۱٬۴۰۱ تا ۱٬۴۰۲</td>
+</tr>
+<tr>
+<th>تعداد ماه میلادی</th>
+<td>23</td>
+</tr>
+<tr>
+<th>تعداد ماه کامل</th>
+<td>۲۳ ماه</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">عددهای کلیدی دوره تحلیل</p>
+  <ul><li>ردیف‌های واردشده: 360,083</li><li>حذف‌شده: 4,755 (1.3٪)</li><li>ماه‌های کامل: 23</li><li>سهم دوره از داده: 98.7٪</li></ul>
+</div><h2 class="guide-heading" id="sec-5-2">۵.۲. نرمال‌سازی متن‌های کلیدی <a aria-label="link" class="anchor" href="#sec-5-2">#</a></h2>
+<details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>37 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="TEXT_COLUMNS = [&#x27;Jobpost_RawTitle&#x27;, &#x27;Jobpost_MainJobCategory&#x27;, &#x27;Jobpost_SecondaryJobCategories&#x27;,
+                &#x27;Jobpost_IndustryFa&#x27;, &#x27;Jobpost_ProvinceFa&#x27;, &#x27;Jobpost_PreferredGender&#x27;,
+                &#x27;Jobpost_WorkTypeFa&#x27;, &#x27;Jobpost_CompanyWorkTimesDescription&#x27;, &#x27;Jobpost_BenefitFa&#x27;,
+                &#x27;Company_SizeFa&#x27;, &#x27;Company_AgeFromEstablishmentYear&#x27;, &#x27;Company_OwnershipFa&#x27;,
+                &#x27;Company_ActivityTypeFa&#x27;, &#x27;Company_IndustryFa&#x27;, &#x27;Company_ProvinceFa&#x27;, &#x27;Company_CityFa&#x27;,
+                &#x27;Jobpost_AcademicFields&#x27;, &#x27;Jobpost_SoftwareSkills&#x27;, &#x27;Jobpost_LanguageSkills&#x27;]
+
+
+def clean_text(value):
+    &quot;&quot;&quot;یکسان‌سازی نویسه‌های عربی، حذف نیم‌فاصله پیوسته و فشرده‌سازی فاصله‌ها.&quot;&quot;&quot;
+    if not isinstance(value, str):
+        return value
+    text = (value.replace(&#x27;\u200c&#x27;, &#x27; &#x27;).replace(&#x27;\u200f&#x27;, &#x27;&#x27;).replace(&#x27;\u200e&#x27;, &#x27;&#x27;)
+                 .replace(&#x27;ي&#x27;, &#x27;ی&#x27;).replace(&#x27;ك&#x27;, &#x27;ک&#x27;).replace(&#x27;ۀ&#x27;, &#x27;ه&#x27;).replace(&#x27;\xa0&#x27;, &#x27; &#x27;))
+    text = re.sub(r&#x27;\s+&#x27;, &#x27; &#x27;, text)
+    return text.strip()
+
+
+before_after = []
+for column in TEXT_COLUMNS:
+    before = ads[column].fillna(&#x27;&#x27;).astype(str)
+    ads[column] = ads[column].map(clean_text)
+    after = ads[column].fillna(&#x27;&#x27;).astype(str)
+    changed = int((before != after).sum())
+    if changed:
+        before_after.append({&#x27;ستون&#x27;: column, &#x27;ردیف تغییر‌یافته&#x27;: changed,
+                             &#x27;سهم&#x27;: changed / len(ads) * 100})
+text_cleanup = pd.DataFrame(before_after).set_index(&#x27;ستون&#x27;).sort_values(&#x27;ردیف تغییر‌یافته&#x27;, ascending=False)
+show_table(&#x27;5.2&#x27;, &#x27;اثر نرمال‌سازی متن&#x27;, text_cleanup,
+           formats={&#x27;ردیف تغییر‌یافته&#x27;: &#x27;int&#x27;, &#x27;سهم&#x27;: &#x27;pct&#x27;},
+           sample=f&#x27;{len(ads):,} آگهی&#x27;, index_name=&#x27;ستون&#x27;)
+
+show_metrics(&#x27;نرمال‌سازی&#x27;, [
+    (&#x27;ستون پاک‌سازی‌شده&#x27;, f&#x27;{len(TEXT_COLUMNS)}&#x27;),
+    (&#x27;ستونی که تغییر کرد&#x27;, f&#x27;{len(text_cleanup)}&#x27;),
+    (&#x27;بیشترین تغییر&#x27;, f&#x27;{text_cleanup.index[0]} — {text_cleanup[&quot;ردیف تغییر‌یافته&quot;].iloc[0]:,} ردیف&#x27;),
+])" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="n">TEXT_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Jobpost_RawTitle'</span><span class="p">,</span> <span class="s1">'Jobpost_MainJobCategory'</span><span class="p">,</span> <span class="s1">'Jobpost_SecondaryJobCategories'</span><span class="p">,</span>
+                <span class="s1">'Jobpost_IndustryFa'</span><span class="p">,</span> <span class="s1">'Jobpost_ProvinceFa'</span><span class="p">,</span> <span class="s1">'Jobpost_PreferredGender'</span><span class="p">,</span>
+                <span class="s1">'Jobpost_WorkTypeFa'</span><span class="p">,</span> <span class="s1">'Jobpost_CompanyWorkTimesDescription'</span><span class="p">,</span> <span class="s1">'Jobpost_BenefitFa'</span><span class="p">,</span>
+                <span class="s1">'Company_SizeFa'</span><span class="p">,</span> <span class="s1">'Company_AgeFromEstablishmentYear'</span><span class="p">,</span> <span class="s1">'Company_OwnershipFa'</span><span class="p">,</span>
+                <span class="s1">'Company_ActivityTypeFa'</span><span class="p">,</span> <span class="s1">'Company_IndustryFa'</span><span class="p">,</span> <span class="s1">'Company_ProvinceFa'</span><span class="p">,</span> <span class="s1">'Company_CityFa'</span><span class="p">,</span>
+                <span class="s1">'Jobpost_AcademicFields'</span><span class="p">,</span> <span class="s1">'Jobpost_SoftwareSkills'</span><span class="p">,</span> <span class="s1">'Jobpost_LanguageSkills'</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">clean_text</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""یکسان‌سازی نویسه‌های عربی، حذف نیم‌فاصله پیوسته و فشرده‌سازی فاصله‌ها."""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\u200c</span><span class="s1">'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\u200f</span><span class="s1">'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\u200e</span><span class="s1">'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+                 <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'ي'</span><span class="p">,</span> <span class="s1">'ی'</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'ك'</span><span class="p">,</span> <span class="s1">'ک'</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'ۀ'</span><span class="p">,</span> <span class="s1">'ه'</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\xa0</span><span class="s1">'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">))</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\s+'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+
+<span class="n">before_after</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">TEXT_COLUMNS</span><span class="p">:</span>
+    <span class="n">before</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">ads</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">clean_text</span><span class="p">)</span>
+    <span class="n">after</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">changed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">before</span> <span class="o">!=</span> <span class="n">after</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">changed</span><span class="p">:</span>
+        <span class="n">before_after</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'ستون'</span><span class="p">:</span> <span class="n">column</span><span class="p">,</span> <span class="s1">'ردیف تغییر‌یافته'</span><span class="p">:</span> <span class="n">changed</span><span class="p">,</span>
+                             <span class="s1">'سهم'</span><span class="p">:</span> <span class="n">changed</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">})</span>
+<span class="n">text_cleanup</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">before_after</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'ستون'</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'ردیف تغییر‌یافته'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'5.2'</span><span class="p">,</span> <span class="s1">'اثر نرمال‌سازی متن'</span><span class="p">,</span> <span class="n">text_cleanup</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'ردیف تغییر‌یافته'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'سهم'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'ستون'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'نرمال‌سازی'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'ستون پاک‌سازی‌شده'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">TEXT_COLUMNS</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'ستونی که تغییر کرد'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">text_cleanup</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'بیشترین تغییر'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">text_cleanup</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> — </span><span class="si">{</span><span class="n">text_cleanup</span><span class="p">[</span><span class="s2">"ردیف تغییر‌یافته"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> ردیف'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>جدول 5.2 | اثر نرمال‌سازی متن | 360,083 آگهی | فروردین ۱۴۰۱ تا بهمن ۱۴۰۲</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ردیف تغییر‌یافته</th>
+<th>سهم</th>
+</tr>
+<tr>
+<th>ستون</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Jobpost_CompanyWorkTimesDescription</th>
+<td>23,569</td>
+<td>6.5٪</td>
+</tr>
+<tr>
+<th>Jobpost_BenefitFa</th>
+<td>9,502</td>
+<td>2.6٪</td>
+</tr>
+<tr>
+<th>Jobpost_RawTitle</th>
+<td>4,058</td>
+<td>1.1٪</td>
+</tr>
+<tr>
+<th>Jobpost_SoftwareSkills</th>
+<td>1,468</td>
+<td>0.4٪</td>
+</tr>
+<tr>
+<th>Company_CityFa</th>
+<td>18</td>
+<td>0.0٪</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">عددهای کلیدی نرمال‌سازی</p>
+  <ul><li>ستون پاک‌سازی‌شده: 19</li><li>ستونی که تغییر کرد: 5</li><li>بیشترین تغییر: Jobpost_CompanyWorkTimesDescription — 23,569 ردیف</li></ul>
+</div><h2 class="guide-heading" id="sec-5-3">۵.۳. ساخت ستون‌های پایه حقوق و بررسی سلامت مقادیر <a aria-label="link" class="anchor" href="#sec-5-3">#</a></h2>
+<details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>31 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="ads[&#x27;salary_disclosed&#x27;] = ads.Jobpost_SalaryCanBeShown.astype(bool)
+ads[&#x27;salary_min&#x27;] = ads.Jobpost_MinSalary.astype(float)
+ads[&#x27;salary_max&#x27;] = ads.Jobpost_MaxSalary.astype(float)
+ads[&#x27;salary_mid&#x27;] = (ads.salary_min + ads.salary_max) / 2
+ads[&#x27;salary_span&#x27;] = ads.salary_max - ads.salary_min
+ads[&#x27;salary_span_pct&#x27;] = ads.salary_span / ads.salary_min * 100
+ads[&#x27;log_salary&#x27;] = np.log(ads.salary_mid)
+
+paid = ads.loc[ads.salary_disclosed].copy()
+salary_profile = paid[[&#x27;salary_min&#x27;, &#x27;salary_max&#x27;, &#x27;salary_mid&#x27;, &#x27;salary_span&#x27;, &#x27;salary_span_pct&#x27;]].describe().T
+salary_profile[&#x27;skew&#x27;] = paid[[&#x27;salary_min&#x27;, &#x27;salary_max&#x27;, &#x27;salary_mid&#x27;, &#x27;salary_span&#x27;, &#x27;salary_span_pct&#x27;]].skew()
+salary_profile = salary_profile.rename(columns={
+    &#x27;count&#x27;: &#x27;تعداد&#x27;, &#x27;mean&#x27;: &#x27;میانگین&#x27;, &#x27;std&#x27;: &#x27;انحراف معیار&#x27;, &#x27;min&#x27;: &#x27;کمینه&#x27;,
+    &#x27;25%&#x27;: &#x27;چارک اول&#x27;, &#x27;50%&#x27;: &#x27;میانه&#x27;, &#x27;75%&#x27;: &#x27;چارک سوم&#x27;, &#x27;max&#x27;: &#x27;بیشینه&#x27;, &#x27;skew&#x27;: &#x27;چولگی&#x27;})
+salary_profile.index = [&#x27;حداقل بازه&#x27;, &#x27;حداکثر بازه&#x27;, &#x27;میانه بازه&#x27;, &#x27;پهنای بازه&#x27;, &#x27;پهنای نسبی ٪&#x27;]
+salary_profile = salary_profile[[&#x27;تعداد&#x27;, &#x27;میانگین&#x27;, &#x27;کمینه&#x27;, &#x27;چارک اول&#x27;, &#x27;میانه&#x27;,
+                                 &#x27;چارک سوم&#x27;, &#x27;بیشینه&#x27;, &#x27;چولگی&#x27;]]
+show_table(&#x27;5.3&#x27;, &#x27;خلاصه آماری متغیرهای حقوق&#x27;, salary_profile,
+           formats={&#x27;تعداد&#x27;: &#x27;int&#x27;, &#x27;میانگین&#x27;: &#x27;money2&#x27;, &#x27;کمینه&#x27;: &#x27;money2&#x27;,
+                    &#x27;چارک اول&#x27;: &#x27;money2&#x27;, &#x27;میانه&#x27;: &#x27;money2&#x27;, &#x27;چارک سوم&#x27;: &#x27;money2&#x27;, &#x27;بیشینه&#x27;: &#x27;money2&#x27;,
+                    &#x27;چولگی&#x27;: &#x27;score&#x27;},
+           sample=f&#x27;{len(paid):,} آگهی با حقوق اعلام‌شده&#x27;,
+           note=&#x27;واحد حقوق: میلیون تومان در ماه؛ چولگی پهنای نسبی بر حسب درصد است.&#x27;)
+
+show_metrics(&#x27;حقوق اعلام‌شده&#x27;, [
+    (&#x27;آگهی با حقوق&#x27;, f&#x27;{len(paid):,} ({len(paid) / len(ads) * 100:.1f}٪)&#x27;),
+    (&#x27;میانه میانه بازه&#x27;, f&#x27;{paid.salary_mid.median():,.1f} {SALARY_UNIT}&#x27;),
+    (&#x27;میانگین میانه بازه&#x27;, f&#x27;{paid.salary_mid.mean():,.1f} {SALARY_UNIT}&#x27;),
+    (&#x27;چارک اول / سوم&#x27;, f&#x27;{paid.salary_mid.quantile(.25):,.1f} / {paid.salary_mid.quantile(.75):,.1f}&#x27;),
+    (&#x27;چولگی میانه بازه&#x27;, f&#x27;{paid.salary_mid.skew():.2f}&#x27;),
+])" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="n">ads</span><span class="p">[</span><span class="s1">'salary_disclosed'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_SalaryCanBeShown</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'salary_min'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_MinSalary</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'salary_max'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_MaxSalary</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'salary_mid'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">salary_min</span> <span class="o">+</span> <span class="n">ads</span><span class="o">.</span><span class="n">salary_max</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'salary_span'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">salary_max</span> <span class="o">-</span> <span class="n">ads</span><span class="o">.</span><span class="n">salary_min</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'salary_span_pct'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">salary_span</span> <span class="o">/</span> <span class="n">ads</span><span class="o">.</span><span class="n">salary_min</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">ads</span><span class="p">[</span><span class="s1">'log_salary'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">salary_mid</span><span class="p">)</span>
+
+<span class="n">paid</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ads</span><span class="o">.</span><span class="n">salary_disclosed</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">salary_profile</span> <span class="o">=</span> <span class="n">paid</span><span class="p">[[</span><span class="s1">'salary_min'</span><span class="p">,</span> <span class="s1">'salary_max'</span><span class="p">,</span> <span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'salary_span'</span><span class="p">,</span> <span class="s1">'salary_span_pct'</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+<span class="n">salary_profile</span><span class="p">[</span><span class="s1">'skew'</span><span class="p">]</span> <span class="o">=</span> <span class="n">paid</span><span class="p">[[</span><span class="s1">'salary_min'</span><span class="p">,</span> <span class="s1">'salary_max'</span><span class="p">,</span> <span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'salary_span'</span><span class="p">,</span> <span class="s1">'salary_span_pct'</span><span class="p">]]</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span>
+<span class="n">salary_profile</span> <span class="o">=</span> <span class="n">salary_profile</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">'count'</span><span class="p">:</span> <span class="s1">'تعداد'</span><span class="p">,</span> <span class="s1">'mean'</span><span class="p">:</span> <span class="s1">'میانگین'</span><span class="p">,</span> <span class="s1">'std'</span><span class="p">:</span> <span class="s1">'انحراف معیار'</span><span class="p">,</span> <span class="s1">'min'</span><span class="p">:</span> <span class="s1">'کمینه'</span><span class="p">,</span>
+    <span class="s1">'25%'</span><span class="p">:</span> <span class="s1">'چارک اول'</span><span class="p">,</span> <span class="s1">'50%'</span><span class="p">:</span> <span class="s1">'میانه'</span><span class="p">,</span> <span class="s1">'75%'</span><span class="p">:</span> <span class="s1">'چارک سوم'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">:</span> <span class="s1">'بیشینه'</span><span class="p">,</span> <span class="s1">'skew'</span><span class="p">:</span> <span class="s1">'چولگی'</span><span class="p">})</span>
+<span class="n">salary_profile</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'حداقل بازه'</span><span class="p">,</span> <span class="s1">'حداکثر بازه'</span><span class="p">,</span> <span class="s1">'میانه بازه'</span><span class="p">,</span> <span class="s1">'پهنای بازه'</span><span class="p">,</span> <span class="s1">'پهنای نسبی ٪'</span><span class="p">]</span>
+<span class="n">salary_profile</span> <span class="o">=</span> <span class="n">salary_profile</span><span class="p">[[</span><span class="s1">'تعداد'</span><span class="p">,</span> <span class="s1">'میانگین'</span><span class="p">,</span> <span class="s1">'کمینه'</span><span class="p">,</span> <span class="s1">'چارک اول'</span><span class="p">,</span> <span class="s1">'میانه'</span><span class="p">,</span>
+                                 <span class="s1">'چارک سوم'</span><span class="p">,</span> <span class="s1">'بیشینه'</span><span class="p">,</span> <span class="s1">'چولگی'</span><span class="p">]]</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'5.3'</span><span class="p">,</span> <span class="s1">'خلاصه آماری متغیرهای حقوق'</span><span class="p">,</span> <span class="n">salary_profile</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'میانگین'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'کمینه'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span>
+                    <span class="s1">'چارک اول'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'میانه'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'چارک سوم'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'بیشینه'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span>
+                    <span class="s1">'چولگی'</span><span class="p">:</span> <span class="s1">'score'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paid</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی با حقوق اعلام‌شده'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'واحد حقوق: میلیون تومان در ماه؛ چولگی پهنای نسبی بر حسب درصد است.'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'حقوق اعلام‌شده'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'آگهی با حقوق'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paid</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paid</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪)'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانه میانه بازه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">SALARY_UNIT</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانگین میانه بازه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">SALARY_UNIT</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'چارک اول / سوم'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.25</span><span class="p">)</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1"> / </span><span class="si">{</span><span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.75</span><span class="p">)</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'چولگی میانه بازه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>جدول 5.3 | خلاصه آماری متغیرهای حقوق | 119,048 آگهی با حقوق اعلام‌شده | فروردین ۱۴۰۱ تا بهمن ۱۴۰۲</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>تعداد</th>
+<th>میانگین</th>
+<th>کمینه</th>
+<th>چارک اول</th>
+<th>میانه</th>
+<th>چارک سوم</th>
+<th>بیشینه</th>
+<th>چولگی</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>حداقل بازه</th>
+<td>119,048</td>
+<td>11.75</td>
+<td>2.00</td>
+<td>8.00</td>
+<td>10.00</td>
+<td>15.00</td>
+<td>70.00</td>
+<td>2.65</td>
+</tr>
+<tr>
+<th>حداکثر بازه</th>
+<td>119,048</td>
+<td>15.02</td>
+<td>3.00</td>
+<td>10.00</td>
+<td>12.00</td>
+<td>20.00</td>
+<td>100.00</td>
+<td>2.69</td>
+</tr>
+<tr>
+<th>میانه بازه</th>
+<td>119,048</td>
+<td>13.39</td>
+<td>2.50</td>
+<td>9.00</td>
+<td>11.00</td>
+<td>17.50</td>
+<td>85.00</td>
+<td>2.68</td>
+</tr>
+<tr>
+<th>پهنای بازه</th>
+<td>119,048</td>
+<td>3.26</td>
+<td>1.00</td>
+<td>2.00</td>
+<td>2.00</td>
+<td>5.00</td>
+<td>30.00</td>
+<td>2.74</td>
+</tr>
+<tr>
+<th>پهنای نسبی ٪</th>
+<td>119,048</td>
+<td>26.87</td>
+<td>7.14</td>
+<td>25.00</td>
+<td>25.00</td>
+<td>33.33</td>
+<td>50.00</td>
+<td>0.60</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>یادداشت:</span> واحد حقوق: میلیون تومان در ماه؛ چولگی پهنای نسبی بر حسب درصد است.</p>
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">عددهای کلیدی حقوق اعلام‌شده</p>
+  <ul><li>آگهی با حقوق: 119,048 (33.1٪)</li><li>میانه میانه بازه: 11.0 میلیون تومان در ماه</li><li>میانگین میانه بازه: 13.4 میلیون تومان در ماه</li><li>چارک اول / سوم: 9.0 / 17.5</li><li>چولگی میانه بازه: 2.68</li></ul>
+</div><h2 class="guide-heading" id="sec-5-4">۵.۴. یکسانی محل آگهی و محل شرکت <a aria-label="link" class="anchor" href="#sec-5-4">#</a></h2>
+<div class="code-card">
+    <header><span>Python · 8 خط</span><button class="copy-btn" data-copy="ads[&#x27;same_province&#x27;] = ads.Jobpost_ProvinceFa.eq(ads.Company_ProvinceFa)
+location_check = pd.DataFrame({
+    &#x27;تعداد&#x27;: [int(ads.same_province.sum()), int((~ads.same_province).sum())],
+    &#x27;سهم&#x27;: [ads.same_province.mean() * 100, (1 - ads.same_province.mean()) * 100],
+}, index=[&#x27;استان آگهی = استان شرکت&#x27;, &#x27;استان آگهی ≠ استان شرکت&#x27;])
+show_table(&#x27;5.4&#x27;, &#x27;یکسانی استان آگهی و استان شرکت&#x27;, location_check,
+           formats={&#x27;تعداد&#x27;: &#x27;int&#x27;, &#x27;سهم&#x27;: &#x27;pct&#x27;}, sample=f&#x27;{len(ads):,} آگهی&#x27;,
+           index_name=&#x27;وضعیت&#x27;)" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="n">ads</span><span class="p">[</span><span class="s1">'same_province'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_ProvinceFa</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">Company_ProvinceFa</span><span class="p">)</span>
+<span class="n">location_check</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'تعداد'</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">same_province</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="nb">int</span><span class="p">((</span><span class="o">~</span><span class="n">ads</span><span class="o">.</span><span class="n">same_province</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())],</span>
+    <span class="s1">'سهم'</span><span class="p">:</span> <span class="p">[</span><span class="n">ads</span><span class="o">.</span><span class="n">same_province</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ads</span><span class="o">.</span><span class="n">same_province</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">*</span> <span class="mi">100</span><span class="p">],</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'استان آگهی = استان شرکت'</span><span class="p">,</span> <span class="s1">'استان آگهی ≠ استان شرکت'</span><span class="p">])</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'5.4'</span><span class="p">,</span> <span class="s1">'یکسانی استان آگهی و استان شرکت'</span><span class="p">,</span> <span class="n">location_check</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'سهم'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">},</span> <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span>
+           <span class="n">index_name</span><span class="o">=</span><span class="s1">'وضعیت'</span><span class="p">)</span>
+</code></pre>
+  </div><figure class="guide-table" id="table-">
+  <figcaption>جدول 5.4 | یکسانی استان آگهی و استان شرکت | 360,083 آگهی | فروردین ۱۴۰۱ تا بهمن ۱۴۰۲</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>تعداد</th>
+<th>سهم</th>
+</tr>
+<tr>
+<th>وضعیت</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>استان آگهی = استان شرکت</th>
+<td>287,545</td>
+<td>79.9٪</td>
+</tr>
+<tr>
+<th>استان آگهی ≠ استان شرکت</th>
+<td>72,538</td>
+<td>20.1٪</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><h2 class="guide-heading" id="sec-5-5">۵.۵. لاگ تصمیم‌های پاک‌سازی <a aria-label="link" class="anchor" href="#sec-5-5">#</a></h2>
+<div class="code-card">
+    <header><span>Python · 20 خط</span><button class="copy-btn" data-copy="decisions = pd.DataFrame([
+    (&#x27;حذف دو ماه ناقص&#x27;, &#x27;نگه‌داشتن ۲۰۲۲-۰۴ تا ۲۰۲۴-۰۲&#x27;, f&#x27;{len(raw) - len(ads):,} ردیف حذف شد&#x27;),
+    (&#x27;حذف نکردن ردیف‌های دارای گمشدگی&#x27;, &#x27;گمشدگی حقوق و مهارت به‌عنوان یافته تحلیل می‌شود&#x27;,
+     f&#x27;{int(ads.isna().any(axis=1).sum()):,} ردیف دارای گمشدگی نگه داشته شد&#x27;),
+    (&#x27;نرمال‌سازی نویسه‌های عربی&#x27;, &#x27;ي→ی، ك→ک، نیم‌فاصله→فاصله&#x27;,
+     f&#x27;{len(text_cleanup)} ستون تغییر کرد&#x27;),
+    (&#x27;یکسان‌سازی عنوان غلط ستون&#x27;, &#x27;Comany_CompanyOwnershipTypesFa → Company_OwnershipFa&#x27;, &#x27;نام ستون&#x27;),
+    (&#x27;تبدیل پرچم افشا به بولین&#x27;, &#x27;SalaryCanBeShown → salary_disclosed&#x27;, f&#x27;{len(ads):,} ردیف&#x27;),
+    (&#x27;نگه‌داشتن پرت‌های حقوق&#x27;, &#x27;وینزور فقط در مدل‌سازی، نه در توصیف&#x27;, f&#x27;{len(paid):,} ردیف با حقوق&#x27;),
+    (&#x27;واحد حقوق&#x27;, &#x27;میلیون تومان در ماه&#x27;, &#x27;بدون تبدیل مقیاس&#x27;),
+    (&#x27;استان شرکت برای گمشده‌ها&#x27;, &#x27;شهر شرکت گمشده → «نامشخص» در بخش ۶&#x27;, &#x27;179 ردیف&#x27;),
+], columns=[&#x27;تصمیم&#x27;, &#x27;قاعده&#x27;, &#x27;اثر&#x27;])
+show_table(&#x27;5.5&#x27;, &#x27;لاگ تصمیم‌های پاک‌سازی و اثر آن‌ها&#x27;, decisions.set_index(&#x27;تصمیم&#x27;),
+           sample=f&#x27;{len(ads):,} آگهی&#x27;, period=False, index_name=&#x27;تصمیم&#x27;)
+
+show_metrics(&#x27;لایه تحلیل&#x27;, [
+    (&#x27;ابعاد جدول ads&#x27;, f&#x27;{len(ads):,} × {ads.shape[1]}&#x27;),
+    (&#x27;ستون‌های ساخته‌شده در بخش ۵&#x27;, &#x27;۱۰&#x27;),
+    (&#x27;نگه‌داشت ردیف&#x27;, f&#x27;{len(ads) / len(raw) * 100:.1f}٪ از داده خام&#x27;),
+])" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="n">decisions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">'حذف دو ماه ناقص'</span><span class="p">,</span> <span class="s1">'نگه‌داشتن ۲۰۲۲-۰۴ تا ۲۰۲۴-۰۲'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> ردیف حذف شد'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'حذف نکردن ردیف‌های دارای گمشدگی'</span><span class="p">,</span> <span class="s1">'گمشدگی حقوق و مهارت به‌عنوان یافته تحلیل می‌شود'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> ردیف دارای گمشدگی نگه داشته شد'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'نرمال‌سازی نویسه‌های عربی'</span><span class="p">,</span> <span class="s1">'ي→ی، ك→ک، نیم‌فاصله→فاصله'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">text_cleanup</span><span class="p">)</span><span class="si">}</span><span class="s1"> ستون تغییر کرد'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'یکسان‌سازی عنوان غلط ستون'</span><span class="p">,</span> <span class="s1">'Comany_CompanyOwnershipTypesFa → Company_OwnershipFa'</span><span class="p">,</span> <span class="s1">'نام ستون'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'تبدیل پرچم افشا به بولین'</span><span class="p">,</span> <span class="s1">'SalaryCanBeShown → salary_disclosed'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> ردیف'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'نگه‌داشتن پرت‌های حقوق'</span><span class="p">,</span> <span class="s1">'وینزور فقط در مدل‌سازی، نه در توصیف'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paid</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> ردیف با حقوق'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'واحد حقوق'</span><span class="p">,</span> <span class="s1">'میلیون تومان در ماه'</span><span class="p">,</span> <span class="s1">'بدون تبدیل مقیاس'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'استان شرکت برای گمشده‌ها'</span><span class="p">,</span> <span class="s1">'شهر شرکت گمشده → «نامشخص» در بخش ۶'</span><span class="p">,</span> <span class="s1">'179 ردیف'</span><span class="p">),</span>
+<span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'تصمیم'</span><span class="p">,</span> <span class="s1">'قاعده'</span><span class="p">,</span> <span class="s1">'اثر'</span><span class="p">])</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'5.5'</span><span class="p">,</span> <span class="s1">'لاگ تصمیم‌های پاک‌سازی و اثر آن‌ها'</span><span class="p">,</span> <span class="n">decisions</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'تصمیم'</span><span class="p">),</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'تصمیم'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'لایه تحلیل'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'ابعاد جدول ads'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> × </span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'ستون‌های ساخته‌شده در بخش ۵'</span><span class="p">,</span> <span class="s1">'۱۰'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'نگه‌داشت ردیف'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">٪ از داده خام'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div><figure class="guide-table" id="table-">
+  <figcaption>جدول 5.5 | لاگ تصمیم‌های پاک‌سازی و اثر آن‌ها | 360,083 آگهی</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>قاعده</th>
+<th>اثر</th>
+</tr>
+<tr>
+<th>تصمیم</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>حذف دو ماه ناقص</th>
+<td>نگه‌داشتن ۲۰۲۲-۰۴ تا ۲۰۲۴-۰۲</td>
+<td>4,755 ردیف حذف شد</td>
+</tr>
+<tr>
+<th>حذف نکردن ردیف‌های دارای گمشدگی</th>
+<td>گمشدگی حقوق و مهارت به‌عنوان یافته تحلیل می‌شود</td>
+<td>359,875 ردیف دارای گمشدگی نگه داشته شد</td>
+</tr>
+<tr>
+<th>نرمال‌سازی نویسه‌های عربی</th>
+<td>ي→ی، ك→ک، نیم‌فاصله→فاصله</td>
+<td>5 ستون تغییر کرد</td>
+</tr>
+<tr>
+<th>یکسان‌سازی عنوان غلط ستون</th>
+<td>Comany_CompanyOwnershipTypesFa → Company_OwnershipFa</td>
+<td>نام ستون</td>
+</tr>
+<tr>
+<th>تبدیل پرچم افشا به بولین</th>
+<td>SalaryCanBeShown → salary_disclosed</td>
+<td>360,083 ردیف</td>
+</tr>
+<tr>
+<th>نگه‌داشتن پرت‌های حقوق</th>
+<td>وینزور فقط در مدل‌سازی، نه در توصیف</td>
+<td>119,048 ردیف با حقوق</td>
+</tr>
+<tr>
+<th>واحد حقوق</th>
+<td>میلیون تومان در ماه</td>
+<td>بدون تبدیل مقیاس</td>
+</tr>
+<tr>
+<th>استان شرکت برای گمشده‌ها</th>
+<td>شهر شرکت گمشده → «نامشخص» در بخش ۶</td>
+<td>179 ردیف</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">عددهای کلیدی لایه تحلیل</p>
+  <ul><li>ابعاد جدول ads: 360,083 × 59</li><li>ستون‌های ساخته‌شده در بخش ۵: ۱۰</li><li>نگه‌داشت ردیف: 98.7٪ از داده خام</li></ul>
+</div>
+<p class="guide-source">آخرین بازسازی از نوتبوک · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">نوتبوک در گیت‌هاب</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">اجرا در Colab</a></p>
+<nav class="guide-pager"><a class="prev" href="../04-data-quality/"><span>قبلی</span><b>شناخت داده و کیفیت</b></a><a class="next" href="../06-feature-engineering/"><span>بعدی</span><b>مهندسی ویژگی</b></a></nav>
+  </main>
+  <aside class="guide-aside" aria-label="در این صفحه">
+    <p class="aside-title">در این صفحه</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-5-1">۵.۱. تعیین دوره تحلیل و ستون‌های زمانی</a></li><li class="lvl-h2"><a href="#sec-5-2">۵.۲. نرمال‌سازی متن‌های کلیدی</a></li><li class="lvl-h2"><a href="#sec-5-3">۵.۳. ساخت ستون‌های پایه حقوق و بررسی سلامت مقادیر</a></li><li class="lvl-h2"><a href="#sec-5-4">۵.۴. یکسانی محل آگهی و محل شرکت</a></li><li class="lvl-h2"><a href="#sec-5-5">۵.۵. لاگ تصمیم‌های پاک‌سازی</a></li></ul>
+  </aside>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button type="button" aria-label="close">×</button>
+  <img alt="">
+  <p class="cap"></p>
+</div>
+
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="جست‌وجو در راهنما…">
+  <div class="search-box">
+    <input type="search" id="searchInput" placeholder="جست‌وجو در راهنما…" autocomplete="off">
+    <p class="hint">برای جست‌وجو تایپ کنید؛ Esc برای بستن</p>
+    <ul id="searchResults"></ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>این راهنما از اجرای نوتبوک پروژه ساخته شده است؛ هر عدد قابل بازتولید است.</p>
+      <p><a href="https://github.com/arashalidadi/jobvision-labor-market">GitHub</a> · <a href="../../index.html">صفحه اصلی</a> · <a href="https://arashalidadi.github.io/jobvision-labor-market/guide/">فهرست راهنما</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+<script src="../../assets/js/guide.js" data-index="../search.json" data-ui-search="جست‌وجو در راهنما…"></script>
+</body>
+</html>
