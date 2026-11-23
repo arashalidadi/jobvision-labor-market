@@ -24,3 +24,7 @@ Thumbs.db
 
 # --- دارایی‌های موقت بازسازی سایت (خروجی نهایی در docs/assets/ نگه‌داری می‌شود) ---
 docs/assets/img/*.tmp
+
+# --- لایه ترجمه: فایل‌های کاری میانی ---
+/content/en/_todo/
+/content/en/_out/

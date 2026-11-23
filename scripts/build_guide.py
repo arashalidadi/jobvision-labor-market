@@ -153,11 +153,15 @@ def load_model() -> dict:
                 sections.append(section)
                 current = section
                 body = re.sub(r"^#\s+.+$", "", body, count=1, flags=re.M).strip()
+                if current["cells"] and False:
+                    pass
+                current.setdefault("title_en", title)
             if current is None:
                 current = dict(num=0, title="JobVision — Iran Labor Market Analysis",
                                cells=[], start_cell=index)
                 sections.append(current)
-            current["cells"].append(dict(kind="md", cell=index, text=body))
+            current["cells"].append(dict(kind="md", cell=index, text=body,
+                                      h1=bool(heading) if cell["cell_type"] == "markdown" else False))
         elif cell["cell_type"] == "code":
             if current is None:
                 continue
@@ -203,7 +207,7 @@ def translate_string(text: str, strings: dict, lang: str) -> str:
         return text
     stripped = clean_text(text)
     if stripped in strings:
-        return strings[stripped]
+        return fa_to_en_digits(strings[stripped])
     # fall back to token-level replacement for compound strings
     out = stripped
     for key, value in sorted(strings.items(), key=lambda kv: -len(kv[0])):
@@ -269,7 +273,7 @@ def figure_map(source: str, outputs: list) -> list[dict]:
     names = re.findall(r"complete\(\s*'([^']+)'\s*\)", source)
     captions = {}
     for match in re.finditer(r"heading\(\s*ax\s*,\s*'([^']+)'\s*,\s*'([^']+)'", source):
-        captions[match.group(1).replace(".", "_")] = match.group(2)
+        captions[fa_to_en_digits(match.group(1)).replace(".", "_")] = match.group(2)
     images = [o for o in outputs if "image/png" in (o.get("data") or {})]
     figures = []
     for position, image in enumerate(images):
@@ -277,7 +281,9 @@ def figure_map(source: str, outputs: list) -> list[dict]:
         if name is None:
             continue
         key = "fig_" + name.replace(".", "_")
-        figures.append(dict(key=key, number=name, title=captions.get(name.replace(".", "_"), "")))
+        titles = [captions[part.replace(".", "_")] for part in name.split("-")
+                  if part.replace(".", "_") in captions]
+        figures.append(dict(key=key, number=name, title=" · ".join(titles)))
     return figures
 
 
@@ -333,7 +339,7 @@ def render_metrics(block: dict, lang: str, ui: dict) -> str:
 </div>"""
 
 
-def render_figure(fig: dict, lang: str, ui: dict, strings: dict) -> str:
+def render_figure(fig: dict, lang: str, ui: dict, strings: dict, assets: str) -> str:
     key = fig["key"]
     number = fig["number"].replace(".", "-")
     title = translate_string(fig["title"], strings, lang) if fig["title"] else ""
@@ -342,14 +348,35 @@ def render_figure(fig: dict, lang: str, ui: dict, strings: dict) -> str:
     else:
         caption = f"Figure {fa_to_en_digits(fig['number'])}" + (f" | {title}" if title else "")
     return f"""<figure class="figure guide-figure" id="figure-{html.escape(number)}">
-  <button type="button" data-full="../../assets/img/{key}.webp" data-caption="{html.escape(caption, quote=True)}">
-    <img src="../../assets/img/{key}-sm.webp" alt="{html.escape(caption, quote=True)}" loading="lazy" decoding="async">
+  <button type="button" data-full="{assets}img/{key}.webp" data-caption="{html.escape(caption, quote=True)}">
+    <img src="{assets}img/{key}-sm.webp" alt="{html.escape(caption, quote=True)}" loading="lazy" decoding="async">
   </button>
   <figcaption>{caption}</figcaption>
 </figure>"""
 
 
 # ------------------------------------------------------------------- page assembly
+def section_title(section: dict, lang: str) -> str:
+    if lang == "en" and section.get("title_en"):
+        return clean_text(section["title_en"])
+    return section["title"]
+
+
+def page_paths(lang: str, section_page: bool) -> dict:
+    """Relative path prefixes that are correct for each page depth."""
+    if section_page:
+        assets = "../../assets/" if lang == "fa" else "../../../assets/"
+        home = "../../index.html" if lang == "fa" else "../../index.html"
+        other = ("../../en/guide/" if lang == "fa" else "../../../guide/")
+        guide_root = "../"
+    else:
+        assets = "../assets/" if lang == "fa" else "../../assets/"
+        home = "../index.html"
+        other = "../en/guide/" if lang == "fa" else "../../guide/"
+        guide_root = ""
+    return dict(assets=assets, home=home, other=other, guide_root=guide_root)
+
+
 def card_meta(stats: dict, ui: dict) -> str:
     parts = []
     for key, label in (("tables", ui["tables"]), ("figures", ui["figures"]), ("code", ui["code_cells"])):
@@ -375,7 +402,8 @@ def section_stats(section: dict, lang: str) -> dict:
     return dict(tables=tables, figures=figures, code=code, words=words)
 
 
-def build_section(section: dict, model: dict, lang: str, translations: dict) -> dict:
+def build_section(section: dict, model: dict, lang: str, translations: dict,
+                      assets: str = "../../") -> dict:
     ui = UI[lang]
     strings = translations.get("strings", {})
     cells_map = translations.get("cells", {})
@@ -386,6 +414,11 @@ def build_section(section: dict, model: dict, lang: str, translations: dict) -> 
             text = cells_map.get(str(block["cell"]), block["text"])
             if lang == "en":
                 text = fa_to_en_digits(text) if str(block["cell"]) in cells_map else text
+            if block.get("h1"):
+                head = re.search(r"^#\s+(.+)$", text, flags=re.M)
+                if head:
+                    section["title_en"] = clean_text(head.group(1))
+                    text = re.sub(r"^#\s+.+$", "", text, count=1, flags=re.M).strip()
             html_out = md_to_html(text, lang)
             soup = BeautifulSoup(html_out, "html.parser")
             for tag in soup.find_all(["h2", "h3"]):
@@ -403,7 +436,7 @@ def build_section(section: dict, model: dict, lang: str, translations: dict) -> 
             if code_html:
                 rendered.append(dict(kind="code", html=code_html, cell=block["cell"]))
             for figure in figures:
-                rendered.append(dict(kind="figure", html=render_figure(figure, lang, ui, strings)))
+                rendered.append(dict(kind="figure", html=render_figure(figure, lang, ui, strings, assets)))
             for item in blocks:
                 if item["kind"] == "table":
                     rendered.append(dict(kind="table", html=render_table(item, lang, ui)))
@@ -414,20 +447,16 @@ def build_section(section: dict, model: dict, lang: str, translations: dict) -> 
                     rendered.append(dict(kind="text", html=f'<pre class="out-text">{text}</pre>'))
     section["rendered"] = rendered
     section["headings"] = headings
-    section["title_en"] = section["title"]
-    for block in rendered:
-        if block["kind"] == "md":
-            match = re.search(r"<h1[^>]*>(.*?)</h1>", block["html"])
-            if match:
-                section["title_en"] = BeautifulSoup(match.group(1), "html.parser").get_text(strip=True)
     return section
 
 
 def page_shell(*, lang: str, title: str, description: str, canonical: str, body: str,
-               sidebar: str, toc: str, other_lang_href: str, search_index: str = "../search.json") -> str:
+               sidebar: str, toc: str, other_lang_href: str, other_lang_absolute: str,
+               paths: dict, search_index: str = "../search.json") -> str:
     ui = UI[lang]
     other = "en" if lang == "fa" else "fa"
     other_ready = (ROOT / "docs" / "en" / "guide" / "index.html").exists()
+    assets, home, guide_root = paths["assets"], paths["home"], paths["guide_root"]
     return f"""<!DOCTYPE html>
 <html lang="{lang}" dir="{ui['dir']}">
 <head>
@@ -439,7 +468,7 @@ def page_shell(*, lang: str, title: str, description: str, canonical: str, body:
 <meta name="theme-color" content="#0b3d39">
 <link rel="canonical" href="{canonical}">
 <link rel="alternate" hreflang="{lang}" href="{canonical}">
-<link rel="alternate" hreflang="{other}" href="{other_lang_href}">
+<link rel="alternate" hreflang="{other}" href="{other_lang_absolute}">
 <link rel="alternate" hreflang="x-default" href="{SITE}/guide/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{html.escape(title)}">
@@ -447,11 +476,11 @@ def page_shell(*, lang: str, title: str, description: str, canonical: str, body:
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{SITE}/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="../../assets/fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/site.css">
-<link rel="stylesheet" href="../../assets/css/pygments.css">
-<link rel="stylesheet" href="../../assets/css/guide.css">
+<link rel="icon" href="{assets}img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="{assets}fonts/Vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{assets}css/site.css">
+<link rel="stylesheet" href="{assets}css/pygments.css">
+<link rel="stylesheet" href="{assets}css/guide.css">
 <script type="application/ld+json">
 {json.dumps({
   "@context": "https://schema.org",
@@ -470,16 +499,16 @@ def page_shell(*, lang: str, title: str, description: str, canonical: str, body:
 <a class="skip-link" href="#main">Skip</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="../../index.html" aria-label="JobVision Labor Market">
+    <a class="brand" href="{home}" aria-label="JobVision Labor Market">
       <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 17l4-6 4 3 4-7 4 4"/></svg></span>
       <span>JobVision<small>Labor Market Analytics</small></span>
     </a>
     <nav class="nav" id="nav" aria-label="Primary">
-      <a href="../../index.html#problem">{ui['home']}</a>
-      <a href="../../index.html#findings">{'یافته‌ها' if lang == 'fa' else 'Findings'}</a>
-      <a href="../../index.html#visuals">{'نمودارها' if lang == 'fa' else 'Visuals'}</a>
-      <a href="../../index.html#playbook">{'بسته اجرایی' if lang == 'fa' else 'Playbook'}</a>
-      <a class="active" href="../">{ui['docs']}</a>
+      <a href="{home}#problem">{ui['home']}</a>
+      <a href="{home}#findings">{'یافته‌ها' if lang == 'fa' else 'Findings'}</a>
+      <a href="{home}#visuals">{'نمودارها' if lang == 'fa' else 'Visuals'}</a>
+      <a href="{home}#playbook">{'بسته اجرایی' if lang == 'fa' else 'Playbook'}</a>
+      <a class="active" href="{guide_root}">{ui['docs']}</a>
     </nav>
     <div class="header-actions">
       <div class="lang-switch" role="group" aria-label="Language">
@@ -529,13 +558,13 @@ def page_shell(*, lang: str, title: str, description: str, canonical: str, body:
   <div class="wrap">
     <div class="footer-bottom">
       <p>{ui['footer_note']}</p>
-      <p><a href="{REPO}">GitHub</a> · <a href="../../index.html">{ui['home']}</a> · <a href="{SITE}/guide/">{ui['back_to_guide']}</a></p>
+      <p><a href="{REPO}">GitHub</a> · <a href="{home}">{ui['home']}</a> · <a href="{guide_root}">{ui['back_to_guide']}</a></p>
     </div>
   </div>
 </footer>
 
-<script src="../../assets/js/site.js"></script>
-<script src="../../assets/js/guide.js" data-index="{search_index}" data-ui-search="{ui['search']}"></script>
+<script src="{assets}js/site.js"></script>
+<script src="{assets}js/guide.js" data-index="{search_index}" data-ui-search="{ui['search']}"></script>
 </body>
 </html>
 """
@@ -548,7 +577,7 @@ def sidebar_html(sections: list[dict], active_num: int, lang: str, depth: str = 
         if section["num"] == 0:
             continue
         slug = f"{section['num']:02d}-{SLUGS[section['num']]}"
-        label = display_title(section["title"])
+        label = display_title(section_title(section, lang))
         classes = "guide-nav-link" + (" is-active" if section["num"] == active_num else "")
         subs = ""
         if section["num"] == active_num and section.get("headings"):
@@ -586,7 +615,7 @@ def write_index(model: dict, lang: str, out_dir: Path, translations: dict) -> No
         cards.append(
             f'<li class="guide-card reveal"><a href="{href}">'
             f'<span class="num">{section["num"]}</span>'
-            f'<span class="t">{html.escape(display_title(section["title"]))}</span>'
+            f'<span class="t">{html.escape(display_title(section_title(section, lang)))}</span>'
             f'<span class="meta">{card_meta(stats, ui)}</span>'
             f'</a></li>')
     total = dict(tables=sum(section_stats(s, lang)["tables"] for s in sections),
@@ -603,12 +632,12 @@ def write_index(model: dict, lang: str, out_dir: Path, translations: dict) -> No
   <div class="kpi"><b>{total['code']}</b><span>{ui['code_cells']}</span></div>
 </div>
 <ul class="guide-cards">{''.join(cards)}</ul>"""
-    other = "en/guide" if lang == "fa" else "../guide"
     (out_dir / "index.html").write_text(
         page_shell(lang=lang, title=f"{ui['guide']} — JobVision", canonical=f"{SITE}/{'' if lang=='fa' else 'en/'}guide/",
                    description=lead, body=body, sidebar=sidebar_html(model['sections'], -1, lang, depth=""),
-                   toc="", other_lang_href=f"../{other}/" if lang == "en" else "../en/guide/",
-                   search_index="search.json"),
+                   toc="", other_lang_href=page_paths(lang, section_page=False)["other"],
+                   other_lang_absolute=f"{SITE}/en/guide/" if lang == "fa" else f"{SITE}/guide/",
+                   paths=page_paths(lang, section_page=False), search_index="search.json"),
         encoding="utf-8")
 
 
@@ -623,32 +652,33 @@ def write_section_page(section: dict, previous: dict | None, following: dict | N
     pager = '<nav class="guide-pager">'
     if previous:
         pager += (f'<a class="prev" href="../{previous["num"]:02d}-{SLUGS[previous["num"]]}/">'
-                  f'<span>{ui["prev"]}</span><b>{html.escape(display_title(previous["title"]))}</b></a>')
+                  f'<span>{ui["prev"]}</span><b>{html.escape(display_title(section_title(previous, lang)))}</b></a>')
     if following:
         pager += (f'<a class="next" href="../{following["num"]:02d}-{SLUGS[following["num"]]}/">'
-                  f'<span>{ui["next"]}</span><b>{html.escape(display_title(following["title"]))}</b></a>')
+                  f'<span>{ui["next"]}</span><b>{html.escape(display_title(section_title(following, lang)))}</b></a>')
     pager += "</nav>"
     meta = (f'<p class="guide-meta">{minutes} {ui["read_time"]} · '
             f'{card_meta(stats, ui)}</p>')
     crumb = (f'<nav class="guide-crumbs"><a href="../../index.html">{ui["home"]}</a> <span>/</span> '
              f'<a href="../">{ui["docs"]}</a> <span>/</span> <span>{ui["part"]} {section["num"]}</span></nav>')
     body = f"""{crumb}
-<h1>{html.escape(section['title'])}</h1>
+<h1>{html.escape(section_title(section, lang))}</h1>
 {meta}
 {content}
 <p class="guide-source">{ui['last_update']} · <a href="{REPO}/blob/main/jobvision_analysis.ipynb">{ui['open_notebook']}</a> · <a href="{COLAB}">{ui['run_colab']}</a></p>
 {pager}"""
     first_md = next((b["html"] for b in section["rendered"] if b["kind"] == "md"), "")
-    description = re.sub(r"\s+", " ", BeautifulSoup(first_md, "html.parser").get_text(" ")).strip()[:200] or section["title"]
+    description = re.sub(r"\s+", " ", BeautifulSoup(first_md, "html.parser").get_text(" ")).strip()[:200] or section_title(section, lang)
     canonical = f"{SITE}/{'en/' if lang == 'en' else ''}guide/{slug}/"
-    other = f"../../{'guide' if lang == 'en' else 'en/guide'}/{slug}/"
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "index.html").write_text(
-        page_shell(lang=lang, title=f"{section['title']} — JobVision {UI[lang]['guide']}",
+        page_shell(lang=lang, title=f"{section_title(section, lang)} — JobVision {UI[lang]['guide']}",
                    description=description,
                    canonical=canonical, body=body,
                    sidebar=sidebar_html(model['sections'], section['num'], lang),
-                   toc=toc_html(section, lang), other_lang_href=other),
+                   toc=toc_html(section, lang), other_lang_href=page_paths(lang, section_page=True)["other"] + slug + "/",
+                   other_lang_absolute=f"{SITE}/{'guide' if lang == 'en' else 'en/guide'}/{slug}/",
+                   paths=page_paths(lang, section_page=True)),
         encoding="utf-8")
 
 
@@ -664,7 +694,7 @@ def write_search_index(model: dict, lang: str, out_dir: Path) -> None:
             if block["kind"] in ("md", "table", "metrics", "text"):
                 text_parts.append(BeautifulSoup(block["html"], "html.parser").get_text(" "))
         joined = re.sub(r"\s+", " ", " ".join(text_parts)).strip()
-        entries.append(dict(section=section["num"], title=display_title(section["title"]), url=base,
+        entries.append(dict(section=section["num"], title=display_title(section_title(section, lang)), url=base,
                             text=joined[:4000]))
         for heading in section.get("headings", []):
             if heading["level"] != "h2":
@@ -694,7 +724,8 @@ def main() -> None:
                 translations[name] = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
             UI["en"].update({k: v for k, v in translations.get("ui", {}).items() if k in UI["en"]})
         for section in model["sections"]:
-            build_section(section, model, lang, translations)
+            build_section(section, model, lang, translations,
+                          page_paths(lang, section_page=True)["assets"])
         out_root = (ROOT / "docs" / ("guide" if lang == "fa" else "en/guide")).resolve()
         numbered = [s for s in model["sections"] if s["num"] > 0]
         for position, section in enumerate(numbered):
