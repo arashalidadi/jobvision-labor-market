@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>16. Salary modelling and shifting feature importance — JobVision Guide</title>
+<title>16. Salary modelling and shifting feature importance over time — JobVision Guide</title>
 <meta name="description" content="16.1. Model design # The goal is to predict the log of the median salary range from job, skill, location and organisational features. We take the logarithm because the salary distribution is skewed (S">
 <meta name="author" content="Arash Alidadi">
 <meta name="theme-color" content="#0b3d39">
@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/16-salary-modelling/">
 <link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="16. Salary modelling and shifting feature importance — JobVision Guide">
+<meta property="og:title" content="16. Salary modelling and shifting feature importance over time — JobVision Guide">
 <meta property="og:description" content="16.1. Model design # The goal is to predict the log of the median salary range from job, skill, location and organisational features. We take the logarithm because the salary distribution is skewed (S">
 <meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/16-salary-modelling/">
 <meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
@@ -26,7 +26,7 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "16. Salary modelling and shifting feature importance — JobVision Guide",
+  "headline": "16. Salary modelling and shifting feature importance over time — JobVision Guide",
   "description": "16.1. Model design # The goal is to predict the log of the median salary range from job, skill, location and organisational features. We take the logarithm because the salary distribution is skewed (S",
   "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/16-salary-modelling/",
   "inLanguage": "en",
@@ -82,12 +82,12 @@
   <a class="guide-back" href="../">← Guide index</a>
   <p class="guide-side-title">Table of contents</p>
 </div>
-<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link is-active" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-16-1">16.1. Model design</a></li><li class="lvl-h2"><a href="#sec-16-2">16.2. Annual model training and performance</a></li><li class="lvl-h2"><a href="#sec-16-3">16.3. Which factors have the largest effect, and how have they changed?</a></li></ul></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project introduction and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tools, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data profiling and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Analyzing distributions, skewness, and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity, and non-linear relationships</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>The mechanism of salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trend, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Salary Peak by Age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geographical Analysis and Provincial Concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran in the Mirror of the Global Labour Market (2022–2024)</span></a></li><li><a class="guide-nav-link is-active" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance over time</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-16-1">16.1. Model design</a></li><li class="lvl-h2"><a href="#sec-16-2">16.2. Annual model training and performance</a></li><li class="lvl-h2"><a href="#sec-16-3">16.3. Which factors have the largest effect, and how have they changed?</a></li><li class="lvl-h2"><a href="#sec-16-4">16.4. Do the signs of the coefficients match theoretical expectation?</a></li></ul></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what expertise does each industry want?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>The evolution of skills and the surge of job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Profiling and clustering of employers [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Recommended package for the business manager</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Summary, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Calculation checks and reproducibility</span></a></li></ul>
   </aside>
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 16</span></nav>
-<h1>16. Salary modelling and shifting feature importance</h1>
-<p class="guide-meta">3 min read · 3 tables · 1 figures · 3 code cells</p>
+<h1>16. Salary modelling and shifting feature importance over time</h1>
+<p class="guide-meta">5 min read · 4 tables · 1 figures · 4 code cells</p>
 <h2 class="guide-heading" id="sec-16-1">16.1. Model design <a aria-label="link" class="anchor" href="#sec-16-1">#</a></h2>
 <p>The goal is to predict the <strong>log of the median salary range</strong> from job, skill, location and organisational features. We take the logarithm because the salary distribution is skewed (Section 7). The base model is ridge regression with standardised features, so that coefficients are comparable across variables. We train a separate model for each year to see how the determining factors have changed over time.</p>
 <p><strong>Methodological controls:</strong> Salary outliers are winsorised at the 1st and 99th percentiles, numeric variables are standardised, categorical variables enter via One-Hot (dropping the first level), and evaluation is done with 5-fold cross-validation.</p><details class="code-fold">
@@ -302,7 +302,7 @@ show_table(&#x27;16.1&#x27;, &#x27;کارایی مدل‌های حقوق در ه
 </table></div>
   <p class="tbl-note"><span>Note:</span> The baseline model predicts the median for all postings; the tree model shows the ceiling of non-linear performance.</p>
   
-</figure><p><strong>Interpreting Table 16.1:</strong> The ridge model has a validation coefficient of determination of <strong>0.44</strong> in both years; that is, about 44% of the variation in log salary is explained by the observed features. The model's absolute error is about 2.5 million tomans in 1401 and about 3.4 million tomans in 1402, while the baseline model (predicting the median for everyone) has an error of 3.2 and 4.4 million; the model therefore reduces the error by about 22%.</p>
+</figure><p><strong>Interpreting Table 16.1:</strong> The ridge model has a validation coefficient of determination of <strong>0.44</strong> in both years; that is, about 44% of the variation in log salary is explained by the observed features. The model's mean absolute error is about 2.5 million tomans in 1401 and about 3.4 million tomans in 1402, while the baseline model (predicting the median for everyone) has an error of 3.2 and 4.4 million; the model therefore reduces the error by about 22%.</p>
 <p>The gradient-boosted tree model (HistGradientBoosting) reaches an R2 of about 0.58; that is, non-linear relations and interactions add about 14 percentage points of explanatory power. The remaining 42% is the share of factors that are not in the data: company brand, negotiation terms, soft skills, and within-job differences.</p><h2 class="guide-heading" id="sec-16-3">16.3. Which factors have the largest effect, and how have they changed? <a aria-label="link" class="anchor" href="#sec-16-3">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>70 lines</em></summary>
@@ -450,10 +450,10 @@ show_metrics(&#x27;مدل حقوق&#x27;, [
 </code></pre>
   </div>
 </details><figure class="figure guide-figure" id="figure-16-1-16-2">
-  <button type="button" data-full="../../../assets/img/fig_16_1-16_2.webp" data-caption="Figure 16.1-16.2 | Change in the effect of numeric features between the two years · Actual vs predicted, 1402 model">
-    <img src="../../../assets/img/fig_16_1-16_2-sm.webp" alt="Figure 16.1-16.2 | Change in the effect of numeric features between the two years · Actual vs predicted, 1402 model" loading="lazy" decoding="async">
+  <button type="button" data-full="../../../assets/img/fig_16_1-16_2.webp" data-caption="Figure 16.1-16.2 | Change in the effect of numeric features between the two years · Actual versus predicted, 1402 model">
+    <img src="../../../assets/img/fig_16_1-16_2-sm.webp" alt="Figure 16.1-16.2 | Change in the effect of numeric features between the two years · Actual versus predicted, 1402 model" loading="lazy" decoding="async">
   </button>
-  <figcaption>Figure 16.1-16.2 | Change in the effect of numeric features between the two years · Actual vs predicted, 1402 model</figcaption>
+  <figcaption>Figure 16.1-16.2 | Change in the effect of numeric features between the two years · Actual versus predicted, 1402 model</figcaption>
 </figure><figure class="guide-table" id="table-">
   <figcaption>Table 16.2 | Standardised effect of numeric features on salary across the two years | 119,048 postings with salary</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
@@ -641,12 +641,286 @@ show_metrics(&#x27;مدل حقوق&#x27;, [
   <ul><li>Validation R² 1401: 0.443</li><li>Validation R² 1402: 0.437</li><li>Absolute error 1402: 3.44 million</li><li>Top factor 1402: Jobpost_RequiredExperienceYears</li></ul>
 </div><p><strong>Interpreting Tables 16.2 and 16.3 and Figures 16.1 and 16.2:</strong> The most important numeric factor in both years is <strong>work experience</strong>: one more standard deviation of experience raises salary by about <strong>+16.1%</strong> in 1401 and about <strong>+12.5%</strong> in 1402. After that come the number of benefits (+4.5 to +2.9), having a field of study (+4.1 to +2.8) and company size (+3.3 to +2.7). Note that <strong>all of these effects became smaller from 1401 to 1402</strong>; that is, in the second year the market gave a smaller reward for the same features.</p>
 <p>On the categorical side, the gaps are large and deepening: relative to the reference role (programming), postings for general labourer were about <strong>−55.9%</strong> in 1401 and <strong>−60%</strong> in 1402, administrative clerk <strong>−50.3% to −56.1%</strong> and technical technician <strong>−36.3% to −37.4%</strong>. By contrast, managerial roles in 1402 were about <strong>+28.2%</strong> above the reference.</p>
-<p><strong>Summary:</strong> In a year of high inflation, the returns to individual features (experience, degree, benefits) declined slightly, but the gap between "types of job" deepened; that is, the fate of a wage has come to depend more than ever on the choice of career path, not on accumulating experience.</p>
+<p><strong>Summary:</strong> In a year of high inflation, the returns to individual features (experience, degree, benefits) declined somewhat, but the gap between “types of job” deepened; that is, the fate of a wage has come to depend more than ever on the choice of career path, not on accumulating experience.</p><h2 class="guide-heading" id="sec-16-4">16.4. Do the signs of the coefficients match theoretical expectation? <a aria-label="link" class="anchor" href="#sec-16-4">#</a></h2>
+<p>The project brief asks one explicit question: “Do the signs of the coefficients match your expectation?” Tables 16.2 and 16.3 showed the magnitude of the effect; here we assess only the <strong>direction</strong>, because it is the direction that confirms or rejects the economic theory of the labour market. For each numeric variable, the prior expectation (recorded before seeing the result) is entered and compared with the estimated sign in both years.</p><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>61 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="# ۱۶.۴ — علامت ضرایب در برابر انتظار نظری
+EXPECTED_SIGN = {
+    &#x27;Jobpost_RequiredExperienceYears&#x27;: (1, &#x27;سابقهٔ بیشتر ⇒ حقوق بالاتر&#x27;),
+    &#x27;weekly_hours&#x27;: (1, &#x27;ساعت بیشتر معمولاً نقش تمام‌وقت و حقوق بالاتر&#x27;),
+    &#x27;benefit_count&#x27;: (1, &#x27;مزایای بیشتر ⇒ بستهٔ جبران خدمات بهتر&#x27;),
+    &#x27;skill_count&#x27;: (1, &#x27;مهارت بیشتر ⇒ تخصص بالاتر&#x27;),
+    &#x27;company_size_rank&#x27;: (1, &#x27;شرکت بزرگ‌تر ⇒ قدرت پرداخت بیشتر&#x27;),
+    &#x27;company_age_rank&#x27;: (1, &#x27;شرکت باسابقه‌تر ⇒ ساختار حقوقی بالغ‌تر&#x27;),
+    &#x27;company_industry_count&#x27;: (0, &#x27;تنوع صنعتی جهت مشخصی ندارد&#x27;),
+    &#x27;is_remote&#x27;: (1, &#x27;دورکاری بیشتر برای نقش‌های تخصصی&#x27;),
+    &#x27;is_internship&#x27;: (-1, &#x27;کارآموزی کم‌حقوق است&#x27;),
+    &#x27;military_card&#x27;: (0, &#x27;الزام پایان خدمت جهت روشنی ندارد&#x27;),
+    &#x27;local_priority&#x27;: (-1, &#x27;اولویت نیروی بومی معمولاً برای نقش‌های پایه&#x27;),
+    &#x27;has_academic&#x27;: (1, &#x27;رشتهٔ تحصیلی مرتبط ⇒ تخصص بیشتر&#x27;),
+    &#x27;age_mid&#x27;: (1, &#x27;سن بیشتر تا حدی حقوق بالاتر&#x27;),
+}
+
+
+def coefficients(year):
+    model = models[year]
+    return pd.Series(model[&#x27;ridge&#x27;].coef_, index=model[&#x27;design&#x27;].columns)
+
+
+coef_1401, coef_1402 = coefficients(1401), coefficients(1402)
+sign_rows = []
+for feature in NUMERIC_FEATURES:
+    expected, reason = EXPECTED_SIGN[feature]
+    effect_1401 = (math.exp(coef_1401.get(feature, 0)) - 1) * 100
+    effect_1402 = (math.exp(coef_1402.get(feature, 0)) - 1) * 100
+    sign_1401 = int(np.sign(coef_1401.get(feature, 0)))
+    sign_1402 = int(np.sign(coef_1402.get(feature, 0)))
+    if expected == 0:
+        verdict = &#x27;بدون انتظار&#x27;
+    elif sign_1401 == expected and sign_1402 == expected:
+        verdict = &#x27;مطابق در دو سال&#x27;
+    elif sign_1401 == expected or sign_1402 == expected:
+        verdict = &#x27;مطابق در یک سال&#x27;
+    else:
+        verdict = &#x27;مغایر&#x27;
+    sign_rows.append({&#x27;ویژگی&#x27;: feature, &#x27;اثر ۱۴۰۱ (٪)&#x27;: effect_1401, &#x27;اثر ۱۴۰۲ (٪)&#x27;: effect_1402,
+                      &#x27;انتظار&#x27;: {1: &#x27;+&#x27;, -1: &#x27;−&#x27;, 0: &#x27;0&#x27;}[expected],
+                      &#x27;تطابق&#x27;: verdict, &#x27;دلیل انتظار&#x27;: reason})
+
+sign_table = pd.DataFrame(sign_rows).set_index(&#x27;ویژگی&#x27;)
+sign_table = sign_table.reindex(sign_table[&#x27;اثر ۱۴۰۱ (٪)&#x27;].abs().sort_values(ascending=False).index)
+show_table(&#x27;16.4&#x27;, &#x27;علامت و اندازهٔ اثر متغیرهای عددی در برابر انتظار نظری&#x27;, sign_table,
+           formats={&#x27;اثر ۱۴۰۱ (٪)&#x27;: &#x27;pp&#x27;, &#x27;اثر ۱۴۰۲ (٪)&#x27;: &#x27;pp&#x27;},
+           sample=f&#x27;{len(paid):,} آگهی با حقوق اعلام‌شده&#x27;, index_name=&#x27;ویژگی&#x27;,
+           note=&#x27;اثر هر انحراف معیار بر حقوق؛ مدل ریدج با متغیرهای استانداردشده.&#x27;)
+
+match_two = int((sign_table[&#x27;تطابق&#x27;] == &#x27;مطابق در دو سال&#x27;).sum())
+match_one = int((sign_table[&#x27;تطابق&#x27;] == &#x27;مطابق در یک سال&#x27;).sum())
+opposite = int((sign_table[&#x27;تطابق&#x27;] == &#x27;مغایر&#x27;).sum())
+flipped = int(((np.sign(sign_table[&#x27;اثر ۱۴۰۱ (٪)&#x27;]) * np.sign(sign_table[&#x27;اثر ۱۴۰۲ (٪)&#x27;])) &lt; 0).sum())
+show_metrics(&#x27;۱۶.۳&#x27;, [
+    (&#x27;متغیرهای با انتظار مشخص&#x27;, f&#x27;{len(sign_table) - int((sign_table[&quot;تطابق&quot;] == &quot;بدون انتظار&quot;).sum())}&#x27;),
+    (&#x27;مطابق در دو سال&#x27;, f&#x27;{match_two}&#x27;),
+    (&#x27;مطابق در یک سال&#x27;, f&#x27;{match_one}&#x27;),
+    (&#x27;مغایر با انتظار&#x27;, f&#x27;{opposite}&#x27;),
+    (&#x27;تغییر علامت بین دو سال&#x27;, f&#x27;{flipped}&#x27;),
+])
+" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="c1"># ۱۶.۴ — علامت ضرایب در برابر انتظار نظری</span>
+<span class="n">EXPECTED_SIGN</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'Jobpost_RequiredExperienceYears'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'سابقهٔ بیشتر ⇒ حقوق بالاتر'</span><span class="p">),</span>
+    <span class="s1">'weekly_hours'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'ساعت بیشتر معمولاً نقش تمام‌وقت و حقوق بالاتر'</span><span class="p">),</span>
+    <span class="s1">'benefit_count'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'مزایای بیشتر ⇒ بستهٔ جبران خدمات بهتر'</span><span class="p">),</span>
+    <span class="s1">'skill_count'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'مهارت بیشتر ⇒ تخصص بالاتر'</span><span class="p">),</span>
+    <span class="s1">'company_size_rank'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'شرکت بزرگ‌تر ⇒ قدرت پرداخت بیشتر'</span><span class="p">),</span>
+    <span class="s1">'company_age_rank'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'شرکت باسابقه‌تر ⇒ ساختار حقوقی بالغ‌تر'</span><span class="p">),</span>
+    <span class="s1">'company_industry_count'</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'تنوع صنعتی جهت مشخصی ندارد'</span><span class="p">),</span>
+    <span class="s1">'is_remote'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'دورکاری بیشتر برای نقش‌های تخصصی'</span><span class="p">),</span>
+    <span class="s1">'is_internship'</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'کارآموزی کم‌حقوق است'</span><span class="p">),</span>
+    <span class="s1">'military_card'</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'الزام پایان خدمت جهت روشنی ندارد'</span><span class="p">),</span>
+    <span class="s1">'local_priority'</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'اولویت نیروی بومی معمولاً برای نقش‌های پایه'</span><span class="p">),</span>
+    <span class="s1">'has_academic'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'رشتهٔ تحصیلی مرتبط ⇒ تخصص بیشتر'</span><span class="p">),</span>
+    <span class="s1">'age_mid'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'سن بیشتر تا حدی حقوق بالاتر'</span><span class="p">),</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">coefficients</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">year</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="s1">'ridge'</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">model</span><span class="p">[</span><span class="s1">'design'</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+
+<span class="n">coef_1401</span><span class="p">,</span> <span class="n">coef_1402</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">(</span><span class="mi">1401</span><span class="p">),</span> <span class="n">coefficients</span><span class="p">(</span><span class="mi">1402</span><span class="p">)</span>
+<span class="n">sign_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">NUMERIC_FEATURES</span><span class="p">:</span>
+    <span class="n">expected</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">EXPECTED_SIGN</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span>
+    <span class="n">effect_1401</span> <span class="o">=</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">coef_1401</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">effect_1402</span> <span class="o">=</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">coef_1402</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">sign_1401</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">coef_1401</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+    <span class="n">sign_1402</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">coef_1402</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">expected</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">verdict</span> <span class="o">=</span> <span class="s1">'بدون انتظار'</span>
+    <span class="k">elif</span> <span class="n">sign_1401</span> <span class="o">==</span> <span class="n">expected</span> <span class="ow">and</span> <span class="n">sign_1402</span> <span class="o">==</span> <span class="n">expected</span><span class="p">:</span>
+        <span class="n">verdict</span> <span class="o">=</span> <span class="s1">'مطابق در دو سال'</span>
+    <span class="k">elif</span> <span class="n">sign_1401</span> <span class="o">==</span> <span class="n">expected</span> <span class="ow">or</span> <span class="n">sign_1402</span> <span class="o">==</span> <span class="n">expected</span><span class="p">:</span>
+        <span class="n">verdict</span> <span class="o">=</span> <span class="s1">'مطابق در یک سال'</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">verdict</span> <span class="o">=</span> <span class="s1">'مغایر'</span>
+    <span class="n">sign_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'ویژگی'</span><span class="p">:</span> <span class="n">feature</span><span class="p">,</span> <span class="s1">'اثر ۱۴۰۱ (٪)'</span><span class="p">:</span> <span class="n">effect_1401</span><span class="p">,</span> <span class="s1">'اثر ۱۴۰۲ (٪)'</span><span class="p">:</span> <span class="n">effect_1402</span><span class="p">,</span>
+                      <span class="s1">'انتظار'</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">'+'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="s1">'−'</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s1">'0'</span><span class="p">}[</span><span class="n">expected</span><span class="p">],</span>
+                      <span class="s1">'تطابق'</span><span class="p">:</span> <span class="n">verdict</span><span class="p">,</span> <span class="s1">'دلیل انتظار'</span><span class="p">:</span> <span class="n">reason</span><span class="p">})</span>
+
+<span class="n">sign_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sign_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'ویژگی'</span><span class="p">)</span>
+<span class="n">sign_table</span> <span class="o">=</span> <span class="n">sign_table</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">sign_table</span><span class="p">[</span><span class="s1">'اثر ۱۴۰۱ (٪)'</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'16.4'</span><span class="p">,</span> <span class="s1">'علامت و اندازهٔ اثر متغیرهای عددی در برابر انتظار نظری'</span><span class="p">,</span> <span class="n">sign_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'اثر ۱۴۰۱ (٪)'</span><span class="p">:</span> <span class="s1">'pp'</span><span class="p">,</span> <span class="s1">'اثر ۱۴۰۲ (٪)'</span><span class="p">:</span> <span class="s1">'pp'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paid</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی با حقوق اعلام‌شده'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'ویژگی'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'اثر هر انحراف معیار بر حقوق؛ مدل ریدج با متغیرهای استانداردشده.'</span><span class="p">)</span>
+
+<span class="n">match_two</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">sign_table</span><span class="p">[</span><span class="s1">'تطابق'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'مطابق در دو سال'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">match_one</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">sign_table</span><span class="p">[</span><span class="s1">'تطابق'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'مطابق در یک سال'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">opposite</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">sign_table</span><span class="p">[</span><span class="s1">'تطابق'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'مغایر'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">flipped</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(((</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">sign_table</span><span class="p">[</span><span class="s1">'اثر ۱۴۰۱ (٪)'</span><span class="p">])</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">sign_table</span><span class="p">[</span><span class="s1">'اثر ۱۴۰۲ (٪)'</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'۱۶.۳'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'متغیرهای با انتظار مشخص'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sign_table</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">int</span><span class="p">((</span><span class="n">sign_table</span><span class="p">[</span><span class="s2">"تطابق"</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"بدون انتظار"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'مطابق در دو سال'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">match_two</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'مطابق در یک سال'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">match_one</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'مغایر با انتظار'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">opposite</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'تغییر علامت بین دو سال'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">flipped</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>Table 16.4 | Sign and size of the effect of numeric variables vs. theoretical expectation | 119,048 postings with disclosed salary | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Effect 1401 (%)</th>
+<th>Effect 1402 (%)</th>
+<th>Expectation</th>
+<th>Match</th>
+<th>Reason for expectation</th>
+</tr>
+<tr>
+<th>Feature</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Jobpost_RequiredExperienceYears</th>
+<td>+16.1</td>
+<td>+12.5</td>
+<td>+</td>
+<td>Matches in both years</td>
+<td>More experience ⇒ higher salary</td>
+</tr>
+<tr>
+<th>benefit_count</th>
+<td>+4.5</td>
+<td>+2.9</td>
+<td>+</td>
+<td>Matches in both years</td>
+<td>More benefits ⇒ better compensation package</td>
+</tr>
+<tr>
+<th>has_academic</th>
+<td>+4.1</td>
+<td>+2.8</td>
+<td>+</td>
+<td>Matches in both years</td>
+<td>Relevant field of study ⇒ greater specialization</td>
+</tr>
+<tr>
+<th>company_size_rank</th>
+<td>+3.3</td>
+<td>+2.7</td>
+<td>+</td>
+<td>Matches in both years</td>
+<td>Larger company ⇒ greater paying power</td>
+</tr>
+<tr>
+<th>age_mid</th>
+<td>+2.1</td>
+<td>+0.4</td>
+<td>+</td>
+<td>Matches in both years</td>
+<td>Older age, somewhat higher salary</td>
+</tr>
+<tr>
+<th>local_priority</th>
+<td>+1.6</td>
+<td>-0.8</td>
+<td>−</td>
+<td>Matches in one year</td>
+<td>Priority for the local workforce is usually for entry-level roles</td>
+</tr>
+<tr>
+<th>skill_count</th>
+<td>-1.0</td>
+<td>-0.7</td>
+<td>+</td>
+<td>Contradictory</td>
+<td>More skills ⇒ higher specialization</td>
+</tr>
+<tr>
+<th>is_internship</th>
+<td>-0.6</td>
+<td>-1.5</td>
+<td>−</td>
+<td>Matches in both years</td>
+<td>Internships are low-paid</td>
+</tr>
+<tr>
+<th>military_card</th>
+<td>-0.6</td>
+<td>-0.4</td>
+<td>0</td>
+<td>No expectation</td>
+<td>Military service requirement has no clear direction</td>
+</tr>
+<tr>
+<th>company_age_rank</th>
+<td>-0.6</td>
+<td>-1.0</td>
+<td>+</td>
+<td>Contradictory</td>
+<td>More seasoned company ⇒ more mature pay structure</td>
+</tr>
+<tr>
+<th>is_remote</th>
+<td>-0.5</td>
+<td>+0.5</td>
+<td>+</td>
+<td>Matches in one year</td>
+<td>More remote work for specialized roles</td>
+</tr>
+<tr>
+<th>company_industry_count</th>
+<td>+0.5</td>
+<td>-0.4</td>
+<td>0</td>
+<td>No expectation</td>
+<td>Industry diversity has no clear direction</td>
+</tr>
+<tr>
+<th>weekly_hours</th>
+<td>-0.3</td>
+<td>-0.2</td>
+<td>+</td>
+<td>Contradictory</td>
+<td>More hours usually means a full-time role and higher salary</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>Note:</span> Effect of each standard deviation on salary; ridge model with standardized variables</p>
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">Key numbers: 16.3</p>
+  <ul><li>Variables with a defined expectation: 11</li><li>Matches in both years: 6</li><li>Matches in one year: 2</li><li>Contradicts the expectation: 3</li><li>Sign changes between the two years: 3</li></ul>
+</div><p><strong>Interpreting Table 16.4 and Key Numbers 16.3:</strong> Of the 11 variables that had a definite theoretical expectation, <strong>6 variables matched expectation in both years</strong>, 2 variables in only one year, and <strong>3 variables were contrary</strong>. The overall pattern confirms human capital theory:</p>
+<ul>
+<li><strong>Experience</strong> has the largest effect (<strong>+16.1%</strong> in 1401 and <strong>+12.5%</strong> in 1402) and its sign is correct; but the strength of its reward fell by <strong>22 percent</strong> in the second year.</li>
+<li><strong>Benefits</strong> (+4.5 → +2.9), <strong>field of study</strong> (+4.1 → +2.8) and <strong>company size</strong> (+3.3 → +2.7) also match and all became smaller. That is, in 1402 the market paid <strong>less</strong> for the same features — exactly what was compared with inflation in Section 10.3.</li>
+<li><strong>Internship</strong> is negative and worsening (−0.6 → −1.5): an internship really is cheaper and this gap has grown.</li>
+</ul>
+<p>There are also three contradictions that are <strong>not bugs but findings</strong>:</p>
+<ol>
+<li><strong><code>skill_count</code> is negative</strong> (−1.0 and −0.7) although the expectation was “more skills ⇒ higher salary”. The reason: in this model <strong>job category is controlled for</strong>; within a category, a posting that asks for more skills is usually a more general, lower-paid role. The skill premium should be looked at at the level of “which skill”, not “how many skills” — and that is exactly what Section 22.4 (the salary premium of each skill) does.</li>
+<li><strong><code>weekly_hours</code> is negative</strong> (−0.3 and −0.2). This is consistent with the finding in Section 8.4: postings with long hours offer lower monthly salaries. The Iranian market does not pay more money for “more hours”.</li>
+<li><strong><code>company_age_rank</code> is negative</strong> (−0.6 and −1.0): older companies (usually manufacturing and family-owned) pay less than young startups.</li>
+</ol>
+<p>Two variables (<code>local_priority</code> and <code>is_remote</code>) changed sign between the two years; that is, they are within the zone of indifference and <strong>no policy should be built on them</strong> — policymaking on an effect that reverses the next year is dangerous.</p>
 <p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
-<nav class="guide-pager"><a class="prev" href="../15-global-comparison/"><span>Previous</span><b>Iran against the global labor market (2022–2024)</b></a><a class="next" href="../17-job-title-clustering/"><span>Next</span><b>Clustering job titles by skills and education</b></a></nav>
+<nav class="guide-pager"><a class="prev" href="../15-global-comparison/"><span>Previous</span><b>Iran in the Mirror of the Global Labour Market (2022–2024)</b></a><a class="next" href="../17-job-title-clustering/"><span>Next</span><b>Clustering job titles by skills and education</b></a></nav>
   </main>
   <aside class="guide-aside" aria-label="On this page">
-    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-16-1">16.1. Model design</a></li><li class="lvl-h2"><a href="#sec-16-2">16.2. Annual model training and performance</a></li><li class="lvl-h2"><a href="#sec-16-3">16.3. Which factors have the largest effect, and how have they changed?</a></li></ul>
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-16-1">16.1. Model design</a></li><li class="lvl-h2"><a href="#sec-16-2">16.2. Annual model training and performance</a></li><li class="lvl-h2"><a href="#sec-16-3">16.3. Which factors have the largest effect, and how have they changed?</a></li><li class="lvl-h2"><a href="#sec-16-4">16.4. Do the signs of the coefficients match theoretical expectation?</a></li></ul>
   </aside>
 </div>
 

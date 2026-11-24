@@ -87,7 +87,7 @@
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">صفحه اصلی</a> <span>/</span> <a href="../">مستندات</a> <span>/</span> <span>بخش 17</span></nav>
 <h1>۱۷. خوشه‌بندی عناوین شغلی بر پایه مهارت و تحصیلات</h1>
-<p class="guide-meta">3 دقیقه مطالعه · 4 جدول · 2 نمودار · 4 سلول کد</p>
+<p class="guide-meta">5 دقیقه مطالعه · 6 جدول · 2 نمودار · 6 سلول کد</p>
 <p>پرسش: کدام عناوین شغلی از نظر «سبد مهارت و تحصیلات» به هم نزدیک‌اند؟ برای پاسخ، هر عنوان شغلی را به یک بردار تبدیل می‌کنیم: سهم آگهی‌های آن عنوان که هر مهارت را می‌خواهند، به‌همراه سهم آگهی‌های نیازمند مدرک کارشناسی ارشد و بالاتر. سپس عناوین را خوشه‌بندی می‌کنیم.</p><div class="code-card">
     <header><span>Python · 24 خط</span><button class="copy-btn" data-copy="TITLE_MIN_ADS = 50
 title_counts = ads.base_title.value_counts()
@@ -646,7 +646,249 @@ show_metrics(&#x27;پایداری خوشه&#x27;, [
   <p class="m-title">عددهای کلیدی پایداری خوشه</p>
   <ul><li>تعداد خوشه انتخابی: 3</li><li>شاخص رند تعدیل‌شده: 0.952</li><li>عنوان جابه‌جا‌شده: 0 از 516</li><li>میانه سیلوئت: 0.510</li></ul>
 </div><p><strong>تفسیر جدول‌های ۱۷.۳ و ۱۷.۴:</strong> خوشه‌بندی مستقل هر سال و تطبیق آن‌ها، شاخص رند تعدیل‌شده <strong>۰٫۹۵۲</strong> می‌دهد؛ یعنی مرز خوشه‌ها در دو سال تقریباً یکسان مانده و <strong>هیچ عنوانی</strong> بین خوشه‌های هم‌ارز جابه‌جا نشده است. جدول ۱۷٫۴ هم نشان می‌دهد ماتریس تطبیق تقریباً قطری است.</p>
-<p><strong>نتیجه:</strong> در بازه دو ساله، «مرز مشاغل» تغییر نکرده است. مهارت‌های جدید (وردپرس، گوگل آنالیتیکس) درون همان خوشه‌ها جابه‌جا شده‌اند، اما باعث ادغام یا تفکیک خوشه‌ها نشده‌اند. این با یافته بخش ۱۹ هم‌خوان است: سبد مهارت یک عنوان ثابت می‌ماند و تحول، تدریجی است.</p>
+<p><strong>نتیجه:</strong> در بازه دو ساله، «مرز مشاغل» تغییر نکرده است. مهارت‌های جدید (وردپرس، گوگل آنالیتیکس) درون همان خوشه‌ها جابه‌جا شده‌اند، اما باعث ادغام یا تفکیک خوشه‌ها نشده‌اند. این با یافته بخش ۱۹ هم‌خوان است: سبد مهارت یک عنوان ثابت می‌ماند و تحول، تدریجی است.</p><p><strong>امضای هر خوشه:</strong> جدول ۱۷.۲ پروفایل کامل خوشه‌ها را داد. پرسش صریح صورت پروژه این است که «چه تفاوت‌هایی با یکدیگر دارند و کدام عنوان‌ها در هر خوشه‌اند». برای پاسخ فشرده، برای هر خوشه مهارت‌هایی را نشان می‌دهیم که <strong>بیشترین فاصله را از میانگین کل</strong> دارند — یعنی همان چیزی که خوشه را از بقیه جدا می‌کند، نه چیزهایی که در همهٔ خوشه‌ها مشترک است.</p><details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>32 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="# ۱۷.۵ — امضای خوشه‌ها: چه چیزی هر خوشه را متمایز می‌کند؟
+skill_columns = list(top_skills_list)
+signature_features = skill_columns + [&#x27;سهم مدرک ارشد و بالاتر&#x27;, &#x27;میانه سابقه&#x27;]
+overall_mean = title_features_clustered[skill_columns].mean()
+
+signature_rows = []
+for cluster, block in title_features_clustered.groupby(&#x27;خوشه&#x27;):
+    members = block.index
+    inside = block[skill_columns].mean()
+    elevation = (inside - overall_mean).sort_values(ascending=False)
+    dominant = elevation.head(2)
+    weakest = elevation.tail(1)
+    core_titles = title_ads.reindex(members).sort_values(ascending=False).head(3)
+    signature_rows.append({
+        &#x27;خوشه&#x27;: f&#x27;خوشه {int(cluster) + 1}&#x27;,
+        &#x27;تعداد عنوان&#x27;: int(len(members)),
+        &#x27;تعداد آگهی&#x27;: int(title_ads.reindex(members).sum()),
+        &#x27;مهارت متمایز اول&#x27;: f&#x27;{dominant.index[0]} ({dominant.iloc[0] * 100:+.1f} واحد)&#x27;,
+        &#x27;مهارت متمایز دوم&#x27;: f&#x27;{dominant.index[1]} ({dominant.iloc[1] * 100:+.1f} واحد)&#x27;,
+        &#x27;کمترین حضور&#x27;: f&#x27;{weakest.index[0]} ({weakest.iloc[0] * 100:+.1f} واحد)&#x27;,
+        &#x27;میانه سابقه&#x27;: block[&#x27;میانه سابقه&#x27;].median(),
+        &#x27;سهم مدرک ارشد&#x27;: block[&#x27;سهم مدرک ارشد و بالاتر&#x27;].mean() * 100,
+        &#x27;عنوان‌های هسته&#x27;: &#x27;، &#x27;.join(core_titles.index),
+    })
+
+signature_table = pd.DataFrame(signature_rows).set_index(&#x27;خوشه&#x27;)
+show_table(&#x27;17.5&#x27;, &#x27;امضای خوشه‌ها: متمایزترین مهارت‌ها و عنوان‌های هسته هر خوشه&#x27;, signature_table,
+           formats={&#x27;تعداد عنوان&#x27;: &#x27;int&#x27;, &#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;میانه سابقه&#x27;: &#x27;hours&#x27;,
+                    &#x27;سهم مدرک ارشد&#x27;: &#x27;pct&#x27;},
+           sample=&#x27;اختلاف با میانگین کل عنوان‌ها، بر حسب واحد درصد&#x27;,
+           index_name=&#x27;خوشه&#x27;,
+           note=&#x27;مهارت متمایز = مهارتی که سهم آن در خوشه بیشترین فاصله را از میانگین همهٔ عنوان‌ها دارد.&#x27;)
+" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="c1"># ۱۷.۵ — امضای خوشه‌ها: چه چیزی هر خوشه را متمایز می‌کند؟</span>
+<span class="n">skill_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">top_skills_list</span><span class="p">)</span>
+<span class="n">signature_features</span> <span class="o">=</span> <span class="n">skill_columns</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'سهم مدرک ارشد و بالاتر'</span><span class="p">,</span> <span class="s1">'میانه سابقه'</span><span class="p">]</span>
+<span class="n">overall_mean</span> <span class="o">=</span> <span class="n">title_features_clustered</span><span class="p">[</span><span class="n">skill_columns</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">signature_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">title_features_clustered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'خوشه'</span><span class="p">):</span>
+    <span class="n">members</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">index</span>
+    <span class="n">inside</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="n">skill_columns</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">elevation</span> <span class="o">=</span> <span class="p">(</span><span class="n">inside</span> <span class="o">-</span> <span class="n">overall_mean</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dominant</span> <span class="o">=</span> <span class="n">elevation</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">weakest</span> <span class="o">=</span> <span class="n">elevation</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">core_titles</span> <span class="o">=</span> <span class="n">title_ads</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">members</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">signature_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">'خوشه'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'خوشه </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+        <span class="s1">'تعداد عنوان'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">members</span><span class="p">)),</span>
+        <span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">title_ads</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">members</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+        <span class="s1">'مهارت متمایز اول'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">dominant</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">dominant</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">+.1f</span><span class="si">}</span><span class="s1"> واحد)'</span><span class="p">,</span>
+        <span class="s1">'مهارت متمایز دوم'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">dominant</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">dominant</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">+.1f</span><span class="si">}</span><span class="s1"> واحد)'</span><span class="p">,</span>
+        <span class="s1">'کمترین حضور'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">weakest</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">weakest</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">+.1f</span><span class="si">}</span><span class="s1"> واحد)'</span><span class="p">,</span>
+        <span class="s1">'میانه سابقه'</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s1">'میانه سابقه'</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span>
+        <span class="s1">'سهم مدرک ارشد'</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s1">'سهم مدرک ارشد و بالاتر'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">'عنوان‌های هسته'</span><span class="p">:</span> <span class="s1">'، '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">core_titles</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="p">})</span>
+
+<span class="n">signature_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">signature_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'خوشه'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'17.5'</span><span class="p">,</span> <span class="s1">'امضای خوشه‌ها: متمایزترین مهارت‌ها و عنوان‌های هسته هر خوشه'</span><span class="p">,</span> <span class="n">signature_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد عنوان'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'میانه سابقه'</span><span class="p">:</span> <span class="s1">'hours'</span><span class="p">,</span>
+                    <span class="s1">'سهم مدرک ارشد'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="s1">'اختلاف با میانگین کل عنوان‌ها، بر حسب واحد درصد'</span><span class="p">,</span>
+           <span class="n">index_name</span><span class="o">=</span><span class="s1">'خوشه'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'مهارت متمایز = مهارتی که سهم آن در خوشه بیشترین فاصله را از میانگین همهٔ عنوان‌ها دارد.'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>جدول 17.5 | امضای خوشه‌ها: متمایزترین مهارت‌ها و عنوان‌های هسته هر خوشه | اختلاف با میانگین کل عنوان‌ها، بر حسب واحد درصد | فروردین ۱۴۰۱ تا بهمن ۱۴۰۲</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>تعداد عنوان</th>
+<th>تعداد آگهی</th>
+<th>مهارت متمایز اول</th>
+<th>مهارت متمایز دوم</th>
+<th>کمترین حضور</th>
+<th>میانه سابقه</th>
+<th>سهم مدرک ارشد</th>
+<th>عنوان‌های هسته</th>
+</tr>
+<tr>
+<th>خوشه</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>خوشه 1</th>
+<td>642</td>
+<td>233,638</td>
+<td>Adobe Photoshop (+0.6 واحد)</td>
+<td>Html &amp; CSS (+0.3 واحد)</td>
+<td>Microsoft Excel (-2.2 واحد)</td>
+<td>2.0</td>
+<td>2.0٪</td>
+<td>کارشناس فروش، حسابدار، کارشناس حسابداری</td>
+</tr>
+<tr>
+<th>خوشه 2</th>
+<td>107</td>
+<td>19,413</td>
+<td>Microsoft Excel (+13.5 واحد)</td>
+<td>Microsoft Word (+9.2 واحد)</td>
+<td>Adobe Photoshop (-3.1 واحد)</td>
+<td>5.0</td>
+<td>15.4٪</td>
+<td>حسابدار ارشد، مدیر مالی، رئیس حسابداری</td>
+</tr>
+<tr>
+<th>خوشه 3</th>
+<td>13</td>
+<td>1,400</td>
+<td>Microsoft Powerpoint (+11.1 واحد)</td>
+<td>Rest API (+4.4 واحد)</td>
+<td>Adobe Photoshop (-3.7 واحد)</td>
+<td>2.0</td>
+<td>53.5٪</td>
+<td>مسئول فنی، کارشناس رگولاتوری، نمایندگی فروش بیمه</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>یادداشت:</span> مهارت متمایز = مهارتی که سهم آن در خوشه بیشترین فاصله را از میانگین همهٔ عنوان‌ها دارد.</p>
+  
+</figure><p><strong>تفسیر جدول ۱۷.۵:</strong> سه خوشه، سه بازار متمایز است:</p>
+<ul>
+<li><strong>خوشه ۱ — بدنهٔ عمومی بازار</strong> (۶۴۲ عنوان، ۲۳۳٬۶۳۸ آگهی، تنها ۲٪ مدرک ارشد): پرحجم‌ترین بخش بازار. عنوان‌های هسته «کارشناس فروش، حسابدار، کارشناس حسابداری» و مهارت متمایزش گرافیک و وب (+۰٫۶ واحد) است، در حالی که Excel در آن <strong>۲٫۲ واحد کمتر</strong> از میانگین است. این خوشه جایی است که مهارت نرم‌افزاری تقاضای کمی دارد و نقش‌ها عمومی‌اند.</li>
+<li><strong>خوشه ۲ — مالی و حسابداری ارشد</strong> (۱۰۷ عنوان، ۱۹٬۴۱۳ آگهی، سابقهٔ میانه ۵ سال، ۱۵٪ ارشد): امضای آن Excel (<strong>+۱۳٫۵ واحد</strong>) و Word (<strong>+۹٫۲ واحد</strong>) است؛ عنوان‌های هسته «حسابدار ارشد، مدیر مالی، رئیس حسابداری». یعنی مسیر ارتقای مالی، برخلاف تصور، از مهارت‌های صفحه‌گسترده می‌گذرد نه از ابزارهای تخصصی.</li>
+<li><strong>خوشه ۳ — نقش‌های فنی-مقرراتی</strong> (۱۳ عنوان، ۱٬۴۰۰ آگهی، <strong>۵۳٫۵٪ مدرک ارشد</strong>): کوچک‌ترین خوشه ولی مدرک‌محورترین بخش کل بازار (مسئول فنی، کارشناس رگولاتوری، نمایندگی فروش بیمه). اینجا مدرک ارشد عملاً شرط ورود است، نه مزیت.</li>
+</ul>
+<p><strong>جمع‌بندی خوشه‌بندی:</strong> مرز اصلی بازار «عمومی در برابر تخصصی» است، نه «فنی در برابر غیرفنی». خوشهٔ تخصصی حجم کمی دارد (۰٫۵٪ آگهی‌ها) ولی سخت‌ترین شرط‌های ورود را می‌گذارد؛ خوشهٔ مالی، سابقه‌محور است؛ و خوشهٔ عمومی، بزرگ‌ترین بازار برای جذب انبوه است. این سه، سه استراتژی متفاوت استخدام می‌خواهند.</p><p><strong>پایداری خوشه‌ها با بازنمونه‌گیری:</strong> خوشه‌بندی یک بار روی داده انجام شده؛ پرسش درست این است که اگر ۲۰٪ عنوان‌ها را جابه‌جا کنیم، خوشه‌ها می‌مانند یا هر بار چیز دیگری درمی‌آید؟ معیار ARI (شاخص رند تعدیل‌شده) هر بار خوشه‌بندی بازنمونه را با خوشه‌بندی پایه مقایسه می‌کند؛ بالای ۰٫۷ یعنی ساختار پایدار.</p><details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>26 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="# ۱۷.۶ — پایداری خوشه‌ها با بازنمونه‌گیری
+baseline_labels = title_features_clustered[&#x27;خوشه&#x27;].to_numpy()
+stability_rng = np.random.default_rng(RANDOM_STATE)
+stability_scores = []
+title_count = len(baseline_labels)
+for _ in range(25):
+    chosen = stability_rng.choice(title_count, size=int(title_count * 0.8), replace=False)
+    labels = KMeans(n_clusters=best_k, n_init=10, random_state=RANDOM_STATE).fit_predict(X_title[chosen])
+    stability_scores.append(adjusted_rand_score(baseline_labels[chosen], labels))
+
+stability_scores = np.array(stability_scores)
+stability_ari_table = pd.DataFrame({
+    &#x27;مقدار&#x27;: [float(np.mean(stability_scores)), float(np.std(stability_scores)),
+              float(np.percentile(stability_scores, 5)), float(np.min(stability_scores)),
+              float((stability_scores &gt;= .7).mean() * 100)],
+}, index=[&#x27;میانگین ARI&#x27;, &#x27;انحراف معیار&#x27;, &#x27;صدک پنجم&#x27;, &#x27;کمینه&#x27;, &#x27;سهم تکرارهای پایدار (٪)&#x27;])
+show_table(&#x27;17.6&#x27;, &#x27;پایداری خوشه‌ها با بازنمونه‌گیری عنوان‌ها (۲۵ تکرار، ۸۰٪ نمونه)&#x27;, stability_ari_table,
+           formats={&#x27;مقدار&#x27;: &#x27;score&#x27;}, sample=f&#x27;{title_count} عنوان شغلی، {best_k} خوشه&#x27;,
+           period=False, index_name=&#x27;شاخص&#x27;)
+
+show_metrics(&#x27;پایداری بازنمونه&#x27;, [
+    (&#x27;میانگین ARI&#x27;, f&#x27;{stability_scores.mean():.3f}&#x27;),
+    (&#x27;انحراف معیار&#x27;, f&#x27;{stability_scores.std():.3f}&#x27;),
+    (&#x27;کمینهٔ ARI&#x27;, f&#x27;{stability_scores.min():.3f}&#x27;),
+    (&#x27;تکرارهای پایدار (ARI ≥ ۰٫۷)&#x27;, pf((stability_scores &gt;= .7).mean() * 100, 0)),
+])
+" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="c1"># ۱۷.۶ — پایداری خوشه‌ها با بازنمونه‌گیری</span>
+<span class="n">baseline_labels</span> <span class="o">=</span> <span class="n">title_features_clustered</span><span class="p">[</span><span class="s1">'خوشه'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">stability_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">stability_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">title_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">baseline_labels</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">chosen</span> <span class="o">=</span> <span class="n">stability_rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">title_count</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">title_count</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">best_k</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_title</span><span class="p">[</span><span class="n">chosen</span><span class="p">])</span>
+    <span class="n">stability_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">baseline_labels</span><span class="p">[</span><span class="n">chosen</span><span class="p">],</span> <span class="n">labels</span><span class="p">))</span>
+
+<span class="n">stability_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stability_scores</span><span class="p">)</span>
+<span class="n">stability_ari_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'مقدار'</span><span class="p">:</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">stability_scores</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">stability_scores</span><span class="p">)),</span>
+              <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">stability_scores</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">stability_scores</span><span class="p">)),</span>
+              <span class="nb">float</span><span class="p">((</span><span class="n">stability_scores</span> <span class="o">&gt;=</span> <span class="mf">.7</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)],</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'میانگین ARI'</span><span class="p">,</span> <span class="s1">'انحراف معیار'</span><span class="p">,</span> <span class="s1">'صدک پنجم'</span><span class="p">,</span> <span class="s1">'کمینه'</span><span class="p">,</span> <span class="s1">'سهم تکرارهای پایدار (٪)'</span><span class="p">])</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'17.6'</span><span class="p">,</span> <span class="s1">'پایداری خوشه‌ها با بازنمونه‌گیری عنوان‌ها (۲۵ تکرار، ۸۰٪ نمونه)'</span><span class="p">,</span> <span class="n">stability_ari_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'مقدار'</span><span class="p">:</span> <span class="s1">'score'</span><span class="p">},</span> <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">title_count</span><span class="si">}</span><span class="s1"> عنوان شغلی، </span><span class="si">{</span><span class="n">best_k</span><span class="si">}</span><span class="s1"> خوشه'</span><span class="p">,</span>
+           <span class="n">period</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'شاخص'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'پایداری بازنمونه'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'میانگین ARI'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">stability_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'انحراف معیار'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">stability_scores</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'کمینهٔ ARI'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">stability_scores</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'تکرارهای پایدار (ARI ≥ ۰٫۷)'</span><span class="p">,</span> <span class="n">pf</span><span class="p">((</span><span class="n">stability_scores</span> <span class="o">&gt;=</span> <span class="mf">.7</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>جدول 17.6 | پایداری خوشه‌ها با بازنمونه‌گیری عنوان‌ها (۲۵ تکرار، ۸۰٪ نمونه) | 762 عنوان شغلی، 3 خوشه</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>مقدار</th>
+</tr>
+<tr>
+<th>شاخص</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>میانگین ARI</th>
+<td>0.90</td>
+</tr>
+<tr>
+<th>انحراف معیار</th>
+<td>0.22</td>
+</tr>
+<tr>
+<th>صدک پنجم</th>
+<td>0.32</td>
+</tr>
+<tr>
+<th>کمینه</th>
+<td>0.30</td>
+</tr>
+<tr>
+<th>سهم تکرارهای پایدار (٪)</th>
+<td>88.00</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">عددهای کلیدی پایداری بازنمونه</p>
+  <ul><li>میانگین ARI: 0.896</li><li>انحراف معیار: 0.217</li><li>کمینهٔ ARI: 0.304</li><li>تکرارهای پایدار (ARI ≥ ۰٫۷): ۸۸٪</li></ul>
+</div><p><strong>تفسیر جدول ۱۷.۶:</strong> میانگین ARI در ۲۵ بازنمونه (هر بار ۸۰٪ عنوان‌ها) <strong>۰٫۸۹۶</strong> است — یعنی خوشه‌بندی پایدار است و ساختار سه‌گانه‌ای که در بخش‌های ۱۷.۲ و ۱۷.۵ تفسیر شد، تصادفی نیست. ولی انحراف معیار ۰٫۲۲ و کمینهٔ ۰٫۳ نشان می‌دهد در برخی تکرارها ساختار می‌شکند.</p>
+<p>علت روشن است: خوشهٔ سوم فقط ۱۳ عنوان دارد. با حذف تصادفی ۲۰٪ عنوان‌ها، ممکن است دو یا سه عنوان از این خوشه بیرون بیفتند و مرزها جابه‌جا شود. در مقابل، دو خوشهٔ بزرگ (۶۴۲ و ۱۰۷ عنوان) در همهٔ تکرارها پایدار ماندند.</p>
+<p><strong>حکم:</strong> تفسیرهای مربوط به «بدنهٔ عمومی بازار» و «مالی ارشد» قابل اتکا و قابل تعمیم‌اند؛ تفسیر خوشهٔ کوچک فنی-مقرراتی جهت‌نما است و به‌عنوان یک واقعیت قطعی گزارش نمی‌شود.</p>
 <p class="guide-source">آخرین بازسازی از نوتبوک · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">نوتبوک در گیت‌هاب</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">اجرا در Colab</a></p>
 <nav class="guide-pager"><a class="prev" href="../16-salary-modelling/"><span>قبلی</span><b>مدل‌سازی حقوق و تغییر اهمیت ویژگی‌ها در زمان</b></a><a class="next" href="../18-industry-occupation/"><span>بعدی</span><b>صنعت × دسته شغلی: هر صنعت چه تخصصی می‌خواهد؟</b></a></nav>
   </main>

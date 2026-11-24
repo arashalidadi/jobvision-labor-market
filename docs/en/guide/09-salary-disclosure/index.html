@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>9. Salary missingness: random or dependent? — JobVision Guide</title>
-<meta name="description" content="Three-quarters of postings do not state a salary. The key question is whether this concealment is related to observable characteristics (company size, province, job category, type of employment) or no">
+<title>9. The mechanism of salary missingness: random or dependent? — JobVision Guide</title>
+<meta name="description" content="Three-quarters of postings do not disclose salary. The key question is whether this concealment is related to observable characteristics (company size, province, job category, type of cooperation) or ">
 <meta name="author" content="Arash Alidadi">
 <meta name="theme-color" content="#0b3d39">
 <link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/09-salary-disclosure/">
@@ -12,8 +12,8 @@
 <link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/09-salary-disclosure/">
 <link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="9. Salary missingness: random or dependent? — JobVision Guide">
-<meta property="og:description" content="Three-quarters of postings do not state a salary. The key question is whether this concealment is related to observable characteristics (company size, province, job category, type of employment) or no">
+<meta property="og:title" content="9. The mechanism of salary missingness: random or dependent? — JobVision Guide">
+<meta property="og:description" content="Three-quarters of postings do not disclose salary. The key question is whether this concealment is related to observable characteristics (company size, province, job category, type of cooperation) or ">
 <meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/09-salary-disclosure/">
 <meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,8 +26,8 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "9. Salary missingness: random or dependent? — JobVision Guide",
-  "description": "Three-quarters of postings do not state a salary. The key question is whether this concealment is related to observable characteristics (company size, province, job category, type of employment) or no",
+  "headline": "9. The mechanism of salary missingness: random or dependent? — JobVision Guide",
+  "description": "Three-quarters of postings do not disclose salary. The key question is whether this concealment is related to observable characteristics (company size, province, job category, type of cooperation) or ",
   "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/09-salary-disclosure/",
   "inLanguage": "en",
   "author": {
@@ -82,15 +82,15 @@
   <a class="guide-back" href="../">← Guide index</a>
   <p class="guide-side-title">Table of contents</p>
 </div>
-<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link is-active" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-9-1">9.1. Disclosure rate across different dimensions</a></li><li class="lvl-h2"><a href="#sec-9-2">9.2. Significance testing: chi-square and Cramér&#x27;s effect size</a></li><li class="lvl-h2"><a href="#sec-9-3">9.3. Logistic regression model for the probability of salary disclosure</a></li></ul></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project introduction and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tools, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data profiling and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Analyzing distributions, skewness, and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity, and non-linear relationships</span></a></li><li><a class="guide-nav-link is-active" href="../09-salary-disclosure/"><span class="n">9</span><span>The mechanism of salary missingness: random or dependent?</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-9-1">9.1. Disclosure rate across different dimensions</a></li><li class="lvl-h2"><a href="#sec-9-2">9.2. Significance test: chi-square and Cramér&#x27;s effect size</a></li><li class="lvl-h2"><a href="#sec-9-3">9.3. Logistic regression model for the probability of salary disclosure</a></li><li class="lvl-h2"><a href="#sec-9-4">9.4. Frequency of disclosed salary values and small-sample groups</a></li></ul></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trend, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Salary Peak by Age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geographical Analysis and Provincial Concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran in the Mirror of the Global Labour Market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance over time</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what expertise does each industry want?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>The evolution of skills and the surge of job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Profiling and clustering of employers [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Recommended package for the business manager</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Summary, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Calculation checks and reproducibility</span></a></li></ul>
   </aside>
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 9</span></nav>
-<h1>9. Salary missingness: random or dependent?</h1>
-<p class="guide-meta">4 min read · 7 tables · 3 code cells</p>
-<p>Three-quarters of postings do not state a salary. The key question is whether this concealment is related to observable characteristics (company size, province, job category, type of employment) or not. If the missingness is dependent and structured, there are two important consequences: first, salary analysis becomes biased toward a particular segment of the market; second, “disclose or not disclose” itself becomes a studyable employer behaviour.</p>
+<h1>9. The mechanism of salary missingness: random or dependent?</h1>
+<p class="guide-meta">7 min read · 10 tables · 1 figures · 6 code cells</p>
+<p>Three-quarters of postings do not disclose salary. The key question is whether this concealment is related to observable characteristics (company size, province, job category, type of cooperation) or not. If the missingness is dependent and structured, it has two important consequences: first, the salary analysis is biased toward a particular segment of the market; second, “disclosure or non-disclosure” itself becomes a studyable employer behavior.</p>
 <h2 class="guide-heading" id="sec-9-1">9.1. Disclosure rate across different dimensions <a aria-label="link" class="anchor" href="#sec-9-1">#</a></h2><details class="code-fold">
-  <summary><span>Show the code for this step</span><em>52 lines</em></summary>
+  <summary><span>Show the code for this step</span><em>53 lines</em></summary>
   <div class="code-card">
     <header><span>Python</span><button class="copy-btn" data-copy="ads[&#x27;province_group&#x27;] = np.where(ads.Jobpost_ProvinceFa.eq(&#x27;تهران&#x27;), &#x27;تهران&#x27;, &#x27;سایر استان‌ها&#x27;)
 top_categories = ads.Jobpost_MainJobCategory.value_counts().head(10).index
@@ -105,6 +105,7 @@ sync_snapshots()
 def disclosure_table(column, number, title, levels=None, sort_by=&#x27;نرخ افشا&#x27;):
     table = (ads.groupby(column)
              .agg(**{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;),
+                     &#x27;تعداد با حقوق&#x27;: (&#x27;salary_disclosed&#x27;, lambda s: int(s.sum())),
                      &#x27;نرخ افشا&#x27;: (&#x27;salary_disclosed&#x27;, lambda s: s.mean() * 100),
                      &#x27;میانه حقوق&#x27;: (&#x27;salary_mid&#x27;, &#x27;median&#x27;)}))
     if levels is not None:
@@ -112,7 +113,7 @@ def disclosure_table(column, number, title, levels=None, sort_by=&#x27;نرخ ا
     else:
         table = table.sort_values(sort_by, ascending=False)
     show_table(number, title, table,
-               formats={&#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;نرخ افشا&#x27;: &#x27;pct&#x27;, &#x27;میانه حقوق&#x27;: &#x27;money&#x27;},
+               formats={&#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;تعداد با حقوق&#x27;: &#x27;int&#x27;, &#x27;نرخ افشا&#x27;: &#x27;pct&#x27;, &#x27;میانه حقوق&#x27;: &#x27;money&#x27;},
                sample=f&#x27;{len(ads):,} آگهی&#x27;, index_name=&#x27;سطح&#x27;)
     return table
 
@@ -157,6 +158,7 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
 <span class="k">def</span><span class="w"> </span><span class="nf">disclosure_table</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort_by</span><span class="o">=</span><span class="s1">'نرخ افشا'</span><span class="p">):</span>
     <span class="n">table</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
              <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span>
+                     <span class="s1">'تعداد با حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_disclosed'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
                      <span class="s1">'نرخ افشا'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_disclosed'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span>
                      <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_mid'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">)}))</span>
     <span class="k">if</span> <span class="n">levels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -164,7 +166,7 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
     <span class="k">else</span><span class="p">:</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">sort_by</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">show_table</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span>
-               <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'نرخ افشا'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">},</span>
+               <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'تعداد با حقوق'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'نرخ افشا'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'میانه حقوق'</span><span class="p">:</span> <span class="s1">'money'</span><span class="p">},</span>
                <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'سطح'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">table</span>
 
@@ -205,11 +207,13 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
 <tr style="text-align: right;">
 <th></th>
 <th>Number of postings</th>
+<th>Count with salary</th>
 <th>Disclosure rate</th>
 <th>Median salary</th>
 </tr>
 <tr>
 <th>Level</th>
+<th></th>
 <th></th>
 <th></th>
 <th></th>
@@ -219,42 +223,49 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
 <tr>
 <th>Under 10 employees</th>
 <td>37,725</td>
+<td>15,462</td>
 <td>41.0%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>11 to 50 employees</th>
 <td>93,664</td>
+<td>40,696</td>
 <td>43.4%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>51 to 200 employees</th>
 <td>89,759</td>
+<td>30,042</td>
 <td>33.5%</td>
 <td>13.5</td>
 </tr>
 <tr>
 <th>201 to 500 employees</th>
 <td>51,151</td>
+<td>14,803</td>
 <td>28.9%</td>
 <td>13.5</td>
 </tr>
 <tr>
 <th>501 to 1000 employees</th>
 <td>39,800</td>
+<td>9,125</td>
 <td>22.9%</td>
 <td>13.5</td>
 </tr>
 <tr>
 <th>1001 to 5000 employees</th>
 <td>35,802</td>
+<td>5,955</td>
 <td>16.6%</td>
 <td>13.5</td>
 </tr>
 <tr>
 <th>Over 5000 employees</th>
 <td>12,182</td>
+<td>2,965</td>
 <td>24.3%</td>
 <td>13.5</td>
 </tr>
@@ -269,11 +280,13 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
 <tr style="text-align: right;">
 <th></th>
 <th>Number of postings</th>
+<th>Count with salary</th>
 <th>Disclosure rate</th>
 <th>Median salary</th>
 </tr>
 <tr>
 <th>Level</th>
+<th></th>
 <th></th>
 <th></th>
 <th></th>
@@ -283,66 +296,77 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
 <tr>
 <th>General worker / support staff</th>
 <td>14,324</td>
+<td>6,850</td>
 <td>47.8%</td>
 <td>9.0</td>
 </tr>
 <tr>
 <th>Sales and marketing - salesperson / marketer and sales representative / cashier</th>
 <td>35,244</td>
+<td>15,710</td>
 <td>44.6%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Digital marketing and SEO</th>
 <td>12,822</td>
+<td>5,426</td>
 <td>42.3%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Office administrator / administrative and data-entry clerk / typist</th>
 <td>24,390</td>
+<td>9,749</td>
 <td>40.0%</td>
 <td>9.0</td>
 </tr>
 <tr>
 <th>Technical technician / repairer / skilled worker</th>
 <td>12,521</td>
+<td>4,306</td>
 <td>34.4%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Sales and marketing - bachelor's and managerial levels</th>
 <td>38,020</td>
+<td>13,032</td>
 <td>34.3%</td>
 <td>13.5</td>
 </tr>
 <tr>
 <th>Finance and accounting</th>
 <td>42,244</td>
+<td>13,477</td>
 <td>31.9%</td>
 <td>13.5</td>
 </tr>
 <tr>
 <th>Other categories</th>
 <td>132,837</td>
+<td>39,862</td>
 <td>30.0%</td>
 <td>13.5</td>
 </tr>
 <tr>
 <th>Software development and programming</th>
 <td>15,111</td>
+<td>3,760</td>
 <td>24.9%</td>
 <td>17.5</td>
 </tr>
 <tr>
 <th>Industrial engineering / Production management / Project management / Operations management</th>
 <td>18,505</td>
+<td>4,313</td>
 <td>23.3%</td>
 <td>13.5</td>
 </tr>
 <tr>
 <th>Network / DevOps / hardware and software support</th>
 <td>14,065</td>
+<td>2,563</td>
 <td>18.2%</td>
 <td>13.5</td>
 </tr>
@@ -357,11 +381,13 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
 <tr style="text-align: right;">
 <th></th>
 <th>Number of postings</th>
+<th>Count with salary</th>
 <th>Disclosure rate</th>
 <th>Median salary</th>
 </tr>
 <tr>
 <th>Level</th>
+<th></th>
 <th></th>
 <th></th>
 <th></th>
@@ -371,60 +397,70 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
 <tr>
 <th>Tehran</th>
 <td>232,466</td>
+<td>74,684</td>
 <td>32.1%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Isfahan</th>
 <td>19,172</td>
+<td>6,366</td>
 <td>33.2%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Alborz</th>
 <td>18,749</td>
+<td>5,762</td>
 <td>30.7%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Razavi Khorasan</th>
 <td>12,279</td>
+<td>3,942</td>
 <td>32.1%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Mazandaran</th>
 <td>7,501</td>
+<td>2,807</td>
 <td>37.4%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Fars</th>
 <td>6,863</td>
+<td>2,501</td>
 <td>36.4%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Qazvin</th>
 <td>5,638</td>
+<td>1,773</td>
 <td>31.4%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Gilan</th>
 <td>5,265</td>
+<td>1,720</td>
 <td>32.7%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>East Azerbaijan</th>
 <td>5,260</td>
+<td>2,078</td>
 <td>39.5%</td>
 <td>11.0</td>
 </tr>
 <tr>
 <th>Khuzestan</th>
 <td>5,179</td>
+<td>1,816</td>
 <td>35.1%</td>
 <td>11.0</td>
 </tr>
@@ -772,9 +808,9 @@ show_table(&#x27;9.4&#x27;, &#x27;نرخ افشای حقوق بر پایه وی�
 </table></div>
   
   <button class="table-more" type="button" data-rows="28">Show all rows (28)</button>
-</figure><p><strong>Reading Tables 9.1 to 9.4:</strong> Salary missingness is thoroughly structured. The disclosure rate is inversely related to company size: companies with 11 to 50 employees publish a salary for 43.4% of their postings, while companies with 1001 to 5000 employees do so for only 16.6%. This 26.8 percentage-point difference is the largest gap across all dimensions: a small company competing for talent in an unknown market uses transparency as a competitive tool, whereas a large company leans on its brand and career path.</p>
-<p>Job category shows a clear pattern too: postings for general labourers (47.8%), salespeople and field reps (44.6%) and digital marketing (42.3%) are the most transparent, while DevOps and technical support (18.2%) and programming (24.9%) are the least transparent. In other words, the more knowledge-intensive the role and the higher the pay, the less public disclosure.</p>
-<p>Remote work makes the largest difference of any binary feature: 52.5% of remote postings state a salary, against 31.6% of on-site postings. A remote posting competes with the global market, which makes salary transparency more necessary for it. Provinces do not show a large difference (30.7% in Alborz to 39.5% in East Azerbaijan); so “geography” alone is not explanatory.</p><h2 class="guide-heading" id="sec-9-2">9.2. Significance testing: chi-square and Cramér's effect size <a aria-label="link" class="anchor" href="#sec-9-2">#</a></h2>
+</figure><p><strong>Interpretation of tables 9.1 to 9.4:</strong> Salary missingness is highly structured. The disclosure rate is inversely related to company size: companies with 11 to 50 employees publish 43.4% of their postings with salary, while companies with 1001 to 5000 employees publish only 16.6%. This difference of 26.8 percentage points is the largest gap across all dimensions: a small company uses transparency as a competitive tool to attract people in an unknown market, while a large company relies on brand and career path.</p>
+<p>Job category also has a clear pattern: postings for general laborers (47.8%), salespeople and medical reps (44.6%), and digital marketing (42.3%) are the most transparent, while DevOps and technical support (18.2%) and programming (24.9%) have the least transparency. That is, the more knowledge-based the role and the higher the salary, the less public disclosure.</p>
+<p>Remote work makes the biggest difference for a binary characteristic: 52.5% of remote work postings disclose salary, versus 31.6% of on-site postings. A remote work posting competes with the global market, and salary transparency becomes more essential for it. Provinces do not show a big difference (30.7% in Alborz to 39.5% in East Azerbaijan); therefore “geography” alone is not explanatory.</p><h2 class="guide-heading" id="sec-9-2">9.2. Significance test: chi-square and Cramér's effect size <a aria-label="link" class="anchor" href="#sec-9-2">#</a></h2>
 <div class="code-card">
     <header><span>Python · 24 lines</span><button class="copy-btn" data-copy="from scipy.stats import chi2_contingency
 
@@ -952,7 +988,7 @@ show_table(&#x27;9.5&#x27;, &#x27;آزمون استقلال خی‌دو بین �
 </table></div>
   <p class="tbl-note"><span>Note:</span> A Cramér's V below 0.1 is treated as a weak association, 0.1 to 0.3 as moderate, and above 0.3 as strong.</p>
   
-</figure><p><strong>Reading Table 9.5:</strong> All chi-square tests are significant at the 0.001 level; that is, the hypothesis of completely random missingness (MCAR) is rejected. But statistical significance is not the same as effect size: the largest Cramér's V belongs to company size (0.188) and job category (0.147), which falls in the “weak to moderate” range; remote work (0.112) and internship (0.094) follow, and the remaining dimensions are below 0.1. So the dependence is real, but none of these features determines the disclosure rate on its own.</p>
+</figure><p><strong>Interpretation of table 9.5:</strong> All chi-square tests are significant at the 0.001 level, meaning the assumption of “missing completely at random (MCAR)” is rejected. But statistical significance is not the same as effect size: the largest Cramér's V belongs to company size (0.188) and job category (0.147), which falls in the “weak to moderate” range; remote work (0.112) and internship (0.094) follow, and the other dimensions are below 0.1. That is, the dependency is real, but none of these characteristics alone determines the disclosure rate.</p>
 <p>A methodological note: with a sample of 360 thousand, even small differences become significant; that is why reporting effect size alongside the p-value is essential.</p><h2 class="guide-heading" id="sec-9-3">9.3. Logistic regression model for the probability of salary disclosure <a aria-label="link" class="anchor" href="#sec-9-3">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>57 lines</em></summary>
@@ -1247,14 +1283,500 @@ show_metrics(&#x27;افشای حقوق&#x27;, [
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: salary disclosure</p>
   <ul><li>Overall disclosure rate: 33.1%</li><li>Highest rate by company size: 11 to 50 employees — 43.4%</li><li>Lowest rate by company size: 1001 to 5000 employees — 16.6%</li><li>Strongest dimension (Cramér V): company size — 0.188</li><li>Area under the ROC curve: 0.645</li></ul>
-</div><p><strong>Reading Tables 9.6 and 9.7 and the final answer:</strong> The logistic regression model shows that the odds of salary disclosure are 2.76 times the baseline for general labourer postings, 2.36 times for remote postings and 2.33 times for salesperson/field rep postings; conversely, part-time postings have lower odds (0.65) of disclosure. All these coefficients are statistically significant, but the model's performance is limited: McFadden's pseudo-R2 is 0.05, the area under the ROC curve is 0.65, and classification accuracy (68.1%) is only 1.2 percentage points better than the baseline model (always “not disclosed”).</p>
-<p><strong>Answer to the project question:</strong> Salary missingness is <strong>not completely random (MCAR)</strong>; it depends on observable variables — especially company size, job category and remote work. The missingness mechanism is therefore of the <strong>MAR</strong> type (dependent on observed data). But the explained share is small; that is, a large part of the disclosure decision is each employer's internal policy and unobservable characteristics.</p>
-<p><strong>Practical implication:</strong> The salary means and medians in this data are biased toward small companies, administrative/sales/service roles, and remote and contract postings. For specialized roles and large companies, these numbers show the floor of the market, not the actual level of competition. Section 22 accounts for this limitation in the salary recommendations.</p>
+</div><p><strong>Interpretation of tables 9.6 and 9.7 and the final answer:</strong> The logistic regression model shows that the odds of salary disclosure for general laborer postings is 2.76 times the baseline level, for remote work postings 2.36 times, and for salesperson/medical rep 2.33 times; in contrast, part-time postings have lower odds (0.65) of disclosure. All these coefficients are statistically significant, but the model's performance is limited: McFadden's pseudo-R2 is 0.05 and the area under the ROC curve is 0.65, and the classification accuracy (68.1%) is only 1.2 percentage points better than the baseline model (always “not disclosed”).</p>
+<p><strong>Answer to the project question:</strong> Salary missingness is <strong>not missing completely at random (MCAR)</strong>; it depends on observable variables — especially company size, job category, and remote work. Therefore the missingness model is of the <strong>MAR</strong> type (dependent on the observed data). But the explained share is small; that is, a large part of the disclosure decision is each employer's internal policy and unobservable characteristics.</p>
+<p><strong>Practical implication:</strong> The salary means and medians in this data are biased toward small companies, administrative/sales/service roles, and remote and contract postings. For specialized roles and large companies, these numbers indicate the market floor, not the actual level of competition. In section 22 this limitation is taken into account in the salary recommendations.</p><h2 class="guide-heading" id="sec-9-4">9.4. Frequency of disclosed salary values and small-sample groups <a aria-label="link" class="anchor" href="#sec-9-4">#</a></h2>
+<p>The project brief has two explicit requirements in this very section: first, the <strong>frequency of available salary values</strong> should be analyzed — because all wage analyses stand on these numbers, and their shape determines which statistic is valid; second, any group in which <strong>the number of postings with disclosed salary is close to zero</strong> should be reported, so the reader knows which result is built on a small sample and should not be generalized to the whole market.</p>
+<p>In this subsection we first see what numbers employers actually write (not just the median and quartiles), and then we list the small-sample groups across four key dimensions.</p><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>29 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="# ۹.۴ — فراوانی مقادیر اعلام‌شده حقوق
+paid_values = paid.salary_mid.dropna()
+value_counts = paid_values.value_counts()
+
+value_table = pd.DataFrame({&#x27;تعداد آگهی&#x27;: value_counts.head(15)})
+value_table[&#x27;سهم&#x27;] = value_table[&#x27;تعداد آگهی&#x27;] / len(paid_values) * 100
+value_table[&#x27;سهم انباشته&#x27;] = value_table[&#x27;سهم&#x27;].cumsum()
+value_table.index = [nf(value, 1) for value in value_table.index]
+
+show_table(&#x27;9.8&#x27;, &#x27;پانزده مقدار پرتکرار حقوق اعلام‌شده&#x27;, value_table,
+           formats={&#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;سهم&#x27;: &#x27;pct&#x27;, &#x27;سهم انباشته&#x27;: &#x27;pct&#x27;},
+           sample=f&#x27;{len(paid_values):,} آگهی با حقوق اعلام‌شده&#x27;,
+           index_name=&#x27;مقدار (میلیون تومان)&#x27;)
+
+is_integer = np.isclose(paid_values % 1, 0)
+is_half = np.isclose((paid_values * 2) % 1, 0) &amp; ~is_integer
+round_share = float(is_integer.mean() * 100)
+half_share = float(is_half.mean() * 100)
+top5_share = float(value_counts.head(5).sum() / len(paid_values) * 100)
+top10_share = float(value_counts.head(10).sum() / len(paid_values) * 100)
+
+show_metrics(&#x27;۹.۱&#x27;, [
+    (&#x27;آگهی با حقوق اعلام‌شده&#x27;, nf(len(paid_values))),
+    (&#x27;مقدارهای یکتا&#x27;, nf(paid_values.nunique())),
+    (&#x27;سهم پنج مقدار پرتکرار&#x27;, pf(top5_share)),
+    (&#x27;سهم ده مقدار پرتکرار&#x27;, pf(top10_share)),
+    (&#x27;سهم اعداد صحیح (رند)&#x27;, pf(round_share)),
+    (&#x27;سهم اعداد نیم‌رند (نقطه پنج)&#x27;, pf(half_share)),
+])
+" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="c1"># ۹.۴ — فراوانی مقادیر اعلام‌شده حقوق</span>
+<span class="n">paid_values</span> <span class="o">=</span> <span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">value_counts</span> <span class="o">=</span> <span class="n">paid_values</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">value_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="n">value_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)})</span>
+<span class="n">value_table</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span> <span class="o">=</span> <span class="n">value_table</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">paid_values</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">value_table</span><span class="p">[</span><span class="s1">'سهم انباشته'</span><span class="p">]</span> <span class="o">=</span> <span class="n">value_table</span><span class="p">[</span><span class="s1">'سهم'</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="n">value_table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">nf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">value_table</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'9.8'</span><span class="p">,</span> <span class="s1">'پانزده مقدار پرتکرار حقوق اعلام‌شده'</span><span class="p">,</span> <span class="n">value_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'سهم'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'سهم انباشته'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paid_values</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی با حقوق اعلام‌شده'</span><span class="p">,</span>
+           <span class="n">index_name</span><span class="o">=</span><span class="s1">'مقدار (میلیون تومان)'</span><span class="p">)</span>
+
+<span class="n">is_integer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">paid_values</span> <span class="o">%</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">is_half</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">((</span><span class="n">paid_values</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">is_integer</span>
+<span class="n">round_share</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">is_integer</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">half_share</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">is_half</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">top5_share</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">paid_values</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">top10_share</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">paid_values</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'۹.۱'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'آگهی با حقوق اعلام‌شده'</span><span class="p">,</span> <span class="n">nf</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">paid_values</span><span class="p">))),</span>
+    <span class="p">(</span><span class="s1">'مقدارهای یکتا'</span><span class="p">,</span> <span class="n">nf</span><span class="p">(</span><span class="n">paid_values</span><span class="o">.</span><span class="n">nunique</span><span class="p">())),</span>
+    <span class="p">(</span><span class="s1">'سهم پنج مقدار پرتکرار'</span><span class="p">,</span> <span class="n">pf</span><span class="p">(</span><span class="n">top5_share</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'سهم ده مقدار پرتکرار'</span><span class="p">,</span> <span class="n">pf</span><span class="p">(</span><span class="n">top10_share</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'سهم اعداد صحیح (رند)'</span><span class="p">,</span> <span class="n">pf</span><span class="p">(</span><span class="n">round_share</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'سهم اعداد نیم‌رند (نقطه پنج)'</span><span class="p">,</span> <span class="n">pf</span><span class="p">(</span><span class="n">half_share</span><span class="p">)),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>Table 9.8 | Fifteen most frequent disclosed salary values | 119,048 postings with disclosed salary | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Number of postings</th>
+<th>Share</th>
+<th>Cumulative share</th>
+</tr>
+<tr>
+<th>Value (million tomans)</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>13.5</th>
+<td>25,311</td>
+<td>21.3%</td>
+<td>21.3%</td>
+</tr>
+<tr>
+<th>9.0</th>
+<td>22,795</td>
+<td>19.1%</td>
+<td>40.4%</td>
+</tr>
+<tr>
+<th>11.0</th>
+<td>19,096</td>
+<td>16.0%</td>
+<td>56.4%</td>
+</tr>
+<tr>
+<th>17.5</th>
+<td>18,343</td>
+<td>15.4%</td>
+<td>71.9%</td>
+</tr>
+<tr>
+<th>7.0</th>
+<td>13,730</td>
+<td>11.5%</td>
+<td>83.4%</td>
+</tr>
+<tr>
+<th>22.5</th>
+<td>7,093</td>
+<td>6.0%</td>
+<td>89.3%</td>
+</tr>
+<tr>
+<th>5.5</th>
+<td>5,161</td>
+<td>4.3%</td>
+<td>93.7%</td>
+</tr>
+<tr>
+<th>30.0</th>
+<td>3,940</td>
+<td>3.3%</td>
+<td>97.0%</td>
+</tr>
+<tr>
+<th>40.0</th>
+<td>1,734</td>
+<td>1.5%</td>
+<td>98.5%</td>
+</tr>
+<tr>
+<th>4.5</th>
+<td>721</td>
+<td>0.6%</td>
+<td>99.1%</td>
+</tr>
+<tr>
+<th>52.5</th>
+<td>377</td>
+<td>0.3%</td>
+<td>99.4%</td>
+</tr>
+<tr>
+<th>3.5</th>
+<td>317</td>
+<td>0.3%</td>
+<td>99.6%</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>70.0</th>
+<td>263</td>
+<td>0.2%</td>
+<td>99.9%</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>2.5</th>
+<td>115</td>
+<td>0.1%</td>
+<td>100.0%</td>
+</tr>
+<tr class="is-extra" hidden="">
+<th>25.0</th>
+<td>6</td>
+<td>0.0%</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table></div>
+  
+  <button class="table-more" type="button" data-rows="15">Show all rows (15)</button>
+</figure><div class="guide-metrics">
+  <p class="m-title">Key numbers: 9.1</p>
+  <ul><li>Postings with disclosed salary: 119,048</li><li>Unique values: 40</li><li>Share of top five values: 83.4%</li><li>Share of top ten values: 99.1%</li><li>Share of whole (round) numbers: 51.7%</li><li>Share of half-round numbers (point five): 48.3%</li></ul>
+</div><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>33 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="fig, axes = plt.subplots(1, 2, figsize=(13.6, 5.0), gridspec_kw={&#x27;width_ratios&#x27;: [1.12, 1]})
+
+ax = axes[0]
+top12 = value_counts.head(12).sort_values()
+ax.barh([nf(value, 1) for value in top12.index], top12.values, color=TEAL, height=.72)
+bar_labels(ax, fmt=&#x27;{:,.0f}&#x27;, horizontal=True, fontsize=8)
+heading(ax, &#x27;۹.۱ الف&#x27;, &#x27;پرتکرارترین مقادیر حقوق اعلام‌شده&#x27;)
+axes_labels(ax, &#x27;تعداد آگهی&#x27;, &#x27;حقوق ماهانه (میلیون تومان)&#x27;)
+ax.set_xlim(0, top12.max() * 1.16)
+
+ax = axes[1]
+band_edges = [0, 8, 11, 15, 1000]
+band_labels = [&#x27;زیر ۸&#x27;, &#x27;۸ تا ۱۱&#x27;, &#x27;۱۱ تا ۱۵&#x27;, &#x27;بیش از ۱۵&#x27;]
+bands = pd.cut(paid_values, bins=band_edges, labels=band_labels, right=False)
+band_frame = (pd.DataFrame({&#x27;band&#x27;: bands, &#x27;integer&#x27;: is_integer, &#x27;value&#x27;: paid_values})
+              .groupby(&#x27;band&#x27;, observed=True)
+              .agg(**{&#x27;سهم رند&#x27;: (&#x27;integer&#x27;, lambda s: s.mean() * 100),
+                      &#x27;تعداد&#x27;: (&#x27;value&#x27;, &#x27;size&#x27;)}))
+
+positions = np.arange(len(band_frame))
+ax.bar(positions, band_frame[&#x27;سهم رند&#x27;], color=GOLD, width=.62)
+ax.set_xticks(positions)
+ax.set_xticklabels([fa(label) for label in band_frame.index.astype(str)], fontsize=9)
+for position, (share, count) in enumerate(zip(band_frame[&#x27;سهم رند&#x27;], band_frame[&#x27;تعداد&#x27;])):
+    ax.annotate(pf(share), (position, share), xytext=(0, 4), textcoords=&#x27;offset points&#x27;,
+                ha=&#x27;center&#x27;, fontsize=8.5)
+    ax.annotate(f&#x27;({nf(count)} آگهی)&#x27;, (position, share / 2), ha=&#x27;center&#x27;, fontsize=7.5, color=&#x27;white&#x27;)
+heading(ax, &#x27;۹.۱ ب&#x27;, &#x27;سهم اعداد رند در هر بازهٔ حقوق&#x27;)
+axes_labels(ax, &#x27;بازهٔ حقوق ماهانه (میلیون تومان)&#x27;, &#x27;سهم اعداد رند&#x27;)
+ax.set_ylim(0, 105)
+pct_axis(ax, 0)
+
+complete(&#x27;9.1&#x27;)
+" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">13.6</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'width_ratios'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.12</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">top12</span> <span class="o">=</span> <span class="n">value_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">([</span><span class="n">nf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">top12</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">top12</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">.72</span><span class="p">)</span>
+<span class="n">bar_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'</span><span class="si">{:,.0f}</span><span class="s1">'</span><span class="p">,</span> <span class="n">horizontal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۹.۱ الف'</span><span class="p">,</span> <span class="s1">'پرتکرارترین مقادیر حقوق اعلام‌شده'</span><span class="p">)</span>
+<span class="n">axes_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'تعداد آگهی'</span><span class="p">,</span> <span class="s1">'حقوق ماهانه (میلیون تومان)'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">top12</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.16</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">band_edges</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="n">band_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'زیر ۸'</span><span class="p">,</span> <span class="s1">'۸ تا ۱۱'</span><span class="p">,</span> <span class="s1">'۱۱ تا ۱۵'</span><span class="p">,</span> <span class="s1">'بیش از ۱۵'</span><span class="p">]</span>
+<span class="n">bands</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">paid_values</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">band_edges</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">band_labels</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">band_frame</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'band'</span><span class="p">:</span> <span class="n">bands</span><span class="p">,</span> <span class="s1">'integer'</span><span class="p">:</span> <span class="n">is_integer</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">:</span> <span class="n">paid_values</span><span class="p">})</span>
+              <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'band'</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+              <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'سهم رند'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'integer'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span>
+                      <span class="s1">'تعداد'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">)}))</span>
+
+<span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">band_frame</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">band_frame</span><span class="p">[</span><span class="s1">'سهم رند'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">GOLD</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">.62</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="n">fa</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">band_frame</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="p">(</span><span class="n">share</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">band_frame</span><span class="p">[</span><span class="s1">'سهم رند'</span><span class="p">],</span> <span class="n">band_frame</span><span class="p">[</span><span class="s1">'تعداد'</span><span class="p">])):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">pf</span><span class="p">(</span><span class="n">share</span><span class="p">),</span> <span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">share</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">'offset points'</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">'(</span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="si">}</span><span class="s1"> آگهی)'</span><span class="p">,</span> <span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">share</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'white'</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۹.۱ ب'</span><span class="p">,</span> <span class="s1">'سهم اعداد رند در هر بازهٔ حقوق'</span><span class="p">)</span>
+<span class="n">axes_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'بازهٔ حقوق ماهانه (میلیون تومان)'</span><span class="p">,</span> <span class="s1">'سهم اعداد رند'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">105</span><span class="p">)</span>
+<span class="n">pct_axis</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">complete</span><span class="p">(</span><span class="s1">'9.1'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="figure guide-figure" id="figure-9-1">
+  <button type="button" data-full="../../../assets/img/fig_9_1.webp" data-caption="Figure 9.1">
+    <img src="../../../assets/img/fig_9_1-sm.webp" alt="Figure 9.1" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 9.1</figcaption>
+</figure><p><strong>Interpretation of table 9.8 and figure 9.1:</strong> The most important finding of this subsection is the extreme discreteness of salaries: 119,048 postings with salary have only <strong>40 unique values</strong>. The five most frequent values — <strong>13.5</strong> (21.3%), <strong>9.0</strong> (19.1%), <strong>11.0</strong> (16.0%), <strong>17.5</strong> (15.4%), and <strong>7.0</strong> (11.5%) — together make up <strong>83.4%</strong> of postings, and the first ten values <strong>99.1%</strong>. In other words, the Iranian employer announces salary as a “band”, not a continuous value.</p>
+<p>The composition of the numbers is also meaningful: 51.7% are integers and 48.3% end in “point five”. Figure 9.1-b shows that this pattern changes with the salary level — below 8 million, 68% are integers; in the 8 to 11 million range, <strong>100%</strong> (that is, there is no half-unit number in this range); and above 15 million, only 18.8% (because 17.5 and 22.5 dominate). So the higher the salary, the more the employer uses half-million anchors.</p>
+<p>Three methodological consequences: (1) the median and quartiles are fully meaningful, because they sit on these very anchors; (2) drawing a continuous “density” on this data is misleading — that is why in section 7 a histogram with bins was chosen, not KDE; (3) in the models we used <code>log_salary</code> so that the right skew is tamed and this discreteness does not have a damaging effect.</p><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>45 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="# ۹.۴ — گروه‌های کم‌نمونه: کجا تعداد آگهی دارای حقوق اعلام‌شده نزدیک به صفر است؟
+group_specs = [(&#x27;Jobpost_MainJobCategory&#x27;, &#x27;دستهٔ شغلی&#x27;),
+               (&#x27;Jobpost_ProvinceFa&#x27;, &#x27;استان&#x27;),
+               (&#x27;Company_SizeFa&#x27;, &#x27;اندازهٔ شرکت&#x27;),
+               (&#x27;Jobpost_IndustryFa&#x27;, &#x27;صنعت&#x27;)]
+MIN_GROUP_ADS = 20        # گروه‌های کوچک‌تر از این، خودشان نمونهٔ ناکافی‌اند
+MIN_DISCLOSED = 100       # آستانهٔ «کم‌نمونه» برای تعداد آگهی دارای حقوق
+
+low_rows, dimension_rows = [], []
+for column, label in group_specs:
+    grouped = (ads.groupby(column)
+               .agg(**{&#x27;تعداد آگهی&#x27;: (&#x27;ad_id&#x27;, &#x27;size&#x27;),
+                       &#x27;تعداد با حقوق&#x27;: (&#x27;salary_disclosed&#x27;, lambda s: int(s.sum())),
+                       &#x27;نرخ افشا&#x27;: (&#x27;salary_disclosed&#x27;, lambda s: s.mean() * 100)}))
+    grouped = grouped[grouped[&#x27;تعداد آگهی&#x27;].ge(MIN_GROUP_ADS)]
+    low = grouped[grouped[&#x27;تعداد با حقوق&#x27;].lt(MIN_DISCLOSED)].sort_values(&#x27;تعداد با حقوق&#x27;)
+    dimension_rows.append({&#x27;بعد&#x27;: label,
+                           &#x27;گروه‌های بررسی‌شده&#x27;: int(len(grouped)),
+                           &#x27;گروه‌های کم‌نمونه&#x27;: int(len(low)),
+                           &#x27;سهم گروه‌های کم‌نمونه&#x27;: len(low) / max(len(grouped), 1) * 100,
+                           &#x27;کمترین تعداد با حقوق&#x27;: float(low[&#x27;تعداد با حقوق&#x27;].min()) if len(low) else float(&#x27;nan&#x27;)})
+    for name, row in low.head(5).iterrows():
+        low_rows.append({&#x27;بعد&#x27;: label, &#x27;گروه&#x27;: str(name)[:38],
+                         &#x27;تعداد آگهی&#x27;: int(row[&#x27;تعداد آگهی&#x27;]),
+                         &#x27;تعداد با حقوق&#x27;: int(row[&#x27;تعداد با حقوق&#x27;]),
+                         &#x27;نرخ افشا&#x27;: float(row[&#x27;نرخ افشا&#x27;])})
+
+dimension_table = pd.DataFrame(dimension_rows).set_index(&#x27;بعد&#x27;)
+show_table(&#x27;9.9&#x27;, &#x27;گروه‌های کم‌نمونه به تفکیک بعد تحلیل&#x27;, dimension_table,
+           formats={&#x27;گروه‌های بررسی‌شده&#x27;: &#x27;int&#x27;, &#x27;گروه‌های کم‌نمونه&#x27;: &#x27;int&#x27;,
+                    &#x27;سهم گروه‌های کم‌نمونه&#x27;: &#x27;pct&#x27;, &#x27;کمترین تعداد با حقوق&#x27;: &#x27;int&#x27;},
+           sample=f&#x27;آستانه: دست‌کم {MIN_GROUP_ADS} آگهی و کمتر از {MIN_DISCLOSED} آگهی دارای حقوق&#x27;,
+           index_name=&#x27;بعد&#x27;)
+
+low_table = pd.DataFrame(low_rows).set_index(&#x27;گروه&#x27;)
+show_table(&#x27;9.10&#x27;, &#x27;نمونهٔ گروه‌های کم‌نمونه (کمترین تعداد آگهی دارای حقوق)&#x27;, low_table,
+           formats={&#x27;تعداد آگهی&#x27;: &#x27;int&#x27;, &#x27;تعداد با حقوق&#x27;: &#x27;int&#x27;, &#x27;نرخ افشا&#x27;: &#x27;pct&#x27;},
+           sample=f&#x27;کمتر از {MIN_DISCLOSED} آگهی دارای حقوق&#x27;, index_name=&#x27;گروه&#x27;)
+
+n_low_total = int(dimension_table[&#x27;گروه‌های کم‌نمونه&#x27;].sum())
+show_metrics(&#x27;۹.۲&#x27;, [
+    (&#x27;گروه‌های کم‌نمونه در چهار بعد&#x27;, nf(n_low_total)),
+    (&#x27;آستانهٔ نمونه&#x27;, f&#x27;{MIN_DISCLOSED} آگهی با حقوق&#x27;),
+    (&#x27;کوچک‌ترین گروه گزارش‌شده&#x27;, nf(int(low_table[&#x27;تعداد آگهی&#x27;].min())) + &#x27; آگهی&#x27;),
+])
+" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="c1"># ۹.۴ — گروه‌های کم‌نمونه: کجا تعداد آگهی دارای حقوق اعلام‌شده نزدیک به صفر است؟</span>
+<span class="n">group_specs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">'Jobpost_MainJobCategory'</span><span class="p">,</span> <span class="s1">'دستهٔ شغلی'</span><span class="p">),</span>
+               <span class="p">(</span><span class="s1">'Jobpost_ProvinceFa'</span><span class="p">,</span> <span class="s1">'استان'</span><span class="p">),</span>
+               <span class="p">(</span><span class="s1">'Company_SizeFa'</span><span class="p">,</span> <span class="s1">'اندازهٔ شرکت'</span><span class="p">),</span>
+               <span class="p">(</span><span class="s1">'Jobpost_IndustryFa'</span><span class="p">,</span> <span class="s1">'صنعت'</span><span class="p">)]</span>
+<span class="n">MIN_GROUP_ADS</span> <span class="o">=</span> <span class="mi">20</span>        <span class="c1"># گروه‌های کوچک‌تر از این، خودشان نمونهٔ ناکافی‌اند</span>
+<span class="n">MIN_DISCLOSED</span> <span class="o">=</span> <span class="mi">100</span>       <span class="c1"># آستانهٔ «کم‌نمونه» برای تعداد آگهی دارای حقوق</span>
+
+<span class="n">low_rows</span><span class="p">,</span> <span class="n">dimension_rows</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">group_specs</span><span class="p">:</span>
+    <span class="n">grouped</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+               <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'ad_id'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span>
+                       <span class="s1">'تعداد با حقوق'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_disclosed'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+                       <span class="s1">'نرخ افشا'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'salary_disclosed'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)}))</span>
+    <span class="n">grouped</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">grouped</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="n">MIN_GROUP_ADS</span><span class="p">)]</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">grouped</span><span class="p">[</span><span class="s1">'تعداد با حقوق'</span><span class="p">]</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">MIN_DISCLOSED</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'تعداد با حقوق'</span><span class="p">)</span>
+    <span class="n">dimension_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'بعد'</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span>
+                           <span class="s1">'گروه‌های بررسی‌شده'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grouped</span><span class="p">)),</span>
+                           <span class="s1">'گروه‌های کم‌نمونه'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">low</span><span class="p">)),</span>
+                           <span class="s1">'سهم گروه‌های کم‌نمونه'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grouped</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+                           <span class="s1">'کمترین تعداد با حقوق'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="s1">'تعداد با حقوق'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">low</span><span class="p">)</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">)})</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">low</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">low_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'بعد'</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span> <span class="s1">'گروه'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)[:</span><span class="mi">38</span><span class="p">],</span>
+                         <span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]),</span>
+                         <span class="s1">'تعداد با حقوق'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'تعداد با حقوق'</span><span class="p">]),</span>
+                         <span class="s1">'نرخ افشا'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'نرخ افشا'</span><span class="p">])})</span>
+
+<span class="n">dimension_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dimension_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'بعد'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'9.9'</span><span class="p">,</span> <span class="s1">'گروه‌های کم‌نمونه به تفکیک بعد تحلیل'</span><span class="p">,</span> <span class="n">dimension_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'گروه‌های بررسی‌شده'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'گروه‌های کم‌نمونه'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span>
+                    <span class="s1">'سهم گروه‌های کم‌نمونه'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">,</span> <span class="s1">'کمترین تعداد با حقوق'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'آستانه: دست‌کم </span><span class="si">{</span><span class="n">MIN_GROUP_ADS</span><span class="si">}</span><span class="s1"> آگهی و کمتر از </span><span class="si">{</span><span class="n">MIN_DISCLOSED</span><span class="si">}</span><span class="s1"> آگهی دارای حقوق'</span><span class="p">,</span>
+           <span class="n">index_name</span><span class="o">=</span><span class="s1">'بعد'</span><span class="p">)</span>
+
+<span class="n">low_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">low_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'گروه'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'9.10'</span><span class="p">,</span> <span class="s1">'نمونهٔ گروه‌های کم‌نمونه (کمترین تعداد آگهی دارای حقوق)'</span><span class="p">,</span> <span class="n">low_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد آگهی'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'تعداد با حقوق'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'نرخ افشا'</span><span class="p">:</span> <span class="s1">'pct'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'کمتر از </span><span class="si">{</span><span class="n">MIN_DISCLOSED</span><span class="si">}</span><span class="s1"> آگهی دارای حقوق'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'گروه'</span><span class="p">)</span>
+
+<span class="n">n_low_total</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dimension_table</span><span class="p">[</span><span class="s1">'گروه‌های کم‌نمونه'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'۹.۲'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'گروه‌های کم‌نمونه در چهار بعد'</span><span class="p">,</span> <span class="n">nf</span><span class="p">(</span><span class="n">n_low_total</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">'آستانهٔ نمونه'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">MIN_DISCLOSED</span><span class="si">}</span><span class="s1"> آگهی با حقوق'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'کوچک‌ترین گروه گزارش‌شده'</span><span class="p">,</span> <span class="n">nf</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">low_table</span><span class="p">[</span><span class="s1">'تعداد آگهی'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span> <span class="o">+</span> <span class="s1">' آگهی'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>Table 9.9 | Small-sample groups by analysis dimension | threshold: at least 20 postings and fewer than 100 postings with salary | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Groups examined</th>
+<th>Low-sample groups</th>
+<th>Share of low-sample groups</th>
+<th>Lowest count with salary</th>
+</tr>
+<tr>
+<th>Dimension</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Job category</th>
+<td>73</td>
+<td>15</td>
+<td>20.5%</td>
+<td>11</td>
+</tr>
+<tr>
+<th>Province</th>
+<td>32</td>
+<td>0</td>
+<td>0.0%</td>
+<td>—</td>
+</tr>
+<tr>
+<th>Company size</th>
+<td>7</td>
+<td>0</td>
+<td>0.0%</td>
+<td>—</td>
+</tr>
+<tr>
+<th>Industry</th>
+<td>44</td>
+<td>2</td>
+<td>4.5%</td>
+<td>44</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><figure class="guide-table" id="table-">
+  <figcaption>Table 9.10 | Examples of small-sample groups (fewest postings with salary) | fewer than 100 postings with salary | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Dimension</th>
+<th>Number of postings</th>
+<th>Count with salary</th>
+<th>Disclosure rate</th>
+</tr>
+<tr>
+<th>Group</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Baker</th>
+<td>Job category</td>
+<td>23</td>
+<td>11</td>
+<td>47.8%</td>
+</tr>
+<tr>
+<th>Butcher</th>
+<td>Job category</td>
+<td>35</td>
+<td>16</td>
+<td>45.7%</td>
+</tr>
+<tr>
+<th>Energy engineering / nuclear engineering</th>
+<td>Job category</td>
+<td>69</td>
+<td>19</td>
+<td>27.5%</td>
+</tr>
+<tr>
+<th>Confectioner and pastry chef</th>
+<td>Job category</td>
+<td>52</td>
+<td>21</td>
+<td>40.4%</td>
+</tr>
+<tr>
+<th>Game design</th>
+<td>Job category</td>
+<td>64</td>
+<td>26</td>
+<td>40.6%</td>
+</tr>
+<tr>
+<th>Shipping</th>
+<td>Industry</td>
+<td>111</td>
+<td>44</td>
+<td>39.6%</td>
+</tr>
+<tr>
+<th>Translation</th>
+<td>Industry</td>
+<td>161</td>
+<td>48</td>
+<td>29.8%</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">Key numbers: 9.2</p>
+  <ul><li>Low-sample groups across four dimensions: 17</li><li>Sample threshold: 100 postings with salary</li><li>Smallest reported group: 23 postings</li></ul>
+</div><p><strong>Interpretation of tables 9.9 and 9.10:</strong> Contrary to expectations, the picture of “small-sample groups” is empty in two dimensions: there is no province and no company size with fewer than 100 postings with salary — meaning the provincial analysis and the analysis that relies on company size stand on a sufficient sample.</p>
+<p>The problem is in <strong>job category</strong>: 15 job categories out of the 73 categories with at least 20 postings (20.5%) have fewer than 100 postings with salary; the smallest are <strong>baker</strong> (23 postings, 11 with salary), <strong>butcher</strong> (35 and 16), and <strong>energy/nuclear engineering</strong> (69 and 19). At the industry level, only two industries are below the threshold: <strong>shipping</strong> (111 postings, 44 with salary) and <strong>translation</strong> (161 and 48).</p>
+<p>The subtle point here is: the disclosure rate of these very small-sample groups (27% to 48%) is not lower than the market average (33.1%). So the small number is a product of <strong>the size of the category itself</strong>, not employer concealment. Practical implication: any salary median reported in sections 12 to 22 for these categories is a “signal”, not an “estimate”; in the interpretations we have respected this distinction, and in the comparison tables we have put the sample count next to each number.</p>
 <p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
-<nav class="guide-pager"><a class="prev" href="../08-correlation-and-collinearity/"><span>Previous</span><b>Correlation, collinearity and non-linear relations</b></a><a class="next" href="../10-time-trends-and-seasonality/"><span>Next</span><b>Time trends, seasonality and wage dynamics</b></a></nav>
+<nav class="guide-pager"><a class="prev" href="../08-correlation-and-collinearity/"><span>Previous</span><b>Correlation, collinearity, and non-linear relationships</b></a><a class="next" href="../10-time-trends-and-seasonality/"><span>Next</span><b>Time trend, seasonality and wage dynamics</b></a></nav>
   </main>
   <aside class="guide-aside" aria-label="On this page">
-    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-9-1">9.1. Disclosure rate across different dimensions</a></li><li class="lvl-h2"><a href="#sec-9-2">9.2. Significance testing: chi-square and Cramér&#x27;s effect size</a></li><li class="lvl-h2"><a href="#sec-9-3">9.3. Logistic regression model for the probability of salary disclosure</a></li></ul>
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-9-1">9.1. Disclosure rate across different dimensions</a></li><li class="lvl-h2"><a href="#sec-9-2">9.2. Significance test: chi-square and Cramér&#x27;s effect size</a></li><li class="lvl-h2"><a href="#sec-9-3">9.3. Logistic regression model for the probability of salary disclosure</a></li><li class="lvl-h2"><a href="#sec-9-4">9.4. Frequency of disclosed salary values and small-sample groups</a></li></ul>
   </aside>
 </div>
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2. Data, data culture and analysis rules — JobVision Guide</title>
-<meta name="description" content="2.1. Source and specifications # The data has been obtained from JobVision&#x27;s public Hugging Face repository. Each row is a published job posting; not a company, not a job seeker and not a successful h">
+<meta name="description" content="2.1. Source and specifications # The data is obtained from JobVision&#x27;s public Hugging Face repository. Each row is one published job posting; not a company, not a job seeker and not a successful hire.">
 <meta name="author" content="Arash Alidadi">
 <meta name="theme-color" content="#0b3d39">
 <link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/02-data-rules/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2. Data, data culture and analysis rules — JobVision Guide">
-<meta property="og:description" content="2.1. Source and specifications # The data has been obtained from JobVision&#x27;s public Hugging Face repository. Each row is a published job posting; not a company, not a job seeker and not a successful h">
+<meta property="og:description" content="2.1. Source and specifications # The data is obtained from JobVision&#x27;s public Hugging Face repository. Each row is one published job posting; not a company, not a job seeker and not a successful hire.">
 <meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/02-data-rules/">
 <meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -27,7 +27,7 @@
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "2. Data, data culture and analysis rules — JobVision Guide",
-  "description": "2.1. Source and specifications # The data has been obtained from JobVision's public Hugging Face repository. Each row is a published job posting; not a company, not a job seeker and not a successful h",
+  "description": "2.1. Source and specifications # The data is obtained from JobVision's public Hugging Face repository. Each row is one published job posting; not a company, not a job seeker and not a successful hire.",
   "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/02-data-rules/",
   "inLanguage": "en",
   "author": {
@@ -82,15 +82,15 @@
   <a class="guide-back" href="../">← Guide index</a>
   <p class="guide-side-title">Table of contents</p>
 </div>
-<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link is-active" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-2-1">2.1. Source and specifications</a></li><li class="lvl-h2"><a href="#sec-2-2">2.2. Dictionary of posting variables</a></li><li class="lvl-h2"><a href="#sec-2-3">2.3. Dictionary of employer variables</a></li><li class="lvl-h2"><a href="#sec-2-4">2.4. What is not in the data</a></li><li class="lvl-h2"><a href="#sec-2-5">2.5. The salary unit: why million tomans?</a></li><li class="lvl-h2"><a href="#sec-2-6">2.6. Pre-defined analysis rules</a></li><li class="lvl-h2"><a href="#sec-2-7">2.7. Ethical considerations and license</a></li></ul></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project introduction and strategic questions</span></a></li><li><a class="guide-nav-link is-active" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-2-1">2.1. Source and specifications</a></li><li class="lvl-h2"><a href="#sec-2-2">2.2. Dictionary of posting variables</a></li><li class="lvl-h2"><a href="#sec-2-3">2.3. Dictionary of employer variables</a></li><li class="lvl-h2"><a href="#sec-2-4">2.4. What is not in the data</a></li><li class="lvl-h2"><a href="#sec-2-5">2.5. Salary unit: why million tomans?</a></li><li class="lvl-h2"><a href="#sec-2-6">2.6. Pre-specified analysis rules</a></li><li class="lvl-h2"><a href="#sec-2-7">2.7. Ethical considerations and license</a></li></ul></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tools, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data profiling and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Analyzing distributions, skewness, and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity, and non-linear relationships</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>The mechanism of salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trend, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Salary Peak by Age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geographical Analysis and Provincial Concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran in the Mirror of the Global Labour Market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance over time</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what expertise does each industry want?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>The evolution of skills and the surge of job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Profiling and clustering of employers [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Recommended package for the business manager</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Summary, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Calculation checks and reproducibility</span></a></li></ul>
   </aside>
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 2</span></nav>
 <h1>2. Data, data culture and analysis rules</h1>
-<p class="guide-meta">6 min read · 1019 words</p>
+<p class="guide-meta">6 min read · 1015 words</p>
 <h2 class="guide-heading" id="sec-2-1">2.1. Source and specifications <a aria-label="link" class="anchor" href="#sec-2-1">#</a></h2>
-<p>The data has been obtained from JobVision's public Hugging Face repository. Each row is a published job posting; not a company, not a job seeker and not a successful hire. This distinction is critical for interpreting all results.</p>
-<p><strong>Table 2.1 | Raw data specifications</strong></p>
+<p>The data is obtained from JobVision's public Hugging Face repository. Each row is one published job posting; not a company, not a job seeker and not a successful hire. This distinction is critical for interpreting all the results.</p>
+<p><strong>Table 2.1 | Specifications of the raw data</strong></p>
 <table>
 <thead>
 <tr>
@@ -103,47 +103,47 @@
 <tr>
 <td>Source</td>
 <td>JobVision Jobposts Dataset</td>
-<td>Public release on Hugging Face</td>
+<td>public release on Hugging Face</td>
 </tr>
 <tr>
 <td>Number of rows</td>
 <td>364,838</td>
-<td>Each row is a posting</td>
+<td>each row is one posting</td>
 </tr>
 <tr>
 <td>Number of columns</td>
 <td>43</td>
-<td>Text, numeric, boolean and JSON</td>
+<td>text, number, boolean and JSON</td>
 </tr>
 <tr>
-<td>Time span</td>
+<td>Time range</td>
 <td>March 2022 to March 2024</td>
-<td>Monthly resolution</td>
+<td>monthly granularity</td>
 </tr>
 <tr>
 <td>Complete months</td>
 <td>23 months</td>
-<td>The first and last months are incomplete</td>
+<td>the first and last months are incomplete</td>
 </tr>
 <tr>
 <td>Salary unit</td>
 <td>million tomans per month</td>
-<td>Inferred from the range of values; examined in Section 5</td>
+<td>inferred from the range of values; examined in section 5</td>
 </tr>
 <tr>
 <td>Salary disclosure rate</td>
 <td>about 33%</td>
-<td>Only this subset is analysed for salary</td>
+<td>only this subset undergoes salary analysis</td>
 </tr>
 <tr>
 <td>License</td>
 <td>CC BY-NC 4.0</td>
-<td>Research and non-commercial, with attribution</td>
+<td>research and non-commercial, with source attribution</td>
 </tr>
 </tbody>
 </table>
 <h2 class="guide-heading" id="sec-2-2">2.2. Dictionary of posting variables <a aria-label="link" class="anchor" href="#sec-2-2">#</a></h2>
-<p><strong>Table 2.2 | Posting variables, requirements and benefits</strong></p>
+<p><strong>Table 2.2 | Posting variables, hiring requirements and benefits</strong></p>
 <table>
 <thead>
 <tr>
@@ -158,184 +158,184 @@
 <tr>
 <td>Identifier</td>
 <td><code>RowNumber</code> → <code>ad_id</code></td>
-<td>Unique row number</td>
-<td>Numeric</td>
-<td>Identifier</td>
+<td>unique row number</td>
+<td>numeric</td>
+<td>identifier</td>
 </tr>
 <tr>
 <td>Time</td>
 <td><code>Jobpost_ActivationTime_YEAR_MONTH</code></td>
-<td>Month the posting was published</td>
-<td>Monthly date</td>
-<td>Time axis</td>
+<td>month of publication</td>
+<td>monthly date</td>
+<td>time axis</td>
 </tr>
 <tr>
 <td>Title</td>
 <td><code>Jobpost_RawTitle</code></td>
-<td>Raw job title</td>
-<td>Free text</td>
-<td>Title analysis</td>
+<td>raw job title</td>
+<td>free text</td>
+<td>title analysis</td>
 </tr>
 <tr>
 <td>Gender</td>
 <td><code>Jobpost_PreferredGender</code></td>
-<td>Gender preference or requirement</td>
-<td>Categorical, 5 levels</td>
-<td>Gap analysis</td>
+<td>gender preference or requirement</td>
+<td>categorical, 5 levels</td>
+<td>gap analysis</td>
 </tr>
 <tr>
 <td>Location</td>
 <td><code>Jobpost_ProvinceFa/En</code></td>
-<td>Province of the posting</td>
-<td>Categorical</td>
-<td>Geographic analysis</td>
+<td>province of the posting</td>
+<td>categorical</td>
+<td>geographic analysis</td>
 </tr>
 <tr>
 <td>Work type</td>
 <td><code>Jobpost_WorkTypeFa/En</code></td>
-<td>Type of employment</td>
-<td>Categorical, 4 levels</td>
-<td>Hours and income analysis</td>
+<td>type of engagement</td>
+<td>categorical, 4 levels</td>
+<td>hours and income analysis</td>
 </tr>
 <tr>
 <td>Disclosure</td>
 <td><code>Jobpost_SalaryCanBeShown</code></td>
-<td>Whether a salary has been declared</td>
-<td>Boolean</td>
-<td>Key to the salary subset</td>
+<td>whether salary is declared</td>
+<td>boolean</td>
+<td>key to the salary subset</td>
 </tr>
 <tr>
 <td>Salary</td>
 <td><code>Jobpost_MinSalary</code></td>
-<td>Minimum of the proposed range (million tomans/month)</td>
-<td>Numeric</td>
-<td>Target and indicator</td>
+<td>minimum of the offered range (million tomans/month)</td>
+<td>numeric</td>
+<td>target and indicator</td>
 </tr>
 <tr>
 <td>Salary</td>
 <td><code>Jobpost_MaxSalary</code></td>
-<td>Maximum of the proposed range (million tomans/month)</td>
-<td>Numeric</td>
-<td>Target and indicator</td>
+<td>maximum of the offered range (million tomans/month)</td>
+<td>numeric</td>
+<td>target and indicator</td>
 </tr>
 <tr>
 <td>Job</td>
 <td><code>Jobpost_MainJobCategory</code></td>
-<td>Main job category</td>
-<td>Categorical, 77 levels</td>
-<td>Main axis of analysis</td>
+<td>main job category</td>
+<td>categorical, 77 levels</td>
+<td>main axis of analysis</td>
 </tr>
 <tr>
 <td>Job</td>
 <td><code>Jobpost_SecondaryJobCategories</code></td>
-<td>Secondary categories, separated by a hyphen</td>
-<td>Multi-valued text</td>
-<td>Combined analysis</td>
+<td>secondary categories, separated by hyphen</td>
+<td>multi-value text</td>
+<td>combination analysis</td>
 </tr>
 <tr>
 <td>Industry</td>
 <td><code>Jobpost_IndustryFa/En</code></td>
-<td>Industry of the posting</td>
-<td>Categorical, 44 levels</td>
-<td>Sector comparison</td>
+<td>industry of the posting</td>
+<td>categorical, 44 levels</td>
+<td>sector comparison</td>
 </tr>
 <tr>
 <td>Experience</td>
 <td><code>Jobpost_RequiredExperienceYears</code></td>
-<td>Years of required work experience</td>
-<td>Integer</td>
-<td>Salary determinant</td>
+<td>required years of experience</td>
+<td>integer</td>
+<td>salary determinant</td>
 </tr>
 <tr>
 <td>Experience</td>
 <td><code>Jobpost_RequiredRelatedExperienceInThisIndustry</code></td>
-<td>Requirement of related experience</td>
-<td>Boolean</td>
-<td>Salary determinant</td>
+<td>requirement of related experience</td>
+<td>boolean</td>
+<td>salary determinant</td>
 </tr>
 <tr>
 <td>Hours</td>
 <td><code>Jobpost_CompanyWorkTimesDescription</code></td>
-<td>Working hours description</td>
-<td>Free text</td>
-<td>Weekly hours extraction</td>
+<td>description of working hours</td>
+<td>free text</td>
+<td>weekly-hours extraction</td>
 </tr>
 <tr>
 <td>Language</td>
 <td><code>Jobpost_LanguageSkills</code></td>
-<td>Language skill as JSON</td>
+<td>language skills as JSON</td>
 <td>JSON</td>
-<td>Skill feature</td>
+<td>skill feature</td>
 </tr>
 <tr>
 <td>Software</td>
 <td><code>Jobpost_SoftwareSkills</code></td>
-<td>Software skill as JSON</td>
+<td>software skills as JSON</td>
 <td>JSON</td>
-<td>Clustering and network</td>
+<td>clustering and network</td>
 </tr>
 <tr>
 <td>Education</td>
 <td><code>Jobpost_AcademicFields</code></td>
-<td>Field and degree level as JSON</td>
+<td>field and degree as JSON</td>
 <td>JSON</td>
-<td>Returns to education</td>
+<td>returns to education</td>
 </tr>
 <tr>
 <td>Benefits</td>
 <td><code>Jobpost_BenefitFa/En</code></td>
-<td>List of benefits, separated by commas</td>
-<td>Multi-valued text</td>
-<td>Value of the compensation package</td>
+<td>list of benefits, comma-separated</td>
+<td>multi-value text</td>
+<td>value of the compensation package</td>
 </tr>
 <tr>
 <td>Disability</td>
 <td><code>Jobpost_HasDisabilitySupport</code></td>
-<td>Disability support</td>
-<td>Boolean/empty</td>
-<td>Accessibility analysis</td>
+<td>support for disability</td>
+<td>boolean/empty</td>
+<td>accessibility analysis</td>
 </tr>
 <tr>
 <td>Age</td>
 <td><code>Jobpost_RequiredMinAge</code></td>
-<td>Minimum requested age</td>
-<td>Numeric</td>
-<td>Income peak analysis</td>
+<td>minimum requested age</td>
+<td>numeric</td>
+<td>peak income analysis</td>
 </tr>
 <tr>
 <td>Age</td>
 <td><code>Jobpost_RequiredMaxAge</code></td>
-<td>Maximum requested age</td>
-<td>Numeric</td>
-<td>Income peak analysis</td>
+<td>maximum requested age</td>
+<td>numeric</td>
+<td>peak income analysis</td>
 </tr>
 <tr>
 <td>Military service</td>
 <td><code>Jobpost_RequiredMilitaryServiceCard</code></td>
-<td>Requirement of a military service completion card</td>
-<td>Boolean</td>
-<td>Requirement</td>
+<td>requirement of a military service completion card</td>
+<td>boolean</td>
+<td>hiring requirement</td>
 </tr>
 <tr>
 <td>Remote work</td>
 <td><code>Jobpost_IsRemote</code></td>
-<td>Possibility of remote work</td>
-<td>Boolean</td>
-<td>Remote work analysis</td>
+<td>possibility of remote work</td>
+<td>boolean</td>
+<td>remote work analysis</td>
 </tr>
 <tr>
 <td>Internship</td>
 <td><code>Jobpost_IsInternship</code></td>
-<td>Internship posting</td>
-<td>Boolean</td>
-<td>Level analysis</td>
+<td>internship posting</td>
+<td>boolean</td>
+<td>level analysis</td>
 </tr>
 <tr>
-<td>Locality</td>
+<td>Local candidate priority</td>
 <td><code>Jobpost_PriorityWithLocalCandidate</code></td>
-<td>Priority for the local workforce</td>
-<td>Boolean</td>
-<td>Local competition analysis</td>
+<td>priority for local candidates</td>
+<td>boolean</td>
+<td>local competition analysis</td>
 </tr>
 </tbody>
 </table>
@@ -355,76 +355,76 @@
 <tr>
 <td>Size</td>
 <td><code>Company_SizeFa/En</code></td>
-<td>Number of employees in 7 bands</td>
-<td>Ordinal categorical</td>
-<td>Salary determinant</td>
+<td>number of employees in 7 bands</td>
+<td>ordinal categorical</td>
+<td>salary determinant</td>
 </tr>
 <tr>
 <td>Age</td>
 <td><code>Company_AgeFromEstablishmentYear</code></td>
-<td>Company age in 5 bands</td>
-<td>Ordinal categorical</td>
-<td>Salary determinant</td>
+<td>company age in 5 bands</td>
+<td>ordinal categorical</td>
+<td>salary determinant</td>
 </tr>
 <tr>
 <td>Ownership</td>
 <td><code>Comany_CompanyOwnershipTypesFa/En</code></td>
-<td>Private, public, non-profit</td>
-<td>Categorical</td>
-<td>Structure analysis</td>
+<td>private, public, non-profit</td>
+<td>categorical</td>
+<td>structure analysis</td>
 </tr>
 <tr>
 <td>Activity</td>
 <td><code>Company_ActivityTypeFa/En</code></td>
-<td>Domestic client / foreign client / foreign branch</td>
-<td>Categorical</td>
-<td>Market analysis</td>
+<td>domestic client / foreign client / foreign branch</td>
+<td>categorical</td>
+<td>market analysis</td>
 </tr>
 <tr>
 <td>Industry</td>
 <td><code>Company_IndustryFa/En</code></td>
-<td>Company industry, multi-valued</td>
-<td>Multi-valued text</td>
-<td>Employer profile</td>
+<td>company industry, multi-value</td>
+<td>multi-value text</td>
+<td>employer profile</td>
 </tr>
 <tr>
 <td>Location</td>
 <td><code>Company_ProvinceFa/En</code></td>
-<td>Company province</td>
-<td>Categorical</td>
-<td>Comparison with the posting location</td>
+<td>company province</td>
+<td>categorical</td>
+<td>comparison with posting location</td>
 </tr>
 <tr>
 <td>City</td>
 <td><code>Company_CityFa/En</code></td>
-<td>Company city</td>
-<td>Categorical</td>
-<td>City-level analysis</td>
+<td>company city</td>
+<td>categorical</td>
+<td>city-level analysis</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>The column <code>Comany_CompanyOwnershipTypesFa</code> has a spelling error in the original data; in the cleaning section it is renamed to <code>Company_OwnershipFa</code> and this change is recorded.</p>
+<p>The column <code>Comany_CompanyOwnershipTypesFa</code> has a typo in the original data; in the cleaning section it is renamed to <code>Company_OwnershipFa</code>, and this change is logged.</p>
 </blockquote>
 <h2 class="guide-heading" id="sec-2-4">2.4. What is not in the data <a aria-label="link" class="anchor" href="#sec-2-4">#</a></h2>
-<p>Attention to the "absences" is as important as attention to the "presences":</p>
+<p>Attention to the “absences” matters as much as attention to the “presences”:</p>
 <ul>
-<li><strong>The full posting text and job description</strong> are absent; only the title, skills, benefits and requirements.</li>
-<li><strong>Company name</strong> has been anonymised; the competition analysis is carried out at the level of company attributes, not brand.</li>
-<li><strong>The exact publication date</strong> is absent; only the month.</li>
-<li><strong>Job seeker information, successful hires, actual contract salaries and retention rates</strong> are absent.</li>
-<li><strong>Inflation adjustment</strong> is not in the data; the values are nominal and comparisons over time must be interpreted with an inflation index.</li>
-<li><strong>Hourly wages</strong> are not recorded directly; they must be derived from monthly salary and working hours.</li>
+<li><strong>The full posting text and job description</strong> are not present; only the title, skills, benefits and hiring requirements.</li>
+<li><strong>Company name</strong> has been anonymized; competition analysis is done at the level of company attributes, not brand.</li>
+<li><strong>The exact publication date</strong> is not present; only the month.</li>
+<li><strong>Job seeker information, successful hires, actual contract salaries and retention rates</strong> are not present.</li>
+<li><strong>Inflation adjustment</strong> is not in the data; values are nominal and time comparisons must be interpreted with an inflation index.</li>
+<li><strong>Hourly wage</strong> is not recorded directly; it must be derived from monthly salary and working hours.</li>
 </ul>
-<h2 class="guide-heading" id="sec-2-5">2.5. The salary unit: why million tomans? <a aria-label="link" class="anchor" href="#sec-2-5">#</a></h2>
-<p>The data card states the salary unit as "Toman", but the range of values (2 to 100 with a median of 10) is not compatible with raw "tomans": a monthly salary of 10 tomans is meaningless. Three pieces of evidence show that the real scale is <strong>million tomans per month</strong>:</p>
+<h2 class="guide-heading" id="sec-2-5">2.5. Salary unit: why million tomans? <a aria-label="link" class="anchor" href="#sec-2-5">#</a></h2>
+<p>The data card states the salary unit as “Toman”, but the range of values (2 to 100 with a median of 10) is not consistent with raw “toman”: a monthly salary of 10 tomans is meaningless. Three pieces of evidence show that the real scale is <strong>million tomans per month</strong>:</p>
 <ol>
-<li>The median minimum declared salary is 10 and the median maximum is 12; this is consistent with the market wage level in 1401–1402.</li>
-<li>The 99th percentile of the minimum salary is 35 and the maximum is 70; a range that is reasonable for managers and specialist jobs in that same year.</li>
-<li>If the scale were "thousand tomans", a median of 10 thousand tomans per month would not be consistent with any standard.</li>
+<li>The median of the declared minimum salary is 10 and the median maximum is 12; this is consistent with the market wage level in 1401–1402.</li>
+<li>The 99th percentile of the minimum salary is 35 and the maximum is 70; a range that is reasonable for managers and specialized roles in those years.</li>
+<li>If the scale were “thousand tomans”, a median of 10 thousand tomans per month would not be consistent with any standard.</li>
 </ol>
-<p>This assumption is applied uniformly throughout the notebook. If the scale of the data changes, all salary figures must be recomputed.</p>
-<h2 class="guide-heading" id="sec-2-6">2.6. Pre-defined analysis rules <a aria-label="link" class="anchor" href="#sec-2-6">#</a></h2>
+<p>This assumption is applied uniformly throughout the notebook. If the data scale changes, all salary numbers must be recomputed.</p>
+<h2 class="guide-heading" id="sec-2-6">2.6. Pre-specified analysis rules <a aria-label="link" class="anchor" href="#sec-2-6">#</a></h2>
 <p>To prevent discretionary decisions taken after seeing the result, the following rules are set before the analysis:</p>
 <p><strong>Table 2.4 | Fixed analysis rules</strong></p>
 <table>
@@ -439,62 +439,62 @@
 <tr>
 <td>Main period</td>
 <td>2022-04 to 2024-02</td>
-<td>Removes the two incomplete months at the start and end</td>
+<td>removing the two incomplete months at the start and end</td>
 </tr>
 <tr>
 <td>Salary unit</td>
 <td>million tomans per month</td>
-<td>Consistency with external evidence</td>
+<td>consistency with external evidence</td>
 </tr>
 <tr>
 <td>Significance level</td>
 <td>0.05</td>
-<td>Hypothesis tests</td>
+<td>hypothesis tests</td>
 </tr>
 <tr>
-<td>Minimum table sample</td>
+<td>Minimum sample for a table</td>
 <td>30</td>
-<td>Stability of percentages and medians</td>
+<td>stability of percentages and medians</td>
 </tr>
 <tr>
-<td>High-frequency category threshold</td>
+<td>Threshold for frequent categories</td>
 <td>100 postings</td>
-<td>Sector comparison</td>
+<td>sector comparison</td>
 </tr>
 <tr>
 <td>Outliers</td>
-<td>Keep in the description, winsorise 1–99% only in the model</td>
-<td>Prevent loss of information</td>
+<td>kept in the description, winsorized 1–99% only in the model</td>
+<td>avoiding the loss of information</td>
 </tr>
 <tr>
-<td>Salary missingness</td>
-<td>Separate analysis, without dropping rows</td>
-<td>The missingness itself is a finding</td>
+<td>Missing salary</td>
+<td>analyzed separately, without dropping rows</td>
+<td>the missingness itself is a finding</td>
 </tr>
 <tr>
 <td>Display rounding</td>
-<td>1 decimal place for salaries and percentages</td>
-<td>Readability</td>
+<td>1 decimal place for salary and percentages</td>
+<td>readability</td>
 </tr>
 <tr>
 <td>Currency</td>
-<td>Nominal tomans, without inflation adjustment</td>
-<td>No adjusted data available</td>
+<td>nominal tomans, without inflation adjustment</td>
+<td>no adjusted data available</td>
 </tr>
 <tr>
 <td>Reproducibility</td>
-<td>Random seed 42 and fixed order</td>
-<td>Re-running gives the same result</td>
+<td>random seed 42 and fixed order</td>
+<td>re-running gives the same result</td>
 </tr>
 </tbody>
 </table>
 <h2 class="guide-heading" id="sec-2-7">2.7. Ethical considerations and license <a aria-label="link" class="anchor" href="#sec-2-7">#</a></h2>
-<p>The data is public and anonymous, but it carries three ethical considerations: (1) analysing gender and age can contribute to reproducing discrimination; we carry it out to <strong>identify gaps</strong> and not to prescribe discrimination. (2) Postings are the employer's preference and are not attributed to the actual workforce. (3) The CC BY-NC 4.0 license does not permit commercial use and the source must be cited.</p>
+<p>The data is public and anonymous, but it carries three ethical considerations: (1) analysis of gender and age can help reproduce discrimination; we carry it out to <strong>identify gaps</strong>, not to prescribe discrimination. (2) Postings are employer preferences and are not attributed to actual workers. (3) The CC BY-NC 4.0 license does not permit commercial use and the source must be cited.</p>
 <p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
-<nav class="guide-pager"><a class="prev" href="../01-project-brief-and-questions/"><span>Previous</span><b>Project brief and strategic questions</b></a><a class="next" href="../03-tooling-and-helpers/"><span>Next</span><b>Tooling, helper functions and data loading</b></a></nav>
+<nav class="guide-pager"><a class="prev" href="../01-project-brief-and-questions/"><span>Previous</span><b>Project introduction and strategic questions</b></a><a class="next" href="../03-tooling-and-helpers/"><span>Next</span><b>Tools, helper functions and data loading</b></a></nav>
   </main>
   <aside class="guide-aside" aria-label="On this page">
-    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-2-1">2.1. Source and specifications</a></li><li class="lvl-h2"><a href="#sec-2-2">2.2. Dictionary of posting variables</a></li><li class="lvl-h2"><a href="#sec-2-3">2.3. Dictionary of employer variables</a></li><li class="lvl-h2"><a href="#sec-2-4">2.4. What is not in the data</a></li><li class="lvl-h2"><a href="#sec-2-5">2.5. The salary unit: why million tomans?</a></li><li class="lvl-h2"><a href="#sec-2-6">2.6. Pre-defined analysis rules</a></li><li class="lvl-h2"><a href="#sec-2-7">2.7. Ethical considerations and license</a></li></ul>
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-2-1">2.1. Source and specifications</a></li><li class="lvl-h2"><a href="#sec-2-2">2.2. Dictionary of posting variables</a></li><li class="lvl-h2"><a href="#sec-2-3">2.3. Dictionary of employer variables</a></li><li class="lvl-h2"><a href="#sec-2-4">2.4. What is not in the data</a></li><li class="lvl-h2"><a href="#sec-2-5">2.5. Salary unit: why million tomans?</a></li><li class="lvl-h2"><a href="#sec-2-6">2.6. Pre-specified analysis rules</a></li><li class="lvl-h2"><a href="#sec-2-7">2.7. Ethical considerations and license</a></li></ul>
   </aside>
 </div>
 

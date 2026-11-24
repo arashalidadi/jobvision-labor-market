@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>7. Distributions, skewness and outliers — JobVision Guide</title>
-<meta name="description" content="The question of this section is simple: what shape do the key variables have? The answer to this question determines whether we use the median or the mean, and which values are outliers. 7.1. Summary ">
+<title>7. Analyzing distributions, skewness, and outliers — JobVision Guide</title>
+<meta name="description" content="The question of this section is simple: what shape do the key variables have? The answer determines whether we use the median or the mean, and which values are outliers. 7.1. Statistical summary of nu">
 <meta name="author" content="Arash Alidadi">
 <meta name="theme-color" content="#0b3d39">
 <link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/07-distributions-and-outliers/">
@@ -12,8 +12,8 @@
 <link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/07-distributions-and-outliers/">
 <link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="7. Distributions, skewness and outliers — JobVision Guide">
-<meta property="og:description" content="The question of this section is simple: what shape do the key variables have? The answer to this question determines whether we use the median or the mean, and which values are outliers. 7.1. Summary ">
+<meta property="og:title" content="7. Analyzing distributions, skewness, and outliers — JobVision Guide">
+<meta property="og:description" content="The question of this section is simple: what shape do the key variables have? The answer determines whether we use the median or the mean, and which values are outliers. 7.1. Statistical summary of nu">
 <meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/07-distributions-and-outliers/">
 <meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,8 +26,8 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "7. Distributions, skewness and outliers — JobVision Guide",
-  "description": "The question of this section is simple: what shape do the key variables have? The answer to this question determines whether we use the median or the mean, and which values are outliers. 7.1. Summary ",
+  "headline": "7. Analyzing distributions, skewness, and outliers — JobVision Guide",
+  "description": "The question of this section is simple: what shape do the key variables have? The answer determines whether we use the median or the mean, and which values are outliers. 7.1. Statistical summary of nu",
   "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/07-distributions-and-outliers/",
   "inLanguage": "en",
   "author": {
@@ -82,14 +82,14 @@
   <a class="guide-back" href="../">← Guide index</a>
   <p class="guide-side-title">Table of contents</p>
 </div>
-<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link is-active" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-7-1">7.1. Summary statistics of numeric variables</a></li><li class="lvl-h2"><a href="#sec-7-2">7.2. Identifying outliers</a></li><li class="lvl-h2"><a href="#sec-7-3">7.3. Work experience and requested age</a></li></ul></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project introduction and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tools, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data profiling and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link is-active" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Analyzing distributions, skewness, and outliers</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-7-1">7.1. Statistical summary of numeric variables</a></li><li class="lvl-h2"><a href="#sec-7-2">7.2. Identifying outliers</a></li><li class="lvl-h2"><a href="#sec-7-3">7.3. Required work experience and age</a></li><li class="lvl-h2"><a href="#sec-7-4">7.4. How much can we trust the medians? Confidence intervals via bootstrap resampling</a></li></ul></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity, and non-linear relationships</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>The mechanism of salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trend, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Salary Peak by Age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geographical Analysis and Provincial Concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran in the Mirror of the Global Labour Market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance over time</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what expertise does each industry want?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>The evolution of skills and the surge of job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Profiling and clustering of employers [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Recommended package for the business manager</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Summary, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Calculation checks and reproducibility</span></a></li></ul>
   </aside>
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 7</span></nav>
-<h1>7. Distributions, skewness and outliers</h1>
-<p class="guide-meta">3 min read · 4 tables · 1 figures · 3 code cells</p>
-<p>The question of this section is simple: what shape do the key variables have? The answer to this question determines whether we use the median or the mean, and which values are outliers.</p>
-<h2 class="guide-heading" id="sec-7-1">7.1. Summary statistics of numeric variables <a aria-label="link" class="anchor" href="#sec-7-1">#</a></h2><details class="code-fold">
+<h1>7. Analyzing distributions, skewness, and outliers</h1>
+<p class="guide-meta">5 min read · 5 tables · 2 figures · 5 code cells</p>
+<p>The question of this section is simple: what shape do the key variables have? The answer determines whether we use the median or the mean, and which values are outliers.</p>
+<h2 class="guide-heading" id="sec-7-1">7.1. Statistical summary of numeric variables <a aria-label="link" class="anchor" href="#sec-7-1">#</a></h2><details class="code-fold">
   <summary><span>Show the code for this step</span><em>71 lines</em></summary>
   <div class="code-card">
     <header><span>Python</span><button class="copy-btn" data-copy="numeric_cols = {
@@ -237,10 +237,10 @@ show_metrics(&#x27;توزیع‌ها&#x27;, [
 </code></pre>
   </div>
 </details><figure class="figure guide-figure" id="figure-7-1-7-4">
-  <button type="button" data-full="../../../assets/img/fig_7_1-7_4.webp" data-caption="Figure 7.1-7.4 | Monthly salary distribution (linear scale) · Distribution of required work experience">
-    <img src="../../../assets/img/fig_7_1-7_4-sm.webp" alt="Figure 7.1-7.4 | Monthly salary distribution (linear scale) · Distribution of required work experience" loading="lazy" decoding="async">
+  <button type="button" data-full="../../../assets/img/fig_7_1-7_4.webp" data-caption="Figure 7.1-7.4 | Distribution of monthly salary (linear) · Distribution of required work experience · Distribution of hourly income · Distribution of requested age bands">
+    <img src="../../../assets/img/fig_7_1-7_4-sm.webp" alt="Figure 7.1-7.4 | Distribution of monthly salary (linear) · Distribution of required work experience · Distribution of hourly income · Distribution of requested age bands" loading="lazy" decoding="async">
   </button>
-  <figcaption>Figure 7.1-7.4 | Monthly salary distribution (linear scale) · Distribution of required work experience</figcaption>
+  <figcaption>Figure 7.1-7.4 | Distribution of monthly salary (linear) · Distribution of required work experience · Distribution of hourly income · Distribution of requested age bands</figcaption>
 </figure><figure class="guide-table" id="table-">
   <figcaption>Table 7.1 | Statistical summary of key numeric variables | 360,083 postings (each column on its available data) | Farvardin 1401 to Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
@@ -342,10 +342,10 @@ show_metrics(&#x27;توزیع‌ها&#x27;, [
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: distributions</p>
   <ul><li>Salary skewness: 2.68</li><li>Log-salary skewness: 0.43</li><li>Mean minus median salary: 2.39 million</li><li>Hourly income skewness: 6.80</li><li>Postings requiring no experience: 15.8%</li></ul>
-</div><p><strong>Reading Table 7.1 and Figures 7.1 to 7.4:</strong> The salary distribution is right-skewed: median 11 and mean 13.4 million tomans, with skewness 2.68. The 2.4 million gap between the mean and the median is itself the best evidence that the “mean” is misleading for this data; a manager who sets pay on the market mean would offer above market for half of the roles. That is why the median and quartiles are reported in every section.</p>
-<p>Taking logarithms makes the distribution roughly normal (skewness falls from 2.68 to 0.43), and this is the technical justification for using log salary as the target variable in Section 16.</p>
-<p>The hourly income distribution is also skewed but its range is narrower: median 63.5 and the 99th percentile around 300 thousand tomans per hour. Requested work experience is skewed as well: median 2 years, third quartile 3 years, and 15.8% of postings require no experience at all; by contrast only 732 postings ask for more than 10 years. The overall picture is that the Iranian labor market is a “low-experience” market: employers usually want fresh recruits or two to three years of experience.</p>
-<p><strong>Figure 7.4</strong> shows that the experience distribution is concentrated in 0 to 3 years and thins rapidly after 5 years; this same pattern is examined in Section 8 as a clue to diminishing returns to experience.</p><h2 class="guide-heading" id="sec-7-2">7.2. Identifying outliers <a aria-label="link" class="anchor" href="#sec-7-2">#</a></h2>
+</div><p><strong>Interpretation of table 7.1 and figures 7.1 to 7.4:</strong> The salary distribution is right-skewed: median 11 and mean 13.4 million tomans, with a skewness of 2.68. The 2.4 million gap between the mean and the median is itself the best evidence that the “mean” is misleading in this data; a manager who takes the market mean as the salary basis would offer above the market for half of the roles. For this reason, the median and quartiles are reported in all sections.</p>
+<p>Taking the logarithm makes the distribution approximately normal (skewness falls from 2.68 to 0.43), and this is the technical justification for using the logarithm of salary as the target variable in section 16.</p>
+<p>The distribution of hourly income is also skewed but its range is narrower: median 63.5 and the 99th percentile about 300 thousand tomans per hour. Requested work experience is also skewed: median 2 years, third quartile 3 years, and 15.8% of job postings need no experience; in contrast, only 732 job postings ask for more than 10 years of experience. The overall picture is that Iran's labor market is a “low-experience” market: it usually wants fresh workers or those with two to three years.</p>
+<p><strong>Figure 7.4</strong> shows that the experience distribution is concentrated at 0 to 3 years and thins out quickly after 5 years; this same pattern is examined in section 8 as a clue to the diminishing returns of experience.</p><h2 class="guide-heading" id="sec-7-2">7.2. Identifying outliers <a aria-label="link" class="anchor" href="#sec-7-2">#</a></h2>
 <div class="code-card">
     <header><span>Python · 21 lines</span><button class="copy-btn" data-copy="def iqr_bounds(series, factor=1.5):
     q1, q3 = series.quantile(.25), series.quantile(.75)
@@ -445,7 +445,7 @@ show_table(&#x27;7.2&#x27;, &#x27;پرت‌ها بر پایه قاعده ۱٫۵ 
 </table></div>
   <p class="tbl-note"><span>Note:</span> Outliers are not removed; they are only winsorized at the salary level in modelling.</p>
   
-</figure><p><strong>Reading Table 7.2:</strong> The 1.5 × interquartile range rule flags 2,382 postings (2%) above the 30.3 million tomans upper bound and 115 postings at the floor (2.5 million or less). This share is small and dropping them would not change the composition of the market, but we do not recommend removing them: a 60 million tomans CEO posting or a 2.5 million tomans intern posting are both market realities. In the descriptive analysis we keep them all, and in modelling we winsorize only the 1st and 99th percentiles so that a single row cannot shift a regression coefficient.</p><h2 class="guide-heading" id="sec-7-3">7.3. Work experience and requested age <a aria-label="link" class="anchor" href="#sec-7-3">#</a></h2>
+</figure><p><strong>Interpretation of table 7.2:</strong> The 1.5-times-interquartile-range rule flags 2,382 job postings (2%) above the 30.3 million-toman bound and 115 job postings at the floor (2.5 million or less). This share is small, and removing them would not change the composition of the market, but we do not recommend removing them: a 60-million CEO job posting or a 2.5-million intern posting are both market realities. In description, we keep them all, and in modeling we winsorize only the 1st and 99th percentiles so that a single row cannot shift a regression coefficient.</p><h2 class="guide-heading" id="sec-7-3">7.3. Required work experience and age <a aria-label="link" class="anchor" href="#sec-7-3">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>26 lines</em></summary>
   <div class="code-card">
@@ -638,13 +638,290 @@ show_metrics(&#x27;سابقه و سن&#x27;, [
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: experience and age</p>
   <ul><li>Median requested experience: 2 years</li><li>Postings requiring over 10 years of experience: 732</li><li>Postings with an age range: 79.5%</li><li>Median requested age: 30.0 years</li></ul>
-</div><p><strong>Reading Tables 7.3 and 7.4:</strong> Requested experience hits its ceiling very early: 52% of postings ask for at most 2 years of experience and only about 4% for more than 5 years. On the salary side, the median rises from about 11 million for postings with no experience requirement to 13.5 million for postings asking for 3 years of experience; that is, the largest wage jump happens in the first two years and the slope flattens afterwards. This is exactly the “diminishing returns to experience” pattern that is plotted in Section 8.</p>
-<p>The requested age range is stated in only 79.5% of postings, and even in those it is narrow: median 30 years with quartiles of 28.5 to 34 years. In other words, Iranian employers mainly want workers from young to mid-career, and requests above 40 years are very rare. This pattern returns in Section 13 as a market constraint and in Section 22 as an operational warning (avoid artificially narrowing the age range).</p>
+</div><p><strong>Interpretation of tables 7.3 and 7.4:</strong> The requested experience reaches its ceiling very quickly: 52% of job postings ask for at most 2 years of experience and only about 4% for more than 5 years. On the salary side, the median goes from about 11 million for job postings with no experience requirement to 13.5 million for job postings with 3 years of experience; that is, the biggest jump in pay occurs in the first two years, after which the slope flattens. This is the same “diminishing returns of experience” pattern that is charted in section 8.</p>
+<p>The requested age range is stated in only 79.5% of job postings and even there it is narrow: median 30 years and quartiles 28.5 to 34 years. That is, Iranian employers mainly want young to middle-aged workers, and requests for over 40 years are very rare. This pattern returns in section 13 as a market limitation and in section 22 as an operational warning (avoid artificially restricting the age range).</p><h2 class="guide-heading" id="sec-7-4">7.4. How much can we trust the medians? Confidence intervals via bootstrap resampling <a aria-label="link" class="anchor" href="#sec-7-4">#</a></h2>
+<p>All the numbers in this project come from a sample of job postings, so every median is an <strong>estimate</strong>, not a definite fact. For this reason, we estimate the 95% confidence interval of the medians using bootstrap resampling (bootstrap, 400 repetitions): job postings are resampled with replacement, and the spread of the median across these samples shows the uncertainty. A narrow number means “this number can be attributed to the market”.</p><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>65 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="# ۷.۴ — فاصلهٔ اطمینان میانه و میانگین با بازنمونه‌گیری
+BOOTSTRAP_ROUNDS = 400
+boot_rng = np.random.default_rng(RANDOM_STATE)
+
+
+def bootstrap_ci(values, kind, rounds=BOOTSTRAP_ROUNDS, chunk=40):
+    &quot;&quot;&quot;فاصلهٔ اطمینان ۹۵٪ برای میانه، میانگین یا سهم بالای ۱۵ میلیون.&quot;&quot;&quot;
+    array = np.asarray(pd.Series(values).dropna(), dtype=float)
+
+    def statistic(block, axis=1):
+        if kind == &#x27;median&#x27;:
+            return np.median(block, axis=axis)
+        if kind == &#x27;mean&#x27;:
+            return block.mean(axis=axis)
+        return (block &gt; 15).mean(axis=axis) * 100
+
+    draws_list = []
+    for start in range(0, rounds, chunk):
+        size = min(chunk, rounds - start)
+        draws = boot_rng.integers(0, len(array), size=(size, len(array)))
+        draws_list.append(statistic(array[draws]))
+        del draws
+    distribution = np.concatenate(draws_list)
+    point = float(statistic(array.reshape(1, -1))[0])
+    return point, float(np.percentile(distribution, 2.5)), float(np.percentile(distribution, 97.5))
+
+
+top_six_categories = ads.Jobpost_MainJobCategory.value_counts().head(4).index
+bootstrap_targets = [
+    (&#x27;میانه حقوق ماهانه (میلیون تومان)&#x27;, paid.salary_mid, &#x27;median&#x27;),
+    (&#x27;میانگین حقوق ماهانه (میلیون تومان)&#x27;, paid.salary_mid, &#x27;mean&#x27;),
+    (&#x27;سهم آگهی‌های بالای ۱۵ میلیون (٪)&#x27;, paid.salary_mid, &#x27;share&#x27;),
+    (&#x27;میانه درآمد ساعتی (هزار تومان)&#x27;, hourly_ready.hourly_income, &#x27;median&#x27;),
+    (&#x27;نرخ افشای حقوق (٪)&#x27;, ads.salary_disclosed.astype(float) * 100, &#x27;mean&#x27;),
+]
+for category in top_six_categories[:3]:
+    mask = hourly_ready.Jobpost_MainJobCategory.eq(category)
+    bootstrap_targets.append((f&#x27;میانه درآمد ساعتی — {category[:28]}&#x27;, hourly_ready.loc[mask, &#x27;hourly_income&#x27;], &#x27;median&#x27;))
+
+ext_bootstrap_rows = []
+for label, values, kind in bootstrap_targets:
+    point, low, high = bootstrap_ci(values, kind)
+    ext_bootstrap_rows.append({&#x27;گروه&#x27;: label, &#x27;تعداد نمونه&#x27;: int(pd.Series(values).dropna().size),
+                               &#x27;برآورد&#x27;: point, &#x27;کران پایین ۹۵٪&#x27;: low, &#x27;کران بالا ۹۵٪&#x27;: high,
+                               &#x27;پهنای فاصله&#x27;: high - low})
+bootstrap_median_table = pd.DataFrame(ext_bootstrap_rows).set_index(&#x27;گروه&#x27;)
+show_table(&#x27;7.5&#x27;, &#x27;فاصلهٔ اطمینان ۹۵٪ برآورد‌ها (۴۰۰ تکرار بازنمونه‌گیری)&#x27;, bootstrap_median_table,
+           formats={&#x27;تعداد نمونه&#x27;: &#x27;int&#x27;, &#x27;برآورد&#x27;: &#x27;money2&#x27;, &#x27;کران پایین ۹۵٪&#x27;: &#x27;money2&#x27;,
+                    &#x27;کران بالا ۹۵٪&#x27;: &#x27;money2&#x27;, &#x27;پهنای فاصله&#x27;: &#x27;money2&#x27;},
+           sample=f&#x27;{len(paid):,} آگهی با حقوق اعلام‌شده&#x27;, index_name=&#x27;شاخص&#x27;,
+           note=&#x27;بازنمونه‌گیری با جای‌گذاری روی آگهی‌ها؛ پهنای صفر یعنی برآورد تحت هر نمونهٔ دوباره‌ای همان مقدار می‌ماند.&#x27;)
+
+show_metrics(&#x27;اطمینان برآوردها&#x27;, [
+    (&#x27;میانهٔ حقوق کل بازار&#x27;, f&#x27;{nf(bootstrap_median_table.loc[&quot;میانه حقوق ماهانه (میلیون تومان)&quot;, &quot;برآورد&quot;], 1)} میلیون &#x27;
+                            f&#x27;(پهنای فاصله: {nf(bootstrap_median_table.loc[&quot;میانه حقوق ماهانه (میلیون تومان)&quot;, &quot;پهنای فاصله&quot;], 2)})&#x27;),
+    (&#x27;میانگین حقوق (کران‌ها)&#x27;,
+     f&#x27;{nf(bootstrap_median_table.loc[&quot;میانگین حقوق ماهانه (میلیون تومان)&quot;, &quot;کران پایین ۹۵٪&quot;], 2)} تا &#x27;
+     f&#x27;{nf(bootstrap_median_table.loc[&quot;میانگین حقوق ماهانه (میلیون تومان)&quot;, &quot;کران بالا ۹۵٪&quot;], 2)} میلیون&#x27;),
+    (&#x27;میانهٔ درآمد ساعتی ± نصف پهنا&#x27;,
+     f&#x27;{nf(bootstrap_median_table.loc[&quot;میانه درآمد ساعتی (هزار تومان)&quot;, &quot;برآورد&quot;], 1)} ± &#x27;
+     f&#x27;{nf(bootstrap_median_table.loc[&quot;میانه درآمد ساعتی (هزار تومان)&quot;, &quot;پهنای فاصله&quot;] / 2, 2)}&#x27;),
+    (&#x27;نرخ افشای حقوق ± نصف پهنا&#x27;,
+     f&#x27;{pf(bootstrap_median_table.loc[&quot;نرخ افشای حقوق (٪)&quot;, &quot;برآورد&quot;], 1)} ± &#x27;
+     f&#x27;{nf(bootstrap_median_table.loc[&quot;نرخ افشای حقوق (٪)&quot;, &quot;پهنای فاصله&quot;] / 2, 2)} واحد&#x27;),
+])
+" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="c1"># ۷.۴ — فاصلهٔ اطمینان میانه و میانگین با بازنمونه‌گیری</span>
+<span class="n">BOOTSTRAP_ROUNDS</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">boot_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">bootstrap_ci</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="n">BOOTSTRAP_ROUNDS</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""فاصلهٔ اطمینان ۹۵٪ برای میانه، میانگین یا سهم بالای ۱۵ میلیون."""</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">statistic</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'median'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'mean'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">block</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">block</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="n">draws_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">rounds</span><span class="p">,</span> <span class="n">chunk</span><span class="p">):</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">rounds</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+        <span class="n">draws</span> <span class="o">=</span> <span class="n">boot_rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)))</span>
+        <span class="n">draws_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">statistic</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">draws</span><span class="p">]))</span>
+        <span class="k">del</span> <span class="n">draws</span>
+    <span class="n">distribution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">draws_list</span><span class="p">)</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">statistic</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">point</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distribution</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">))</span>
+
+
+<span class="n">top_six_categories</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_MainJobCategory</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+<span class="n">bootstrap_targets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'میانه حقوق ماهانه (میلیون تومان)'</span><span class="p">,</span> <span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانگین حقوق ماهانه (میلیون تومان)'</span><span class="p">,</span> <span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="p">,</span> <span class="s1">'mean'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'سهم آگهی‌های بالای ۱۵ میلیون (٪)'</span><span class="p">,</span> <span class="n">paid</span><span class="o">.</span><span class="n">salary_mid</span><span class="p">,</span> <span class="s1">'share'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانه درآمد ساعتی (هزار تومان)'</span><span class="p">,</span> <span class="n">hourly_ready</span><span class="o">.</span><span class="n">hourly_income</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'نرخ افشای حقوق (٪)'</span><span class="p">,</span> <span class="n">ads</span><span class="o">.</span><span class="n">salary_disclosed</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">'mean'</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">top_six_categories</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">hourly_ready</span><span class="o">.</span><span class="n">Jobpost_MainJobCategory</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+    <span class="n">bootstrap_targets</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="sa">f</span><span class="s1">'میانه درآمد ساعتی — </span><span class="si">{</span><span class="n">category</span><span class="p">[:</span><span class="mi">28</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">hourly_ready</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s1">'hourly_income'</span><span class="p">],</span> <span class="s1">'median'</span><span class="p">))</span>
+
+<span class="n">ext_bootstrap_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">bootstrap_targets</span><span class="p">:</span>
+    <span class="n">point</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">bootstrap_ci</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">kind</span><span class="p">)</span>
+    <span class="n">ext_bootstrap_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'گروه'</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span> <span class="s1">'تعداد نمونه'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+                               <span class="s1">'برآورد'</span><span class="p">:</span> <span class="n">point</span><span class="p">,</span> <span class="s1">'کران پایین ۹۵٪'</span><span class="p">:</span> <span class="n">low</span><span class="p">,</span> <span class="s1">'کران بالا ۹۵٪'</span><span class="p">:</span> <span class="n">high</span><span class="p">,</span>
+                               <span class="s1">'پهنای فاصله'</span><span class="p">:</span> <span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">})</span>
+<span class="n">bootstrap_median_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ext_bootstrap_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'گروه'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'7.5'</span><span class="p">,</span> <span class="s1">'فاصلهٔ اطمینان ۹۵٪ برآورد‌ها (۴۰۰ تکرار بازنمونه‌گیری)'</span><span class="p">,</span> <span class="n">bootstrap_median_table</span><span class="p">,</span>
+           <span class="n">formats</span><span class="o">=</span><span class="p">{</span><span class="s1">'تعداد نمونه'</span><span class="p">:</span> <span class="s1">'int'</span><span class="p">,</span> <span class="s1">'برآورد'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'کران پایین ۹۵٪'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span>
+                    <span class="s1">'کران بالا ۹۵٪'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">,</span> <span class="s1">'پهنای فاصله'</span><span class="p">:</span> <span class="s1">'money2'</span><span class="p">},</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paid</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی با حقوق اعلام‌شده'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'شاخص'</span><span class="p">,</span>
+           <span class="n">note</span><span class="o">=</span><span class="s1">'بازنمونه‌گیری با جای‌گذاری روی آگهی‌ها؛ پهنای صفر یعنی برآورد تحت هر نمونهٔ دوباره‌ای همان مقدار می‌ماند.'</span><span class="p">)</span>
+
+<span class="n">show_metrics</span><span class="p">(</span><span class="s1">'اطمینان برآوردها'</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'میانهٔ حقوق کل بازار'</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"میانه حقوق ماهانه (میلیون تومان)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"برآورد"</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1"> میلیون '</span>
+                            <span class="sa">f</span><span class="s1">'(پهنای فاصله: </span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"میانه حقوق ماهانه (میلیون تومان)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"پهنای فاصله"</span><span class="p">],</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">)'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانگین حقوق (کران‌ها)'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"میانگین حقوق ماهانه (میلیون تومان)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"کران پایین ۹۵٪"</span><span class="p">],</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> تا '</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"میانگین حقوق ماهانه (میلیون تومان)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"کران بالا ۹۵٪"</span><span class="p">],</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> میلیون'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'میانهٔ درآمد ساعتی ± نصف پهنا'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"میانه درآمد ساعتی (هزار تومان)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"برآورد"</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1"> ± '</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"میانه درآمد ساعتی (هزار تومان)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"پهنای فاصله"</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'نرخ افشای حقوق ± نصف پهنا'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">pf</span><span class="p">(</span><span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"نرخ افشای حقوق (٪)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"برآورد"</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1"> ± '</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nf</span><span class="p">(</span><span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"نرخ افشای حقوق (٪)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"پهنای فاصله"</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> واحد'</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>Table 7.5 | 95% confidence intervals of the estimates (400 bootstrap repetitions) | 119,048 postings with disclosed salary | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Sample size</th>
+<th>Estimate</th>
+<th>Lower bound 95%</th>
+<th>Upper bound 95%</th>
+<th>Interval width</th>
+</tr>
+<tr>
+<th>Index</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Median monthly salary (million tomans)</th>
+<td>119,048</td>
+<td>11.00</td>
+<td>11.00</td>
+<td>11.00</td>
+<td>0.00</td>
+</tr>
+<tr>
+<th>Mean monthly salary (million tomans)</th>
+<td>119,048</td>
+<td>13.39</td>
+<td>13.34</td>
+<td>13.43</td>
+<td>0.08</td>
+</tr>
+<tr>
+<th>Share of postings above 15 million (%)</th>
+<td>119,048</td>
+<td>26.70</td>
+<td>26.46</td>
+<td>26.96</td>
+<td>0.49</td>
+</tr>
+<tr>
+<th>Median hourly income (thousand tomans)</th>
+<td>116,244</td>
+<td>63.46</td>
+<td>63.46</td>
+<td>63.46</td>
+<td>0.00</td>
+</tr>
+<tr>
+<th>Salary disclosure rate (%)</th>
+<td>360,083</td>
+<td>33.06</td>
+<td>32.92</td>
+<td>33.22</td>
+<td>0.30</td>
+</tr>
+<tr>
+<th>Median hourly income — finance and accounting</th>
+<td>13,323</td>
+<td>65.59</td>
+<td>64.90</td>
+<td>66.28</td>
+<td>1.38</td>
+</tr>
+<tr>
+<th>Median hourly income — sales and marketing - job levels</th>
+<td>12,763</td>
+<td>73.30</td>
+<td>70.80</td>
+<td>74.18</td>
+<td>3.37</td>
+</tr>
+<tr>
+<th>Median hourly income — sales and marketing - salesperson /</th>
+<td>14,811</td>
+<td>63.46</td>
+<td>62.94</td>
+<td>63.46</td>
+<td>0.52</td>
+</tr>
+</tbody>
+</table></div>
+  <p class="tbl-note"><span>Note:</span> Bootstrap resampling with replacement over postings; a width of zero means the estimate stays the same under any resample</p>
+  
+</figure><div class="guide-metrics">
+  <p class="m-title">Key numbers: estimate confidence</p>
+  <ul><li>Market-wide median salary: 11.0 million (interval width: 0.00)</li><li>Mean salary (bounds): 13.34 to 13.43 million</li><li>Median hourly income ± half-width: 63.5 ± 0.00</li><li>Salary disclosure rate ± half-width: 33.1% ± 0.15 units</li></ul>
+</div><p><strong>Interpretation of table 7.5:</strong> The result of the bootstrap resampling is itself a finding, not just a technical check.</p>
+<ul>
+<li><strong>The monthly median salary has a confidence interval width of zero</strong>: in all 400 resamplings, the median stayed exactly 11.0 million. The reason is what we saw in section 9.4: the market has anchored numbers, and the median sits on the anchors. That means this number can be confidently attributed to the whole market.</li>
+<li><strong>The mean is the only index with a non-zero confidence interval</strong>: 13.34 to 13.43 million (width 0.08). Because the right tail extends to 85 million, the mean is sensitive to a few expensive postings; this is the technical reason why the reports throughout this project are based on the <strong>median</strong>.</li>
+<li><strong>The disclosure rate and the share of postings above 15 million</strong> (26.7%, bounds 26.5 to 27.0) have an interval of less than half a unit — meaning these ratios can be attributed to the whole market.</li>
+<li>At the category level, <strong>the median hourly income of professional sales has the widest interval</strong> (70.8 to 74.2, width 3.4) because the roles within this category are very diverse; in contrast, finance and accounting is more compact with a width of 1.4.</li>
+</ul>
+<p><strong>Practical implication:</strong> The main uncertainty in this project does not come from “data dispersion” but from the <strong>sample size of the groups</strong> (section 9.4). So wherever a group's sample is small, caution is needed; the medians themselves do not need a margin of error.</p><div class="code-card">
+    <header><span>Python · 16 lines</span><button class="copy-btn" data-copy="fig, ax = plt.subplots(figsize=(10.6, 4.8))
+plot_rows = bootstrap_median_table.iloc[2:]
+positions = np.arange(len(plot_rows))
+ax.errorbar(plot_rows[&#x27;برآورد&#x27;], positions,
+            xerr=[plot_rows[&#x27;برآورد&#x27;] - plot_rows[&#x27;کران پایین ۹۵٪&#x27;],
+                  plot_rows[&#x27;کران بالا ۹۵٪&#x27;] - plot_rows[&#x27;برآورد&#x27;]],
+            fmt=&#x27;o&#x27;, color=TEAL, ecolor=GOLD, elinewidth=2.4, capsize=4, markersize=6)
+ax.set_yticks(positions)
+ax.set_yticklabels([fa(label.split(&#x27; — &#x27;)[0][:34]) for label in plot_rows.index], fontsize=8.5)
+labels = [nf(value, 1) for value in plot_rows[&#x27;برآورد&#x27;]]
+for position, (value, label) in enumerate(zip(plot_rows[&#x27;برآورد&#x27;], labels)):
+    ax.annotate(label, (value, position), xytext=(0, 9), textcoords=&#x27;offset points&#x27;,
+                ha=&#x27;center&#x27;, fontsize=8, color=DARK)
+heading(ax, &#x27;۷.۵&#x27;, &#x27;برآورد نقطه‌ای و فاصلهٔ اطمینان ۹۵٪ شاخص‌های کلیدی&#x27;)
+axes_labels(ax, &#x27;مقدار (واحد هر شاخص در جدول ۷.۵)&#x27;, &#x27;شاخص&#x27;)
+complete(&#x27;7.5&#x27;)
+" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">10.6</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">))</span>
+<span class="n">plot_rows</span> <span class="o">=</span> <span class="n">bootstrap_median_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plot_rows</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">plot_rows</span><span class="p">[</span><span class="s1">'برآورد'</span><span class="p">],</span> <span class="n">positions</span><span class="p">,</span>
+            <span class="n">xerr</span><span class="o">=</span><span class="p">[</span><span class="n">plot_rows</span><span class="p">[</span><span class="s1">'برآورد'</span><span class="p">]</span> <span class="o">-</span> <span class="n">plot_rows</span><span class="p">[</span><span class="s1">'کران پایین ۹۵٪'</span><span class="p">],</span>
+                  <span class="n">plot_rows</span><span class="p">[</span><span class="s1">'کران بالا ۹۵٪'</span><span class="p">]</span> <span class="o">-</span> <span class="n">plot_rows</span><span class="p">[</span><span class="s1">'برآورد'</span><span class="p">]],</span>
+            <span class="n">fmt</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="n">GOLD</span><span class="p">,</span> <span class="n">elinewidth</span><span class="o">=</span><span class="mf">2.4</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="n">fa</span><span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' — '</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">34</span><span class="p">])</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">plot_rows</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">8.5</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">nf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">plot_rows</span><span class="p">[</span><span class="s1">'برآورد'</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">plot_rows</span><span class="p">[</span><span class="s1">'برآورد'</span><span class="p">],</span> <span class="n">labels</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">position</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">'offset points'</span><span class="p">,</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">DARK</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'۷.۵'</span><span class="p">,</span> <span class="s1">'برآورد نقطه‌ای و فاصلهٔ اطمینان ۹۵٪ شاخص‌های کلیدی'</span><span class="p">)</span>
+<span class="n">axes_labels</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">'مقدار (واحد هر شاخص در جدول ۷.۵)'</span><span class="p">,</span> <span class="s1">'شاخص'</span><span class="p">)</span>
+<span class="n">complete</span><span class="p">(</span><span class="s1">'7.5'</span><span class="p">)</span>
+</code></pre>
+  </div><figure class="figure guide-figure" id="figure-7-5">
+  <button type="button" data-full="../../../assets/img/fig_7_5.webp" data-caption="Figure 7.5 | Point estimate and 95% confidence interval of key indicators">
+    <img src="../../../assets/img/fig_7_5-sm.webp" alt="Figure 7.5 | Point estimate and 95% confidence interval of key indicators" loading="lazy" decoding="async">
+  </button>
+  <figcaption>Figure 7.5 | Point estimate and 95% confidence interval of key indicators</figcaption>
+</figure>
 <p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
-<nav class="guide-pager"><a class="prev" href="../06-feature-engineering/"><span>Previous</span><b>Feature engineering</b></a><a class="next" href="../08-correlation-and-collinearity/"><span>Next</span><b>Correlation, collinearity and non-linear relations</b></a></nav>
+<nav class="guide-pager"><a class="prev" href="../06-feature-engineering/"><span>Previous</span><b>Feature engineering</b></a><a class="next" href="../08-correlation-and-collinearity/"><span>Next</span><b>Correlation, collinearity, and non-linear relationships</b></a></nav>
   </main>
   <aside class="guide-aside" aria-label="On this page">
-    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-7-1">7.1. Summary statistics of numeric variables</a></li><li class="lvl-h2"><a href="#sec-7-2">7.2. Identifying outliers</a></li><li class="lvl-h2"><a href="#sec-7-3">7.3. Work experience and requested age</a></li></ul>
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-7-1">7.1. Statistical summary of numeric variables</a></li><li class="lvl-h2"><a href="#sec-7-2">7.2. Identifying outliers</a></li><li class="lvl-h2"><a href="#sec-7-3">7.3. Required work experience and age</a></li><li class="lvl-h2"><a href="#sec-7-4">7.4. How much can we trust the medians? Confidence intervals via bootstrap resampling</a></li></ul>
   </aside>
 </div>
 

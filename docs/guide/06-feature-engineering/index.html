@@ -87,7 +87,7 @@
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">صفحه اصلی</a> <span>/</span> <a href="../">مستندات</a> <span>/</span> <span>بخش 6</span></nav>
 <h1>۶. مهندسی ویژگی</h1>
-<p class="guide-meta">9 دقیقه مطالعه · 15 جدول · 4 نمودار · 9 سلول کد</p>
+<p class="guide-meta">9 دقیقه مطالعه · 16 جدول · 4 نمودار · 10 سلول کد</p>
 <p>ستون‌های پنهان داده را بیرون می‌کشیم: ساعت کاری از متن آزاد، مهارت از JSON، مقطع تحصیلی از فهرست رشته‌ها، مزایا از فهرست کاما‌جداشده و ویژگی‌های کارفرما از مقادیر متنی. خروجی این بخش، جدول <code>ads</code> را به یک جدول تحلیل کامل تبدیل می‌کند.</p>
 <h2 class="guide-heading" id="sec-6-1">۶.۱. ویژگی‌های حقوق <a aria-label="link" class="anchor" href="#sec-6-1">#</a></h2><div class="code-card">
     <header><span>Python · 22 خط</span><button class="copy-btn" data-copy="salary_bins = [0, 8, 12, 20, 40, np.inf]
@@ -2106,7 +2106,181 @@ show_metrics(&#x27;عنوان شغلی&#x27;, [
   <ul><li>عنوان خام یکتا: 66,613</li><li>عنوان پایه یکتا: 40,652</li><li>کاهش کاردینالیتی: 39.0٪</li><li>پرتکرارترین عنوان: کارشناس فروش — 13,360 آگهی</li></ul>
 </div><p><strong>تفسیر جدول‌های ۶.۱۲ و ۶.۱۳:</strong> استخراج رده سازمانی از عنوان، تصویری سه‌لایه می‌دهد. نزدیک ۴۴٪ آگهی‌ها هیچ نشانه رده‌ای در عنوان ندارند («سایر») و میانه حقوق ۱۱ میلیون دارند؛ ۳۶٫۸٪ با عنوان «کارشناس» شناسایی می‌شوند (میانه ۱۳٫۵ میلیون و سابقه ۲ سال)؛ و رده‌های ارشد و مدیریتی روی‌هم ۱۰٫۷٪ آگهی‌ها را می‌سازند اما میانه ۱۷٫۵ میلیون دارند، یعنی حدود ۶۰٪ بالاتر از بدنه بازار.</p>
 <p>نکته قابل توجه، رده «کارآموز» است: با وجود سابقه صفر، میانه حقوق این آگهی‌ها ۱۳٫۵ میلیون است، هم‌سطح کارشناسی. بخشی از این عنوان‌ها احتمالاً کارآموزی‌های تخصصی با حقوق بالاست و بخشی عنوان‌گذاری اشتباه کارفرمایان؛ به همین دلیل در بخش ۱۶ به‌عنوان یک متغیر کنترل وارد می‌شود، نه یک یافته قطعی.</p>
-<p>نرمال‌سازی عنوان، کاردینالیتی را از ۶۷٬۹۵۰ به ۴۰٬۹۲۸ کاهش می‌دهد (۳۹٫۸٪). پرتکرارترین عنوان‌ها «کارشناس فروش» (۱۳٬۳۶۰ آگهی)، «حسابدار» (۹٬۲۱۲) و «کارشناس حسابداری» (۷٬۴۳۷) هستند؛ یعنی فروش و مالی دو ستون فقرات بازار کار ایران‌اند. همین نرمال‌سازی، پایه خوشه‌بندی بخش ۱۷ است.</p><h2 class="guide-heading" id="sec-6-9">۶.۹. جدول نهایی تحلیل <a aria-label="link" class="anchor" href="#sec-6-9">#</a></h2>
+<p>نرمال‌سازی عنوان، کاردینالیتی را از ۶۷٬۹۵۰ به ۴۰٬۹۲۸ کاهش می‌دهد (۳۹٫۸٪). پرتکرارترین عنوان‌ها «کارشناس فروش» (۱۳٬۳۶۰ آگهی)، «حسابدار» (۹٬۲۱۲) و «کارشناس حسابداری» (۷٬۴۳۷) هستند؛ یعنی فروش و مالی دو ستون فقرات بازار کار ایران‌اند. همین نرمال‌سازی، پایه خوشه‌بندی بخش ۱۷ است.</p><p><strong>جدول نگاشت (Mapping Dictionary):</strong> صورت پروژه یک جدول شفاف می‌خواهد که نشان دهد هر ستون دسته‌ای چگونه به عدد تبدیل شده است، تا خوانندهٔ نتایج بداند ضریب‌ها را چطور تفسیر کند. جدول زیر از خود داده ساخته می‌شود (نه از حافظه)، بنابراین همیشه با مقادیر واقعی هم‌خوان است.</p><details class="code-fold">
+  <summary><span>نمایش کد این مرحله</span><em>40 خط</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="# جدول نگاشت: ستون دسته‌ای/متنی → نمایش عددی
+def ordinal_pairs(column, rank_column):
+    pairs = (ads[[column, rank_column]].dropna().drop_duplicates().sort_values(rank_column))
+    return &#x27;؛ &#x27;.join(f&#x27;{value} ← {int(rank)}&#x27; for value, rank in pairs.itertuples(index=False))
+
+
+def levels_text(column, limit=6):
+    counts = ads[column].fillna(&#x27;نامشخص&#x27;).value_counts()
+    head = &#x27;، &#x27;.join(str(name) for name in counts.head(limit).index)
+    rest = counts.size - min(limit, counts.size)
+    return head + (f&#x27; … (+{rest} سطح دیگر)&#x27; if rest &gt; 0 else &#x27;&#x27;)
+
+
+mapping_rows = [
+    (&#x27;Company_SizeFa&#x27;, &#x27;Ordinal (رتبه‌ای)&#x27;, ordinal_pairs(&#x27;Company_SizeFa&#x27;, &#x27;company_size_rank&#x27;),
+     &#x27;مدل‌های حقوق و افشا&#x27;),
+    (&#x27;Company_AgeFromEstablishmentYear&#x27;, &#x27;Ordinal (رتبه‌ای)&#x27;,
+     ordinal_pairs(&#x27;Company_AgeFromEstablishmentYear&#x27;, &#x27;company_age_rank&#x27;), &#x27;قدمت کارفرما&#x27;),
+    (&#x27;max_degree&#x27;, &#x27;Ordinal (رتبه‌ای)&#x27;,
+     &#x27;اعلام‌نشده ← 0؛ کاردانی ← 2؛ کارشناسی ← 3؛ کارشناسی ارشد ← 4؛ دکترا ← 5&#x27;,
+     &#x27;بازده تحصیلات و مدل حقوق&#x27;),
+    (&#x27;Jobpost_WorkTypeFa&#x27;, &#x27;One-Hot&#x27;, levels_text(&#x27;Jobpost_WorkTypeFa&#x27;), &#x27;درآمد ساعتی و رگرسیون&#x27;),
+    (&#x27;Jobpost_PreferredGender&#x27;, &#x27;Label + One-Hot&#x27;,
+     &#x27;بدون ترجیح، ترجیحاً آقا، ترجیحاً خانم، فقط آقا، فقط خانم&#x27;, &#x27;تحلیل شکاف جنسیتی&#x27;),
+    (&#x27;Jobpost_MainJobCategory&#x27;, &#x27;One-Hot / گروه‌بندی&#x27;,
+     f&#x27;{ads.Jobpost_MainJobCategory.nunique()} سطح؛ ده دستهٔ پرتکرار + «سایر دسته‌ها»&#x27;,
+     &#x27;همهٔ تحلیل‌های دسته‌ای&#x27;),
+    (&#x27;Jobpost_ProvinceFa&#x27;, &#x27;One-Hot / گروه‌بندی&#x27;,
+     f&#x27;{ads.Jobpost_ProvinceFa.nunique()} سطح؛ تهران در برابر سایر استان‌ها&#x27;, &#x27;تحلیل جغرافیایی&#x27;),
+    (&#x27;Jobpost_IndustryFa&#x27;, &#x27;One-Hot / گروه‌بندی&#x27;,
+     f&#x27;{ads.Jobpost_IndustryFa.nunique()} سطح؛ هشت صنعت پرتکرار + «سایر صنایع»&#x27;,
+     &#x27;صنعت در برابر دستهٔ شغلی&#x27;),
+    (&#x27;Jobpost_IsRemote&#x27;, &#x27;Boolean → 0/1&#x27;, &#x27;حضوری ← 0؛ دورکاری ← 1&#x27;, &#x27;مدل افشا و حقوق&#x27;),
+    (&#x27;hours_source&#x27;, &#x27;One-Hot&#x27;, levels_text(&#x27;hours_source&#x27;, 4), &#x27;اعتبار ساعت کاری&#x27;),
+    (&#x27;benefit_count / skill_count&#x27;, &#x27;شمارشی (Count)&#x27;, &#x27;تعداد مزیت و مهارت هر آگهی&#x27;, &#x27;مدل حقوق&#x27;),
+]
+mapping_table = pd.DataFrame(mapping_rows,
+                             columns=[&#x27;ستون&#x27;, &#x27;نوع تبدیل&#x27;, &#x27;نگاشت / سطوح&#x27;, &#x27;کاربرد&#x27;]).set_index(&#x27;ستون&#x27;)
+show_table(&#x27;6.15&#x27;, &#x27;جدول نگاشت تبدیل ستون‌های دسته‌ای به عدد&#x27;, mapping_table,
+           sample=f&#x27;{len(ads):,} آگهی&#x27;, index_name=&#x27;ستون&#x27;)
+" data-done-text="کپی شد">کپی</button></header>
+    <pre class="code"><code><span class="c1"># جدول نگاشت: ستون دسته‌ای/متنی → نمایش عددی</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ordinal_pairs</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">rank_column</span><span class="p">):</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="p">[[</span><span class="n">column</span><span class="p">,</span> <span class="n">rank_column</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">rank_column</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s1">'؛ '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1"> ← </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">pairs</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">levels_text</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">'نامشخص'</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="s1">'، '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">rest</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">limit</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">head</span> <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s1">' … (+</span><span class="si">{</span><span class="n">rest</span><span class="si">}</span><span class="s1"> سطح دیگر)'</span> <span class="k">if</span> <span class="n">rest</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">''</span><span class="p">)</span>
+
+
+<span class="n">mapping_rows</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'Company_SizeFa'</span><span class="p">,</span> <span class="s1">'Ordinal (رتبه‌ای)'</span><span class="p">,</span> <span class="n">ordinal_pairs</span><span class="p">(</span><span class="s1">'Company_SizeFa'</span><span class="p">,</span> <span class="s1">'company_size_rank'</span><span class="p">),</span>
+     <span class="s1">'مدل‌های حقوق و افشا'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Company_AgeFromEstablishmentYear'</span><span class="p">,</span> <span class="s1">'Ordinal (رتبه‌ای)'</span><span class="p">,</span>
+     <span class="n">ordinal_pairs</span><span class="p">(</span><span class="s1">'Company_AgeFromEstablishmentYear'</span><span class="p">,</span> <span class="s1">'company_age_rank'</span><span class="p">),</span> <span class="s1">'قدمت کارفرما'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'max_degree'</span><span class="p">,</span> <span class="s1">'Ordinal (رتبه‌ای)'</span><span class="p">,</span>
+     <span class="s1">'اعلام‌نشده ← 0؛ کاردانی ← 2؛ کارشناسی ← 3؛ کارشناسی ارشد ← 4؛ دکترا ← 5'</span><span class="p">,</span>
+     <span class="s1">'بازده تحصیلات و مدل حقوق'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_WorkTypeFa'</span><span class="p">,</span> <span class="s1">'One-Hot'</span><span class="p">,</span> <span class="n">levels_text</span><span class="p">(</span><span class="s1">'Jobpost_WorkTypeFa'</span><span class="p">),</span> <span class="s1">'درآمد ساعتی و رگرسیون'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_PreferredGender'</span><span class="p">,</span> <span class="s1">'Label + One-Hot'</span><span class="p">,</span>
+     <span class="s1">'بدون ترجیح، ترجیحاً آقا، ترجیحاً خانم، فقط آقا، فقط خانم'</span><span class="p">,</span> <span class="s1">'تحلیل شکاف جنسیتی'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_MainJobCategory'</span><span class="p">,</span> <span class="s1">'One-Hot / گروه‌بندی'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_MainJobCategory</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> سطح؛ ده دستهٔ پرتکرار + «سایر دسته‌ها»'</span><span class="p">,</span>
+     <span class="s1">'همهٔ تحلیل‌های دسته‌ای'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_ProvinceFa'</span><span class="p">,</span> <span class="s1">'One-Hot / گروه‌بندی'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_ProvinceFa</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> سطح؛ تهران در برابر سایر استان‌ها'</span><span class="p">,</span> <span class="s1">'تحلیل جغرافیایی'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_IndustryFa'</span><span class="p">,</span> <span class="s1">'One-Hot / گروه‌بندی'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_IndustryFa</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> سطح؛ هشت صنعت پرتکرار + «سایر صنایع»'</span><span class="p">,</span>
+     <span class="s1">'صنعت در برابر دستهٔ شغلی'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_IsRemote'</span><span class="p">,</span> <span class="s1">'Boolean → 0/1'</span><span class="p">,</span> <span class="s1">'حضوری ← 0؛ دورکاری ← 1'</span><span class="p">,</span> <span class="s1">'مدل افشا و حقوق'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'hours_source'</span><span class="p">,</span> <span class="s1">'One-Hot'</span><span class="p">,</span> <span class="n">levels_text</span><span class="p">(</span><span class="s1">'hours_source'</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="s1">'اعتبار ساعت کاری'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'benefit_count / skill_count'</span><span class="p">,</span> <span class="s1">'شمارشی (Count)'</span><span class="p">,</span> <span class="s1">'تعداد مزیت و مهارت هر آگهی'</span><span class="p">,</span> <span class="s1">'مدل حقوق'</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">mapping_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mapping_rows</span><span class="p">,</span>
+                             <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'ستون'</span><span class="p">,</span> <span class="s1">'نوع تبدیل'</span><span class="p">,</span> <span class="s1">'نگاشت / سطوح'</span><span class="p">,</span> <span class="s1">'کاربرد'</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'ستون'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'6.15'</span><span class="p">,</span> <span class="s1">'جدول نگاشت تبدیل ستون‌های دسته‌ای به عدد'</span><span class="p">,</span> <span class="n">mapping_table</span><span class="p">,</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'ستون'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>جدول 6.15 | جدول نگاشت تبدیل ستون‌های دسته‌ای به عدد | 360,083 آگهی | فروردین ۱۴۰۱ تا بهمن ۱۴۰۲</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>نوع تبدیل</th>
+<th>نگاشت / سطوح</th>
+<th>کاربرد</th>
+</tr>
+<tr>
+<th>ستون</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Company_SizeFa</th>
+<td>Ordinal (رتبه‌ای)</td>
+<td>زیر 10 نفر ← 1؛ 11 تا 50 نفر ← 2؛ 51 تا 200 نفر ← 3؛ 201 تا 500 نفر ← 4؛ 501 تا 1000 نفر ← 5؛ 1001 تا 5000 نفر ← 6؛ بیش از 5000 نفر ← 7</td>
+<td>مدل‌های حقوق و افشا</td>
+</tr>
+<tr>
+<th>Company_AgeFromEstablishmentYear</th>
+<td>Ordinal (رتبه‌ای)</td>
+<td>0 - 4 years ← 1؛ 5 - 9 years ← 2؛ 10 - 14 years ← 3؛ 15 - 19 years ← 4؛ more than 20 years ← 5</td>
+<td>قدمت کارفرما</td>
+</tr>
+<tr>
+<th>max_degree</th>
+<td>Ordinal (رتبه‌ای)</td>
+<td>اعلام‌نشده ← 0؛ کاردانی ← 2؛ کارشناسی ← 3؛ کارشناسی ارشد ← 4؛ دکترا ← 5</td>
+<td>بازده تحصیلات و مدل حقوق</td>
+</tr>
+<tr>
+<th>Jobpost_WorkTypeFa</th>
+<td>One-Hot</td>
+<td>تمام وقت، تمام وقت یا پاره وقت، پاره وقت، قراردادی / پروژه ای</td>
+<td>درآمد ساعتی و رگرسیون</td>
+</tr>
+<tr>
+<th>Jobpost_PreferredGender</th>
+<td>Label + One-Hot</td>
+<td>بدون ترجیح، ترجیحاً آقا، ترجیحاً خانم، فقط آقا، فقط خانم</td>
+<td>تحلیل شکاف جنسیتی</td>
+</tr>
+<tr>
+<th>Jobpost_MainJobCategory</th>
+<td>One-Hot / گروه‌بندی</td>
+<td>77 سطح؛ ده دستهٔ پرتکرار + «سایر دسته‌ها»</td>
+<td>همهٔ تحلیل‌های دسته‌ای</td>
+</tr>
+<tr>
+<th>Jobpost_ProvinceFa</th>
+<td>One-Hot / گروه‌بندی</td>
+<td>32 سطح؛ تهران در برابر سایر استان‌ها</td>
+<td>تحلیل جغرافیایی</td>
+</tr>
+<tr>
+<th>Jobpost_IndustryFa</th>
+<td>One-Hot / گروه‌بندی</td>
+<td>44 سطح؛ هشت صنعت پرتکرار + «سایر صنایع»</td>
+<td>صنعت در برابر دستهٔ شغلی</td>
+</tr>
+<tr>
+<th>Jobpost_IsRemote</th>
+<td>Boolean → 0/1</td>
+<td>حضوری ← 0؛ دورکاری ← 1</td>
+<td>مدل افشا و حقوق</td>
+</tr>
+<tr>
+<th>hours_source</th>
+<td>One-Hot</td>
+<td>بازه و روز از متن، روز بدون ساعت، پیش‌فرض نوع همکاری، بازه با روز پیش‌فرض … (+5 سطح دیگر)</td>
+<td>اعتبار ساعت کاری</td>
+</tr>
+<tr>
+<th>benefit_count / skill_count</th>
+<td>شمارشی (Count)</td>
+<td>تعداد مزیت و مهارت هر آگهی</td>
+<td>مدل حقوق</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><h2 class="guide-heading" id="sec-6-9">۶.۹. جدول نهایی تحلیل <a aria-label="link" class="anchor" href="#sec-6-9">#</a></h2>
 <details class="code-fold">
   <summary><span>نمایش کد این مرحله</span><em>28 خط</em></summary>
   <div class="code-card">

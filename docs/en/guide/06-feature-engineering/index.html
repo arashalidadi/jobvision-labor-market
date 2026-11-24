@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>6. Feature engineering — JobVision Guide</title>
-<meta name="description" content="We pull out the hidden columns of the data: working hours from free text, skills from JSON, degree level from the list of fields, benefits from the comma-separated list and employer attributes from te">
+<meta name="description" content="We pull out the hidden columns of the data: working hours from free text, skills from JSON, degree from the list of fields, benefits from the comma-separated list and employer attributes from textual ">
 <meta name="author" content="Arash Alidadi">
 <meta name="theme-color" content="#0b3d39">
 <link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/06-feature-engineering/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="6. Feature engineering — JobVision Guide">
-<meta property="og:description" content="We pull out the hidden columns of the data: working hours from free text, skills from JSON, degree level from the list of fields, benefits from the comma-separated list and employer attributes from te">
+<meta property="og:description" content="We pull out the hidden columns of the data: working hours from free text, skills from JSON, degree from the list of fields, benefits from the comma-separated list and employer attributes from textual ">
 <meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/06-feature-engineering/">
 <meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -27,7 +27,7 @@
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "6. Feature engineering — JobVision Guide",
-  "description": "We pull out the hidden columns of the data: working hours from free text, skills from JSON, degree level from the list of fields, benefits from the comma-separated list and employer attributes from te",
+  "description": "We pull out the hidden columns of the data: working hours from free text, skills from JSON, degree from the list of fields, benefits from the comma-separated list and employer attributes from textual ",
   "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/06-feature-engineering/",
   "inLanguage": "en",
   "author": {
@@ -82,13 +82,13 @@
   <a class="guide-back" href="../">← Guide index</a>
   <p class="guide-side-title">Table of contents</p>
 </div>
-<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link is-active" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-6-1">6.1. Salary features</a></li><li class="lvl-h2"><a href="#sec-6-2">6.2. Extracting working hours from free text</a></li><li class="lvl-h2"><a href="#sec-6-3">6.3. Extracting software skills</a></li><li class="lvl-h2"><a href="#sec-6-4">6.4. Extracting education</a></li><li class="lvl-h2"><a href="#sec-6-5">6.5. Extracting benefits</a></li><li class="lvl-h2"><a href="#sec-6-6">6.6. Employer characteristics</a></li><li class="lvl-h2"><a href="#sec-6-7">6.7. Building the hourly income index</a></li><li class="lvl-h2"><a href="#sec-6-8">6.8. Job title normalisation</a></li><li class="lvl-h2"><a href="#sec-6-9">6.9. Final analysis table</a></li></ul></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project introduction and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tools, helper functions and data loading</span></a></li><li><a class="guide-nav-link" href="../04-data-quality/"><span class="n">4</span><span>Data profiling and quality</span></a></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link is-active" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-6-1">6.1. Salary features</a></li><li class="lvl-h2"><a href="#sec-6-2">6.2. Extracting working hours from free text</a></li><li class="lvl-h2"><a href="#sec-6-3">6.3. Extracting software skills</a></li><li class="lvl-h2"><a href="#sec-6-4">6.4. Extracting education</a></li><li class="lvl-h2"><a href="#sec-6-5">6.5. Extracting benefits</a></li><li class="lvl-h2"><a href="#sec-6-6">6.6. Employer characteristics</a></li><li class="lvl-h2"><a href="#sec-6-7">6.7. Building the hourly income index</a></li><li class="lvl-h2"><a href="#sec-6-8">6.8. Normalizing the job title</a></li><li class="lvl-h2"><a href="#sec-6-9">6.9. Final analysis table</a></li></ul></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Analyzing distributions, skewness, and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity, and non-linear relationships</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>The mechanism of salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trend, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Salary Peak by Age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geographical Analysis and Provincial Concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran in the Mirror of the Global Labour Market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance over time</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what expertise does each industry want?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>The evolution of skills and the surge of job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Profiling and clustering of employers [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Recommended package for the business manager</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Summary, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Calculation checks and reproducibility</span></a></li></ul>
   </aside>
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 6</span></nav>
 <h1>6. Feature engineering</h1>
-<p class="guide-meta">10 min read · 15 tables · 4 figures · 9 code cells</p>
-<p>We pull out the hidden columns of the data: working hours from free text, skills from JSON, degree level from the list of fields, benefits from the comma-separated list and employer attributes from textual values. The output of this section turns the <code>ads</code> table into a complete analysis table.</p>
+<p class="guide-meta">11 min read · 16 tables · 4 figures · 10 code cells</p>
+<p>We pull out the hidden columns of the data: working hours from free text, skills from JSON, degree from the list of fields, benefits from the comma-separated list and employer attributes from textual values. The output of this section turns the <code>ads</code> table into a complete analysis table.</p>
 <h2 class="guide-heading" id="sec-6-1">6.1. Salary features <a aria-label="link" class="anchor" href="#sec-6-1">#</a></h2><div class="code-card">
     <header><span>Python · 22 lines</span><button class="copy-btn" data-copy="salary_bins = [0, 8, 12, 20, 40, np.inf]
 salary_labels = [&#x27;زیر ۸&#x27;, &#x27;۸ تا ۱۲&#x27;, &#x27;۱۲ تا ۲۰&#x27;, &#x27;۲۰ تا ۴۰&#x27;, &#x27;بالای ۴۰&#x27;]
@@ -229,9 +229,9 @@ show_table(&#x27;6.2&#x27;, &#x27;نوع بازه اعلام‌شده در آگ�
 </table></div>
   
   
-</figure><p><strong>Interpretation of Tables 6.1 and 6.2:</strong> The market condenses into three wage layers: 16.8% of postings below 8 million, 71.9% between 8 and 20 million and 11.3% above 20 million tomans. The middle layer is the body of the clerical, sales and services labor market; the layer above 20 million, which makes up less than one ninth of the postings, belongs to specialist, engineering and managerial roles.</p>
-<p>The type of declared range also reveals a management pattern: no posting has declared a range narrower than 15%; that is, Iranian employers almost always build a negotiation margin of at least 15 percent into the posting. This is itself a practical recommendation: if you want your posting to look more professional, declare a range of roughly 20 to 25 percent — neither a narrow range that shows only the expectation ceiling, nor a very wide range that leads to the posting losing credibility.</p><h2 class="guide-heading" id="sec-6-2">6.2. Extracting working hours from free text <a aria-label="link" class="anchor" href="#sec-6-2">#</a></h2>
-<p>The "working hours" text is almost unique for every posting (68,247 different variants). To turn it into a number, we write a rule-based parser that detects the hour range, the range of weekdays, daily hours and explicit weekly hours, and tags the result with its extraction source.</p>
+</figure><p><strong>Reading tables 6.1 and 6.2:</strong> the market aggregates into three wage layers: 16.8% of postings below 8 million, 71.9% between 8 and 20 million and 11.3% above 20 million tomans. The middle layer is the body of the administrative, sales and services labor market; the layer above 20 million, which accounts for less than one ninth of postings, belongs to specialized, engineering and managerial roles.</p>
+<p>The type of declared range also reveals a managerial pattern: no posting declared a range narrower than 15%; that is, Iranian employers almost always build a negotiation margin of at least 15 percent into the posting. This is itself a practical recommendation: if you want the posting to look more professional, declare a range of about 20 to 25 percent — not a narrow range that only shows the expectation ceiling, and not a very wide range that leads to the posting losing credibility.</p><h2 class="guide-heading" id="sec-6-2">6.2. Extracting working hours from free text <a aria-label="link" class="anchor" href="#sec-6-2">#</a></h2>
+<p>The “working hours” text is almost unique for every posting (68,247 different cases). To turn it into a number, we write a rule-based parser that detects hour ranges, day-of-week ranges, daily hours and explicit weekly hours, and labels the result with its extraction source.</p>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>152 lines</em></summary>
   <div class="code-card">
@@ -542,10 +542,10 @@ complete(&#x27;6.1-6.2&#x27;)" data-done-text="Copied">Copy</button></header>
 </code></pre>
   </div>
 </details><figure class="figure guide-figure" id="figure-6-1-6-2">
-  <button type="button" data-full="../../../assets/img/fig_6_1-6_2.webp" data-caption="Figure 6.1-6.2 | Distribution of estimated weekly working hours · Weekly hours by employment type">
-    <img src="../../../assets/img/fig_6_1-6_2-sm.webp" alt="Figure 6.1-6.2 | Distribution of estimated weekly working hours · Weekly hours by employment type" loading="lazy" decoding="async">
+  <button type="button" data-full="../../../assets/img/fig_6_1-6_2.webp" data-caption="Figure 6.1-6.2 | Distribution of estimated weekly hours · Weekly hours by employment type">
+    <img src="../../../assets/img/fig_6_1-6_2-sm.webp" alt="Figure 6.1-6.2 | Distribution of estimated weekly hours · Weekly hours by employment type" loading="lazy" decoding="async">
   </button>
-  <figcaption>Figure 6.1-6.2 | Distribution of estimated weekly working hours · Weekly hours by employment type</figcaption>
+  <figcaption>Figure 6.1-6.2 | Distribution of estimated weekly hours · Weekly hours by employment type</figcaption>
 </figure><figure class="guide-table" id="table-">
   <figcaption>Table 6.3 | Source of weekly-hours extraction | 360,083 postings | Farvardin 1401 to Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
@@ -663,9 +663,9 @@ complete(&#x27;6.1-6.2&#x27;)" data-done-text="Copied">Copy</button></header>
 </table></div>
   
   
-</figure><p><strong>Interpretation of Tables 6.3 and 6.4 and Figures 6.1 and 6.2:</strong> weekly hours were estimated for 97.6% of postings. The extraction source matters: 59.2% were obtained from free text (hour range × weekdays), which is the most accurate case; 17.6% had only the weekdays and were estimated assuming 8 hours per day; 13.7% had no hourly information at all and were filled in based on the cooperation type (44 hours for full-time and 22 hours for part-time). A further 1.3% had an invalid value and were left empty.</p>
-<p>The median weekly hours is 45 hours and the interquartile range is 43 to 48 hours; somewhat above the legal standard of 44 hours, because some postings are six-day and some have several time slots within a single day. The working-week pattern is also thoroughly Iranian: 43.5% of postings list Thursday among the working days, whereas Friday is a working day in only 1.5% of postings.</p>
-<p>Note that this estimate is "composite" in nature. In the following sections, every hourly income analysis is carried out on the same subset that has valid hours, and the limitation of this estimate is reported explicitly.</p><h2 class="guide-heading" id="sec-6-3">6.3. Extracting software skills <a aria-label="link" class="anchor" href="#sec-6-3">#</a></h2>
+</figure><p><strong>Reading tables 6.3 and 6.4 and figures 6.1 and 6.2:</strong> weekly hours were estimated for 97.6% of postings. The extraction source matters: 59.2% came from the free text (hour range × days of the week), which is the most accurate case; 17.6% had only the days of the week and were estimated assuming 8 hours per day; 13.7% had no hourly information and were filled based on work type (44 hours for full-time and 22 hours for part-time). 1.3% also had an invalid value and were left empty.</p>
+<p>The median weekly hours is 45 hours and the interquartile range is 43 to 48 hours; slightly above the legal standard of 44 hours, because some postings are six-day and some have several time blocks within one day. The working-week pattern is also entirely Iranian: 43.5% of postings listed Thursday among the working days, while Friday is a working day in only 1.5% of postings.</p>
+<p>Note that this estimate is “composite” in nature. In later sections, each hourly income analysis is performed on the same subset that has valid hours, and the limitation of this estimate is reported explicitly.</p><h2 class="guide-heading" id="sec-6-3">6.3. Extracting software skills <a aria-label="link" class="anchor" href="#sec-6-3">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>57 lines</em></summary>
   <div class="code-card">
@@ -948,9 +948,9 @@ complete(&#x27;6.3&#x27;)" data-done-text="Copied">Copy</button></header>
 </table></div>
   
   
-</figure><p><strong>Interpretation of Tables 6.5 and 6.6 and Figure 6.3:</strong> 193,742 postings (53.8%) have a skill list and, in total, 491 distinct skills are requested in them; on average each posting asks for 3 skills and at most 69 skills.</p>
-<p>The frequency list gives a picture of the nature of Iran's labor market: the top four skills all belong to the Microsoft Office suite (Excel 38.4%, Word 33.8%, PowerPoint 12.8% and Outlook 10.9% of all postings). This means that "digital office literacy" is the most in-demand skill in the market, not programming. After that, the second group belongs to Iranian accounting and office software (Sepidar, Rahkaran, Hamkaran System, along with Access and Project), which is a local cluster rarely seen in global analyses. The third group is design and engineering tools (Photoshop, Illustrator, AutoCAD, SolidWorks, CATIA), and programming and data skills (SQL Server, HTML/CSS, Git, JavaScript, Python) rank further down.</p>
-<p>A managerial point: the median salary of postings that have a skill list is 13.5 million, against 11 million for postings without skills. This difference shows that "declaring skills" is itself a sign that the role is structured and formal, not merely a technical list; in Section 22 the payoff of each skill is measured with job category controlled.</p><h2 class="guide-heading" id="sec-6-4">6.4. Extracting education <a aria-label="link" class="anchor" href="#sec-6-4">#</a></h2>
+</figure><p><strong>Interpretation of tables 6.5 and 6.6 and figure 6.3:</strong> 193,742 job postings (53.8%) have a skills list, and altogether 491 distinct skills are requested in them; on average each job posting asks for 3 skills, and at most 69.</p>
+<p>The most frequent list gives a picture of the nature of Iran's labor market: the top four skills all come from the Microsoft Office suite (Excel 38.4%, Word 33.8%, PowerPoint 12.8%, and Outlook 10.9% of all job postings). This means that “digital office literacy” is the most in-demand skill in the market, not programming. After that, the second category belongs to Iranian accounting and administrative software (Sepidar, Rahkaran, Hamkaran System, along with Access and Project), which is a local cluster rarely seen in global analyses. The third category is design and engineering tools (Photoshop, Illustrator, AutoCAD, SolidWorks, CATIA), and programming and data skills (SQL Server, HTML/CSS, Git, JavaScript, Python) come in later ranks.</p>
+<p>A managerial point: the median salary of job postings with a skills list is 13.5 million, versus 11 million for job postings without skills. This difference shows that “stating skills” is itself a sign that the role is structured and formal, not merely a technical list; in section 22 the premium of each skill is measured while controlling for job category.</p><h2 class="guide-heading" id="sec-6-4">6.4. Extracting education <a aria-label="link" class="anchor" href="#sec-6-4">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>45 lines</em></summary>
   <div class="code-card">
@@ -1178,9 +1178,9 @@ show_metrics(&#x27;تحصیلات و مهارت&#x27;, [
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: education and skills</p>
   <ul><li>Postings with a degree level: 47.1%</li><li>PhD requested: 1,562 postings</li><li>Unique fields: 37</li><li>Unique skills: 491</li></ul>
-</div><p><strong>Interpretation of Tables 6.7 and 6.8:</strong> only 47.1% of postings specify a degree level, and in more than half of the postings this requirement is not declared. Among the declaring postings, bachelor's dominates with 38.9% of all postings; associate degree 4.3%, master's 3.5% and PhD 0.4%. In other words, Iran's labor market is in practice a "bachelor's market" and postgraduate education is a condition in a small minority of postings.</p>
-<p>The pay pattern is clear: the median salary of bachelor's postings is 13.5 million and of master's and above 17.5 million tomans; close to a 30% difference. But at the same time the salary disclosure rate falls as the degree level rises (38.5% in postings with no declared degree level versus 24.5% in PhD postings); that is, the more specialised the level, the less public salary disclosure there is. This point is examined more precisely in Section 12 while controlling for experience and job category.</p>
-<p>As for fields of study, the top four — management and commerce, finance and accounting, computer and information technology, industrial engineering — alone cover a large part of the postings; a combination that is consistent with the structure of the job categories in the data.</p><h2 class="guide-heading" id="sec-6-5">6.5. Extracting benefits <a aria-label="link" class="anchor" href="#sec-6-5">#</a></h2>
+</div><p><strong>Interpretation of tables 6.7 and 6.8:</strong> Only 47.1% of job postings specify a degree level, and in more than half of job postings this requirement is not stated. Among the job postings that do state it, a bachelor's degree dominates with 38.9% of all job postings; an associate degree 4.3%, a master's degree 3.5%, and a doctorate 0.4%. That is, Iran's labor market is in practice a “bachelor's market,” and postgraduate education is a condition of a small minority of job postings.</p>
+<p>The pay pattern is clear: the median salary of bachelor's job postings is 13.5 million and of master's and higher job postings 17.5 million tomans; a gap of nearly 30%. But at the same time, the salary disclosure rate falls as the degree level rises (38.5% in job postings with no stated degree versus 24.5% in doctorate job postings); that is, the more specialized the level, the less public salary disclosure. This point is examined more precisely in section 12 while controlling for work experience and job category.</p>
+<p>As for fields of study, the top four fields — management and business, finance and accounting, computer and information technology, industrial engineering — on their own cover a large part of the job postings; a combination consistent with the structure of the data's job categories.</p><h2 class="guide-heading" id="sec-6-5">6.5. Extracting benefits <a aria-label="link" class="anchor" href="#sec-6-5">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>31 lines</em></summary>
   <div class="code-card">
@@ -1249,10 +1249,10 @@ complete(&#x27;6.4&#x27;)" data-done-text="Copied">Copy</button></header>
 </code></pre>
   </div>
 </details><figure class="figure guide-figure" id="figure-6-4">
-  <button type="button" data-full="../../../assets/img/fig_6_4.webp" data-caption="Figure 6.4 | Share of the fifteen most frequent benefits">
-    <img src="../../../assets/img/fig_6_4-sm.webp" alt="Figure 6.4 | Share of the fifteen most frequent benefits" loading="lazy" decoding="async">
+  <button type="button" data-full="../../../assets/img/fig_6_4.webp" data-caption="Figure 6.4 | Share of the fifteen most frequent benefits out of all postings">
+    <img src="../../../assets/img/fig_6_4-sm.webp" alt="Figure 6.4 | Share of the fifteen most frequent benefits out of all postings" loading="lazy" decoding="async">
   </button>
-  <figcaption>Figure 6.4 | Share of the fifteen most frequent benefits</figcaption>
+  <figcaption>Figure 6.4 | Share of the fifteen most frequent benefits out of all postings</figcaption>
 </figure><figure class="guide-table" id="table-">
   <figcaption>Table 6.9 | Fifteen most frequent benefits | 270,105 postings with a benefits list | Farvardin 1401 to Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
@@ -1365,8 +1365,8 @@ complete(&#x27;6.4&#x27;)" data-done-text="Copied">Copy</button></header>
 </table></div>
   
   <button class="table-more" type="button" data-rows="15">Show all rows (15)</button>
-</figure><p><strong>Interpretation of Table 6.9 and Figure 6.4:</strong> three-quarters of postings (270,105 postings) have a list of benefits and the mean number of benefits per posting is around 4. The ranking of benefits is the "language of competition" of Iranian employers: supplementary health insurance (46.7% of all postings), bonus (42.5%), occasion packages and gifts (36.8%), loan (30.6%) and lunch (23%).</p>
-<p>A practical point for managers: the top four benefits have in practice become a "standard expectation" and dropping them takes the posting out of the competition; but benefits such as flexible working hours (9.8%) or incentive shares, at under 2% of postings, are still scarce and offer the greatest power of differentiation. Put differently, a benefits list should carry the four standard items and add one or two scarce items in order to stand out.</p><h2 class="guide-heading" id="sec-6-6">6.6. Employer characteristics <a aria-label="link" class="anchor" href="#sec-6-6">#</a></h2>
+</figure><p><strong>Interpretation of table 6.9 and figure 6.4:</strong> Three-quarters of job postings (270,105 job postings) have a benefits list, and the mean number of benefits per job posting is about 4. The ranking of benefits is the “language of competition” among Iranian employers: supplementary health insurance (46.7% of all job postings), bonus (42.5%), occasional packages and gifts (36.8%), loans (30.6%), and lunch (23%).</p>
+<p>A practical point for a manager: the top four benefits have in practice turned into a “standard expectation,” and removing them takes the job posting out of competition; but benefits such as flexible working hours (9.8%) or incentive shares, at under 2% of job postings, are still scarce and offer the greatest power to differentiate. In other words, a benefits list should carry the four standard items and add one or two scarce items in order to stand out.</p><h2 class="guide-heading" id="sec-6-6">6.6. Employer characteristics <a aria-label="link" class="anchor" href="#sec-6-6">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>28 lines</em></summary>
   <div class="code-card">
@@ -1519,9 +1519,9 @@ show_table(&#x27;6.10&#x27;, &#x27;آگهی‌ها و حقوق بر پایه ا�
 </table></div>
   <p class="tbl-note"><span>Note:</span> The median salary is computed only over postings with a disclosed salary.</p>
   
-</figure><p><strong>Interpretation of Table 6.10:</strong> the body of Iran's labor market is small and medium companies: 26% of postings come from companies with 11 to 50 employees and 24.9% from companies with 51 to 200 employees; companies with more than a thousand people publish only 13.3% of postings.</p>
-<p>Three managerial patterns are visible in this table. First, <strong>salary transparency is inversely proportional to company size</strong>: small and medium companies have a disclosure rate of 41 to 43 percent, whereas companies with 1001 to 5000 employees declare salaries in only 16.6% of their postings. Second, <strong>salary rises with company size</strong> but not steadily: the median in companies with under 10 people and with 11 to 50 people is 11 million and in larger companies it reaches 13.5 million. Third, <strong>remote work is higher at both ends of the spectrum</strong>: companies with under 10 people (11.6%) and companies with more than 5000 people (11.3%) have the highest remote-work rate, while companies with 51 to 200 people have the lowest at 3.7%.</p>
-<p>Business interpretation: medium-large companies (501 to 5000 people) have the worst combination; both the least transparency and the least remote-work flexibility and the fewest number of benefits. This is exactly where a transparent and flexible posting creates the greatest competitive advantage.</p><h2 class="guide-heading" id="sec-6-7">6.7. Building the hourly income index <a aria-label="link" class="anchor" href="#sec-6-7">#</a></h2>
+</figure><p><strong>Interpretation of table 6.10:</strong> The body of Iran's labor market is small and medium companies: 26% of job postings come from companies with 11 to 50 employees and 24.9% from companies with 51 to 200 employees; companies with more than a thousand people publish only 13.3% of job postings.</p>
+<p>Three managerial patterns appear in this table. First, <strong>salary transparency is inversely related to company size</strong>: small and medium companies have a disclosure rate of 41 to 43 percent, while companies with 1001 to 5000 employees disclose salaries in only 16.6% of their job postings. Second, <strong>salary rises with company size</strong> but not steadily: the median is 11 million in companies with under 10 people and with 11 to 50 people, and reaches 13.5 million in larger companies. Third, <strong>remote work is more common at both ends of the spectrum</strong>: companies with under 10 people (11.6%) and companies with over 5000 people (11.3%) have the highest remote-work rates, while companies with 51 to 200 people have the lowest, at 3.7%.</p>
+<p>A business interpretation: medium-sized to large companies (501 to 5000 people) have the worst combination; the least transparency, the least remote-work flexibility, and the fewest benefits. This is exactly where a transparent and flexible job posting builds the greatest competitive advantage.</p><h2 class="guide-heading" id="sec-6-7">6.7. Building the hourly income index <a aria-label="link" class="anchor" href="#sec-6-7">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>67 lines</em></summary>
   <div class="code-card">
@@ -1662,10 +1662,10 @@ show_table(&#x27;6.11.1&#x27;, &#x27;بررسی مقاومت: درآمد ساع�
 </code></pre>
   </div>
 </details><figure class="figure guide-figure" id="figure-6-5-6-6">
-  <button type="button" data-full="../../../assets/img/fig_6_5-6_6.webp" data-caption="Figure 6.5-6.6 | Salary vs weekly working hours · Hourly income by employment type">
-    <img src="../../../assets/img/fig_6_5-6_6-sm.webp" alt="Figure 6.5-6.6 | Salary vs weekly working hours · Hourly income by employment type" loading="lazy" decoding="async">
+  <button type="button" data-full="../../../assets/img/fig_6_5-6_6.webp" data-caption="Figure 6.5-6.6 | Salary versus weekly hours · Distribution of hourly income by employment type">
+    <img src="../../../assets/img/fig_6_5-6_6-sm.webp" alt="Figure 6.5-6.6 | Salary versus weekly hours · Distribution of hourly income by employment type" loading="lazy" decoding="async">
   </button>
-  <figcaption>Figure 6.5-6.6 | Salary vs weekly working hours · Hourly income by employment type</figcaption>
+  <figcaption>Figure 6.5-6.6 | Salary versus weekly hours · Distribution of hourly income by employment type</figcaption>
 </figure><figure class="guide-table" id="table-">
   <figcaption>Table 6.11 | Hourly income by type of cooperation | 116,244 postings with salary and hours | Farvardin 1401 to Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
@@ -1791,9 +1791,9 @@ show_table(&#x27;6.11.1&#x27;, &#x27;بررسی مقاومت: درآمد ساع�
 </table></div>
   <p class="tbl-note"><span>Note:</span> If the result agrees with Table 6.11, the default hourly estimate did not produce the result.</p>
   
-</figure><p><strong>Interpretation of Table 6.11 and Figures 6.5 and 6.6:</strong> the hourly income index can be computed for 116,244 postings (32.3%). Its median is 63.5 thousand tomans per hour with an interquartile range of 44.9 to 89.7 thousand tomans.</p>
-<p>Comparing cooperation types yields an important and somewhat counter-intuitive finding: the median hourly income of part-time jobs is 115.4 thousand tomans, against 62.3 thousand tomans for full-time; that is nearly 85% higher. Contract and project jobs, at 89 thousand tomans, also sit above full-time. The root of this difference can be seen in two places: first, part-time and project postings are published more often for specialised and consulting roles that carry a higher hourly rate; second, some employers request fewer hours for the same level of monthly salary (the median monthly salary of part-time and full-time is 11 million for both) and the result is a higher hourly rate.</p>
-<p><strong>Limitation:</strong> part of the part-time hours were estimated with the default assumption (22 hours); therefore the figure 115.4 should be read as a direction indicator, not an exact measure. For this reason, the same comparison was repeated once more only on postings whose hours were extracted directly from the text (Table 6.11.1). If the order part-time &gt; contract &gt; full-time holds there too, the result is not sensitive to the default assumption.</p><h2 class="guide-heading" id="sec-6-8">6.8. Job title normalisation <a aria-label="link" class="anchor" href="#sec-6-8">#</a></h2>
+</figure><p><strong>Interpretation of table 6.11 and figures 6.5 and 6.6:</strong> The hourly income index can be computed for 116,244 job postings (32.3%). Its median is 63.5 thousand tomans per hour, with an interquartile range of 44.9 to 89.7 thousand tomans.</p>
+<p>Comparing employment types yields an important and somewhat counterintuitive finding: the median hourly income of part-time jobs is 115.4 thousand tomans, versus 62.3 thousand tomans for full-time; that is, nearly 85% higher. Contract and project-based jobs also sit above full-time, at 89 thousand tomans. The root of this difference can be seen in two places: first, part-time and project job postings are published more often for specialized and consulting roles that carry a higher hourly rate; second, some employers ask for fewer hours for the same level of monthly salary (the median monthly salary of both part-time and full-time is 11 million), and the result is a higher hourly rate.</p>
+<p><strong>Limitation:</strong> part of the part-time hours was estimated with a default assumption (22 hours); therefore the figure 115.4 should be read as indicating direction, not as an exact magnitude. For this reason, the same comparison was repeated once more only on job postings whose hours were extracted directly from the text (table 6.11.1). If the order part-time &gt; contract &gt; full-time still holds there, the result is not sensitive to the default assumption.</p><h2 class="guide-heading" id="sec-6-8">6.8. Normalizing the job title <a aria-label="link" class="anchor" href="#sec-6-8">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>58 lines</em></summary>
   <div class="code-card">
@@ -2104,9 +2104,183 @@ show_metrics(&#x27;عنوان شغلی&#x27;, [
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: job titles</p>
   <ul><li>Unique raw titles: 66,613</li><li>Unique base titles: 40,652</li><li>Cardinality reduction: 39.0%</li><li>Most frequent title: Sales specialist — 13,360 postings</li></ul>
-</div><p><strong>Interpretation of Tables 6.12 and 6.13:</strong> extracting seniority level from the title gives a three-layer picture. Nearly 44% of postings have no seniority marker in the title ("other") and have a median salary of 11 million; 36.8% are identified by the title "expert" (median 13.5 million and 2 years of experience); and senior and managerial levels together make up 10.7% of postings but have a median of 17.5 million, that is roughly 60% above the body of the market.</p>
-<p>A notable point is the "intern" level: despite zero experience, the median salary of these postings is 13.5 million, on a par with bachelor's level. Some of these titles are probably specialised internships with high pay and some are employers' mislabelling; for this reason it enters Section 16 as a control variable, not as a definitive finding.</p>
-<p>Title normalisation reduces cardinality from 67,950 to 40,928 (39.8%). The most frequent titles are "sales expert" (13,360 postings), "accountant" (9,212) and "accounting expert" (7,437); that is, sales and finance are the two backbones of Iran's labor market. The same normalisation is the basis of the clustering in Section 17.</p><h2 class="guide-heading" id="sec-6-9">6.9. Final analysis table <a aria-label="link" class="anchor" href="#sec-6-9">#</a></h2>
+</div><p><strong>Interpretation of tables 6.12 and 6.13:</strong> Extracting the organizational level from the title gives a three-layer picture. Nearly 44% of job postings show no sign of a level in the title (“other”) and have a median salary of 11 million; 36.8% are identified by the title “expert” (median 13.5 million and 2 years of experience); and senior and managerial levels together make up 10.7% of job postings but have a median of 17.5 million, that is, about 60% above the body of the market.</p>
+<p>A notable point is the “intern” level: despite requiring zero experience, the median salary of these job postings is 13.5 million, level with a bachelor's-degree role. Some of these titles are probably specialized internships with high pay and some are employers mislabeling; for this reason, in section 16 it is entered as a control variable, not as a definitive finding.</p>
+<p>Title normalization reduces cardinality from 67,950 to 40,928 (39.8%). The most frequent titles are “sales expert” (13,360 job postings), “accountant” (9,212), and “accounting expert” (7,437); that is, sales and finance are the two backbones of Iran's labor market. This same normalization is the basis of the clustering in section 17.</p><p><strong>Mapping dictionary:</strong> The project brief calls for a transparent table showing how each categorical column has been converted into a number, so that the reader of the results knows how to interpret the coefficients. The table below is built from the data itself (not from memory), so it is always consistent with the actual values.</p><details class="code-fold">
+  <summary><span>Show the code for this step</span><em>40 lines</em></summary>
+  <div class="code-card">
+    <header><span>Python</span><button class="copy-btn" data-copy="# جدول نگاشت: ستون دسته‌ای/متنی → نمایش عددی
+def ordinal_pairs(column, rank_column):
+    pairs = (ads[[column, rank_column]].dropna().drop_duplicates().sort_values(rank_column))
+    return &#x27;؛ &#x27;.join(f&#x27;{value} ← {int(rank)}&#x27; for value, rank in pairs.itertuples(index=False))
+
+
+def levels_text(column, limit=6):
+    counts = ads[column].fillna(&#x27;نامشخص&#x27;).value_counts()
+    head = &#x27;، &#x27;.join(str(name) for name in counts.head(limit).index)
+    rest = counts.size - min(limit, counts.size)
+    return head + (f&#x27; … (+{rest} سطح دیگر)&#x27; if rest &gt; 0 else &#x27;&#x27;)
+
+
+mapping_rows = [
+    (&#x27;Company_SizeFa&#x27;, &#x27;Ordinal (رتبه‌ای)&#x27;, ordinal_pairs(&#x27;Company_SizeFa&#x27;, &#x27;company_size_rank&#x27;),
+     &#x27;مدل‌های حقوق و افشا&#x27;),
+    (&#x27;Company_AgeFromEstablishmentYear&#x27;, &#x27;Ordinal (رتبه‌ای)&#x27;,
+     ordinal_pairs(&#x27;Company_AgeFromEstablishmentYear&#x27;, &#x27;company_age_rank&#x27;), &#x27;قدمت کارفرما&#x27;),
+    (&#x27;max_degree&#x27;, &#x27;Ordinal (رتبه‌ای)&#x27;,
+     &#x27;اعلام‌نشده ← 0؛ کاردانی ← 2؛ کارشناسی ← 3؛ کارشناسی ارشد ← 4؛ دکترا ← 5&#x27;,
+     &#x27;بازده تحصیلات و مدل حقوق&#x27;),
+    (&#x27;Jobpost_WorkTypeFa&#x27;, &#x27;One-Hot&#x27;, levels_text(&#x27;Jobpost_WorkTypeFa&#x27;), &#x27;درآمد ساعتی و رگرسیون&#x27;),
+    (&#x27;Jobpost_PreferredGender&#x27;, &#x27;Label + One-Hot&#x27;,
+     &#x27;بدون ترجیح، ترجیحاً آقا، ترجیحاً خانم، فقط آقا، فقط خانم&#x27;, &#x27;تحلیل شکاف جنسیتی&#x27;),
+    (&#x27;Jobpost_MainJobCategory&#x27;, &#x27;One-Hot / گروه‌بندی&#x27;,
+     f&#x27;{ads.Jobpost_MainJobCategory.nunique()} سطح؛ ده دستهٔ پرتکرار + «سایر دسته‌ها»&#x27;,
+     &#x27;همهٔ تحلیل‌های دسته‌ای&#x27;),
+    (&#x27;Jobpost_ProvinceFa&#x27;, &#x27;One-Hot / گروه‌بندی&#x27;,
+     f&#x27;{ads.Jobpost_ProvinceFa.nunique()} سطح؛ تهران در برابر سایر استان‌ها&#x27;, &#x27;تحلیل جغرافیایی&#x27;),
+    (&#x27;Jobpost_IndustryFa&#x27;, &#x27;One-Hot / گروه‌بندی&#x27;,
+     f&#x27;{ads.Jobpost_IndustryFa.nunique()} سطح؛ هشت صنعت پرتکرار + «سایر صنایع»&#x27;,
+     &#x27;صنعت در برابر دستهٔ شغلی&#x27;),
+    (&#x27;Jobpost_IsRemote&#x27;, &#x27;Boolean → 0/1&#x27;, &#x27;حضوری ← 0؛ دورکاری ← 1&#x27;, &#x27;مدل افشا و حقوق&#x27;),
+    (&#x27;hours_source&#x27;, &#x27;One-Hot&#x27;, levels_text(&#x27;hours_source&#x27;, 4), &#x27;اعتبار ساعت کاری&#x27;),
+    (&#x27;benefit_count / skill_count&#x27;, &#x27;شمارشی (Count)&#x27;, &#x27;تعداد مزیت و مهارت هر آگهی&#x27;, &#x27;مدل حقوق&#x27;),
+]
+mapping_table = pd.DataFrame(mapping_rows,
+                             columns=[&#x27;ستون&#x27;, &#x27;نوع تبدیل&#x27;, &#x27;نگاشت / سطوح&#x27;, &#x27;کاربرد&#x27;]).set_index(&#x27;ستون&#x27;)
+show_table(&#x27;6.15&#x27;, &#x27;جدول نگاشت تبدیل ستون‌های دسته‌ای به عدد&#x27;, mapping_table,
+           sample=f&#x27;{len(ads):,} آگهی&#x27;, index_name=&#x27;ستون&#x27;)
+" data-done-text="Copied">Copy</button></header>
+    <pre class="code"><code><span class="c1"># جدول نگاشت: ستون دسته‌ای/متنی → نمایش عددی</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ordinal_pairs</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">rank_column</span><span class="p">):</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="p">(</span><span class="n">ads</span><span class="p">[[</span><span class="n">column</span><span class="p">,</span> <span class="n">rank_column</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">rank_column</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s1">'؛ '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1"> ← </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">pairs</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">levels_text</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">'نامشخص'</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="s1">'، '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">rest</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">limit</span><span class="p">,</span> <span class="n">counts</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">head</span> <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s1">' … (+</span><span class="si">{</span><span class="n">rest</span><span class="si">}</span><span class="s1"> سطح دیگر)'</span> <span class="k">if</span> <span class="n">rest</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">''</span><span class="p">)</span>
+
+
+<span class="n">mapping_rows</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'Company_SizeFa'</span><span class="p">,</span> <span class="s1">'Ordinal (رتبه‌ای)'</span><span class="p">,</span> <span class="n">ordinal_pairs</span><span class="p">(</span><span class="s1">'Company_SizeFa'</span><span class="p">,</span> <span class="s1">'company_size_rank'</span><span class="p">),</span>
+     <span class="s1">'مدل‌های حقوق و افشا'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Company_AgeFromEstablishmentYear'</span><span class="p">,</span> <span class="s1">'Ordinal (رتبه‌ای)'</span><span class="p">,</span>
+     <span class="n">ordinal_pairs</span><span class="p">(</span><span class="s1">'Company_AgeFromEstablishmentYear'</span><span class="p">,</span> <span class="s1">'company_age_rank'</span><span class="p">),</span> <span class="s1">'قدمت کارفرما'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'max_degree'</span><span class="p">,</span> <span class="s1">'Ordinal (رتبه‌ای)'</span><span class="p">,</span>
+     <span class="s1">'اعلام‌نشده ← 0؛ کاردانی ← 2؛ کارشناسی ← 3؛ کارشناسی ارشد ← 4؛ دکترا ← 5'</span><span class="p">,</span>
+     <span class="s1">'بازده تحصیلات و مدل حقوق'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_WorkTypeFa'</span><span class="p">,</span> <span class="s1">'One-Hot'</span><span class="p">,</span> <span class="n">levels_text</span><span class="p">(</span><span class="s1">'Jobpost_WorkTypeFa'</span><span class="p">),</span> <span class="s1">'درآمد ساعتی و رگرسیون'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_PreferredGender'</span><span class="p">,</span> <span class="s1">'Label + One-Hot'</span><span class="p">,</span>
+     <span class="s1">'بدون ترجیح، ترجیحاً آقا، ترجیحاً خانم، فقط آقا، فقط خانم'</span><span class="p">,</span> <span class="s1">'تحلیل شکاف جنسیتی'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_MainJobCategory'</span><span class="p">,</span> <span class="s1">'One-Hot / گروه‌بندی'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_MainJobCategory</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> سطح؛ ده دستهٔ پرتکرار + «سایر دسته‌ها»'</span><span class="p">,</span>
+     <span class="s1">'همهٔ تحلیل‌های دسته‌ای'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_ProvinceFa'</span><span class="p">,</span> <span class="s1">'One-Hot / گروه‌بندی'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_ProvinceFa</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> سطح؛ تهران در برابر سایر استان‌ها'</span><span class="p">,</span> <span class="s1">'تحلیل جغرافیایی'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_IndustryFa'</span><span class="p">,</span> <span class="s1">'One-Hot / گروه‌بندی'</span><span class="p">,</span>
+     <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">ads</span><span class="o">.</span><span class="n">Jobpost_IndustryFa</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1"> سطح؛ هشت صنعت پرتکرار + «سایر صنایع»'</span><span class="p">,</span>
+     <span class="s1">'صنعت در برابر دستهٔ شغلی'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'Jobpost_IsRemote'</span><span class="p">,</span> <span class="s1">'Boolean → 0/1'</span><span class="p">,</span> <span class="s1">'حضوری ← 0؛ دورکاری ← 1'</span><span class="p">,</span> <span class="s1">'مدل افشا و حقوق'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'hours_source'</span><span class="p">,</span> <span class="s1">'One-Hot'</span><span class="p">,</span> <span class="n">levels_text</span><span class="p">(</span><span class="s1">'hours_source'</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="s1">'اعتبار ساعت کاری'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'benefit_count / skill_count'</span><span class="p">,</span> <span class="s1">'شمارشی (Count)'</span><span class="p">,</span> <span class="s1">'تعداد مزیت و مهارت هر آگهی'</span><span class="p">,</span> <span class="s1">'مدل حقوق'</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">mapping_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mapping_rows</span><span class="p">,</span>
+                             <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'ستون'</span><span class="p">,</span> <span class="s1">'نوع تبدیل'</span><span class="p">,</span> <span class="s1">'نگاشت / سطوح'</span><span class="p">,</span> <span class="s1">'کاربرد'</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'ستون'</span><span class="p">)</span>
+<span class="n">show_table</span><span class="p">(</span><span class="s1">'6.15'</span><span class="p">,</span> <span class="s1">'جدول نگاشت تبدیل ستون‌های دسته‌ای به عدد'</span><span class="p">,</span> <span class="n">mapping_table</span><span class="p">,</span>
+           <span class="n">sample</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ads</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> آگهی'</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s1">'ستون'</span><span class="p">)</span>
+</code></pre>
+  </div>
+</details><figure class="guide-table" id="table-">
+  <figcaption>Table 6.15 | Mapping table for converting categorical columns to numbers | 360,083 postings | Farvardin 1401 to Bahman 1402</figcaption>
+  <div class="table-wrap"><table class="data compact guide-table">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Conversion type</th>
+<th>Mapping / levels</th>
+<th>Use case</th>
+</tr>
+<tr>
+<th>Column</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Company_SizeFa</th>
+<td>Ordinal (ranked)</td>
+<td>Under 10 people ← 1; 11 to 50 people ← 2; 51 to 200 people ← 3; 201 to 500 people ← 4; 501 to 1000 people ← 5; 1001 to 5000 people ← 6; more than 5000 people ← 7</td>
+<td>Salary and disclosure models</td>
+</tr>
+<tr>
+<th>Company_AgeFromEstablishmentYear</th>
+<td>Ordinal (ranked)</td>
+<td>0 - 4 years ← 1; 5 - 9 years ← 2; 10 - 14 years ← 3; 15 - 19 years ← 4; more than 20 years ← 5</td>
+<td>Employer tenure</td>
+</tr>
+<tr>
+<th>max_degree</th>
+<td>Ordinal (ranked)</td>
+<td>Not disclosed ← 0; associate degree ← 2; bachelor's ← 3; master's ← 4; doctorate ← 5</td>
+<td>Returns to education and the salary model</td>
+</tr>
+<tr>
+<th>Jobpost_WorkTypeFa</th>
+<td>One-Hot</td>
+<td>Full-time, full-time or part-time, part-time, contract / project-based</td>
+<td>Hourly income and regression</td>
+</tr>
+<tr>
+<th>Jobpost_PreferredGender</th>
+<td>Label + One-Hot</td>
+<td>No preference, preferably male, preferably female, male only, female only</td>
+<td>Gender gap analysis</td>
+</tr>
+<tr>
+<th>Jobpost_MainJobCategory</th>
+<td>One-Hot / grouping</td>
+<td>77 levels; ten most frequent categories + “other categories”</td>
+<td>All batch analyses</td>
+</tr>
+<tr>
+<th>Jobpost_ProvinceFa</th>
+<td>One-Hot / grouping</td>
+<td>32 levels; Tehran vs. other provinces</td>
+<td>Geographic analysis</td>
+</tr>
+<tr>
+<th>Jobpost_IndustryFa</th>
+<td>One-Hot / grouping</td>
+<td>44 levels; eight most frequent industries + “other industries”</td>
+<td>Industry vs. job category</td>
+</tr>
+<tr>
+<th>Jobpost_IsRemote</th>
+<td>Boolean → 0/1</td>
+<td>On-site ← 0; remote ← 1</td>
+<td>Disclosure and salary model</td>
+</tr>
+<tr>
+<th>hours_source</th>
+<td>One-Hot</td>
+<td>Range and day from text, day without hours, default employment type, range with default day ... (+5 more levels)</td>
+<td>Validity of working hours</td>
+</tr>
+<tr>
+<th>benefit_count / skill_count</th>
+<td>Count (Count)</td>
+<td>Number of benefits and skills per posting</td>
+<td>Salary model</td>
+</tr>
+</tbody>
+</table></div>
+  
+  
+</figure><h2 class="guide-heading" id="sec-6-9">6.9. Final analysis table <a aria-label="link" class="anchor" href="#sec-6-9">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>28 lines</em></summary>
   <div class="code-card">
@@ -2271,13 +2445,13 @@ show_metrics(&#x27;لایه تحلیل نهایی&#x27;, [
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: final analysis layer</p>
   <ul><li>ads dimensions: 360,083 × 89</li><li>Postings with salary: 119,048 (33.1%)</li><li>Postings with a valid hourly figure: 351,523</li><li>Salary and hours together: 116,244</li><li>Remote work rate: 6.9%</li></ul>
-</div><p><strong>Section 6 summary:</strong> the <code>ads</code> table now has nearly 90 columns: base salary variables, weekly working hours and weekdays, number and level of skills, degree level and field of study, number of benefits, employer characteristics, hourly income, base title and seniority level. Three helper tables were also built: <code>skills_long</code> (592 thousand skill-posting rows), <code>academic_long</code> (field-degree) and <code>benefits_long</code> (benefit-posting).</p>
-<p>This structure respects the "compute once, use many times" rule: Sections 10 to 23 none of them extract hours, skills or degree level again and build only on this layer. If the definition of hourly income changes tomorrow, only Section 6 is revised and all subsequent results update automatically.</p>
+</div><p><strong>Section 6 summary:</strong> The <code>ads</code> table now has close to 90 columns: base salary variables, weekly working hours and days of the week, number and level of skills, degree level and field of study, number of benefits, employer characteristics, hourly income, base title, and organizational level. Three helper tables were also built: <code>skills_long</code> (592 thousand skill–job posting rows), <code>academic_long</code> (field–degree) and <code>benefits_long</code> (benefit–job posting).</p>
+<p>This structure follows the “compute once, use many times” rule: none of sections 10 to 23 extracts hours, skills, or degree level again, and they build their analysis only on this layer. If the definition of hourly income changes tomorrow, only section 6 is corrected and all later results update automatically.</p>
 <p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
-<nav class="guide-pager"><a class="prev" href="../05-cleaning-and-analysis-layer/"><span>Previous</span><b>Cleaning and building the analysis layer</b></a><a class="next" href="../07-distributions-and-outliers/"><span>Next</span><b>Distributions, skewness and outliers</b></a></nav>
+<nav class="guide-pager"><a class="prev" href="../05-cleaning-and-analysis-layer/"><span>Previous</span><b>Cleaning and building the analysis layer</b></a><a class="next" href="../07-distributions-and-outliers/"><span>Next</span><b>Analyzing distributions, skewness, and outliers</b></a></nav>
   </main>
   <aside class="guide-aside" aria-label="On this page">
-    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-6-1">6.1. Salary features</a></li><li class="lvl-h2"><a href="#sec-6-2">6.2. Extracting working hours from free text</a></li><li class="lvl-h2"><a href="#sec-6-3">6.3. Extracting software skills</a></li><li class="lvl-h2"><a href="#sec-6-4">6.4. Extracting education</a></li><li class="lvl-h2"><a href="#sec-6-5">6.5. Extracting benefits</a></li><li class="lvl-h2"><a href="#sec-6-6">6.6. Employer characteristics</a></li><li class="lvl-h2"><a href="#sec-6-7">6.7. Building the hourly income index</a></li><li class="lvl-h2"><a href="#sec-6-8">6.8. Job title normalisation</a></li><li class="lvl-h2"><a href="#sec-6-9">6.9. Final analysis table</a></li></ul>
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-6-1">6.1. Salary features</a></li><li class="lvl-h2"><a href="#sec-6-2">6.2. Extracting working hours from free text</a></li><li class="lvl-h2"><a href="#sec-6-3">6.3. Extracting software skills</a></li><li class="lvl-h2"><a href="#sec-6-4">6.4. Extracting education</a></li><li class="lvl-h2"><a href="#sec-6-5">6.5. Extracting benefits</a></li><li class="lvl-h2"><a href="#sec-6-6">6.6. Employer characteristics</a></li><li class="lvl-h2"><a href="#sec-6-7">6.7. Building the hourly income index</a></li><li class="lvl-h2"><a href="#sec-6-8">6.8. Normalizing the job title</a></li><li class="lvl-h2"><a href="#sec-6-9">6.9. Final analysis table</a></li></ul>
   </aside>
 </div>
 

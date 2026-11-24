@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>4. Data understanding and quality — JobVision Guide</title>
-<meta name="description" content="Before any analysis, we need to know what shape the data has, where it is empty, whether it has duplicate rows and how its time span is covered. This section is the foundation of all subsequent analys">
+<title>4. Data profiling and quality — JobVision Guide</title>
+<meta name="description" content="Before any analysis, we need to know what shape the data has, where it is empty, whether it has duplicate rows and how its time range is covered. This section is the foundation of all subsequent analy">
 <meta name="author" content="Arash Alidadi">
 <meta name="theme-color" content="#0b3d39">
 <link rel="canonical" href="https://arashalidadi.github.io/jobvision-labor-market/en/guide/04-data-quality/">
@@ -12,8 +12,8 @@
 <link rel="alternate" hreflang="fa" href="https://arashalidadi.github.io/jobvision-labor-market/guide/04-data-quality/">
 <link rel="alternate" hreflang="x-default" href="https://arashalidadi.github.io/jobvision-labor-market/guide/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4. Data understanding and quality — JobVision Guide">
-<meta property="og:description" content="Before any analysis, we need to know what shape the data has, where it is empty, whether it has duplicate rows and how its time span is covered. This section is the foundation of all subsequent analys">
+<meta property="og:title" content="4. Data profiling and quality — JobVision Guide">
+<meta property="og:description" content="Before any analysis, we need to know what shape the data has, where it is empty, whether it has duplicate rows and how its time range is covered. This section is the foundation of all subsequent analy">
 <meta property="og:url" content="https://arashalidadi.github.io/jobvision-labor-market/en/guide/04-data-quality/">
 <meta property="og:image" content="https://arashalidadi.github.io/jobvision-labor-market/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,8 +26,8 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "4. Data understanding and quality — JobVision Guide",
-  "description": "Before any analysis, we need to know what shape the data has, where it is empty, whether it has duplicate rows and how its time span is covered. This section is the foundation of all subsequent analys",
+  "headline": "4. Data profiling and quality — JobVision Guide",
+  "description": "Before any analysis, we need to know what shape the data has, where it is empty, whether it has duplicate rows and how its time range is covered. This section is the foundation of all subsequent analy",
   "url": "https://arashalidadi.github.io/jobvision-labor-market/en/guide/04-data-quality/",
   "inLanguage": "en",
   "author": {
@@ -82,14 +82,14 @@
   <a class="guide-back" href="../">← Guide index</a>
   <p class="guide-side-title">Table of contents</p>
 </div>
-<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project brief and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tooling, helper functions and data loading</span></a></li><li><a class="guide-nav-link is-active" href="../04-data-quality/"><span class="n">4</span><span>Data understanding and quality</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-4-1">4.1. Dimensions, data types and a real example</a></li><li class="lvl-h2"><a href="#sec-4-2">4.2. Missingness: where and how much?</a></li><li class="lvl-h2"><a href="#sec-4-3">4.3. Duplication, key and logical consistency</a></li><li class="lvl-h2"><a href="#sec-4-4">4.4. Time span and monthly coverage</a></li><li class="lvl-h2"><a href="#sec-4-5">4.5. Cardinality: which columns can be grouped?</a></li></ul></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Distributions, skewness and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity and non-linear relations</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>Salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trends, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Income peak by requested age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geography and provincial concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran against the global labor market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what does each industry hire for?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>Skill evolution and fast-growing job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Employer profiling and clustering [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Decision package for business managers</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Conclusions, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Computation checks and reproducibility</span></a></li></ul>
+<ul class="guide-nav"><li><a class="guide-nav-link" href="../01-project-brief-and-questions/"><span class="n">1</span><span>Project introduction and strategic questions</span></a></li><li><a class="guide-nav-link" href="../02-data-rules/"><span class="n">2</span><span>Data, data culture and analysis rules</span></a></li><li><a class="guide-nav-link" href="../03-tooling-and-helpers/"><span class="n">3</span><span>Tools, helper functions and data loading</span></a></li><li><a class="guide-nav-link is-active" href="../04-data-quality/"><span class="n">4</span><span>Data profiling and quality</span></a><ul class="guide-sub"><li class="lvl-h2"><a href="#sec-4-1">4.1. Dimensions, data types and a real sample</a></li><li class="lvl-h2"><a href="#sec-4-2">4.2. Missingness: where and how much?</a></li><li class="lvl-h2"><a href="#sec-4-3">4.3. Duplication, key and logical consistency</a></li><li class="lvl-h2"><a href="#sec-4-4">4.4. Time range and monthly coverage</a></li><li class="lvl-h2"><a href="#sec-4-5">4.5. Cardinality: which columns can be grouped?</a></li></ul></li><li><a class="guide-nav-link" href="../05-cleaning-and-analysis-layer/"><span class="n">5</span><span>Cleaning and building the analysis layer</span></a></li><li><a class="guide-nav-link" href="../06-feature-engineering/"><span class="n">6</span><span>Feature engineering</span></a></li><li><a class="guide-nav-link" href="../07-distributions-and-outliers/"><span class="n">7</span><span>Analyzing distributions, skewness, and outliers</span></a></li><li><a class="guide-nav-link" href="../08-correlation-and-collinearity/"><span class="n">8</span><span>Correlation, collinearity, and non-linear relationships</span></a></li><li><a class="guide-nav-link" href="../09-salary-disclosure/"><span class="n">9</span><span>The mechanism of salary missingness: random or dependent?</span></a></li><li><a class="guide-nav-link" href="../10-time-trends-and-seasonality/"><span class="n">10</span><span>Time trend, seasonality and wage dynamics</span></a></li><li><a class="guide-nav-link" href="../11-gender-and-opportunity/"><span class="n">11</span><span>Gender preference, job opportunity and pay</span></a></li><li><a class="guide-nav-link" href="../12-education-vs-experience/"><span class="n">12</span><span>Education vs work experience</span></a></li><li><a class="guide-nav-link" href="../13-income-peak-by-age/"><span class="n">13</span><span>Salary Peak by Age</span></a></li><li><a class="guide-nav-link" href="../14-geography-and-provinces/"><span class="n">14</span><span>Geographical Analysis and Provincial Concentration</span></a></li><li><a class="guide-nav-link" href="../15-global-comparison/"><span class="n">15</span><span>Iran in the Mirror of the Global Labour Market (2022–2024)</span></a></li><li><a class="guide-nav-link" href="../16-salary-modelling/"><span class="n">16</span><span>Salary modelling and shifting feature importance over time</span></a></li><li><a class="guide-nav-link" href="../17-job-title-clustering/"><span class="n">17</span><span>Clustering job titles by skills and education</span></a></li><li><a class="guide-nav-link" href="../18-industry-occupation/"><span class="n">18</span><span>Industry × job category: what expertise does each industry want?</span></a></li><li><a class="guide-nav-link" href="../19-skills-evolution/"><span class="n">19</span><span>The evolution of skills and the surge of job titles</span></a></li><li><a class="guide-nav-link" href="../20-employer-typology/"><span class="n">20</span><span>Profiling and clustering of employers [bonus]</span></a></li><li><a class="guide-nav-link" href="../21-skill-network/"><span class="n">21</span><span>Skill co-occurrence network [bonus]</span></a></li><li><a class="guide-nav-link" href="../22-decision-package/"><span class="n">22</span><span>Recommended package for the business manager</span></a></li><li><a class="guide-nav-link" href="../23-conclusions-and-dashboard/"><span class="n">23</span><span>Summary, dashboard and key findings</span></a></li><li><a class="guide-nav-link" href="../24-reproducibility-checks/"><span class="n">24</span><span>Calculation checks and reproducibility</span></a></li></ul>
   </aside>
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 4</span></nav>
-<h1>4. Data understanding and quality</h1>
+<h1>4. Data profiling and quality</h1>
 <p class="guide-meta">4 min read · 8 tables · 3 figures · 6 code cells</p>
-<p>Before any analysis, we need to know what shape the data has, where it is empty, whether it has duplicate rows and how its time span is covered. This section is the foundation of all subsequent analyses.</p>
-<h2 class="guide-heading" id="sec-4-1">4.1. Dimensions, data types and a real example <a aria-label="link" class="anchor" href="#sec-4-1">#</a></h2>
+<p>Before any analysis, we need to know what shape the data has, where it is empty, whether it has duplicate rows and how its time range is covered. This section is the foundation of all subsequent analyses.</p>
+<h2 class="guide-heading" id="sec-4-1">4.1. Dimensions, data types and a real sample <a aria-label="link" class="anchor" href="#sec-4-1">#</a></h2>
 <p><strong>Table 4.1 | Composition of data types</strong></p><details class="code-fold">
   <summary><span>Show the code for this step</span><em>26 lines</em></summary>
   <div class="code-card">
@@ -283,7 +283,7 @@ show_metrics(&#x27;ابعاد داده&#x27;, [
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: data dimensions</p>
   <ul><li>Number of postings / main columns: 364,838 / 43</li><li>Text / boolean / numeric columns: 30 / 7 / 6</li><li>Unique IDs: 364,838</li><li>Column derived at load time: release_month</li></ul>
-</div><p><strong>Interpretation of Tables 4.1 and 4.2:</strong> The data has 364,838 rows and 43 columns. 30 columns are textual and there are only 6 numeric columns; therefore a large part of the project's work is converting text into analysable features. Table 4.2 shows that each row is a combination of posting information, requirements and employer details. Note that in the first posting the salary is empty, while the posting is complete in terms of the other columns; this pattern repeats many times in what follows.</p>
+</div><p><strong>Reading tables 4.1 and 4.2:</strong> the data has 364,838 rows and 43 columns. 30 columns are textual and only 6 columns are numeric; therefore a large part of the project work is converting text into analyzable features. Table 4.2 shows that each row is a combination of posting information, hiring requirements and employer attributes. Note that in the first posting salary is empty, while the posting is complete in its other columns; this pattern repeats many times below.</p>
 <h2 class="guide-heading" id="sec-4-2">4.2. Missingness: where and how much? <a aria-label="link" class="anchor" href="#sec-4-2">#</a></h2>
 <p><strong>Table 4.3 | Count and percentage of missing values in all columns</strong></p>
 <details class="code-fold">
@@ -416,15 +416,15 @@ complete(&#x27;4.2&#x27;)" data-done-text="Copied">Copy</button></header>
 </code></pre>
   </div>
 </details><figure class="figure guide-figure" id="figure-4-1">
-  <button type="button" data-full="../../../assets/img/fig_4_1.webp" data-caption="Figure 4.1 | Share of missing values across all 43 columns">
-    <img src="../../../assets/img/fig_4_1-sm.webp" alt="Figure 4.1 | Share of missing values across all 43 columns" loading="lazy" decoding="async">
+  <button type="button" data-full="../../../assets/img/fig_4_1.webp" data-caption="Figure 4.1 | Percentage of missing values across all 43 columns">
+    <img src="../../../assets/img/fig_4_1-sm.webp" alt="Figure 4.1 | Percentage of missing values across all 43 columns" loading="lazy" decoding="async">
   </button>
-  <figcaption>Figure 4.1 | Share of missing values across all 43 columns</figcaption>
+  <figcaption>Figure 4.1 | Percentage of missing values across all 43 columns</figcaption>
 </figure><figure class="figure guide-figure" id="figure-4-2">
-  <button type="button" data-full="../../../assets/img/fig_4_2.webp" data-caption="Figure 4.2 | Distribution of missing cells per posting">
-    <img src="../../../assets/img/fig_4_2-sm.webp" alt="Figure 4.2 | Distribution of missing cells per posting" loading="lazy" decoding="async">
+  <button type="button" data-full="../../../assets/img/fig_4_2.webp" data-caption="Figure 4.2 | Distribution of missing-cell counts per posting">
+    <img src="../../../assets/img/fig_4_2-sm.webp" alt="Figure 4.2 | Distribution of missing-cell counts per posting" loading="lazy" decoding="async">
   </button>
-  <figcaption>Figure 4.2 | Distribution of missing cells per posting</figcaption>
+  <figcaption>Figure 4.2 | Distribution of missing-cell counts per posting</figcaption>
 </figure><figure class="guide-table" id="table-">
   <figcaption>Table 4.3 | Missing values across all columns | 364,838 postings</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
@@ -750,9 +750,9 @@ complete(&#x27;4.2&#x27;)" data-done-text="Copied">Copy</button></header>
 </table></div>
   
   
-</figure><p><strong>Interpretation of Table 4.3 and Figure 4.1:</strong> Missingness has a structural pattern, not a random one. Three "optional" columns of the data are almost always empty: disability support (95.1%), secondary job categories (77.7%) and language skill (64.5%). By contrast, the main posting columns — title, job category, province, work type, work experience and company size — have no missing values at all. This means the core of the data is reliable and the gaps relate to the supplementary layers (skills, benefits, age).</p>
-<p>Salary also has 66.9% missing, but this missingness is not of the "not recorded" kind; the posting has formally not declared a salary. The difference between the two is examined in Section 9.</p>
-<p><strong>Interpretation of Table 4.4 and Figure 4.2:</strong> Most rows have between 3 and 7 empty cells, and the median missingness of each row is 5 cells. Only 209 postings (0.1%) are completely full, and 17.5% of rows have 10 or more empty cells. This distribution shows that dropping incomplete rows destroys a large part of the data; therefore the correct strategy is <strong>not to drop</strong> and to analyse each indicator on its available sample.</p>
+</figure><p><strong>Reading table 4.3 and figure 4.1:</strong> missingness follows a structural pattern, not a random one. Three “optional” data columns are almost always empty: disability support (95.1%), secondary job categories (77.7%) and language skills (64.5%). In contrast, the core posting columns — title, job category, province, work type, experience and company size — have no missing values. This means the core of the data is reliable and the gaps belong to supplementary layers (skills, benefits, age).</p>
+<p>Salary is also 66.9% missing, but this missingness is not of the “unrecorded” kind; the posting has not officially declared salary. The difference between the two is examined in section 9.</p>
+<p><strong>Reading table 4.4 and figure 4.2:</strong> most rows have between 3 and 7 empty cells and the median missingness per row is 5 cells. Only 209 postings (0.1%) are completely full, and 17.5% of rows have 10 or more empty cells. This distribution shows that dropping incomplete rows would destroy a large part of the data; therefore the right strategy is <strong>not to drop</strong> and to analyze each indicator on the sample available for it.</p>
 <h2 class="guide-heading" id="sec-4-3">4.3. Duplication, key and logical consistency <a aria-label="link" class="anchor" href="#sec-4-3">#</a></h2>
 <div class="code-card">
     <header><span>Python · 18 lines</span><button class="copy-btn" data-copy="checks = pd.DataFrame({
@@ -877,8 +877,8 @@ show_table(&#x27;4.6&#x27;, &#x27;تطابق پرچم افشا با وجود م�
 </table></div>
   
   
-</figure><p><strong>Interpretation of Tables 4.5 and 4.6:</strong> The data is structurally clean: there is no fully duplicate row, no duplicate identifier and no inconsistent salary range (minimum greater than maximum). The agreement between the disclosure flag and the presence of a salary value is also complete: wherever <code>SalaryCanBeShown=True</code>, both ends of the range are filled, and wherever it is <code>False</code>, both are empty. Therefore "missing salary" in this data is not a recording defect; it is a <strong>deliberate choice by the employer</strong> not to disclose. This is precisely what makes the analysis in Section 9 necessary.</p>
-<h2 class="guide-heading" id="sec-4-4">4.4. Time span and monthly coverage <a aria-label="link" class="anchor" href="#sec-4-4">#</a></h2>
+</figure><p><strong>Reading tables 4.5 and 4.6:</strong> the data is structurally clean: no fully duplicated rows, no duplicate identifiers and no inconsistent salary ranges (minimum greater than maximum). The match between the disclosure flag and the presence of a salary value is also complete: wherever <code>SalaryCanBeShown=True</code>, both ends of the range are filled, and wherever it is <code>False</code>, both are empty. Therefore “missing salary” in this data is not a recording defect; it is a <strong>deliberate employer choice</strong> not to disclose. This very fact makes the analysis in section 9 necessary.</p>
+<h2 class="guide-heading" id="sec-4-4">4.4. Time range and monthly coverage <a aria-label="link" class="anchor" href="#sec-4-4">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>29 lines</em></summary>
   <div class="code-card">
@@ -943,10 +943,10 @@ complete(&#x27;4.3&#x27;)" data-done-text="Copied">Copy</button></header>
 </code></pre>
   </div>
 </details><figure class="figure guide-figure" id="figure-4-3">
-  <button type="button" data-full="../../../assets/img/fig_4_3.webp" data-caption="Figure 4.3 | Postings published per month">
-    <img src="../../../assets/img/fig_4_3-sm.webp" alt="Figure 4.3 | Postings published per month" loading="lazy" decoding="async">
+  <button type="button" data-full="../../../assets/img/fig_4_3.webp" data-caption="Figure 4.3 | Number of postings published per month">
+    <img src="../../../assets/img/fig_4_3-sm.webp" alt="Figure 4.3 | Number of postings published per month" loading="lazy" decoding="async">
   </button>
-  <figcaption>Figure 4.3 | Postings published per month</figcaption>
+  <figcaption>Figure 4.3 | Number of postings published per month</figcaption>
 </figure><figure class="guide-table" id="table-">
   <figcaption>Table 4.7 | Monthly data coverage | 364,838 postings</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
@@ -1165,8 +1165,8 @@ show_metrics(&#x27;پوشش دوره&#x27;, [
   </div><div class="guide-metrics">
   <p class="m-title">Key figures: period coverage</p>
   <ul><li>Full period: 2022-03 to 2024-03</li><li>Complete months: 23 months</li><li>Postings within the analysis period: 360,083 (98.7%)</li><li>Postings outside the period: 4,755</li></ul>
-</div><p><strong>Interpretation of Table 4.7 and Figure 4.3:</strong> The data covers 25 months, but March 2022 (901 postings) and March 2024 (3,854 postings) are clearly incomplete; the first and last months of the data have been recorded as truncated slices. 23 complete months remain, which contain 360,083 postings (98.7%). The analysis period is defined as Farvardin 1401 to Bahman 1402, and the two incomplete months remain only in the description of data quality.</p>
-<p>The peak of publication is October 2023 (Mehr 1402) with 24,017 postings, and the lowest complete month is March 2023 (Esfand 1401) with 5,531 postings. This sharp drop occurred right before Nowruz and is examined in Section 10 as a seasonality clue. Note that these two figures are Gregorian months; the mapping to Solar Hijri months is given in Table 4.7 and forms the basis of the trend analysis.</p>
+</div><p><strong>Reading table 4.7 and figure 4.3:</strong> the data covers 25 months, but March 2022 (901 postings) and March 2024 (3,854 postings) are clearly incomplete; the first and last months of the data were recorded as slices. 23 complete months remain, holding 360,083 postings (98.7%). The analysis period is defined from Farvardin 1401 to Bahman 1402, and the two incomplete months remain only in the data quality description.</p>
+<p>The publication peak is October 2023 (Mehr 1402) with 24,017 postings, and the lowest complete month is March 2023 (Esfand 1401) with 5,531 postings. This sharp drop occurred right before Nowruz and is examined in section 10 as a seasonal clue. Note that these two numbers are Gregorian months; the mapping to the Shamsi month is given in table 4.7 and is the principle applied in the trend analysis.</p>
 <h2 class="guide-heading" id="sec-4-5">4.5. Cardinality: which columns can be grouped? <a aria-label="link" class="anchor" href="#sec-4-5">#</a></h2>
 <div class="code-card">
     <header><span>Python · 20 lines</span><button class="copy-btn" data-copy="card_cols = [&#x27;Jobpost_RawTitle&#x27;, &#x27;Jobpost_CompanyWorkTimesDescription&#x27;, &#x27;Jobpost_SoftwareSkills&#x27;,
@@ -1331,14 +1331,14 @@ show_metrics(&#x27;کاردینالیتی&#x27;, [
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: cardinality</p>
   <ul><li>Unique job titles: 68,711</li><li>Unique working-hours descriptions: 68,247</li><li>Unique software skill combinations: 49,115</li><li>Main job category / industry: 77 / 44</li></ul>
-</div><p><strong>Interpretation of Table 4.8:</strong> Two different worlds sit side by side in this data. The management columns (job category, industry, province, work type, company size) have low, controlled cardinality and are ready for grouping. By contrast, the free texts are highly varied: 68,711 unique job titles, 68,247 working-hours descriptions and 49,115 unique software skill combinations. Almost every posting has its own working-hours description; so extracting features from this text is a mandatory step, not an optional one.</p>
-<p>3,561 different industry combinations for companies also show that the company industry is multi-valued and must be processed as a list, not as a single label.</p>
+</div><p><strong>Reading table 4.8:</strong> two different worlds sit side by side in this data. The managerial columns (job category, industry, province, work type, company size) have low, controlled cardinality and are ready for grouping. In contrast, the free texts are highly varied: 68,711 job titles, 68,247 working-hours descriptions and 49,115 unique software skill combinations. Almost every posting has its own working-hours description; so extracting features from this text is a mandatory step, not an optional one.</p>
+<p>3,561 different industry combinations for companies also show that company industry is multi-valued and must be processed as a list, not as a single label.</p>
 
 <p class="guide-source">Rebuilt from the notebook · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/jobvision_analysis.ipynb">Notebook on GitHub</a> · <a href="https://github.com/arashalidadi/jobvision-labor-market/blob/main/notebooks/jobvision_colab.ipynb">Run in Colab</a></p>
-<nav class="guide-pager"><a class="prev" href="../03-tooling-and-helpers/"><span>Previous</span><b>Tooling, helper functions and data loading</b></a><a class="next" href="../05-cleaning-and-analysis-layer/"><span>Next</span><b>Cleaning and building the analysis layer</b></a></nav>
+<nav class="guide-pager"><a class="prev" href="../03-tooling-and-helpers/"><span>Previous</span><b>Tools, helper functions and data loading</b></a><a class="next" href="../05-cleaning-and-analysis-layer/"><span>Next</span><b>Cleaning and building the analysis layer</b></a></nav>
   </main>
   <aside class="guide-aside" aria-label="On this page">
-    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-4-1">4.1. Dimensions, data types and a real example</a></li><li class="lvl-h2"><a href="#sec-4-2">4.2. Missingness: where and how much?</a></li><li class="lvl-h2"><a href="#sec-4-3">4.3. Duplication, key and logical consistency</a></li><li class="lvl-h2"><a href="#sec-4-4">4.4. Time span and monthly coverage</a></li><li class="lvl-h2"><a href="#sec-4-5">4.5. Cardinality: which columns can be grouped?</a></li></ul>
+    <p class="aside-title">On this page</p><ul class="aside-toc"><li class="lvl-h2"><a href="#sec-4-1">4.1. Dimensions, data types and a real sample</a></li><li class="lvl-h2"><a href="#sec-4-2">4.2. Missingness: where and how much?</a></li><li class="lvl-h2"><a href="#sec-4-3">4.3. Duplication, key and logical consistency</a></li><li class="lvl-h2"><a href="#sec-4-4">4.4. Time range and monthly coverage</a></li><li class="lvl-h2"><a href="#sec-4-5">4.5. Cardinality: which columns can be grouped?</a></li></ul>
   </aside>
 </div>
 
