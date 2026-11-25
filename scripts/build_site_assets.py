@@ -19,6 +19,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
+(ROOT / "outputs" / "cache").mkdir(parents=True, exist_ok=True)
 SRC = ROOT / "outputs" / "figures"
 OUT = ROOT / "docs" / "assets" / "img"
 FONT_DIR = ROOT / "docs" / "assets" / "fonts"
@@ -136,7 +137,7 @@ def social_card() -> None:
     put(width - 60, height - 58, "github.com/arashalidadi", latin, GOLD)
 
     card.save(OUT / "og-cover.png", "PNG", optimize=True)
-    card.resize((600, 315), Image.LANCZOS).save("/tmp/og_small.png")
+    card.resize((600, 315), Image.LANCZOS).save(str(ROOT / "outputs" / "cache" / "og_small.png"))
 
 
 if __name__ == "__main__":

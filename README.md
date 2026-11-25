@@ -155,12 +155,14 @@ python -m notebook jobvision_analysis.ipynb
 
 | فایل | توضیح |
 | --- | --- |
-| `jobvision_analysis.ipynb` | نوت‌بوک کامل تحلیل، ۲۴ بخش، ۹۰+ جدول و ۳۵ نمودار |
-| `reports/jobvision_report.pdf` | گزارش مدیریتی ۱۲۵ صفحه‌ای با چکیده، پاسخ پرسش‌ها و جمع‌بندی راهبردی |
+| `jobvision_analysis.ipynb` | نوتبوک کامل تحلیل: ۲۴ بخش، **۱۱۷ جدول، ۴۴ نمودار، ۹۲ سلول کد** |
+| `reports/jobvision_report.pdf` | گزارش مدیریتی **۱۵۶+ صفحه‌ای** با چکیده، پاسخ پرسش‌ها و جمع‌بندی راهبردی |
 | `reports/jobvision_presentation.pdf` | ارائه ۱۵ اسلایدی ۱۶:۹ برای جلسه ۱۵ دقیقه‌ای |
 | `reports/jobvision_presentation.pptx` | نسخه قابل import در Google Slides |
-| `outputs/figures/` | همه نمودارها با شماره یکتا برای گزارش و ارائه |
-| [سایت پروژه](https://arashalidadi.github.io/jobvision-labor-market/) | نسخه دو‌زبانه، گالری نمودارها، بسته اجرایی و راه اجرای Colab |
+| `outputs/figures/` | همه نمودارها با شماره یکتا برای گزارش و ارائه (نسخه‌های webp در `docs/assets/img/`) |
+| `/tools/salary-calculator.html` | **ماشین‌حساب باند حقوق**: نقش × استان × سابقه، ساخته‌شده از ۱۲۰٬۸۰۸ آگهی دارای حقوق — `docs/tools/salary-calculator.html` |
+| `/dashboard/` | **داشبورد پروژه**: هشت عدد کلیدی و شش نمودار محوری با لینک به تحلیل کامل — `docs/dashboard/index.html` |
+| [سایت پروژه](https://arashalidadi.github.io/jobvision-labor-market/) | نسخه دوزبانه، گالری نمودارها، بسته اجرایی و راه اجرای Colab |
 
 بازتولید گزارش و ارائه (اختیاری):
 

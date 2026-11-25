@@ -73,7 +73,8 @@ UI = {
         metric_block="اعداد کلیدی", guide_lead="راهنمای کامل پروژه؛ عیناً از نوتبوک اجراشده ساخته می‌شود.",
         footer_note="این راهنما از اجرای نوتبوک پروژه ساخته شده است؛ هر عدد قابل بازتولید است.",
         toc_title="فهرست مطالب", show_more_code="نمایش کد", key_numbers="اعداد کلیدی",
-        print_note="", dataset="داده", license_word="مجوز",
+        print_note="", dataset="داده", license_word="مجوز", tools="ماشین‌حساب حقوق",
+        dashboard="داشبورد پروژه",
     ),
     "en": dict(
         lang="en", dir="ltr", home="Home", guide="Guide", docs="Docs",
@@ -89,7 +90,8 @@ UI = {
         metric_block="Key numbers", guide_lead="The full project guide, generated directly from the executed notebook.",
         footer_note="This guide is generated from the project notebook; every number is reproducible.",
         toc_title="Table of contents", show_more_code="Show code", key_numbers="Key numbers",
-        print_note="", dataset="Dataset", license_word="License",
+        print_note="", dataset="Dataset", license_word="License", tools="Salary calculator",
+        dashboard="Project dashboard",
     ),
 }
 
@@ -206,10 +208,12 @@ def translate_string(text: str, strings: dict, lang: str) -> str:
     if lang == "fa":
         return text
     stripped = clean_text(text)
-    if stripped in strings:
-        return fa_to_en_digits(strings[stripped])
-    # fall back to token-level replacement for compound strings
-    out = stripped
+    norm = fa_to_en_digits(stripped)  # Arabic/Persian digits -> Latin so the lookup keys (Latin digits)
+    for key, value in strings.items():  # match regardless of digit rendering in the caption
+        if fa_to_en_digits(clean_text(key)) == norm:
+            return value
+    # fall back to token-level replacement for compound strings without a full match
+    out = norm
     for key, value in sorted(strings.items(), key=lambda kv: -len(kv[0])):
         if len(key) > 3 and key in out:
             out = out.replace(key, value)
@@ -457,6 +461,8 @@ def page_shell(*, lang: str, title: str, description: str, canonical: str, body:
     other = "en" if lang == "fa" else "fa"
     other_ready = (ROOT / "docs" / "en" / "guide" / "index.html").exists()
     assets, home, guide_root = paths["assets"], paths["home"], paths["guide_root"]
+    tools_href = assets.replace("assets/", "tools/salary-calculator.html")
+    dashboard_href = assets.replace("assets/", "dashboard/")
     return f"""<!DOCTYPE html>
 <html lang="{lang}" dir="{ui['dir']}">
 <head>
@@ -509,6 +515,8 @@ def page_shell(*, lang: str, title: str, description: str, canonical: str, body:
       <a href="{home}#visuals">{'نمودارها' if lang == 'fa' else 'Visuals'}</a>
       <a href="{home}#playbook">{'بسته اجرایی' if lang == 'fa' else 'Playbook'}</a>
       <a class="active" href="{guide_root}">{ui['docs']}</a>
+      <a href="{tools_href}">{ui['tools']}</a>
+      <a href="{dashboard_href}">{ui['dashboard']}</a>
     </nav>
     <div class="header-actions">
       <div class="lang-switch" role="group" aria-label="Language">
