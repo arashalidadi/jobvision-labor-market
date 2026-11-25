@@ -142,7 +142,7 @@ show_metrics(&#x27;داده خوشه‌بندی&#x27;, [
 </code></pre>
   </div><div class="guide-metrics">
   <p class="m-title">Key figures: clustering data</p>
-  <ul><li>Titles with at least ۵۰ postings: 762</li><li>Covered postings: 254,451 (70.7٪)</li><li>Skills in the vector: 40</li><li>Vector dimensions per title: 42</li></ul>
+  <ul><li>Titles with at least 50 postings: 762</li><li>Covered postings: 254,451 (70.7%)</li><li>Skills in the vector: 40</li><li>Vector dimensions per title: 42</li></ul>
 </div><p><strong>Interpreting the clustering data:</strong> 762 job titles with at least 50 postings were selected, covering 70.7% of postings overall (254,451 postings). The vector of each title has 42 dimensions: the share of 40 frequent skills, the share of master's degrees and median experience. Before clustering, the skill vector is weighted with <strong>TF-IDF</strong> so that ubiquitous skills (Excel and Word) do not take over the whole space — without this step, all titles would fall into one giant cluster.</p><h2 class="guide-heading" id="sec-17-1">17.1. Choosing the number of clusters <a aria-label="link" class="anchor" href="#sec-17-1">#</a></h2>
 <details class="code-fold">
   <summary><span>Show the code for this step</span><em>49 lines</em></summary>
@@ -253,7 +253,7 @@ complete(&#x27;17.1-17.2&#x27;)" data-done-text="Copied">Copy</button></header>
   </button>
   <figcaption>Figure 17.1-17.2 | Choosing the number of clusters · Two-dimensional map of job titles</figcaption>
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 17.1 | انتخاب Count Cluster با معیار Silhouette | 762 Job title</figcaption>
+  <figcaption>Table 17.1 | Choosing the number of clusters with the silhouette criterion | 762 job titles</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -274,7 +274,7 @@ complete(&#x27;17.1-17.2&#x27;)" data-done-text="Copied">Copy</button></header>
 <td>0.510</td>
 </tr>
 <tr>
-<th>۴</th>
+<th>4</th>
 <td>713</td>
 <td>0.291</td>
 </tr>
@@ -300,7 +300,7 @@ complete(&#x27;17.1-17.2&#x27;)" data-done-text="Copied">Copy</button></header>
 </tr>
 </tbody>
 </table></div>
-  <p class="tbl-note"><span>Note:</span> A silhouette close to ۱ indicates clean clustering and close to ۰ indicates ambiguous boundaries.</p>
+  <p class="tbl-note"><span>Note:</span> A silhouette close to 1 indicates clean clustering and close to 0 indicates ambiguous boundaries.</p>
   
 </figure><p><strong>Interpreting Table 17.1 and Figures 17.1 and 17.2:</strong> The silhouette criterion selects <strong>k=3</strong> with a score of 0.510. The two-dimensional map shows that the space has one large “general mass” and two “specialist islands”; not several clusters of equal size. This is itself a finding: at the skill level, Iran's market of job titles does not have high cluster diversity, and a large part of the roles is run with one shared skill basket (office software + administrative communication).</p><h2 class="guide-heading" id="sec-17-2">17.2. Profile of the clusters <a aria-label="link" class="anchor" href="#sec-17-2">#</a></h2>
 <details class="code-fold">
@@ -382,7 +382,7 @@ complete(&#x27;17.3&#x27;)" data-done-text="Copied">Copy</button></header>
   </button>
   <figcaption>Figure 17.3 | Intensity of skill demand in each cluster</figcaption>
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 17.2 | پروفایل Cluster‌های Job title | 254,451 postings</figcaption>
+  <figcaption>Table 17.2 | Profile of the job-title clusters | 254,451 postings</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -415,10 +415,10 @@ complete(&#x27;17.3&#x27;)" data-done-text="Copied">Copy</button></header>
 <td>233,638</td>
 <td>11.0</td>
 <td>2.0</td>
-<td>2.0٪</td>
+<td>2.0%</td>
 <td>Microsoft Excel, Microsoft Word, Microsoft Powerpoint</td>
 <td>Sales specialist, accountant, accounting specialist</td>
-<td>91.8٪</td>
+<td>91.8%</td>
 </tr>
 <tr>
 <th>Cluster 2</th>
@@ -426,10 +426,10 @@ complete(&#x27;17.3&#x27;)" data-done-text="Copied">Copy</button></header>
 <td>19,413</td>
 <td>17.5</td>
 <td>5.0</td>
-<td>15.4٪</td>
+<td>15.4%</td>
 <td>Microsoft Excel, Microsoft Word, Microsoft Powerpoint</td>
 <td>Senior accountant, finance manager, head of accounting</td>
-<td>7.6٪</td>
+<td>7.6%</td>
 </tr>
 <tr>
 <th>Cluster 3</th>
@@ -437,10 +437,10 @@ complete(&#x27;17.3&#x27;)" data-done-text="Copied">Copy</button></header>
 <td>1,400</td>
 <td>17.5</td>
 <td>2.0</td>
-<td>53.5٪</td>
+<td>53.5%</td>
 <td>Microsoft Excel, Microsoft Word, Microsoft Powerpoint</td>
 <td>Technical officer, regulatory expert, insurance sales agency</td>
-<td>0.6٪</td>
+<td>0.6%</td>
 </tr>
 </tbody>
 </table></div>
@@ -571,7 +571,7 @@ show_metrics(&#x27;پایداری خوشه&#x27;, [
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 17.3 | پایداری Cluster‌ها بین دو سال | 516 Title مشترک</figcaption>
+  <figcaption>Table 17.3 | Stability of the clusters between the two years | 516 shared titles</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -598,14 +598,14 @@ show_metrics(&#x27;پایداری خوشه&#x27;, [
 </tr>
 <tr>
 <th>Turnover share</th>
-<td>0.0٪</td>
+<td>0.0%</td>
 </tr>
 </tbody>
 </table></div>
-  <p class="tbl-note"><span>Note:</span> An adjusted Rand index close to ۱ means the clustering is nearly identical across the two years; close to ۰ means it is random.</p>
+  <p class="tbl-note"><span>Note:</span> An adjusted Rand index close to 1 means the clustering is nearly identical across the two years; close to 0 means it is random.</p>
   
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 17.4 | توزیع Number of titles‌ها در Match Cluster‌های دو سال | 516 Title مشترک</figcaption>
+  <figcaption>Table 17.4 | Distribution of title counts in the two-year cluster matching | 516 shared titles</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -615,7 +615,7 @@ show_metrics(&#x27;پایداری خوشه&#x27;, [
 <th>2</th>
 </tr>
 <tr>
-<th>Cluster ۱۴۰۱</th>
+<th>Cluster 1401</th>
 <th></th>
 <th></th>
 <th></th>
@@ -638,7 +638,7 @@ show_metrics(&#x27;پایداری خوشه&#x27;, [
 <th>2</th>
 <td>0</td>
 <td>0</td>
-<td>۱۲</td>
+<td>12</td>
 </tr>
 </tbody>
 </table></div>
@@ -719,7 +719,7 @@ show_table(&#x27;17.5&#x27;, &#x27;امضای خوشه‌ها: متمایزتر�
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 17.5 | امضای Cluster‌ها: متمایزترین Skill‌ها و Core job titles هر Cluster | Difference با Mean کل Title‌ها، بر حسب واحد Percent | Farvardin 1401 تا Bahman 1402</figcaption>
+  <figcaption>Table 17.5 | Cluster signatures: the most distinctive skills and core titles of each cluster | difference from the overall title average, in percentage points | Farvardin 1401 to Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -754,7 +754,7 @@ show_table(&#x27;17.5&#x27;, &#x27;امضای خوشه‌ها: متمایزتر�
 <td>Html &amp; CSS (+0.3 points)</td>
 <td>Microsoft Excel (-2.2 points)</td>
 <td>2.0</td>
-<td>2.0٪</td>
+<td>2.0%</td>
 <td>Sales specialist, accountant, accounting specialist</td>
 </tr>
 <tr>
@@ -765,7 +765,7 @@ show_table(&#x27;17.5&#x27;, &#x27;امضای خوشه‌ها: متمایزتر�
 <td>Microsoft Word (+9.2 points)</td>
 <td>Adobe Photoshop (-3.1 points)</td>
 <td>5.0</td>
-<td>15.4٪</td>
+<td>15.4%</td>
 <td>Senior accountant, finance manager, head of accounting</td>
 </tr>
 <tr>
@@ -776,7 +776,7 @@ show_table(&#x27;17.5&#x27;, &#x27;امضای خوشه‌ها: متمایزتر�
 <td>Rest API (+4.4 points)</td>
 <td>Adobe Photoshop (-3.7 points)</td>
 <td>2.0</td>
-<td>53.5٪</td>
+<td>53.5%</td>
 <td>Technical officer, regulatory expert, insurance sales agency</td>
 </tr>
 </tbody>
@@ -848,7 +848,7 @@ show_metrics(&#x27;پایداری بازنمونه&#x27;, [
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 17.6 | پایداری Cluster‌ها با بازنمونه‌گیری Title‌ها (25 تکرار، 80% نمونه) | 762 Job title، 3 Cluster</figcaption>
+  <figcaption>Table 17.6 | Cluster stability under title resampling (25 replications, 80% sample) | 762 job titles, 3 clusters</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -878,7 +878,7 @@ show_metrics(&#x27;پایداری بازنمونه&#x27;, [
 <td>0.30</td>
 </tr>
 <tr>
-<th>Share of stable replicates (٪)</th>
+<th>Share of stable replicates (%)</th>
 <td>88.00</td>
 </tr>
 </tbody>
@@ -887,7 +887,7 @@ show_metrics(&#x27;پایداری بازنمونه&#x27;, [
   
 </figure><div class="guide-metrics">
   <p class="m-title">Key numbers: bootstrap stability</p>
-  <ul><li>Mean ARI: 0.896</li><li>Standard deviation: 0.217</li><li>Minimum ARI: 0.304</li><li>Stable repeats (ARI ≥ ۰٫۷): ۸۸٪</li></ul>
+  <ul><li>Mean ARI: 0.896</li><li>Standard deviation: 0.217</li><li>Minimum ARI: 0.304</li><li>Stable repeats (ARI ≥ 0.7): 88%</li></ul>
 </div><p><strong>Interpretation of Table 17.6:</strong> The mean ARI over 25 bootstrap resamples (80% of titles each time) is <strong>0.896</strong> — that is, the clustering is stable and the three-part structure interpreted in Sections 17.2 and 17.5 is not random. But the standard deviation of 0.22 and the minimum of 0.3 show that in some iterations the structure breaks down.</p>
 <p>The cause is clear: the third cluster has only 13 titles. With the random removal of 20% of titles, two or three titles may drop out of this cluster and the boundaries shift. By contrast, the two large clusters (642 and 107 titles) remained stable in all iterations.</p>
 <p><strong>Verdict:</strong> The interpretations concerning the “general market core” and “senior finance” are reliable and generalizable; the interpretation of the small technical-regulatory cluster is directional and is not reported as a definitive fact.</p>
