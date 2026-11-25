@@ -57,6 +57,8 @@
       <a href="../../index.html#visuals">Visuals</a>
       <a href="../../index.html#playbook">Playbook</a>
       <a class="active" href="../">Docs</a>
+      <a href="../../../tools/salary-calculator.html">Salary calculator</a>
+      <a href="../../../dashboard/">Project dashboard</a>
     </nav>
     <div class="header-actions">
       <div class="lang-switch" role="group" aria-label="Language">
@@ -87,8 +89,15 @@
   <main class="guide-main" id="main">
     <nav class="guide-crumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../">Docs</a> <span>/</span> <span>Part 20</span></nav>
 <h1>20. Profiling and clustering of employers [bonus]</h1>
-<p class="guide-meta">6 min read · 5 tables · 1 figures · 4 code cells</p>
-<p>Since company names are anonymized, we describe the employer by observable features: size, age, ownership, scope of activity, industry, province, number of benefits, and posting behavior (salary disclosure, remote work). The data is mixed; therefore we use the <strong>Gower distance</strong>, which combines both numeric and categorical variables into a single distance measure, and then hierarchical clustering is performed on the same distance matrix.</p><details class="code-fold">
+<p class="guide-meta">7 min read · 5 tables · 1 figures · 4 code cells</p>
+<p>Since company names are anonymized, we describe the employer by observable features: size, age, ownership, scope of activity, industry, province, number of benefits, and posting behavior (salary disclosure, remote work). The data is mixed; therefore we use the <strong>Gower distance</strong>, which combines both numeric and categorical variables into a single distance measure, and then hierarchical clustering is performed on the same distance matrix.</p><p><strong>Reading table 19.5, figure 19.4 and key numbers 19.3:</strong> the words inside a title reveal the salary level better than the title itself, and the pattern is sharp:</p>
+<ul>
+<li><strong>Seniority words carry the top band:</strong> “Senior” (median 22.5), “Manager,” “Senior,” “Supervisor” and “Head” (17.5 million toman) — between <strong>59% and 105%</strong> above the overall market median of 11 million toman.</li>
+<li><strong>Role words sit in the middle band:</strong> “Accounting,” “Sales rep,” “Marketing” and “HR” at 13.5 million — about 23% above the market median of 11 million toman.</li>
+<li><strong>English tokens earn the same premium as their Persian equivalents:</strong> Back, Front, Developer and Specialist are also at 17.5 million; bilingual titling in the tech market does not change the salary band — the difference is categorical, not linguistic.</li>
+<li><strong>The lowest band appears in support and export-sales words</strong> (13.5 million for terms associated with foreign sales).</li>
+</ul>
+<p><strong>Method note:</strong> 105 words appear in at least 1,500 postings and the table shows 18 of them. This analysis is descriptive and does not control for overlap between words (a title such as “Accounting Manager” contains both); the controlled share of each word is measured in section 19.4, where skill effects are estimated in a model. The practical message is the same for candidates and employers: <strong>one step up in seniority in the title is worth as much as several years of experience.</strong></p><details class="code-fold">
   <summary><span>Show the code for this step</span><em>62 lines</em></summary>
   <div class="code-card">
     <header><span>Python</span><button class="copy-btn" data-copy="from gower import gower_matrix
@@ -218,7 +227,7 @@ show_table(&#x27;20.2&#x27;, &#x27;تیپ‌شناسی کارفرمایان بر
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 20.1 | Selecting the number of employer types on the Gower distance matrix | 4,000 sample postings</figcaption>
+  <figcaption>Table 20.1 | انتخاب Count Employer type روی ماتریس فاصله گاور | 4,000 postings نمونه</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -239,7 +248,7 @@ show_table(&#x27;20.2&#x27;, &#x27;تیپ‌شناسی کارفرمایان بر
 <td>2</td>
 </tr>
 <tr>
-<th>4</th>
+<th>۴</th>
 <td>0.202</td>
 <td>2</td>
 </tr>
@@ -258,7 +267,7 @@ show_table(&#x27;20.2&#x27;, &#x27;تیپ‌شناسی کارفرمایان بر
   <p class="tbl-note"><span>Note:</span> Higher silhouette and more balanced clusters are better; the final structure must also be interpretable.</p>
   
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 20.2 | Typology of employers based on company attributes and posting behaviour | 4,000 sample postings</figcaption>
+  <figcaption>Table 20.2 | تیپ‌شناسی Employerیان بر پایه Feature‌های شرکت و رفتار postings | 4,000 postings نمونه</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -288,50 +297,50 @@ show_table(&#x27;20.2&#x27;, &#x27;تیپ‌شناسی کارفرمایان بر
 <tr>
 <th>Type 1</th>
 <td>3,026</td>
-<td>75.6%</td>
+<td>75.6٪</td>
 <td>3.0</td>
 <td>3.0</td>
-<td>32.0%</td>
-<td>5.5%</td>
+<td>32.0٪</td>
+<td>5.5٪</td>
 <td>Manufacturing / industrial</td>
 <td>Tehran</td>
 </tr>
 <tr>
 <th>Type 3</th>
 <td>964</td>
-<td>24.1%</td>
+<td>24.1٪</td>
 <td>2.0</td>
 <td>1.0</td>
-<td>39.1%</td>
-<td>10.4%</td>
+<td>39.1٪</td>
+<td>10.4٪</td>
 <td>Manufacturing / industrial</td>
 <td>Tehran</td>
 </tr>
 <tr>
 <th>Type 2</th>
 <td>8</td>
-<td>0.2%</td>
+<td>0.2٪</td>
 <td>6.0</td>
 <td>11.0</td>
-<td>87.5%</td>
-<td>0.0%</td>
+<td>87.5٪</td>
+<td>0.0٪</td>
 <td>Engineering and professional services</td>
 <td>Tehran</td>
 </tr>
 <tr>
 <th>Type 4</th>
 <td>2</td>
-<td>0.1%</td>
+<td>0.1٪</td>
 <td>1.5</td>
 <td>0.5</td>
-<td>50.0%</td>
-<td>0.0%</td>
+<td>50.0٪</td>
+<td>0.0٪</td>
 <td>Corporate services / management consulting</td>
 <td>Alborz</td>
 </tr>
 </tbody>
 </table></div>
-  <p class="tbl-note"><span>Note:</span> The company size scale runs from 1 to 7; a larger number means a larger company. The categorical columns show the dominant type for each profile.</p>
+  <p class="tbl-note"><span>Note:</span> The company size scale runs from ۱ to ۷; a larger number means a larger company. The categorical columns show the dominant type for each profile.</p>
   
 </figure><p><strong>Map of the types in the Gower space</strong></p>
 <details class="code-fold">
@@ -427,7 +436,7 @@ show_metrics(&#x27;تیپ‌شناسی کارفرما&#x27;, [
   </button>
   <figcaption>Figure 20.1-20.2 | Two-dimensional map of employers in Gower space · Position of employer types by benefits and transparency</figcaption>
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 20.3 | Distance between employer types in feature space | 4,000 sample postings</figcaption>
+  <figcaption>Table 20.3 | فاصله تیپ‌های Employer در فضای Feature‌ها | 4,000 postings نمونه</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -470,7 +479,7 @@ show_metrics(&#x27;تیپ‌شناسی کارفرما&#x27;, [
   
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: employer typology</p>
-  <ul><li>Number of types: 4</li><li>Highest disclosure rate: Type 2 — 87.5%</li><li>Highest mean benefits: Type 2 — 11.0 benefits</li><li>Closest type pair: Type 1 — Type 3</li></ul>
+  <ul><li>Number of types: 4</li><li>Highest disclosure rate: Type 2 — 87.5٪</li><li>Highest mean benefits: Type 2 — 11.0 benefits</li><li>Closest type pair: Type 1 — Type 3</li></ul>
 </div><p><strong>Interpretation of Tables 20.1 to 20.3 and Figures 20.1 and 20.2:</strong> The Gower distance over a sample of 4,000 job postings shows a clear structure: <strong>two large types</strong> and <strong>two small, distinct types</strong>.</p>
 <ul>
 <li><strong>Type 1 (75.6% of the sample):</strong> Large and medium employers with 3 benefits, salary disclosure of 32%, and remote work of 5.5% — the “market core”.</li>
@@ -562,16 +571,16 @@ show_table(&#x27;20.4&#x27;, &#x27;پیشنهاد بازاریابی و فروش
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 20.4 | Marketing and sales offer for developing collaboration with each employer type | based on the typology in section 20.2</figcaption>
+  <figcaption>Table 20.4 | پیشنهاد marketing و فروش برای توسعهٔ همکاری با هر Employer type | بر پایهٔ تیپ‌شناسی بخش 20.2</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
 <th></th>
 <th>Sample share</th>
 <th>Key feature</th>
-<th>Recommendation 1</th>
-<th>Recommendation 2</th>
-<th>Recommendation 3</th>
+<th>Recommendation ۱</th>
+<th>Recommendation ۲</th>
+<th>Recommendation ۳</th>
 </tr>
 <tr>
 <th>Employer type</th>
@@ -584,40 +593,40 @@ show_table(&#x27;20.4&#x27;, &#x27;پیشنهاد بازاریابی و فروش
 </thead>
 <tbody>
 <tr>
-<th>Type 1 — large and mid-sized employer</th>
-<td>75.6%</td>
-<td>3 benefits, salary disclosure 32%, remote work 5.5%</td>
-<td>“Volume hiring” package: tiered discount for more than 10 simultaneous postings, because this type publishes at high volume</td>
+<th>Type ۱ — large and mid-sized employer</th>
+<td>75.6٪</td>
+<td>۳ benefits, salary disclosure ۳۲٪, remote work ۵.۵٪</td>
+<td>“Volume hiring” package: tiered discount for more than ۱۰ simultaneous postings, because this type publishes at high volume</td>
 <td>Dedicated competitive report: this company's salary standing within its own category, so that closing the pay gap depends on the platform</td>
-<td>“Responsive employer” badge for companies that publish more than 50% of their postings with salary — a zero-cost employer-brand differentiation tool</td>
+<td>“Responsive employer” badge for companies that publish more than ۵۰٪ of their postings with salary — a zero-cost employer-brand differentiation tool</td>
 </tr>
 <tr>
-<th>Type 3 — small flexible employer</th>
-<td>24.1%</td>
-<td>1 benefit, 39% disclosure, 10.4% remote work</td>
+<th>Type ۳ — small flexible employer</th>
+<td>24.1٪</td>
+<td>۱ benefit, ۳۹٪ disclosure, ۱۰.۴٪ remote work</td>
 <td>Cheap “single-posting” plan with pay-per-result, since they have high price sensitivity and low volume</td>
 <td>“Automatic salary band” tool: with three questions (role, province, experience) a competitive range is suggested; this type has neither data nor time for analysis</td>
 <td>Remote-work posting package: because this type's remote-work rate is double that of type 1, a dedicated remote-work filter and tag creates value for them</td>
 </tr>
 <tr>
-<th>Type 2 — transparent and generous employer (8 postings)</th>
-<td>&lt; 0.1%</td>
-<td>11 benefits, salary disclosure 87.5%</td>
+<th>Type ۲ — transparent and generous employer (۸ postings)</th>
+<td>&lt; ۰٫۱٪</td>
+<td>۱۱ benefits, salary disclosure ۸۷.۵٪</td>
 <td>Case-study file: this type follows the “transparency = hiring speed” pattern and is the best marketing material for convincing the rest</td>
 <td>Invitation to the “reference employer” program and posting with a transparency badge</td>
 <td>—</td>
 </tr>
 <tr>
-<th>Type 4 — statistical outlier (2 postings)</th>
-<td>&lt; 0.1%</td>
+<th>Type ۴ — statistical outlier (۲ postings)</th>
+<td>&lt; ۰٫۱٪</td>
 <td>Small employer with zero benefits</td>
 <td>No dedicated campaign is justified; keep it only in the standard funnel</td>
-<td>To be monitored so that if it recurs, it is moved to type 3</td>
+<td>To be monitored so that if it recurs, it is moved to type ۳</td>
 <td>—</td>
 </tr>
 </tbody>
 </table></div>
-  <p class="tbl-note"><span>Note:</span> The last two types have only 10 postings and are a marginal minority; the offer for them is experimental</p>
+  <p class="tbl-note"><span>Note:</span> The last two types have only ۱۰ postings and are a marginal minority; the offer for them is experimental</p>
   
 </figure><h2 class="guide-heading" id="sec-20-5">20.5. The structure of competition: where is competition intense and where does a posting stand out? <a aria-label="link" class="anchor" href="#sec-20-5">#</a></h2>
 <p>The third question of the project’s outlook was: “What is the structure of competition among employers, and what can a business do to differentiate its job postings?”. The data anonymizes the employer’s name, so we measure competition at the <strong>market</strong> level, not the company level. Four indicators suffice:</p>
@@ -705,7 +714,7 @@ show_metrics(&#x27;۲۰.۳&#x27;, [
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 20.5 | Competitive structure in the ten most frequent job categories | 360,083 postings | Farvardin 1401 to Bahman 1402</figcaption>
+  <figcaption>Table 20.5 | ساختار رقابت در ده Job category پرتکرار | 360,083 postings | Farvardin 1401 تا Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -734,109 +743,109 @@ show_metrics(&#x27;۲۰.۳&#x27;, [
 <th>Other categories</th>
 <td>132,837</td>
 <td>13.5</td>
-<td>30.0%</td>
-<td>6.5%</td>
-<td>36.9%</td>
+<td>30.0٪</td>
+<td>6.5٪</td>
+<td>36.9٪</td>
 <td>+63.3</td>
-<td>49.2%</td>
+<td>49.2٪</td>
 </tr>
 <tr>
 <th>Finance and accounting</th>
 <td>42,244</td>
 <td>13.5</td>
-<td>31.9%</td>
-<td>0.6%</td>
-<td>11.7%</td>
+<td>31.9٪</td>
+<td>0.6٪</td>
+<td>11.7٪</td>
 <td>+66.1</td>
-<td>50.2%</td>
+<td>50.2٪</td>
 </tr>
 <tr>
 <th>Sales and marketing - bachelor's and managerial levels</th>
 <td>38,020</td>
 <td>13.5</td>
-<td>34.3%</td>
-<td>9.4%</td>
-<td>10.6%</td>
+<td>34.3٪</td>
+<td>9.4٪</td>
+<td>10.6٪</td>
 <td>+18.6</td>
-<td>58.9%</td>
+<td>58.9٪</td>
 </tr>
 <tr>
 <th>Sales and marketing - salesperson / marketer and sales representative / cashier</th>
 <td>35,244</td>
 <td>11.0</td>
-<td>44.6%</td>
-<td>14.3%</td>
-<td>9.8%</td>
+<td>44.6٪</td>
+<td>14.3٪</td>
+<td>9.8٪</td>
 <td>+76.3</td>
-<td>55.9%</td>
+<td>55.9٪</td>
 </tr>
 <tr>
 <th>Office administrator / administrative and data-entry clerk / typist</th>
 <td>24,390</td>
 <td>9.0</td>
-<td>40.0%</td>
-<td>1.2%</td>
-<td>6.8%</td>
+<td>40.0٪</td>
+<td>1.2٪</td>
+<td>6.8٪</td>
 <td>+70.5</td>
-<td>32.9%</td>
+<td>32.9٪</td>
 </tr>
 <tr>
 <th>Industrial engineering / Production management / Project management / Operations management</th>
 <td>18,505</td>
 <td>13.5</td>
-<td>23.3%</td>
-<td>0.9%</td>
-<td>5.1%</td>
+<td>23.3٪</td>
+<td>0.9٪</td>
+<td>5.1٪</td>
 <td>+32.1</td>
-<td>47.6%</td>
+<td>47.6٪</td>
 </tr>
 <tr>
 <th>Software development and programming</th>
 <td>15,111</td>
 <td>17.5</td>
-<td>24.9%</td>
-<td>21.5%</td>
-<td>4.2%</td>
+<td>24.9٪</td>
+<td>21.5٪</td>
+<td>4.2٪</td>
 <td>+6.4</td>
-<td>52.8%</td>
+<td>52.8٪</td>
 </tr>
 <tr>
 <th>General worker / support staff</th>
 <td>14,324</td>
 <td>9.0</td>
-<td>47.8%</td>
-<td>0.3%</td>
-<td>4.0%</td>
+<td>47.8٪</td>
+<td>0.3٪</td>
+<td>4.0٪</td>
 <td>+78.3</td>
-<td>28.6%</td>
+<td>28.6٪</td>
 </tr>
 <tr>
 <th>Network / DevOps / hardware and software support</th>
 <td>14,065</td>
 <td>13.5</td>
-<td>18.2%</td>
-<td>2.7%</td>
-<td>3.9%</td>
+<td>18.2٪</td>
+<td>2.7٪</td>
+<td>3.9٪</td>
 <td>+34.5</td>
-<td>46.4%</td>
+<td>46.4٪</td>
 </tr>
 <tr>
 <th>Digital marketing and SEO</th>
 <td>12,822</td>
 <td>11.0</td>
-<td>42.3%</td>
-<td>24.5%</td>
-<td>3.6%</td>
+<td>42.3٪</td>
+<td>24.5٪</td>
+<td>3.6٪</td>
 <td>+153.6</td>
-<td>43.4%</td>
+<td>43.4٪</td>
 </tr>
 </tbody>
 </table></div>
   <p class="tbl-note"><span>Note:</span> Coefficient of variation = standard deviation ÷ mean salary; a higher number means more dispersed pricing and more room for negotiation</p>
   
 </figure><div class="guide-metrics">
-  <p class="m-title">Key numbers: 20.3</p>
-  <ul><li>Market concentration (HHI of category shares): 1852 out of 10,000</li><li>Highest-volume category: other categories — 36.9%</li><li>Highest salary dispersion: Sales and marketing - bachelor's and managerial levels — 58.9%</li><li>Least transparent high-volume category: network / DevOps / hardware and software support — disclosure 18.2%</li></ul>
+  <p class="m-title">Key numbers: ۲۰.۳</p>
+  <ul><li>Market concentration (HHI of category shares): 1852 out of ۱۰٬۰۰۰</li><li>Highest-volume category: other categories — ۳۶.۹٪</li><li>Highest salary dispersion: Sales and marketing - bachelor's and managerial levels — ۵۸.۹٪</li><li>Least transparent high-volume category: network / DevOps / hardware and software support — disclosure ۱۸.۲٪</li></ul>
 </div><p><strong>Interpretation of Table 20.5 and Key Numbers 20.3:</strong> The competitive structure of Iran’s labor market is <strong>not concentrated but is unbalanced</strong>; the concentration index (HHI) is <strong>1852 out of 10,000</strong>, which is a long way from the threshold of 2500 (a concentrated market). That is, no single category holds the field of competition by itself, and competition is spread across all fronts.</p>
 <ul>
 <li><strong>Where is competition just now flaring up?</strong> Digital marketing with growth of <strong>+153.6%</strong>, general laborer (+78.3%), salesperson and van sales rep (+76.3%), and office clerk (+70.5%) are the fastest-growing arms. Against them, <strong>software development has grown only +6.4%</strong> — that is, this very market, which has the greatest visibility, is in fact the <strong>most mature and most saturated</strong> segment, and competition for attracting staff in it is less dynamic.</li>

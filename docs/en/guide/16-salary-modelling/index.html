@@ -57,6 +57,8 @@
       <a href="../../index.html#visuals">Visuals</a>
       <a href="../../index.html#playbook">Playbook</a>
       <a class="active" href="../">Docs</a>
+      <a href="../../../tools/salary-calculator.html">Salary calculator</a>
+      <a href="../../../dashboard/">Project dashboard</a>
     </nav>
     <div class="header-actions">
       <div class="lang-switch" role="group" aria-label="Language">
@@ -257,7 +259,7 @@ show_table(&#x27;16.1&#x27;, &#x27;کارایی مدل‌های حقوق در ه
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 16.1 | Performance of salary models in each year | 119,048 postings with disclosed salary</figcaption>
+  <figcaption>Table 16.1 | کارایی مدل‌های Salary در هر سال | 119,048 Postings with salary اعلام‌شده</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -455,15 +457,15 @@ show_metrics(&#x27;مدل حقوق&#x27;, [
   </button>
   <figcaption>Figure 16.1-16.2 | Change in the effect of numeric features between the two years · Actual versus predicted, 1402 model</figcaption>
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 16.2 | Standardised effect of numeric features on salary across the two years | 119,048 postings with salary</figcaption>
+  <figcaption>Table 16.2 | اثر Provinceداردشده Feature‌های عددی بر Salary در دو سال | 119,048 Postings with salary</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
 <th></th>
-<th>Coefficient 1402</th>
-<th>Effect 1402 (%)</th>
-<th>Coefficient 1401</th>
-<th>Effect 1401 (%)</th>
+<th>Coefficient ۱۴۰۲</th>
+<th>Effect 1402 (٪)</th>
+<th>Coefficient ۱۴۰۱</th>
+<th>Effect 1401 (٪)</th>
 <th>Effect change (percentage points)</th>
 </tr>
 <tr>
@@ -561,13 +563,13 @@ show_metrics(&#x27;مدل حقوق&#x27;, [
   <p class="tbl-note"><span>Note:</span> The per-standard-deviation effect is the percent change in salary for a one-standard-deviation increase in that variable, holding the others constant.</p>
   
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 16.3 | Effect of categorical levels on salary across the two years (percent relative to base level) | 119,048 postings with salary</figcaption>
+  <figcaption>Table 16.3 | اثر سطوح Categorical بر Salary در دو سال (Percent Ratio به سطح پایه) | 119,048 Postings with salary</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
 <th></th>
-<th>Effect 1401 (%)</th>
-<th>Effect 1402 (%)</th>
+<th>Effect 1401 (٪)</th>
+<th>Effect 1402 (٪)</th>
 <th>Change</th>
 </tr>
 <tr>
@@ -638,7 +640,7 @@ show_metrics(&#x27;مدل حقوق&#x27;, [
   
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: salary model</p>
-  <ul><li>Validation R² 1401: 0.443</li><li>Validation R² 1402: 0.437</li><li>Absolute error 1402: 3.44 million</li><li>Top factor 1402: Jobpost_RequiredExperienceYears</li></ul>
+  <ul><li>Validation R² ۱۴۰۱: 0.443</li><li>Validation R² ۱۴۰۲: 0.437</li><li>Absolute error ۱۴۰۲: 3.44 million</li><li>Top factor ۱۴۰۲: Jobpost_RequiredExperienceYears</li></ul>
 </div><p><strong>Interpreting Tables 16.2 and 16.3 and Figures 16.1 and 16.2:</strong> The most important numeric factor in both years is <strong>work experience</strong>: one more standard deviation of experience raises salary by about <strong>+16.1%</strong> in 1401 and about <strong>+12.5%</strong> in 1402. After that come the number of benefits (+4.5 to +2.9), having a field of study (+4.1 to +2.8) and company size (+3.3 to +2.7). Note that <strong>all of these effects became smaller from 1401 to 1402</strong>; that is, in the second year the market gave a smaller reward for the same features.</p>
 <p>On the categorical side, the gaps are large and deepening: relative to the reference role (programming), postings for general labourer were about <strong>−55.9%</strong> in 1401 and <strong>−60%</strong> in 1402, administrative clerk <strong>−50.3% to −56.1%</strong> and technical technician <strong>−36.3% to −37.4%</strong>. By contrast, managerial roles in 1402 were about <strong>+28.2%</strong> above the reference.</p>
 <p><strong>Summary:</strong> In a year of high inflation, the returns to individual features (experience, degree, benefits) declined somewhat, but the gap between “types of job” deepened; that is, the fate of a wage has come to depend more than ever on the choice of career path, not on accumulating experience.</p><h2 class="guide-heading" id="sec-16-4">16.4. Do the signs of the coefficients match theoretical expectation? <a aria-label="link" class="anchor" href="#sec-16-4">#</a></h2>
@@ -771,13 +773,13 @@ show_metrics(&#x27;۱۶.۳&#x27;, [
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 16.4 | Sign and size of the effect of numeric variables vs. theoretical expectation | 119,048 postings with disclosed salary | Farvardin 1401 to Bahman 1402</figcaption>
+  <figcaption>Table 16.4 | علامت و اندازهٔ اثر Variableهای عددی در برابر Expectation نظری | 119,048 Postings with salary اعلام‌شده | Farvardin 1401 تا Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
 <th></th>
-<th>Effect 1401 (%)</th>
-<th>Effect 1402 (%)</th>
+<th>Effect 1401 (٪)</th>
+<th>Effect 1402 (٪)</th>
 <th>Expectation</th>
 <th>Match</th>
 <th>Reason for expectation</th>
@@ -901,7 +903,7 @@ show_metrics(&#x27;۱۶.۳&#x27;, [
   <p class="tbl-note"><span>Note:</span> Effect of each standard deviation on salary; ridge model with standardized variables</p>
   
 </figure><div class="guide-metrics">
-  <p class="m-title">Key numbers: 16.3</p>
+  <p class="m-title">Key numbers: ۱۶.۳</p>
   <ul><li>Variables with a defined expectation: 11</li><li>Matches in both years: 6</li><li>Matches in one year: 2</li><li>Contradicts the expectation: 3</li><li>Sign changes between the two years: 3</li></ul>
 </div><p><strong>Interpreting Table 16.4 and Key Numbers 16.3:</strong> Of the 11 variables that had a definite theoretical expectation, <strong>6 variables matched expectation in both years</strong>, 2 variables in only one year, and <strong>3 variables were contrary</strong>. The overall pattern confirms human capital theory:</p>
 <ul>

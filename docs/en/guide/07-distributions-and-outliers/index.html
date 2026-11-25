@@ -57,6 +57,8 @@
       <a href="../../index.html#visuals">Visuals</a>
       <a href="../../index.html#playbook">Playbook</a>
       <a class="active" href="../">Docs</a>
+      <a href="../../../tools/salary-calculator.html">Salary calculator</a>
+      <a href="../../../dashboard/">Project dashboard</a>
     </nav>
     <div class="header-actions">
       <div class="lang-switch" role="group" aria-label="Language">
@@ -242,7 +244,7 @@ show_metrics(&#x27;توزیع‌ها&#x27;, [
   </button>
   <figcaption>Figure 7.1-7.4 | Distribution of monthly salary (linear) · Distribution of required work experience · Distribution of hourly income · Distribution of requested age bands</figcaption>
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 7.1 | Statistical summary of key numeric variables | 360,083 postings (each column on its available data) | Farvardin 1401 to Bahman 1402</figcaption>
+  <figcaption>Table 7.1 | خلاصه آماری Variableهای عددی کلیدی | 360,083 postings (هر Column روی داده در دسترس خود) | Farvardin 1401 تا Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -341,7 +343,7 @@ show_metrics(&#x27;توزیع‌ها&#x27;, [
   
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: distributions</p>
-  <ul><li>Salary skewness: 2.68</li><li>Log-salary skewness: 0.43</li><li>Mean minus median salary: 2.39 million</li><li>Hourly income skewness: 6.80</li><li>Postings requiring no experience: 15.8%</li></ul>
+  <ul><li>Salary skewness: 2.68</li><li>Log-salary skewness: 0.43</li><li>Mean minus median salary: 2.39 million</li><li>Hourly income skewness: 6.80</li><li>Postings requiring no experience: 15.8٪</li></ul>
 </div><p><strong>Interpretation of table 7.1 and figures 7.1 to 7.4:</strong> The salary distribution is right-skewed: median 11 and mean 13.4 million tomans, with a skewness of 2.68. The 2.4 million gap between the mean and the median is itself the best evidence that the “mean” is misleading in this data; a manager who takes the market mean as the salary basis would offer above the market for half of the roles. For this reason, the median and quartiles are reported in all sections.</p>
 <p>Taking the logarithm makes the distribution approximately normal (skewness falls from 2.68 to 0.43), and this is the technical justification for using the logarithm of salary as the target variable in section 16.</p>
 <p>The distribution of hourly income is also skewed but its range is narrower: median 63.5 and the 99th percentile about 300 thousand tomans per hour. Requested work experience is also skewed: median 2 years, third quartile 3 years, and 15.8% of job postings need no experience; in contrast, only 732 job postings ask for more than 10 years of experience. The overall picture is that Iran's labor market is a “low-experience” market: it usually wants fresh workers or those with two to three years.</p>
@@ -391,7 +393,7 @@ show_table(&#x27;7.2&#x27;, &#x27;پرت‌ها بر پایه قاعده ۱٫۵ 
            <span class="n">note</span><span class="o">=</span><span class="s1">'پرت‌ها حذف نمی‌شوند؛ فقط در مدل‌سازی سطح حقوق وینزور می‌شوند.'</span><span class="p">)</span>
 </code></pre>
   </div><figure class="guide-table" id="table-">
-  <figcaption>Table 7.2 | Outliers based on the 1.5 × IQR rule | available data for each variable | Farvardin 1401 to Bahman 1402</figcaption>
+  <figcaption>Table 7.2 | پرت‌ها بر پایه Rule 1.5 برابر دامنه میان‌چارکی | داده در دسترس هر Variable | Farvardin 1401 تا Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -420,8 +422,8 @@ show_table(&#x27;7.2&#x27;, &#x27;پرت‌ها بر پایه قاعده ۱٫۵ 
 <td>-3.75</td>
 <td>30.25</td>
 <td>2,382</td>
-<td>2.0%</td>
-<td>2.0%</td>
+<td>2.0٪</td>
+<td>2.0٪</td>
 </tr>
 <tr>
 <th>Hourly income</th>
@@ -429,8 +431,8 @@ show_table(&#x27;7.2&#x27;, &#x27;پرت‌ها بر پایه قاعده ۱٫۵ 
 <td>-22.35</td>
 <td>157.00</td>
 <td>7,203</td>
-<td>6.2%</td>
-<td>6.2%</td>
+<td>6.2٪</td>
+<td>6.2٪</td>
 </tr>
 <tr>
 <th>Required experience</th>
@@ -438,8 +440,8 @@ show_table(&#x27;7.2&#x27;, &#x27;پرت‌ها بر پایه قاعده ۱٫۵ 
 <td>-2.00</td>
 <td>6.00</td>
 <td>10,915</td>
-<td>3.0%</td>
-<td>3.0%</td>
+<td>3.0٪</td>
+<td>3.0٪</td>
 </tr>
 </tbody>
 </table></div>
@@ -504,7 +506,7 @@ show_metrics(&#x27;سابقه و سن&#x27;, [
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 7.3 | Postings by requested work experience | 360,083 postings | Farvardin 1401 to Bahman 1402</figcaption>
+  <figcaption>Table 7.3 | postings‌ها بر پایه سابقه کار درخواستی | 360,083 postings | Farvardin 1401 تا Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -527,57 +529,57 @@ show_metrics(&#x27;سابقه و سن&#x27;, [
 <th>No experience</th>
 <td>56,838</td>
 <td>9.0</td>
-<td>44.7%</td>
-<td>15.8%</td>
+<td>44.7٪</td>
+<td>15.8٪</td>
 </tr>
 <tr>
-<th>1 year</th>
+<th>۱ year</th>
 <td>85,929</td>
 <td>11.0</td>
-<td>34.7%</td>
-<td>23.9%</td>
+<td>34.7٪</td>
+<td>23.9٪</td>
 </tr>
 <tr>
-<th>2 years</th>
+<th>۲ years</th>
 <td>95,180</td>
 <td>11.0</td>
-<td>30.3%</td>
-<td>26.4%</td>
+<td>30.3٪</td>
+<td>26.4٪</td>
 </tr>
 <tr>
-<th>3 years</th>
+<th>۳ years</th>
 <td>67,749</td>
 <td>13.5</td>
-<td>29.0%</td>
-<td>18.8%</td>
+<td>29.0٪</td>
+<td>18.8٪</td>
 </tr>
 <tr>
-<th>4 to 5</th>
+<th>۴ to ۵</th>
 <td>40,853</td>
 <td>17.5</td>
-<td>28.5%</td>
-<td>11.3%</td>
+<td>28.5٪</td>
+<td>11.3٪</td>
 </tr>
 <tr>
-<th>6 to 10</th>
+<th>۶ to ۱۰</th>
 <td>12,802</td>
 <td>22.5</td>
-<td>26.8%</td>
-<td>3.6%</td>
+<td>26.8٪</td>
+<td>3.6٪</td>
 </tr>
 <tr>
-<th>Over 10</th>
+<th>Over ۱۰</th>
 <td>732</td>
 <td>30.0</td>
-<td>27.2%</td>
-<td>0.2%</td>
+<td>27.2٪</td>
+<td>0.2٪</td>
 </tr>
 </tbody>
 </table></div>
   
   
 </figure><figure class="guide-table" id="table-">
-  <figcaption>Table 7.4 | Postings by median requested age range | 286,168 postings with an age range | Farvardin 1401 to Bahman 1402</figcaption>
+  <figcaption>Table 7.4 | postings‌ها بر پایه Median requested age range | 286,168 postings دارای Age range | Farvardin 1401 تا Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
@@ -597,39 +599,39 @@ show_metrics(&#x27;سابقه و سن&#x27;, [
 </thead>
 <tbody>
 <tr>
-<th>Under 22</th>
+<th>Under ۲۲</th>
 <td>6,411</td>
 <td>13.5</td>
 <td>0.0</td>
-<td>1.8%</td>
+<td>1.8٪</td>
 </tr>
 <tr>
-<th>22 to 27</th>
+<th>۲۲ to ۲۷</th>
 <td>38,680</td>
 <td>9.0</td>
 <td>1.0</td>
-<td>10.7%</td>
+<td>10.7٪</td>
 </tr>
 <tr>
-<th>27 to 32</th>
+<th>۲۷ to ۳۲</th>
 <td>136,400</td>
 <td>11.0</td>
 <td>2.0</td>
-<td>37.9%</td>
+<td>37.9٪</td>
 </tr>
 <tr>
-<th>32 to 37</th>
+<th>۳۲ to ۳۷</th>
 <td>76,531</td>
 <td>11.0</td>
 <td>2.0</td>
-<td>21.3%</td>
+<td>21.3٪</td>
 </tr>
 <tr>
-<th>Above 37</th>
+<th>Above ۳۷</th>
 <td>28,146</td>
 <td>13.5</td>
 <td>4.0</td>
-<td>7.8%</td>
+<td>7.8٪</td>
 </tr>
 </tbody>
 </table></div>
@@ -637,7 +639,7 @@ show_metrics(&#x27;سابقه و سن&#x27;, [
   
 </figure><div class="guide-metrics">
   <p class="m-title">Key figures: experience and age</p>
-  <ul><li>Median requested experience: 2 years</li><li>Postings requiring over 10 years of experience: 732</li><li>Postings with an age range: 79.5%</li><li>Median requested age: 30.0 years</li></ul>
+  <ul><li>Median requested experience: 2 years</li><li>Postings requiring over ۱۰ years of experience: 732</li><li>Postings with an age range: 79.5٪</li><li>Median requested age: 30.0 years</li></ul>
 </div><p><strong>Interpretation of tables 7.3 and 7.4:</strong> The requested experience reaches its ceiling very quickly: 52% of job postings ask for at most 2 years of experience and only about 4% for more than 5 years. On the salary side, the median goes from about 11 million for job postings with no experience requirement to 13.5 million for job postings with 3 years of experience; that is, the biggest jump in pay occurs in the first two years, after which the slope flattens. This is the same “diminishing returns of experience” pattern that is charted in section 8.</p>
 <p>The requested age range is stated in only 79.5% of job postings and even there it is narrow: median 30 years and quartiles 28.5 to 34 years. That is, Iranian employers mainly want young to middle-aged workers, and requests for over 40 years are very rare. This pattern returns in section 13 as a market limitation and in section 22 as an operational warning (avoid artificially restricting the age range).</p><h2 class="guide-heading" id="sec-7-4">7.4. How much can we trust the medians? Confidence intervals via bootstrap resampling <a aria-label="link" class="anchor" href="#sec-7-4">#</a></h2>
 <p>All the numbers in this project come from a sample of job postings, so every median is an <strong>estimate</strong>, not a definite fact. For this reason, we estimate the 95% confidence interval of the medians using bootstrap resampling (bootstrap, 400 repetitions): job postings are resampled with replacement, and the spread of the median across these samples shows the uncertainty. A narrow number means “this number can be attributed to the market”.</p><details class="code-fold">
@@ -777,15 +779,15 @@ show_metrics(&#x27;اطمینان برآوردها&#x27;, [
 </code></pre>
   </div>
 </details><figure class="guide-table" id="table-">
-  <figcaption>Table 7.5 | 95% confidence intervals of the estimates (400 bootstrap repetitions) | 119,048 postings with disclosed salary | Farvardin 1401 to Bahman 1402</figcaption>
+  <figcaption>Table 7.5 | فاصلهٔ اطمینان 95% Estimate‌ها (400 تکرار بازنمونه‌گیری) | 119,048 Postings with salary اعلام‌شده | Farvardin 1401 تا Bahman 1402</figcaption>
   <div class="table-wrap"><table class="data compact guide-table">
 <thead>
 <tr style="text-align: right;">
 <th></th>
 <th>Sample size</th>
 <th>Estimate</th>
-<th>Lower bound 95%</th>
-<th>Upper bound 95%</th>
+<th>Lower bound ۹۵٪</th>
+<th>Upper bound ۹۵٪</th>
 <th>Interval width</th>
 </tr>
 <tr>
@@ -815,7 +817,7 @@ show_metrics(&#x27;اطمینان برآوردها&#x27;, [
 <td>0.08</td>
 </tr>
 <tr>
-<th>Share of postings above 15 million (%)</th>
+<th>Share of postings above ۱۵ million (%)</th>
 <td>119,048</td>
 <td>26.70</td>
 <td>26.46</td>
@@ -831,7 +833,7 @@ show_metrics(&#x27;اطمینان برآوردها&#x27;, [
 <td>0.00</td>
 </tr>
 <tr>
-<th>Salary disclosure rate (%)</th>
+<th>Salary disclosure rate (٪)</th>
 <td>360,083</td>
 <td>33.06</td>
 <td>32.92</td>
@@ -868,7 +870,7 @@ show_metrics(&#x27;اطمینان برآوردها&#x27;, [
   
 </figure><div class="guide-metrics">
   <p class="m-title">Key numbers: estimate confidence</p>
-  <ul><li>Market-wide median salary: 11.0 million (interval width: 0.00)</li><li>Mean salary (bounds): 13.34 to 13.43 million</li><li>Median hourly income ± half-width: 63.5 ± 0.00</li><li>Salary disclosure rate ± half-width: 33.1% ± 0.15 units</li></ul>
+  <ul><li>Market-wide median salary: ۱۱.۰ million (interval width: ۰.۰۰)</li><li>Mean salary (bounds): ۱۳.۳۴ to ۱۳.۴۳ million</li><li>Median hourly income ± half-width: ۶۳.۵ ± ۰.۰۰</li><li>Salary disclosure rate ± half-width: ۳۳.۱٪ ± ۰.۱۵ units</li></ul>
 </div><p><strong>Interpretation of table 7.5:</strong> The result of the bootstrap resampling is itself a finding, not just a technical check.</p>
 <ul>
 <li><strong>The monthly median salary has a confidence interval width of zero</strong>: in all 400 resamplings, the median stayed exactly 11.0 million. The reason is what we saw in section 9.4: the market has anchored numbers, and the median sits on the anchors. That means this number can be confidently attributed to the whole market.</li>
