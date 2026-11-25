@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>داشبورد پروژه — JobVision</title>
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+  .dash { max-width: 1080px; margin: 0 auto; padding: 28px 20px 70px; }
+  .dash h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 8px 0 10px; }
+  .dash .dash-nav { font-size: .9rem; color: #5c6b6b; }
+  .dash .dash-lead { color: #5c6b6b; line-height: 1.9; margin: 0 0 24px; }
+  .dash-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 30px; }
+  .dash-kpi { border: 1px solid #cfe0dd; border-radius: 14px; padding: 14px 16px; background: #f7fbfa; }
+  .dash-kpi b { display: block; font-size: 1.5rem; color: #1f5f5a; }
+  .dash-kpi span { font-size: .85rem; color: #5c6b6b; }
+  .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+  .dash-fig { margin: 0; border: 1px solid #e2ecea; border-radius: 14px; overflow: hidden; background: #fff; }
+  .dash-fig img { display: block; width: 100%; height: auto; }
+  .dash-fig figcaption { padding: 10px 12px; font-size: .9rem; display: flex; justify-content: space-between;
+                          gap: 10px; flex-wrap: wrap; align-items: center; }
+  .dash-more { font-size: .82rem; color: #2f7f7a; white-space: nowrap; }
+</style>
+</head>
+<body>
+<main class="dash">
+  <p class="dash-nav"><a href="../index.html">صفحه اصلی</a> · <a href="../guide/">راهنما</a> · <a href="../tools/salary-calculator.html">ماشین‌حساب حقوق</a></p>
+  <h1>داشبورد پروژه</h1>
+  <p class="dash-lead">چکیدهٔ یک‌صفحه‌ای پروژه: هشت عدد کلیدی، شش نمودار محوری و مسیر رفتن به تحلیل کامل هر بخش.</p>
+  <div class="dash-kpis"><div class="dash-kpi"><b>۳۶۰٬۰۸۳</b><span>آگهی در ۲۳ ماه</span></div><div class="dash-kpi"><b>۳۳٫۱٪</b><span>نرخ افشای حقوق</span></div><div class="dash-kpi"><b>۱۱ میلیون</b><span>میانه حقوق ماهانه (IQR ۹–۱۷٫۵)</span></div><div class="dash-kpi"><b>۴۰</b><span>مقدار یکتای حقوق (باندبندی بازار)</span></div><div class="dash-kpi"><b>۶۴٫۶٪</b><span>سهم تهران از آگهی‌ها</span></div><div class="dash-kpi"><b>۱٬۷۵۲</b><span>نفوذ تهران در هر ۱۰۰ هزار نفر (ملی: ۴۵۰)</span></div><div class="dash-kpi"><b>۵۳٫۸٪</b><span>آگهی‌های دارای فهرست مهارت</span></div><div class="dash-kpi"><b>۱٬۸۵۲</b><span>تمرکز بازار (HHI از ۱۰٬۰۰۰)</span></div></div>
+  <div class="dash-grid"><figure class="dash-fig">
+      <a href="../guide/10-time-trends-and-seasonality/"><img src="../assets/img/fig_10_1-sm.webp" alt="روند ماهانه حجم آگهی" loading="lazy" decoding="async"></a>
+      <figcaption>روند ماهانه حجم آگهی<a class="dash-more" href="../guide/10-time-trends-and-seasonality/">خواندن تحلیل کامل →</a></figcaption>
+    </figure><figure class="dash-fig">
+      <a href="../guide/09-salary-disclosure/"><img src="../assets/img/fig_9_1-sm.webp" alt="پرتکرارترین مقادیر حقوق" loading="lazy" decoding="async"></a>
+      <figcaption>پرتکرارترین مقادیر حقوق<a class="dash-more" href="../guide/09-salary-disclosure/">خواندن تحلیل کامل →</a></figcaption>
+    </figure><figure class="dash-fig">
+      <a href="../guide/10-time-trends-and-seasonality/"><img src="../assets/img/fig_10_5-sm.webp" alt="شاخص فصلی به تفکیک دستهٔ شغلی" loading="lazy" decoding="async"></a>
+      <figcaption>شاخص فصلی به تفکیک دستهٔ شغلی<a class="dash-more" href="../guide/10-time-trends-and-seasonality/">خواندن تحلیل کامل →</a></figcaption>
+    </figure><figure class="dash-fig">
+      <a href="../guide/14-geography-and-provinces/"><img src="../assets/img/fig_14_6-sm.webp" alt="نفوذ آگهی در استان‌ها" loading="lazy" decoding="async"></a>
+      <figcaption>نفوذ آگهی در استان‌ها<a class="dash-more" href="../guide/14-geography-and-provinces/">خواندن تحلیل کامل →</a></figcaption>
+    </figure><figure class="dash-fig">
+      <a href="../guide/19-skills-evolution/"><img src="../assets/img/fig_19_3-sm.webp" alt="پاداش خالص مهارت‌ها" loading="lazy" decoding="async"></a>
+      <figcaption>پاداش خالص مهارت‌ها<a class="dash-more" href="../guide/19-skills-evolution/">خواندن تحلیل کامل →</a></figcaption>
+    </figure><figure class="dash-fig">
+      <a href="../guide/08-correlation-and-collinearity/"><img src="../assets/img/fig_8_5-sm.webp" alt="ساعت کاری، سابقه و مزایا" loading="lazy" decoding="async"></a>
+      <figcaption>ساعت کاری، سابقه و مزایا<a class="dash-more" href="../guide/08-correlation-and-collinearity/">خواندن تحلیل کامل →</a></figcaption>
+    </figure></div>
+</main>
+</body>
+</html>

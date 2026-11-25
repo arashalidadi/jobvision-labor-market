@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salary band calculator — JobVision</title>
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<style>
+  .calc-wrap { max-width: 980px; margin: 0 auto; padding: 28px 20px 64px; }
+  .calc-head h1 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 6px 0 10px; }
+  .calc-head p { color: var(--muted, #5c6b6b); line-height: 1.9; margin: 0 0 22px; }
+  .calc-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 22px; }
+  .calc-controls label { display: block; font-size: .85rem; font-weight: 700; margin-bottom: 6px; }
+  .calc-controls select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #cfe0dd;
+                           background: #fff; font: inherit; color: inherit; }
+  .calc-result { border: 1px solid #cfe0dd; border-radius: 16px; padding: 20px 22px; background: #f7fbfa; }
+  .calc-band { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .calc-number { font-size: 2.1rem; font-weight: 800; color: #1f5f5a; }
+  .calc-unit { color: #5c6b6b; font-size: .95rem; }
+  .calc-range { color: #445; font-size: .95rem; margin-top: 4px; }
+  .calc-bar { position: relative; height: 14px; border-radius: 999px; background: #e3efed; margin: 18px 0 8px; }
+  .calc-bar span { position: absolute; inset-block: 0; border-radius: 999px;
+                    background: linear-gradient(90deg, #7fb8b1, #2f7f7a); }
+  .calc-scale { display: flex; justify-content: space-between; font-size: .78rem; color: #7b8c8c; }
+  .calc-note { margin-top: 14px; font-size: .87rem; color: #6b4a13; background: #fff8ea;
+                border: 1px solid #f0e0bf; border-radius: 10px; padding: 10px 12px; }
+  .calc-meta { margin-top: 18px; font-size: .85rem; color: #5c6b6b; }
+  .calc-links { margin-top: 26px; display: flex; gap: 14px; flex-wrap: wrap; font-size: .9rem; }
+</style>
+</head>
+<body>
+<main class="calc-wrap" style="text-align:left">
+  <div class="calc-head">
+    <p class="calc-links"><a href="../index.html">Home</a> ·
+      <a href="../guide/">Project guide</a></p>
+    <h1>Salary band calculator</h1>
+    <p>See the competitive salary band for a role, province and experience level. Numbers come from real JobVision postings (1401–1402): median and interquartile range per group.</p>
+  </div>
+
+  <div class="calc-controls">
+    <div><label for="category">Job category</label>
+      <select id="category"><option value="فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار">Sales — salesperson / merchandiser / cashier</option><option value="مالی و حسابداری">Finance and accounting</option><option value="فروش و بازاریابی - سطوح کارشناسی و مدیریتی">Sales & marketing — specialist and managerial</option><option value="مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست">Office clerk / data entry / typist</option><option value="کارگر ساده / نیروی خدماتی">General labour / service worker</option><option value="دیجیتال مارکتینگ و سئو">Digital marketing and SEO</option><option value="مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات">Industrial engineering / production, project & operations</option><option value="تکنسین فنی / تعمیرکار / کارگر ماهر">Technician / repairer / skilled worker</option><option value="توسعه نرم افزار و برنامه نویسی">Software development and programming</option><option value="بازرگانی / تجارت">بازرگانی / تجارت</option><option value="other">Other categories</option></select></div>
+    <div><label for="province">Province</label>
+      <select id="province">
+        <option value="tehran">Tehran</option>
+        <option value="other">Other provinces</option>
+      </select></div>
+    <div><label for="experience">Required experience</label>
+      <select id="experience"><option value="none">No experience</option><option value="low">1–2 years</option><option value="mid">3–4 years</option><option value="high">5+ years</option><option value="unknown">Not stated</option></select></div>
+  </div>
+
+  <section class="calc-result" aria-live="polite">
+    <div class="calc-band">
+      <span class="calc-number" id="median">—</span>
+      <span class="calc-unit">million toman / month</span>
+    </div>
+    <div class="calc-range" id="range"></div>
+    <div class="calc-bar"><span id="bar" style="inset-inline-start:0; inset-inline-end:100%"></span></div>
+    <div class="calc-scale"><span id="q1">—</span><span id="q3">—</span></div>
+    <div class="calc-meta" id="meta"></div>
+    <div class="calc-note" id="note" hidden>Not enough postings for this combination; the market-wide band is shown.</div>
+  </section>
+
+  <p class="calc-meta">Compare your offer with the band: below Q1 you will struggle to attract candidates, above Q3 you are at the top of the market.</p>
+</main>
+
+<script>
+const DATA = {"generated": "2026-11-24", "period": "1401-1402", "sample": 120808, "median": 11.0, "categories": ["فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "مالی و حسابداری", "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست", "کارگر ساده / نیروی خدماتی", "دیجیتال مارکتینگ و سئو", "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "تکنسین فنی / تعمیرکار / کارگر ماهر", "توسعه نرم افزار و برنامه نویسی", "بازرگانی / تجارت", "other"], "experience": [{"key": "none", "fa": "بدون سابقه", "en": "No experience"}, {"key": "low", "fa": "۱ تا ۲ سال", "en": "1–2 years"}, {"key": "mid", "fa": "۳ تا ۴ سال", "en": "3–4 years"}, {"key": "high", "fa": "۵ سال و بیشتر", "en": "5+ years"}, {"key": "unknown", "fa": "اعلام نشده", "en": "Not stated"}], "cells": [{"category": "other", "province_group": "other", "experience_bucket": "high", "n": 1802, "median": 17.5, "q1": 13.5, "q3": 22.5}, {"category": "other", "province_group": "other", "experience_bucket": "low", "n": 7484, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "other", "province_group": "other", "experience_bucket": "mid", "n": 2643, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "other", "province_group": "other", "experience_bucket": "none", "n": 3893, "median": 13.5, "q1": 9.0, "q3": 13.5}, {"category": "other", "province_group": "tehran", "experience_bucket": "high", "n": 2771, "median": 17.5, "q1": 13.5, "q3": 22.5}, {"category": "other", "province_group": "tehran", "experience_bucket": "low", "n": 12472, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "other", "province_group": "tehran", "experience_bucket": "mid", "n": 6269, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "other", "province_group": "tehran", "experience_bucket": "none", "n": 2981, "median": 9.0, "q1": 7.0, "q3": 13.5}, {"category": "بازرگانی / تجارت", "province_group": "other", "experience_bucket": "high", "n": 65, "median": 17.5, "q1": 17.5, "q3": 30.0}, {"category": "بازرگانی / تجارت", "province_group": "other", "experience_bucket": "low", "n": 201, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "بازرگانی / تجارت", "province_group": "other", "experience_bucket": "mid", "n": 118, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "بازرگانی / تجارت", "province_group": "other", "experience_bucket": "none", "n": 52, "median": 11.0, "q1": 9.0, "q3": 17.5}, {"category": "بازرگانی / تجارت", "province_group": "tehran", "experience_bucket": "high", "n": 423, "median": 17.5, "q1": 13.5, "q3": 30.0}, {"category": "بازرگانی / تجارت", "province_group": "tehran", "experience_bucket": "low", "n": 968, "median": 13.5, "q1": 9.0, "q3": 13.5}, {"category": "بازرگانی / تجارت", "province_group": "tehran", "experience_bucket": "mid", "n": 858, "median": 13.5, "q1": 13.5, "q3": 17.5}, {"category": "بازرگانی / تجارت", "province_group": "tehran", "experience_bucket": "none", "n": 174, "median": 9.0, "q1": 7.0, "q3": 13.5}, {"category": "توسعه نرم افزار و برنامه نویسی", "province_group": "other", "experience_bucket": "high", "n": 42, "median": 22.5, "q1": 17.5, "q3": 30.0}, {"category": "توسعه نرم افزار و برنامه نویسی", "province_group": "other", "experience_bucket": "low", "n": 557, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "توسعه نرم افزار و برنامه نویسی", "province_group": "other", "experience_bucket": "mid", "n": 336, "median": 13.5, "q1": 13.5, "q3": 22.5}, {"category": "توسعه نرم افزار و برنامه نویسی", "province_group": "other", "experience_bucket": "none", "n": 623, "median": 13.5, "q1": 9.0, "q3": 22.5}, {"category": "توسعه نرم افزار و برنامه نویسی", "province_group": "tehran", "experience_bucket": "high", "n": 238, "median": 30.0, "q1": 22.5, "q3": 40.0}, {"category": "توسعه نرم افزار و برنامه نویسی", "province_group": "tehran", "experience_bucket": "low", "n": 1027, "median": 17.5, "q1": 13.5, "q3": 22.5}, {"category": "توسعه نرم افزار و برنامه نویسی", "province_group": "tehran", "experience_bucket": "mid", "n": 805, "median": 22.5, "q1": 17.5, "q3": 30.0}, {"category": "توسعه نرم افزار و برنامه نویسی", "province_group": "tehran", "experience_bucket": "none", "n": 192, "median": 13.5, "q1": 10.5, "q3": 17.5}, {"category": "تکنسین فنی / تعمیرکار / کارگر ماهر", "province_group": "other", "experience_bucket": "high", "n": 153, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "تکنسین فنی / تعمیرکار / کارگر ماهر", "province_group": "other", "experience_bucket": "low", "n": 1325, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "تکنسین فنی / تعمیرکار / کارگر ماهر", "province_group": "other", "experience_bucket": "mid", "n": 451, "median": 13.5, "q1": 9.0, "q3": 13.5}, {"category": "تکنسین فنی / تعمیرکار / کارگر ماهر", "province_group": "other", "experience_bucket": "none", "n": 470, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "تکنسین فنی / تعمیرکار / کارگر ماهر", "province_group": "tehran", "experience_bucket": "high", "n": 128, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "تکنسین فنی / تعمیرکار / کارگر ماهر", "province_group": "tehran", "experience_bucket": "low", "n": 1060, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "تکنسین فنی / تعمیرکار / کارگر ماهر", "province_group": "tehran", "experience_bucket": "mid", "n": 444, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "تکنسین فنی / تعمیرکار / کارگر ماهر", "province_group": "tehran", "experience_bucket": "none", "n": 331, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "دیجیتال مارکتینگ و سئو", "province_group": "other", "experience_bucket": "low", "n": 535, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "دیجیتال مارکتینگ و سئو", "province_group": "other", "experience_bucket": "mid", "n": 131, "median": 13.5, "q1": 9.0, "q3": 17.5}, {"category": "دیجیتال مارکتینگ و سئو", "province_group": "other", "experience_bucket": "none", "n": 1937, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "دیجیتال مارکتینگ و سئو", "province_group": "tehran", "experience_bucket": "high", "n": 141, "median": 17.5, "q1": 17.5, "q3": 30.0}, {"category": "دیجیتال مارکتینگ و سئو", "province_group": "tehran", "experience_bucket": "low", "n": 1637, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "دیجیتال مارکتینگ و سئو", "province_group": "tehran", "experience_bucket": "mid", "n": 702, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "دیجیتال مارکتینگ و سئو", "province_group": "tehran", "experience_bucket": "none", "n": 398, "median": 11.0, "q1": 7.5, "q3": 13.5}, {"category": "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "province_group": "other", "experience_bucket": "high", "n": 512, "median": 22.5, "q1": 17.5, "q3": 30.0}, {"category": "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "province_group": "other", "experience_bucket": "low", "n": 2166, "median": 13.5, "q1": 9.0, "q3": 17.5}, {"category": "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "province_group": "other", "experience_bucket": "mid", "n": 799, "median": 17.5, "q1": 13.5, "q3": 22.5}, {"category": "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "province_group": "other", "experience_bucket": "none", "n": 2041, "median": 9.0, "q1": 9.0, "q3": 13.5}, {"category": "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "province_group": "tehran", "experience_bucket": "high", "n": 1069, "median": 22.5, "q1": 17.5, "q3": 30.0}, {"category": "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "province_group": "tehran", "experience_bucket": "low", "n": 3726, "median": 13.5, "q1": 9.0, "q3": 17.5}, {"category": "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "province_group": "tehran", "experience_bucket": "mid", "n": 2036, "median": 17.5, "q1": 13.5, "q3": 22.5}, {"category": "فروش و بازاریابی - سطوح کارشناسی و مدیریتی", "province_group": "tehran", "experience_bucket": "none", "n": 818, "median": 13.5, "q1": 9.0, "q3": 17.5}, {"category": "فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "province_group": "other", "experience_bucket": "high", "n": 51, "median": 17.5, "q1": 13.5, "q3": 17.5}, {"category": "فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "province_group": "other", "experience_bucket": "low", "n": 4061, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "province_group": "other", "experience_bucket": "mid", "n": 328, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "province_group": "other", "experience_bucket": "none", "n": 3951, "median": 9.0, "q1": 7.0, "q3": 13.5}, {"category": "فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "province_group": "tehran", "experience_bucket": "high", "n": 78, "median": 17.5, "q1": 11.0, "q3": 21.25}, {"category": "فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "province_group": "tehran", "experience_bucket": "low", "n": 4552, "median": 11.0, "q1": 9.0, "q3": 17.5}, {"category": "فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "province_group": "tehran", "experience_bucket": "mid", "n": 737, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "فروش و بازاریابی - فروشنده / بازاریاب و ویزیتور / صندوقدار", "province_group": "tehran", "experience_bucket": "none", "n": 2105, "median": 11.0, "q1": 9.0, "q3": 17.5}, {"category": "مالی و حسابداری", "province_group": "other", "experience_bucket": "high", "n": 290, "median": 17.5, "q1": 13.5, "q3": 22.5}, {"category": "مالی و حسابداری", "province_group": "other", "experience_bucket": "low", "n": 1327, "median": 11.0, "q1": 7.0, "q3": 13.5}, {"category": "مالی و حسابداری", "province_group": "other", "experience_bucket": "mid", "n": 728, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "مالی و حسابداری", "province_group": "other", "experience_bucket": "none", "n": 263, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "مالی و حسابداری", "province_group": "tehran", "experience_bucket": "high", "n": 2072, "median": 17.5, "q1": 13.5, "q3": 24.38}, {"category": "مالی و حسابداری", "province_group": "tehran", "experience_bucket": "low", "n": 4801, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "مالی و حسابداری", "province_group": "tehran", "experience_bucket": "mid", "n": 3492, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "مالی و حسابداری", "province_group": "tehran", "experience_bucket": "none", "n": 714, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست", "province_group": "other", "experience_bucket": "low", "n": 943, "median": 9.0, "q1": 7.0, "q3": 9.0}, {"category": "مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست", "province_group": "other", "experience_bucket": "mid", "n": 162, "median": 10.0, "q1": 9.0, "q3": 13.5}, {"category": "مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست", "province_group": "other", "experience_bucket": "none", "n": 498, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست", "province_group": "tehran", "experience_bucket": "high", "n": 231, "median": 11.0, "q1": 11.0, "q3": 13.5}, {"category": "مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست", "province_group": "tehran", "experience_bucket": "low", "n": 5028, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست", "province_group": "tehran", "experience_bucket": "mid", "n": 1422, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "مسئول دفتر / کارمند اداری و ثبت اطلاعات / تایپیست", "province_group": "tehran", "experience_bucket": "none", "n": 1581, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "province_group": "other", "experience_bucket": "high", "n": 454, "median": 22.5, "q1": 17.5, "q3": 30.0}, {"category": "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "province_group": "other", "experience_bucket": "low", "n": 718, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "province_group": "other", "experience_bucket": "mid", "n": 447, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "province_group": "other", "experience_bucket": "none", "n": 143, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"category": "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "province_group": "tehran", "experience_bucket": "high", "n": 521, "median": 22.5, "q1": 17.5, "q3": 30.0}, {"category": "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "province_group": "tehran", "experience_bucket": "low", "n": 1045, "median": 13.5, "q1": 9.0, "q3": 13.5}, {"category": "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "province_group": "tehran", "experience_bucket": "mid", "n": 870, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"category": "مهندسی صنایع / مدیریت تولید / مدیریت پروژه / مدیریت عملیات", "province_group": "tehran", "experience_bucket": "none", "n": 174, "median": 11.0, "q1": 7.5, "q3": 13.5}, {"category": "کارگر ساده / نیروی خدماتی", "province_group": "other", "experience_bucket": "low", "n": 1003, "median": 9.0, "q1": 7.0, "q3": 9.0}, {"category": "کارگر ساده / نیروی خدماتی", "province_group": "other", "experience_bucket": "mid", "n": 74, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "کارگر ساده / نیروی خدماتی", "province_group": "other", "experience_bucket": "none", "n": 1139, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "کارگر ساده / نیروی خدماتی", "province_group": "tehran", "experience_bucket": "high", "n": 99, "median": 9.0, "q1": 9.0, "q3": 11.0}, {"category": "کارگر ساده / نیروی خدماتی", "province_group": "tehran", "experience_bucket": "low", "n": 2878, "median": 9.0, "q1": 7.0, "q3": 9.0}, {"category": "کارگر ساده / نیروی خدماتی", "province_group": "tehran", "experience_bucket": "mid", "n": 491, "median": 9.0, "q1": 7.0, "q3": 11.0}, {"category": "کارگر ساده / نیروی خدماتی", "province_group": "tehran", "experience_bucket": "none", "n": 1267, "median": 9.0, "q1": 7.0, "q3": 11.0}], "overall": [{"province_group": "other", "experience_bucket": "high", "n": 3435, "median": 17.5, "q1": 13.5, "q3": 22.5}, {"province_group": "other", "experience_bucket": "low", "n": 20320, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"province_group": "other", "experience_bucket": "mid", "n": 6217, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"province_group": "other", "experience_bucket": "none", "n": 15010, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"province_group": "tehran", "experience_bucket": "high", "n": 7771, "median": 17.5, "q1": 13.5, "q3": 30.0}, {"province_group": "tehran", "experience_bucket": "low", "n": 39194, "median": 11.0, "q1": 9.0, "q3": 13.5}, {"province_group": "tehran", "experience_bucket": "mid", "n": 18126, "median": 13.5, "q1": 11.0, "q3": 17.5}, {"province_group": "tehran", "experience_bucket": "none", "n": 10735, "median": 9.0, "q1": 7.0, "q3": 13.5}]};
+const LABELS = {"category": "Job category", "province": "Province", "experience": "Required experience", "tehran": "Tehran", "other": "Other provinces", "result": "Competitive band", "median": "Median", "range": "Interquartile range", "sample": "postings with salary", "fallback": "Not enough postings for this combination; the market-wide band is shown.", "hint": "Compare your offer with the band: below Q1 you will struggle to attract candidates, above Q3 you are at the top of the market.", "hourly": "", "other_category": "Other categories", "back": "Project guide", "home": "Home"};
+const EXPERIENCE = Object.fromEntries(DATA.experience.map(item => [item.key, item.en]));
+const el = id => document.getElementById(id);
+
+function pick(category, province, experience) {
+  return DATA.cells.find(cell => cell.category === category
+                                && cell.province_group === province
+                                && cell.experience_bucket === experience);
+}
+
+function pickOverall(province, experience) {
+  return DATA.overall.find(cell => cell.province_group === province && cell.experience_bucket === experience)
+      || DATA.overall.find(cell => cell.province_group === province) || DATA.overall[0];
+}
+
+function format(value) {
+  return value.toLocaleString('en-US', { maximumFractionDigits: 1 });
+}
+
+function update() {
+  const category = el('category').value;
+  const province = el('province').value;
+  const experience = el('experience').value;
+  const cell = pick(category, province, experience);
+  const used = cell || pickOverall(province, experience) || { median: DATA.median, q1: DATA.median * .8, q3: DATA.median * 1.5, n: DATA.sample };
+  el('note').hidden = Boolean(cell);
+  el('median').textContent = format(used.median);
+  el('q1').textContent = format(used.q1);
+  el('q3').textContent = format(used.q3);
+  el('range').textContent = `${LABELS.range}: ${format(used.q1)} – ${format(used.q3)}`;
+  el('meta').textContent = `${LABELS.sample}: ${used.n.toLocaleString('en-US')}`;
+  const ceiling = Math.max(used.q3 * 1.35, 1);
+  const start = Math.max(0, used.q1 / ceiling * 100);
+  const width = Math.max(6, (used.q3 - used.q1) / ceiling * 100);
+  const bar = el('bar');
+  bar.style.insetInlineStart = start + '%';
+  bar.style.insetInlineEnd = 'auto';
+  bar.style.width = width + '%';
+}
+
+['category', 'province', 'experience'].forEach(id => el(id).addEventListener('change', update));
+update();
+</script>
+</body>
+</html>
