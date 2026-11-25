@@ -370,7 +370,7 @@ def page_paths(lang: str, section_page: bool) -> dict:
     """Relative path prefixes that are correct for each page depth."""
     if section_page:
         assets = "../../assets/" if lang == "fa" else "../../../assets/"
-        home = "../../index.html" if lang == "fa" else "../../index.html"
+        home = "../../index.html"  # fa: docs/index.html · en: docs/en/index.html
         other = ("../../en/guide/" if lang == "fa" else "../../../guide/")
         guide_root = "../"
     else:
@@ -630,7 +630,8 @@ def write_index(model: dict, lang: str, out_dir: Path, translations: dict) -> No
                  figures=sum(section_stats(s, lang)["figures"] for s in sections),
                  code=sum(section_stats(s, lang)["code"] for s in sections))
     lead = translations.get("strings", {}).get("__guide_lead__", ui["guide_lead"])
-    body = f"""<nav class="guide-crumbs"><a href="../../index.html">{ui['home']}</a> <span>/</span> <span>{ui['docs']}</span></nav>
+    paths = page_paths(lang, section_page=False)
+    body = f"""<nav class="guide-crumbs"><a href="{paths['home']}">{ui['home']}</a> <span>/</span> <span>{ui['docs']}</span></nav>
 <h1>{ui['guide']}</h1>
 <p class="lead">{lead}</p>
 <div class="kpi-strip guide-kpis">
@@ -667,7 +668,8 @@ def write_section_page(section: dict, previous: dict | None, following: dict | N
     pager += "</nav>"
     meta = (f'<p class="guide-meta">{minutes} {ui["read_time"]} · '
             f'{card_meta(stats, ui)}</p>')
-    crumb = (f'<nav class="guide-crumbs"><a href="../../index.html">{ui["home"]}</a> <span>/</span> '
+    paths = page_paths(lang, section_page=True)
+    crumb = (f'<nav class="guide-crumbs"><a href="{paths["home"]}">{ui["home"]}</a> <span>/</span> '
              f'<a href="../">{ui["docs"]}</a> <span>/</span> <span>{ui["part"]} {section["num"]}</span></nav>')
     body = f"""{crumb}
 <h1>{html.escape(section_title(section, lang))}</h1>
